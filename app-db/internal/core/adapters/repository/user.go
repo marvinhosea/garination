@@ -5,10 +5,36 @@ import (
 	"garination.com/db/internal/core/model"
 	"garination.com/db/internal/core/ports/user"
 	"garination.com/db/internal/platform/postgres"
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 type userRepo struct {
-	userPostgresStorage user.UserPostgresStorage
+	userPostgresStorage user.PostgresStorage
+}
+
+func (u userRepo) UpdateUserDealership(ctx context.Context, userId, dealershipId string) (*model.UserMetum, error) {
+	request := postgres.UpdateUserDealershipParams{
+		UserID: userId,
+		DealershipID: pgtype.Text{
+			String: dealershipId,
+			Valid:  true,
+		},
+	}
+	userMeta, err := u.userPostgresStorage.UpdateUserDealership(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.UserMetum{
+		UserMetaID:   userMeta.UserMetaID,
+		UserID:       userMeta.UserID,
+		FacebookUrl:  userMeta.FacebookUrl,
+		TwitterUrl:   userMeta.TwitterUrl,
+		InstagramUrl: userMeta.InstagramUrl,
+		LinkedinUrl:  userMeta.LinkedinUrl,
+		WebsiteUrl:   userMeta.WebsiteUrl,
+		DealershipID: userMeta.DealershipID,
+	}, nil
 }
 
 func (u userRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserMetum, error) {
@@ -65,6 +91,7 @@ func (u userRepo) UpdateUserMeta(ctx context.Context, arg model.UserMetum) (*mod
 		InstagramUrl: arg.InstagramUrl,
 		LinkedinUrl:  arg.LinkedinUrl,
 		WebsiteUrl:   arg.WebsiteUrl,
+		UserID:       arg.UserID,
 	}
 	userMeta, err := u.userPostgresStorage.UpdateUserMeta(ctx, request)
 	if err != nil {
@@ -83,7 +110,7 @@ func (u userRepo) UpdateUserMeta(ctx context.Context, arg model.UserMetum) (*mod
 	}, nil
 }
 
-func NewUserRepo(userPostgresStorage user.UserPostgresStorage) user.UserRepository {
+func NewUserRepo(userPostgresStorage user.PostgresStorage) user.UserRepository {
 	return &userRepo{
 		userPostgresStorage: userPostgresStorage,
 	}
