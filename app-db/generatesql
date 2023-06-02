@@ -1,3 +1,4 @@
 #!/bin/sh
 
 sqlc generate --experimental
+cp internal/platform/postgres/model.gen.go internal/core/model/model.gen.go
