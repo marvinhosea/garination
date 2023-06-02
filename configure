@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# configure the project for local deployment
+
+# check if env files are specified
