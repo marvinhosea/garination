@@ -1,1 +1,7 @@
-package app_db
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("implement me")
+}
