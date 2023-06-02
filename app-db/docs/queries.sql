@@ -1,7 +1,7 @@
--- name: GetUserMeta :one
+-- name: getUserMeta :one
 SELECT * FROM user_meta WHERE user_id = $1 LIMIT 1;
 
--- name: InsertUserMeta :one
+-- name: insertUserMeta :one
 INSERT INTO user_meta (
     user_meta_id,
     user_id,
@@ -16,10 +16,10 @@ INSERT INTO user_meta (
          ) RETURNING *;
 
 
--- name: GetUserDealership :one
+-- name: getUserDealership :one
 SELECT d.* FROM dealership d JOIN user_meta u ON d.dealership_id = u.dealership_id WHERE u.user_id = $1 LIMIT 1;
 
--- name: InsertDealership :one
+-- name: insertDealership :one
 INSERT INTO dealership (
     dealership_id,
     name,
