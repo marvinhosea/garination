@@ -62,6 +62,101 @@ func (q *Queries) GetUserMeta(ctx context.Context, userID string) (UserMetum, er
 	return i, err
 }
 
+const insertDealership = `-- name: InsertDealership :one
+INSERT INTO dealership (
+    dealership_id,
+    name,
+    display_name,
+    address,
+    city,
+    state,
+    zip,
+    phone,
+    email,
+    website,
+    facebook_url,
+    twitter_url,
+    instagram_url,
+    linkedin_url,
+    logo_url,
+    cover_url,
+    description,
+    created_at,
+    updated_at
+) VALUES (
+             $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19
+         ) RETURNING dealership_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
+`
+
+type InsertDealershipParams struct {
+	DealershipID string
+	Name         string
+	DisplayName  string
+	Address      string
+	City         string
+	State        string
+	Zip          string
+	Phone        string
+	Email        string
+	Website      string
+	FacebookUrl  string
+	TwitterUrl   string
+	InstagramUrl string
+	LinkedinUrl  string
+	LogoUrl      string
+	CoverUrl     string
+	Description  string
+	CreatedAt    pgtype.Timestamp
+	UpdatedAt    pgtype.Timestamp
+}
+
+func (q *Queries) InsertDealership(ctx context.Context, arg InsertDealershipParams) (Dealership, error) {
+	row := q.db.QueryRow(ctx, insertDealership,
+		arg.DealershipID,
+		arg.Name,
+		arg.DisplayName,
+		arg.Address,
+		arg.City,
+		arg.State,
+		arg.Zip,
+		arg.Phone,
+		arg.Email,
+		arg.Website,
+		arg.FacebookUrl,
+		arg.TwitterUrl,
+		arg.InstagramUrl,
+		arg.LinkedinUrl,
+		arg.LogoUrl,
+		arg.CoverUrl,
+		arg.Description,
+		arg.CreatedAt,
+		arg.UpdatedAt,
+	)
+	var i Dealership
+	err := row.Scan(
+		&i.DealershipID,
+		&i.Name,
+		&i.DisplayName,
+		&i.Address,
+		&i.City,
+		&i.State,
+		&i.Zip,
+		&i.Phone,
+		&i.Email,
+		&i.Website,
+		&i.FacebookUrl,
+		&i.TwitterUrl,
+		&i.InstagramUrl,
+		&i.LinkedinUrl,
+		&i.LogoUrl,
+		&i.CoverUrl,
+		&i.Description,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const insertUserMeta = `-- name: InsertUserMeta :one
 INSERT INTO user_meta (
     user_meta_id,
