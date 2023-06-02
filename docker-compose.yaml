@@ -1,0 +1,100 @@
+services:
+    service_api_gateway:
+        container_name: service_api_gateway
+        env_file: app-api-gateway/.env.staging
+        build:
+            context: ./app-api-gateway
+            dockerfile: Dockerfile
+        environment:
+            - PORT=3000
+        ports:
+            - "3000:3000"
+        restart: always
+        healthcheck:
+            test: sh -c "ping -c3 service-marketplace:3000"
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+        depends_on:
+            - postgres_database
+            - redis_database
+
+    service_database:
+        container_name: service_database
+        env_file: app-api-gateway/.env.dev
+        build:
+            context: ./app-api-gateway
+            dockerfile: Dockerfile
+        environment:
+            - PORT=3000
+        ports:
+            - "3000:3000"
+        restart: always
+        healthcheck:
+            test: sh -c "ping -c3 service-marketplace:3000"
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+        depends_on:
+            - postgres_database
+            - redis_database
+
+    postgres_database:
+        image: postgres:13-alpine
+        restart: always
+        container_name: postgres_database
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=marketplace
+        expose:
+            - '5432'
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        healthcheck:
+            test: ping -c3 postgres-db:5432
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+
+    redis_database:
+        image: redis:6-alpine
+        container_name: redis_database
+        expose:
+            - '6379'
+        restart: always
+        command: --port 6379
+        healthcheck:
+            test: ping -c3 redis-db:6379
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+
+
+    casbin_casdoor:
+        image: casbin/casdoor:latest
+        container_name: casbin_casdoor
+        ports:
+            -  "8000:8000"
+        restart: always
+        volumes:
+            - ./config/casdoor.conf:/conf/app.conf
+        healthcheck:
+            test: ping -c3 casbin-casdoor:8000
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+
+
+volumes:
+    postgres:
+        driver: local
+
+networks:
+    internal_network:
+        driver: bridge
