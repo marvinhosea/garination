@@ -9,7 +9,7 @@ FROM golang-builder AS app-builder
 WORKDIR /app/
 
 # Copy go mod files
-COPY app-api-gateway/go.mod go.sum \
+COPY go.mod go.sum \
      /app/
 
 RUN go mod download
@@ -18,10 +18,10 @@ COPY .  /app/
 
 
 
-RUN go build -o /tmp/app-marketplace
+RUN go build -o /tmp/garination-gateway
 
 FROM app-builder AS prepare-bin
 
-COPY --from=app-builder /tmp/app-marketplace /usr/bin/app-marketplace
+COPY --from=app-builder /tmp/garination-gateway /usr/bin/garination-gateway
 
-ENTRYPOINT ["/usr/bin/app-marketplace"]
+ENTRYPOINT ["/usr/bin/garination-gateway"]
