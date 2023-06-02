@@ -20,6 +20,53 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type HealthCheckResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+}
+
+func (x *HealthCheckResponse) Reset() {
+	*x = HealthCheckResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *HealthCheckResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HealthCheckResponse) ProtoMessage() {}
+
+func (x *HealthCheckResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HealthCheckResponse.ProtoReflect.Descriptor instead.
+func (*HealthCheckResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *HealthCheckResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 type GetDealershipByUserIDResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -31,7 +78,7 @@ type GetDealershipByUserIDResponse struct {
 func (x *GetDealershipByUserIDResponse) Reset() {
 	*x = GetDealershipByUserIDResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[0]
+		mi := &file_responses_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -44,7 +91,7 @@ func (x *GetDealershipByUserIDResponse) String() string {
 func (*GetDealershipByUserIDResponse) ProtoMessage() {}
 
 func (x *GetDealershipByUserIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[0]
+	mi := &file_responses_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +104,7 @@ func (x *GetDealershipByUserIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDealershipByUserIDResponse.ProtoReflect.Descriptor instead.
 func (*GetDealershipByUserIDResponse) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{0}
+	return file_responses_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetDealershipByUserIDResponse) GetDealership() *Dealership {
@@ -78,7 +125,7 @@ type GetUserMetaRequest struct {
 func (x *GetUserMetaRequest) Reset() {
 	*x = GetUserMetaRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[1]
+		mi := &file_responses_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -91,7 +138,7 @@ func (x *GetUserMetaRequest) String() string {
 func (*GetUserMetaRequest) ProtoMessage() {}
 
 func (x *GetUserMetaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[1]
+	mi := &file_responses_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +151,7 @@ func (x *GetUserMetaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserMetaRequest.ProtoReflect.Descriptor instead.
 func (*GetUserMetaRequest) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{1}
+	return file_responses_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetUserMetaRequest) GetUserId() string {
@@ -125,7 +172,7 @@ type GetUserMetaResponse struct {
 func (x *GetUserMetaResponse) Reset() {
 	*x = GetUserMetaResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[2]
+		mi := &file_responses_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -138,7 +185,7 @@ func (x *GetUserMetaResponse) String() string {
 func (*GetUserMetaResponse) ProtoMessage() {}
 
 func (x *GetUserMetaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[2]
+	mi := &file_responses_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -151,7 +198,7 @@ func (x *GetUserMetaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserMetaResponse.ProtoReflect.Descriptor instead.
 func (*GetUserMetaResponse) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{2}
+	return file_responses_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetUserMetaResponse) GetUserMeta() *UserMetum {
@@ -172,7 +219,7 @@ type InsertDealershipResponse struct {
 func (x *InsertDealershipResponse) Reset() {
 	*x = InsertDealershipResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[3]
+		mi := &file_responses_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -185,7 +232,7 @@ func (x *InsertDealershipResponse) String() string {
 func (*InsertDealershipResponse) ProtoMessage() {}
 
 func (x *InsertDealershipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[3]
+	mi := &file_responses_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -198,7 +245,7 @@ func (x *InsertDealershipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertDealershipResponse.ProtoReflect.Descriptor instead.
 func (*InsertDealershipResponse) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{3}
+	return file_responses_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *InsertDealershipResponse) GetDealership() *Dealership {
@@ -219,7 +266,7 @@ type UpdateUserMetaResponse struct {
 func (x *UpdateUserMetaResponse) Reset() {
 	*x = UpdateUserMetaResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[4]
+		mi := &file_responses_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -232,7 +279,7 @@ func (x *UpdateUserMetaResponse) String() string {
 func (*UpdateUserMetaResponse) ProtoMessage() {}
 
 func (x *UpdateUserMetaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[4]
+	mi := &file_responses_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +292,7 @@ func (x *UpdateUserMetaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserMetaResponse.ProtoReflect.Descriptor instead.
 func (*UpdateUserMetaResponse) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{4}
+	return file_responses_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateUserMetaResponse) GetUserMeta() *UserMetum {
@@ -266,7 +313,7 @@ type GetDealershipByIDResponse struct {
 func (x *GetDealershipByIDResponse) Reset() {
 	*x = GetDealershipByIDResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[5]
+		mi := &file_responses_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -279,7 +326,7 @@ func (x *GetDealershipByIDResponse) String() string {
 func (*GetDealershipByIDResponse) ProtoMessage() {}
 
 func (x *GetDealershipByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[5]
+	mi := &file_responses_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -292,7 +339,7 @@ func (x *GetDealershipByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDealershipByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetDealershipByIDResponse) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{5}
+	return file_responses_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetDealershipByIDResponse) GetDealership() *Dealership {
@@ -313,7 +360,7 @@ type UpdateDealershipResponse struct {
 func (x *UpdateDealershipResponse) Reset() {
 	*x = UpdateDealershipResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[6]
+		mi := &file_responses_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -326,7 +373,7 @@ func (x *UpdateDealershipResponse) String() string {
 func (*UpdateDealershipResponse) ProtoMessage() {}
 
 func (x *UpdateDealershipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[6]
+	mi := &file_responses_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -339,7 +386,7 @@ func (x *UpdateDealershipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDealershipResponse.ProtoReflect.Descriptor instead.
 func (*UpdateDealershipResponse) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{6}
+	return file_responses_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateDealershipResponse) GetDealership() *Dealership {
@@ -358,7 +405,7 @@ type DeleteDealershipResponse struct {
 func (x *DeleteDealershipResponse) Reset() {
 	*x = DeleteDealershipResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_responses_proto_msgTypes[7]
+		mi := &file_responses_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -371,7 +418,7 @@ func (x *DeleteDealershipResponse) String() string {
 func (*DeleteDealershipResponse) ProtoMessage() {}
 
 func (x *DeleteDealershipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_responses_proto_msgTypes[7]
+	mi := &file_responses_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -384,48 +431,1558 @@ func (x *DeleteDealershipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDealershipResponse.ProtoReflect.Descriptor instead.
 func (*DeleteDealershipResponse) Descriptor() ([]byte, []int) {
-	return file_responses_proto_rawDescGZIP(), []int{7}
+	return file_responses_proto_rawDescGZIP(), []int{8}
+}
+
+type InsertCarBrandResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrandId string `protobuf:"bytes,1,opt,name=car_brand_id,json=carBrandId,proto3" json:"car_brand_id,omitempty"`
+}
+
+func (x *InsertCarBrandResponse) Reset() {
+	*x = InsertCarBrandResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertCarBrandResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertCarBrandResponse) ProtoMessage() {}
+
+func (x *InsertCarBrandResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertCarBrandResponse.ProtoReflect.Descriptor instead.
+func (*InsertCarBrandResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *InsertCarBrandResponse) GetCarBrandId() string {
+	if x != nil {
+		return x.CarBrandId
+	}
+	return ""
+}
+
+type UpdateCarBrandResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrandId string `protobuf:"bytes,1,opt,name=car_brand_id,json=carBrandId,proto3" json:"car_brand_id,omitempty"`
+}
+
+func (x *UpdateCarBrandResponse) Reset() {
+	*x = UpdateCarBrandResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarBrandResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarBrandResponse) ProtoMessage() {}
+
+func (x *UpdateCarBrandResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarBrandResponse.ProtoReflect.Descriptor instead.
+func (*UpdateCarBrandResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateCarBrandResponse) GetCarBrandId() string {
+	if x != nil {
+		return x.CarBrandId
+	}
+	return ""
+}
+
+type GetCarBrandsPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrands []*CarBrand `protobuf:"bytes,1,rep,name=car_brands,json=carBrands,proto3" json:"car_brands,omitempty"`
+	Size      int32       `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32       `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarBrandsPaginatedResponse) Reset() {
+	*x = GetCarBrandsPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarBrandsPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarBrandsPaginatedResponse) ProtoMessage() {}
+
+func (x *GetCarBrandsPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarBrandsPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*GetCarBrandsPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetCarBrandsPaginatedResponse) GetCarBrands() []*CarBrand {
+	if x != nil {
+		return x.CarBrands
+	}
+	return nil
+}
+
+func (x *GetCarBrandsPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarBrandsPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarBrandByIDResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrand  *CarBrand `protobuf:"bytes,1,opt,name=car_brand,json=carBrand,proto3" json:"car_brand,omitempty"`
+	TotalCars int32     `protobuf:"varint,2,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarBrandByIDResponse) Reset() {
+	*x = GetCarBrandByIDResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarBrandByIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarBrandByIDResponse) ProtoMessage() {}
+
+func (x *GetCarBrandByIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarBrandByIDResponse.ProtoReflect.Descriptor instead.
+func (*GetCarBrandByIDResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetCarBrandByIDResponse) GetCarBrand() *CarBrand {
+	if x != nil {
+		return x.CarBrand
+	}
+	return nil
+}
+
+func (x *GetCarBrandByIDResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type DeleteCarBrandResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrandId string `protobuf:"bytes,1,opt,name=car_brand_id,json=carBrandId,proto3" json:"car_brand_id,omitempty"`
+}
+
+func (x *DeleteCarBrandResponse) Reset() {
+	*x = DeleteCarBrandResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCarBrandResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCarBrandResponse) ProtoMessage() {}
+
+func (x *DeleteCarBrandResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCarBrandResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCarBrandResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DeleteCarBrandResponse) GetCarBrandId() string {
+	if x != nil {
+		return x.CarBrandId
+	}
+	return ""
+}
+
+type InsertCarExtraFeatureResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarExtraFeatureId string `protobuf:"bytes,1,opt,name=car_extra_feature_id,json=carExtraFeatureId,proto3" json:"car_extra_feature_id,omitempty"`
+}
+
+func (x *InsertCarExtraFeatureResponse) Reset() {
+	*x = InsertCarExtraFeatureResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertCarExtraFeatureResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertCarExtraFeatureResponse) ProtoMessage() {}
+
+func (x *InsertCarExtraFeatureResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertCarExtraFeatureResponse.ProtoReflect.Descriptor instead.
+func (*InsertCarExtraFeatureResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *InsertCarExtraFeatureResponse) GetCarExtraFeatureId() string {
+	if x != nil {
+		return x.CarExtraFeatureId
+	}
+	return ""
+}
+
+type GetCarExtraFeaturesPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarExtraFeatures []*CarExtraFeature `protobuf:"bytes,1,rep,name=car_extra_features,json=carExtraFeatures,proto3" json:"car_extra_features,omitempty"`
+	Size             int32              `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars        int32              `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarExtraFeaturesPaginatedResponse) Reset() {
+	*x = GetCarExtraFeaturesPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarExtraFeaturesPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarExtraFeaturesPaginatedResponse) ProtoMessage() {}
+
+func (x *GetCarExtraFeaturesPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarExtraFeaturesPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*GetCarExtraFeaturesPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetCarExtraFeaturesPaginatedResponse) GetCarExtraFeatures() []*CarExtraFeature {
+	if x != nil {
+		return x.CarExtraFeatures
+	}
+	return nil
+}
+
+func (x *GetCarExtraFeaturesPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarExtraFeaturesPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type UpdateCarExtraFeatureResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarExtraFeatureId []string `protobuf:"bytes,1,rep,name=car_extra_feature_id,json=carExtraFeatureId,proto3" json:"car_extra_feature_id,omitempty"`
+}
+
+func (x *UpdateCarExtraFeatureResponse) Reset() {
+	*x = UpdateCarExtraFeatureResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarExtraFeatureResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarExtraFeatureResponse) ProtoMessage() {}
+
+func (x *UpdateCarExtraFeatureResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarExtraFeatureResponse.ProtoReflect.Descriptor instead.
+func (*UpdateCarExtraFeatureResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UpdateCarExtraFeatureResponse) GetCarExtraFeatureId() []string {
+	if x != nil {
+		return x.CarExtraFeatureId
+	}
+	return nil
+}
+
+type CreateCarImageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarImageId string `protobuf:"bytes,1,opt,name=car_image_id,json=carImageId,proto3" json:"car_image_id,omitempty"`
+}
+
+func (x *CreateCarImageResponse) Reset() {
+	*x = CreateCarImageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCarImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCarImageResponse) ProtoMessage() {}
+
+func (x *CreateCarImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCarImageResponse.ProtoReflect.Descriptor instead.
+func (*CreateCarImageResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *CreateCarImageResponse) GetCarImageId() string {
+	if x != nil {
+		return x.CarImageId
+	}
+	return ""
+}
+
+type UpdateCarImageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarImageId string `protobuf:"bytes,1,opt,name=car_image_id,json=carImageId,proto3" json:"car_image_id,omitempty"`
+}
+
+func (x *UpdateCarImageResponse) Reset() {
+	*x = UpdateCarImageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarImageResponse) ProtoMessage() {}
+
+func (x *UpdateCarImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarImageResponse.ProtoReflect.Descriptor instead.
+func (*UpdateCarImageResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *UpdateCarImageResponse) GetCarImageId() string {
+	if x != nil {
+		return x.CarImageId
+	}
+	return ""
+}
+
+type GetCarImagesPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarImages []*CarImage `protobuf:"bytes,1,rep,name=car_images,json=carImages,proto3" json:"car_images,omitempty"`
+	Size      int32       `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32       `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarImagesPaginatedResponse) Reset() {
+	*x = GetCarImagesPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarImagesPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarImagesPaginatedResponse) ProtoMessage() {}
+
+func (x *GetCarImagesPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarImagesPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*GetCarImagesPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetCarImagesPaginatedResponse) GetCarImages() []*CarImage {
+	if x != nil {
+		return x.CarImages
+	}
+	return nil
+}
+
+func (x *GetCarImagesPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarImagesPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type DeleteCarImageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarImageId string `protobuf:"bytes,1,opt,name=car_image_id,json=carImageId,proto3" json:"car_image_id,omitempty"`
+}
+
+func (x *DeleteCarImageResponse) Reset() {
+	*x = DeleteCarImageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCarImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCarImageResponse) ProtoMessage() {}
+
+func (x *DeleteCarImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCarImageResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCarImageResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *DeleteCarImageResponse) GetCarImageId() string {
+	if x != nil {
+		return x.CarImageId
+	}
+	return ""
+}
+
+type InsertCarResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarId string `protobuf:"bytes,1,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *InsertCarResponse) Reset() {
+	*x = InsertCarResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertCarResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertCarResponse) ProtoMessage() {}
+
+func (x *InsertCarResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertCarResponse.ProtoReflect.Descriptor instead.
+func (*InsertCarResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *InsertCarResponse) GetCarId() string {
+	if x != nil {
+		return x.CarId
+	}
+	return ""
+}
+
+type UpdateCarResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarId string `protobuf:"bytes,1,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *UpdateCarResponse) Reset() {
+	*x = UpdateCarResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarResponse) ProtoMessage() {}
+
+func (x *UpdateCarResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarResponse.ProtoReflect.Descriptor instead.
+func (*UpdateCarResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *UpdateCarResponse) GetCarId() string {
+	if x != nil {
+		return x.CarId
+	}
+	return ""
+}
+
+type GetOneCarResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Car *SingleCar `protobuf:"bytes,1,opt,name=car,proto3" json:"car,omitempty"`
+}
+
+func (x *GetOneCarResponse) Reset() {
+	*x = GetOneCarResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOneCarResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOneCarResponse) ProtoMessage() {}
+
+func (x *GetOneCarResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOneCarResponse.ProtoReflect.Descriptor instead.
+func (*GetOneCarResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetOneCarResponse) GetCar() *SingleCar {
+	if x != nil {
+		return x.Car
+	}
+	return nil
+}
+
+type GetCarsPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cars      []*Car `protobuf:"bytes,1,rep,name=cars,proto3" json:"cars,omitempty"`
+	Size      int32  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32  `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarsPaginatedResponse) Reset() {
+	*x = GetCarsPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsPaginatedResponse) ProtoMessage() {}
+
+func (x *GetCarsPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*GetCarsPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetCarsPaginatedResponse) GetCars() []*Car {
+	if x != nil {
+		return x.Cars
+	}
+	return nil
+}
+
+func (x *GetCarsPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarsPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarsByDealershipIDPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cars      []*Car `protobuf:"bytes,1,rep,name=cars,proto3" json:"cars,omitempty"`
+	Size      int32  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32  `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarsByDealershipIDPaginatedResponse) Reset() {
+	*x = GetCarsByDealershipIDPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsByDealershipIDPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsByDealershipIDPaginatedResponse) ProtoMessage() {}
+
+func (x *GetCarsByDealershipIDPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsByDealershipIDPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*GetCarsByDealershipIDPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetCarsByDealershipIDPaginatedResponse) GetCars() []*Car {
+	if x != nil {
+		return x.Cars
+	}
+	return nil
+}
+
+func (x *GetCarsByDealershipIDPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarsByDealershipIDPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarsByDealerIDPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cars      []*Car `protobuf:"bytes,1,rep,name=cars,proto3" json:"cars,omitempty"`
+	Size      int32  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32  `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarsByDealerIDPaginatedResponse) Reset() {
+	*x = GetCarsByDealerIDPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsByDealerIDPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsByDealerIDPaginatedResponse) ProtoMessage() {}
+
+func (x *GetCarsByDealerIDPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsByDealerIDPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*GetCarsByDealerIDPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *GetCarsByDealerIDPaginatedResponse) GetCars() []*Car {
+	if x != nil {
+		return x.Cars
+	}
+	return nil
+}
+
+func (x *GetCarsByDealerIDPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarsByDealerIDPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarsByCarBrandIDPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cars      []*Car `protobuf:"bytes,1,rep,name=cars,proto3" json:"cars,omitempty"`
+	Size      int32  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32  `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarsByCarBrandIDPaginatedResponse) Reset() {
+	*x = GetCarsByCarBrandIDPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsByCarBrandIDPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsByCarBrandIDPaginatedResponse) ProtoMessage() {}
+
+func (x *GetCarsByCarBrandIDPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsByCarBrandIDPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*GetCarsByCarBrandIDPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *GetCarsByCarBrandIDPaginatedResponse) GetCars() []*Car {
+	if x != nil {
+		return x.Cars
+	}
+	return nil
+}
+
+func (x *GetCarsByCarBrandIDPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarsByCarBrandIDPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type SearchCarsPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cars      []*Car `protobuf:"bytes,1,rep,name=cars,proto3" json:"cars,omitempty"`
+	Size      int32  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32  `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *SearchCarsPaginatedResponse) Reset() {
+	*x = SearchCarsPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SearchCarsPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchCarsPaginatedResponse) ProtoMessage() {}
+
+func (x *SearchCarsPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchCarsPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*SearchCarsPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *SearchCarsPaginatedResponse) GetCars() []*Car {
+	if x != nil {
+		return x.Cars
+	}
+	return nil
+}
+
+func (x *SearchCarsPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *SearchCarsPaginatedResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarByFieldResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Cars      []*Car `protobuf:"bytes,1,rep,name=cars,proto3" json:"cars,omitempty"`
+	Size      int32  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalCars int32  `protobuf:"varint,3,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarByFieldResponse) Reset() {
+	*x = GetCarByFieldResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByFieldResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByFieldResponse) ProtoMessage() {}
+
+func (x *GetCarByFieldResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByFieldResponse.ProtoReflect.Descriptor instead.
+func (*GetCarByFieldResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *GetCarByFieldResponse) GetCars() []*Car {
+	if x != nil {
+		return x.Cars
+	}
+	return nil
+}
+
+func (x *GetCarByFieldResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *GetCarByFieldResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarByDealershipCountResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TotalCars int32 `protobuf:"varint,1,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarByDealershipCountResponse) Reset() {
+	*x = GetCarByDealershipCountResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByDealershipCountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByDealershipCountResponse) ProtoMessage() {}
+
+func (x *GetCarByDealershipCountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByDealershipCountResponse.ProtoReflect.Descriptor instead.
+func (*GetCarByDealershipCountResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *GetCarByDealershipCountResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarByDealerCountResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TotalCars int32 `protobuf:"varint,1,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarByDealerCountResponse) Reset() {
+	*x = GetCarByDealerCountResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByDealerCountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByDealerCountResponse) ProtoMessage() {}
+
+func (x *GetCarByDealerCountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByDealerCountResponse.ProtoReflect.Descriptor instead.
+func (*GetCarByDealerCountResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *GetCarByDealerCountResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarByCarBrandCountResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TotalCars int32 `protobuf:"varint,1,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarByCarBrandCountResponse) Reset() {
+	*x = GetCarByCarBrandCountResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByCarBrandCountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByCarBrandCountResponse) ProtoMessage() {}
+
+func (x *GetCarByCarBrandCountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByCarBrandCountResponse.ProtoReflect.Descriptor instead.
+func (*GetCarByCarBrandCountResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *GetCarByCarBrandCountResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type GetCarByFieldCountResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TotalCars int32 `protobuf:"varint,1,opt,name=total_cars,json=totalCars,proto3" json:"total_cars,omitempty"`
+}
+
+func (x *GetCarByFieldCountResponse) Reset() {
+	*x = GetCarByFieldCountResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByFieldCountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByFieldCountResponse) ProtoMessage() {}
+
+func (x *GetCarByFieldCountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByFieldCountResponse.ProtoReflect.Descriptor instead.
+func (*GetCarByFieldCountResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetCarByFieldCountResponse) GetTotalCars() int32 {
+	if x != nil {
+		return x.TotalCars
+	}
+	return 0
+}
+
+type DeleteCarResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarId string `protobuf:"bytes,1,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *DeleteCarResponse) Reset() {
+	*x = DeleteCarResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCarResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCarResponse) ProtoMessage() {}
+
+func (x *DeleteCarResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCarResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCarResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *DeleteCarResponse) GetCarId() string {
+	if x != nil {
+		return x.CarId
+	}
+	return ""
 }
 
 var File_responses_proto protoreflect.FileDescriptor
 
 var file_responses_proto_rawDesc = []byte{
 	0x0a, 0x0f, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x1a, 0x0b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x4c,
-	0x0a, 0x1d, 0x47, 0x65, 0x74, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x42,
-	0x79, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x2b, 0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70,
-	0x52, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22, 0x2d, 0x0a, 0x12,
-	0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x3e, 0x0a, 0x13, 0x47,
-	0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x27, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x75,
-	0x6d, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x22, 0x47, 0x0a, 0x18, 0x49,
-	0x6e, 0x73, 0x65, 0x72, 0x74, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65,
-	0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65,
-	0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72,
-	0x73, 0x68, 0x69, 0x70, 0x22, 0x41, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x55, 0x73,
-	0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x27,
-	0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x75, 0x6d, 0x52, 0x08, 0x75,
-	0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x22, 0x48, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x44, 0x65,
-	0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68,
-	0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65,
-	0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69,
-	0x70, 0x22, 0x47, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x65, 0x61, 0x6c, 0x65,
-	0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a,
-	0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x0a,
-	0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22, 0x1a, 0x0a, 0x18, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x61, 0x72, 0x69, 0x6e, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x62, 0x2f, 0x73, 0x64, 0x6b, 0x2f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x1a, 0x0b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2d,
+	0x0a, 0x13, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x4c, 0x0a,
+	0x1d, 0x47, 0x65, 0x74, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x42, 0x79,
+	0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b,
+	0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52,
+	0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22, 0x2d, 0x0a, 0x12, 0x47,
+	0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x3e, 0x0a, 0x13, 0x47, 0x65,
+	0x74, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x27, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x75, 0x6d,
+	0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x22, 0x47, 0x0a, 0x18, 0x49, 0x6e,
+	0x73, 0x65, 0x72, 0x74, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72,
+	0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61,
+	0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73,
+	0x68, 0x69, 0x70, 0x22, 0x41, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65,
+	0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x27, 0x0a,
+	0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x75, 0x6d, 0x52, 0x08, 0x75, 0x73,
+	0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x22, 0x48, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x44, 0x65, 0x61,
+	0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69,
+	0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72,
+	0x73, 0x68, 0x69, 0x70, 0x52, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70,
+	0x22, 0x47, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72,
+	0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0a,
+	0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x0a, 0x64,
+	0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22, 0x1a, 0x0a, 0x18, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3a, 0x0a, 0x16, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x43,
+	0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x62, 0x72, 0x61, 0x6e, 0x64, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x49,
+	0x64, 0x22, 0x3a, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x42, 0x72,
+	0x61, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x0c, 0x63,
+	0x61, 0x72, 0x5f, 0x62, 0x72, 0x61, 0x6e, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0a, 0x63, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x49, 0x64, 0x22, 0x7c, 0x0a,
+	0x1d, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x73, 0x50, 0x61, 0x67,
+	0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28,
+	0x0a, 0x0a, 0x63, 0x61, 0x72, 0x5f, 0x62, 0x72, 0x61, 0x6e, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x09, 0x2e, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x52, 0x09, 0x63,
+	0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1d, 0x0a, 0x0a,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x60, 0x0a, 0x17, 0x47,
+	0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x26, 0x0a, 0x09, 0x63, 0x61, 0x72, 0x5f, 0x62, 0x72,
+	0x61, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x43, 0x61, 0x72, 0x42,
+	0x72, 0x61, 0x6e, 0x64, 0x52, 0x08, 0x63, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x12, 0x1d,
+	0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x3a, 0x0a,
+	0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x62,
+	0x72, 0x61, 0x6e, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63,
+	0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x49, 0x64, 0x22, 0x50, 0x0a, 0x1d, 0x49, 0x6e, 0x73,
+	0x65, 0x72, 0x74, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f, 0x0a, 0x14, 0x63, 0x61,
+	0x72, 0x5f, 0x65, 0x78, 0x74, 0x72, 0x61, 0x5f, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x11, 0x63, 0x61, 0x72, 0x45, 0x78, 0x74,
+	0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x49, 0x64, 0x22, 0x99, 0x01, 0x0a, 0x24,
+	0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x73, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x12, 0x63, 0x61, 0x72, 0x5f, 0x65, 0x78, 0x74, 0x72,
+	0x61, 0x5f, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x10, 0x2e, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x52, 0x10, 0x63, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74,
+	0x75, 0x72, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x50, 0x0a, 0x1d, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2f, 0x0a, 0x14, 0x63, 0x61, 0x72, 0x5f,
+	0x65, 0x78, 0x74, 0x72, 0x61, 0x5f, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x11, 0x63, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61,
+	0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x49, 0x64, 0x22, 0x3a, 0x0a, 0x16, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x61, 0x72, 0x49, 0x6d,
+	0x61, 0x67, 0x65, 0x49, 0x64, 0x22, 0x3a, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43,
+	0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x49,
+	0x64, 0x22, 0x7c, 0x0a, 0x1d, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65,
+	0x73, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x28, 0x0a, 0x0a, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x43, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67,
+	0x65, 0x52, 0x09, 0x63, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04,
+	0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65,
+	0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22,
+	0x3a, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72,
+	0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x63, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x49, 0x64, 0x22, 0x2a, 0x0a, 0x11, 0x49,
+	0x6e, 0x73, 0x65, 0x72, 0x74, 0x43, 0x61, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x15, 0x0a, 0x06, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x63, 0x61, 0x72, 0x49, 0x64, 0x22, 0x2a, 0x0a, 0x11, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x43, 0x61, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x15, 0x0a, 0x06,
+	0x63, 0x61, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x61,
+	0x72, 0x49, 0x64, 0x22, 0x31, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x4f, 0x6e, 0x65, 0x43, 0x61, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x03, 0x63, 0x61, 0x72, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x61,
+	0x72, 0x52, 0x03, 0x63, 0x61, 0x72, 0x22, 0x67, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72,
+	0x73, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x18, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x04, 0x2e, 0x43, 0x61, 0x72, 0x52, 0x04, 0x63, 0x61, 0x72, 0x73, 0x12, 0x12, 0x0a, 0x04,
+	0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65,
+	0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22,
+	0x75, 0x0a, 0x26, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c,
+	0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x49, 0x44, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65,
+	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x04, 0x63, 0x61, 0x72,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x04, 0x2e, 0x43, 0x61, 0x72, 0x52, 0x04, 0x63,
+	0x61, 0x72, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c,
+	0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74,
+	0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x71, 0x0a, 0x22, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72,
+	0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x49, 0x44, 0x50, 0x61, 0x67, 0x69, 0x6e,
+	0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x04,
+	0x63, 0x61, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x04, 0x2e, 0x43, 0x61, 0x72,
+	0x52, 0x04, 0x63, 0x61, 0x72, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x73, 0x0a, 0x24, 0x47, 0x65, 0x74,
+	0x43, 0x61, 0x72, 0x73, 0x42, 0x79, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x49, 0x44,
+	0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x18, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x04, 0x2e, 0x43, 0x61, 0x72, 0x52, 0x04, 0x63, 0x61, 0x72, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12,
+	0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x6a,
+	0x0a, 0x1b, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x61, 0x72, 0x73, 0x50, 0x61, 0x67, 0x69,
+	0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a,
+	0x04, 0x63, 0x61, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x04, 0x2e, 0x43, 0x61,
+	0x72, 0x52, 0x04, 0x63, 0x61, 0x72, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74,
+	0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x64, 0x0a, 0x15, 0x47, 0x65,
+	0x74, 0x43, 0x61, 0x72, 0x42, 0x79, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x04, 0x63, 0x61, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x04, 0x2e, 0x43, 0x61, 0x72, 0x52, 0x04, 0x63, 0x61, 0x72, 0x73, 0x12, 0x12, 0x0a,
+	0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a,
+	0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73,
+	0x22, 0x40, 0x0a, 0x1f, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c,
+	0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72,
+	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61,
+	0x72, 0x73, 0x22, 0x3c, 0x0a, 0x1b, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x79, 0x44, 0x65,
+	0x61, 0x6c, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73,
+	0x22, 0x3e, 0x0a, 0x1d, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x79, 0x43, 0x61, 0x72, 0x42,
+	0x72, 0x61, 0x6e, 0x64, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73,
+	0x22, 0x3b, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x79, 0x46, 0x69, 0x65, 0x6c,
+	0x64, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d,
+	0x0a, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x61, 0x72, 0x73, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x73, 0x22, 0x2a, 0x0a,
+	0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x15, 0x0a, 0x06, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x63, 0x61, 0x72, 0x49, 0x64, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x61, 0x72,
+	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x62, 0x2f, 0x73,
+	0x64, 0x6b, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -440,31 +1997,74 @@ func file_responses_proto_rawDescGZIP() []byte {
 	return file_responses_proto_rawDescData
 }
 
-var file_responses_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_responses_proto_msgTypes = make([]protoimpl.MessageInfo, 35)
 var file_responses_proto_goTypes = []interface{}{
-	(*GetDealershipByUserIDResponse)(nil), // 0: GetDealershipByUserIDResponse
-	(*GetUserMetaRequest)(nil),            // 1: GetUserMetaRequest
-	(*GetUserMetaResponse)(nil),           // 2: GetUserMetaResponse
-	(*InsertDealershipResponse)(nil),      // 3: InsertDealershipResponse
-	(*UpdateUserMetaResponse)(nil),        // 4: UpdateUserMetaResponse
-	(*GetDealershipByIDResponse)(nil),     // 5: GetDealershipByIDResponse
-	(*UpdateDealershipResponse)(nil),      // 6: UpdateDealershipResponse
-	(*DeleteDealershipResponse)(nil),      // 7: DeleteDealershipResponse
-	(*Dealership)(nil),                    // 8: Dealership
-	(*UserMetum)(nil),                     // 9: UserMetum
+	(*HealthCheckResponse)(nil),                    // 0: HealthCheckResponse
+	(*GetDealershipByUserIDResponse)(nil),          // 1: GetDealershipByUserIDResponse
+	(*GetUserMetaRequest)(nil),                     // 2: GetUserMetaRequest
+	(*GetUserMetaResponse)(nil),                    // 3: GetUserMetaResponse
+	(*InsertDealershipResponse)(nil),               // 4: InsertDealershipResponse
+	(*UpdateUserMetaResponse)(nil),                 // 5: UpdateUserMetaResponse
+	(*GetDealershipByIDResponse)(nil),              // 6: GetDealershipByIDResponse
+	(*UpdateDealershipResponse)(nil),               // 7: UpdateDealershipResponse
+	(*DeleteDealershipResponse)(nil),               // 8: DeleteDealershipResponse
+	(*InsertCarBrandResponse)(nil),                 // 9: InsertCarBrandResponse
+	(*UpdateCarBrandResponse)(nil),                 // 10: UpdateCarBrandResponse
+	(*GetCarBrandsPaginatedResponse)(nil),          // 11: GetCarBrandsPaginatedResponse
+	(*GetCarBrandByIDResponse)(nil),                // 12: GetCarBrandByIDResponse
+	(*DeleteCarBrandResponse)(nil),                 // 13: DeleteCarBrandResponse
+	(*InsertCarExtraFeatureResponse)(nil),          // 14: InsertCarExtraFeatureResponse
+	(*GetCarExtraFeaturesPaginatedResponse)(nil),   // 15: GetCarExtraFeaturesPaginatedResponse
+	(*UpdateCarExtraFeatureResponse)(nil),          // 16: UpdateCarExtraFeatureResponse
+	(*CreateCarImageResponse)(nil),                 // 17: CreateCarImageResponse
+	(*UpdateCarImageResponse)(nil),                 // 18: UpdateCarImageResponse
+	(*GetCarImagesPaginatedResponse)(nil),          // 19: GetCarImagesPaginatedResponse
+	(*DeleteCarImageResponse)(nil),                 // 20: DeleteCarImageResponse
+	(*InsertCarResponse)(nil),                      // 21: InsertCarResponse
+	(*UpdateCarResponse)(nil),                      // 22: UpdateCarResponse
+	(*GetOneCarResponse)(nil),                      // 23: GetOneCarResponse
+	(*GetCarsPaginatedResponse)(nil),               // 24: GetCarsPaginatedResponse
+	(*GetCarsByDealershipIDPaginatedResponse)(nil), // 25: GetCarsByDealershipIDPaginatedResponse
+	(*GetCarsByDealerIDPaginatedResponse)(nil),     // 26: GetCarsByDealerIDPaginatedResponse
+	(*GetCarsByCarBrandIDPaginatedResponse)(nil),   // 27: GetCarsByCarBrandIDPaginatedResponse
+	(*SearchCarsPaginatedResponse)(nil),            // 28: SearchCarsPaginatedResponse
+	(*GetCarByFieldResponse)(nil),                  // 29: GetCarByFieldResponse
+	(*GetCarByDealershipCountResponse)(nil),        // 30: GetCarByDealershipCountResponse
+	(*GetCarByDealerCountResponse)(nil),            // 31: GetCarByDealerCountResponse
+	(*GetCarByCarBrandCountResponse)(nil),          // 32: GetCarByCarBrandCountResponse
+	(*GetCarByFieldCountResponse)(nil),             // 33: GetCarByFieldCountResponse
+	(*DeleteCarResponse)(nil),                      // 34: DeleteCarResponse
+	(*Dealership)(nil),                             // 35: Dealership
+	(*UserMetum)(nil),                              // 36: UserMetum
+	(*CarBrand)(nil),                               // 37: CarBrand
+	(*CarExtraFeature)(nil),                        // 38: CarExtraFeature
+	(*CarImage)(nil),                               // 39: CarImage
+	(*SingleCar)(nil),                              // 40: SingleCar
+	(*Car)(nil),                                    // 41: Car
 }
 var file_responses_proto_depIdxs = []int32{
-	8, // 0: GetDealershipByUserIDResponse.dealership:type_name -> Dealership
-	9, // 1: GetUserMetaResponse.user_meta:type_name -> UserMetum
-	8, // 2: InsertDealershipResponse.dealership:type_name -> Dealership
-	9, // 3: UpdateUserMetaResponse.user_meta:type_name -> UserMetum
-	8, // 4: GetDealershipByIDResponse.dealership:type_name -> Dealership
-	8, // 5: UpdateDealershipResponse.dealership:type_name -> Dealership
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	35, // 0: GetDealershipByUserIDResponse.dealership:type_name -> Dealership
+	36, // 1: GetUserMetaResponse.user_meta:type_name -> UserMetum
+	35, // 2: InsertDealershipResponse.dealership:type_name -> Dealership
+	36, // 3: UpdateUserMetaResponse.user_meta:type_name -> UserMetum
+	35, // 4: GetDealershipByIDResponse.dealership:type_name -> Dealership
+	35, // 5: UpdateDealershipResponse.dealership:type_name -> Dealership
+	37, // 6: GetCarBrandsPaginatedResponse.car_brands:type_name -> CarBrand
+	37, // 7: GetCarBrandByIDResponse.car_brand:type_name -> CarBrand
+	38, // 8: GetCarExtraFeaturesPaginatedResponse.car_extra_features:type_name -> CarExtraFeature
+	39, // 9: GetCarImagesPaginatedResponse.car_images:type_name -> CarImage
+	40, // 10: GetOneCarResponse.car:type_name -> SingleCar
+	41, // 11: GetCarsPaginatedResponse.cars:type_name -> Car
+	41, // 12: GetCarsByDealershipIDPaginatedResponse.cars:type_name -> Car
+	41, // 13: GetCarsByDealerIDPaginatedResponse.cars:type_name -> Car
+	41, // 14: GetCarsByCarBrandIDPaginatedResponse.cars:type_name -> Car
+	41, // 15: SearchCarsPaginatedResponse.cars:type_name -> Car
+	41, // 16: GetCarByFieldResponse.cars:type_name -> Car
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_responses_proto_init() }
@@ -475,7 +2075,7 @@ func file_responses_proto_init() {
 	file_model_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_responses_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetDealershipByUserIDResponse); i {
+			switch v := v.(*HealthCheckResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -487,7 +2087,7 @@ func file_responses_proto_init() {
 			}
 		}
 		file_responses_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserMetaRequest); i {
+			switch v := v.(*GetDealershipByUserIDResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -499,7 +2099,7 @@ func file_responses_proto_init() {
 			}
 		}
 		file_responses_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserMetaResponse); i {
+			switch v := v.(*GetUserMetaRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -511,7 +2111,7 @@ func file_responses_proto_init() {
 			}
 		}
 		file_responses_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertDealershipResponse); i {
+			switch v := v.(*GetUserMetaResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -523,7 +2123,7 @@ func file_responses_proto_init() {
 			}
 		}
 		file_responses_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateUserMetaResponse); i {
+			switch v := v.(*InsertDealershipResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -535,7 +2135,7 @@ func file_responses_proto_init() {
 			}
 		}
 		file_responses_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetDealershipByIDResponse); i {
+			switch v := v.(*UpdateUserMetaResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -547,7 +2147,7 @@ func file_responses_proto_init() {
 			}
 		}
 		file_responses_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateDealershipResponse); i {
+			switch v := v.(*GetDealershipByIDResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -559,7 +2159,331 @@ func file_responses_proto_init() {
 			}
 		}
 		file_responses_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateDealershipResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteDealershipResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertCarBrandResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarBrandResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarBrandsPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarBrandByIDResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCarBrandResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertCarExtraFeatureResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarExtraFeaturesPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarExtraFeatureResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCarImageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarImageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarImagesPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCarImageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertCarResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOneCarResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsByDealershipIDPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsByDealerIDPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsByCarBrandIDPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SearchCarsPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByFieldResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByDealershipCountResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByDealerCountResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByCarBrandCountResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByFieldCountResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCarResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -577,7 +2501,7 @@ func file_responses_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_responses_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   35,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
