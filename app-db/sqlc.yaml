@@ -1,9 +1,14 @@
 version: "2"
 sql:
   - engine: "postgresql"
-    queries: "query.sql"
-    schema: "schema.sql"
+    queries: "docs/queries.sql"
+    schema: "docs/schema.sql"
     gen:
       go:
-        package: ""
-        out: ""
+        package: "postgres"
+        sql_package: "pgx/v5"
+        out: "internal/platform/postgres"
+        output_files_suffix: ".gen"
+        output_models_file_name: "model.gen.go"
+        output_db_file_name: "db.gen.go"
+        emit_interface: false
