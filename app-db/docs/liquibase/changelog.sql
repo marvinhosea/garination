@@ -44,6 +44,11 @@ CREATE TABLE "user_meta"
     FOREIGN KEY (dealership_id) REFERENCES "dealership" (dealership_id)
 );
 
+--changeSet oyamo:2
+ALTER TABLE "user_meta"
+    ADD CONSTRAINT unique_id UNIQUE (user_id);
+
+
 
 
 

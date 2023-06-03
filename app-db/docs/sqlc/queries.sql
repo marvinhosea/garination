@@ -1,7 +1,8 @@
--- name: getUserMeta :one
+-- name: GetUserMeta :one
 SELECT * FROM user_meta WHERE user_id = $1 LIMIT 1;
 
--- name: insertUserMeta :one
+
+-- name: InsertUserMeta :one
 INSERT INTO user_meta (
     user_meta_id,
     user_id,
@@ -15,7 +16,7 @@ INSERT INTO user_meta (
              $1, $2, $3, $4, $5, $6, $7, $8
          ) RETURNING *;
 
--- name: updateUserMeta :one
+-- name: UpdateUserMeta :one
 UPDATE user_meta SET
     facebook_url = $2,
     twitter_url = $3,
@@ -24,10 +25,10 @@ UPDATE user_meta SET
     website_url = $6
 WHERE user_id = $1 RETURNING *;
 
--- name: getUserDealership :one
+-- name: GetUserDealership :one
 SELECT d.* FROM dealership d JOIN user_meta u ON d.dealership_id = u.dealership_id WHERE u.user_id = $1 LIMIT 1;
 
--- name: insertDealership :one
+-- name: InsertDealership :one
 INSERT INTO dealership (
     dealership_id,
     owner_id,

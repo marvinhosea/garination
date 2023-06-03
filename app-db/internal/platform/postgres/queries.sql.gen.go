@@ -11,11 +11,11 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
-const getUserDealership = `-- name: getUserDealership :one
+const getUserDealership = `-- name: GetUserDealership :one
 SELECT d.dealership_id, d.owner_id, d.name, d.display_name, d.address, d.city, d.state, d.zip, d.phone, d.email, d.website, d.facebook_url, d.twitter_url, d.instagram_url, d.linkedin_url, d.logo_url, d.cover_url, d.description, d.created_at, d.updated_at FROM dealership d JOIN user_meta u ON d.dealership_id = u.dealership_id WHERE u.user_id = $1 LIMIT 1
 `
 
-func (q *Queries) getUserDealership(ctx context.Context, userID string) (Dealership, error) {
+func (q *Queries) GetUserDealership(ctx context.Context, userID string) (Dealership, error) {
 	row := q.db.QueryRow(ctx, getUserDealership, userID)
 	var i Dealership
 	err := row.Scan(
@@ -43,11 +43,11 @@ func (q *Queries) getUserDealership(ctx context.Context, userID string) (Dealers
 	return i, err
 }
 
-const getUserMeta = `-- name: getUserMeta :one
+const getUserMeta = `-- name: GetUserMeta :one
 SELECT user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id FROM user_meta WHERE user_id = $1 LIMIT 1
 `
 
-func (q *Queries) getUserMeta(ctx context.Context, userID string) (UserMetum, error) {
+func (q *Queries) GetUserMeta(ctx context.Context, userID string) (UserMetum, error) {
 	row := q.db.QueryRow(ctx, getUserMeta, userID)
 	var i UserMetum
 	err := row.Scan(
@@ -63,7 +63,7 @@ func (q *Queries) getUserMeta(ctx context.Context, userID string) (UserMetum, er
 	return i, err
 }
 
-const insertDealership = `-- name: insertDealership :one
+const insertDealership = `-- name: InsertDealership :one
 INSERT INTO dealership (
     dealership_id,
     owner_id,
@@ -90,7 +90,7 @@ INSERT INTO dealership (
          ) RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
 `
 
-type insertDealershipParams struct {
+type InsertDealershipParams struct {
 	DealershipID string
 	OwnerID      string
 	Name         string
@@ -113,7 +113,7 @@ type insertDealershipParams struct {
 	UpdatedAt    pgtype.Timestamp
 }
 
-func (q *Queries) insertDealership(ctx context.Context, arg insertDealershipParams) (Dealership, error) {
+func (q *Queries) InsertDealership(ctx context.Context, arg InsertDealershipParams) (Dealership, error) {
 	row := q.db.QueryRow(ctx, insertDealership,
 		arg.DealershipID,
 		arg.OwnerID,
@@ -162,7 +162,7 @@ func (q *Queries) insertDealership(ctx context.Context, arg insertDealershipPara
 	return i, err
 }
 
-const insertUserMeta = `-- name: insertUserMeta :one
+const insertUserMeta = `-- name: InsertUserMeta :one
 INSERT INTO user_meta (
     user_meta_id,
     user_id,
@@ -177,7 +177,7 @@ INSERT INTO user_meta (
          ) RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
 `
 
-type insertUserMetaParams struct {
+type InsertUserMetaParams struct {
 	UserMetaID   string
 	UserID       string
 	FacebookUrl  pgtype.Text
@@ -188,7 +188,7 @@ type insertUserMetaParams struct {
 	DealershipID pgtype.Text
 }
 
-func (q *Queries) insertUserMeta(ctx context.Context, arg insertUserMetaParams) (UserMetum, error) {
+func (q *Queries) InsertUserMeta(ctx context.Context, arg InsertUserMetaParams) (UserMetum, error) {
 	row := q.db.QueryRow(ctx, insertUserMeta,
 		arg.UserMetaID,
 		arg.UserID,
@@ -213,7 +213,7 @@ func (q *Queries) insertUserMeta(ctx context.Context, arg insertUserMetaParams) 
 	return i, err
 }
 
-const updateUserMeta = `-- name: updateUserMeta :one
+const updateUserMeta = `-- name: UpdateUserMeta :one
 UPDATE user_meta SET
     facebook_url = $2,
     twitter_url = $3,
@@ -223,7 +223,7 @@ UPDATE user_meta SET
 WHERE user_id = $1 RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
 `
 
-type updateUserMetaParams struct {
+type UpdateUserMetaParams struct {
 	UserID       string
 	FacebookUrl  pgtype.Text
 	TwitterUrl   pgtype.Text
@@ -232,7 +232,7 @@ type updateUserMetaParams struct {
 	WebsiteUrl   pgtype.Text
 }
 
-func (q *Queries) updateUserMeta(ctx context.Context, arg updateUserMetaParams) (UserMetum, error) {
+func (q *Queries) UpdateUserMeta(ctx context.Context, arg UpdateUserMetaParams) (UserMetum, error) {
 	row := q.db.QueryRow(ctx, updateUserMeta,
 		arg.UserID,
 		arg.FacebookUrl,
