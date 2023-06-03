@@ -10,6 +10,7 @@ import (
 
 type Dealership struct {
 	DealershipID string
+	OwnerID      string
 	Name         string
 	DisplayName  string
 	Address      string

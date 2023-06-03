@@ -1,25 +1,16 @@
--- Database schema for the app-db
--- Tables
+--liquibase formatted sql
 
--- user-meta
-CREATE TABLE "user_meta"
-(
-    user_meta_id VARCHAR(100) not null primary key,
-    user_id VARCHAR(100) not null,
-    facebook_url varchar(100) ,
-    twitter_url varchar(100) ,
-    instagram_url varchar(100) ,
-    linkedin_url varchar(100) ,
-    website_url varchar(100) ,
-    dealership_id varchar(100) ,
-    FOREIGN KEY (user_id) REFERENCES "user" (user_id),
-    FOREIGN KEY (dealership_id) REFERENCES "dealership" (dealership_id)
-);
+--changeSet oyamo:1
+alter table "user"
+    drop constraint user_pkey;
 
--- dealership
+alter table "user"
+    add primary key (owner, name, id);
+
 create table dealership
 (
     dealership_id varchar(100) not null primary key,
+    owner_id varchar(100) not null,
     name varchar(100) not null,
     display_name varchar(100) not null,
     address varchar(100) not null,
@@ -39,3 +30,23 @@ create table dealership
     created_at timestamp not null,
     updated_at timestamp not null
 );
+
+CREATE TABLE "user_meta"
+(
+    user_meta_id VARCHAR(100) not null primary key,
+    user_id VARCHAR(100) not null,
+    facebook_url varchar(100) ,
+    twitter_url varchar(100) ,
+    instagram_url varchar(100) ,
+    linkedin_url varchar(100) ,
+    website_url varchar(100) ,
+    dealership_id varchar(100) ,
+    FOREIGN KEY (dealership_id) REFERENCES "dealership" (dealership_id)
+);
+
+
+
+
+
+
+

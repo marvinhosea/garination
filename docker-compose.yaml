@@ -60,6 +60,21 @@ services:
         networks:
             - internal_network
 
+    liquibase:
+        image: liquibase/liquibase:latest
+        volumes:
+            - ./app-db/liquibase.properties:/liquibase/liquibase.properties
+            - ./app-db/docs/liquibase/changelog.sql:/liquibase/changelog/changelog.sql
+        depends_on:
+            - postgres_database
+            - casbin_casdoor
+        command:
+            - --defaultsFile=/liquibase/liquibase.properties
+            - update
+            - --log-level=info
+        networks:
+            - internal_network
+
     redis_database:
         image: redis:6-alpine
         container_name: redis_database

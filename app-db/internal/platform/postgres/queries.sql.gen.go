@@ -12,7 +12,7 @@ import (
 )
 
 const getUserDealership = `-- name: getUserDealership :one
-SELECT d.dealership_id, d.name, d.display_name, d.address, d.city, d.state, d.zip, d.phone, d.email, d.website, d.facebook_url, d.twitter_url, d.instagram_url, d.linkedin_url, d.logo_url, d.cover_url, d.description, d.created_at, d.updated_at FROM dealership d JOIN user_meta u ON d.dealership_id = u.dealership_id WHERE u.user_id = $1 LIMIT 1
+SELECT d.dealership_id, d.owner_id, d.name, d.display_name, d.address, d.city, d.state, d.zip, d.phone, d.email, d.website, d.facebook_url, d.twitter_url, d.instagram_url, d.linkedin_url, d.logo_url, d.cover_url, d.description, d.created_at, d.updated_at FROM dealership d JOIN user_meta u ON d.dealership_id = u.dealership_id WHERE u.user_id = $1 LIMIT 1
 `
 
 func (q *Queries) getUserDealership(ctx context.Context, userID string) (Dealership, error) {
@@ -20,6 +20,7 @@ func (q *Queries) getUserDealership(ctx context.Context, userID string) (Dealers
 	var i Dealership
 	err := row.Scan(
 		&i.DealershipID,
+		&i.OwnerID,
 		&i.Name,
 		&i.DisplayName,
 		&i.Address,
@@ -65,6 +66,7 @@ func (q *Queries) getUserMeta(ctx context.Context, userID string) (UserMetum, er
 const insertDealership = `-- name: insertDealership :one
 INSERT INTO dealership (
     dealership_id,
+    owner_id,
     name,
     display_name,
     address,
@@ -84,12 +86,13 @@ INSERT INTO dealership (
     created_at,
     updated_at
 ) VALUES (
-             $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19
-         ) RETURNING dealership_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
+             $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20
+         ) RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
 `
 
 type insertDealershipParams struct {
 	DealershipID string
+	OwnerID      string
 	Name         string
 	DisplayName  string
 	Address      string
@@ -113,6 +116,7 @@ type insertDealershipParams struct {
 func (q *Queries) insertDealership(ctx context.Context, arg insertDealershipParams) (Dealership, error) {
 	row := q.db.QueryRow(ctx, insertDealership,
 		arg.DealershipID,
+		arg.OwnerID,
 		arg.Name,
 		arg.DisplayName,
 		arg.Address,
@@ -135,6 +139,7 @@ func (q *Queries) insertDealership(ctx context.Context, arg insertDealershipPara
 	var i Dealership
 	err := row.Scan(
 		&i.DealershipID,
+		&i.OwnerID,
 		&i.Name,
 		&i.DisplayName,
 		&i.Address,
@@ -193,6 +198,48 @@ func (q *Queries) insertUserMeta(ctx context.Context, arg insertUserMetaParams) 
 		arg.LinkedinUrl,
 		arg.WebsiteUrl,
 		arg.DealershipID,
+	)
+	var i UserMetum
+	err := row.Scan(
+		&i.UserMetaID,
+		&i.UserID,
+		&i.FacebookUrl,
+		&i.TwitterUrl,
+		&i.InstagramUrl,
+		&i.LinkedinUrl,
+		&i.WebsiteUrl,
+		&i.DealershipID,
+	)
+	return i, err
+}
+
+const updateUserMeta = `-- name: updateUserMeta :one
+UPDATE user_meta SET
+    facebook_url = $2,
+    twitter_url = $3,
+    instagram_url = $4,
+    linkedin_url = $5,
+    website_url = $6
+WHERE user_id = $1 RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
+`
+
+type updateUserMetaParams struct {
+	UserID       string
+	FacebookUrl  pgtype.Text
+	TwitterUrl   pgtype.Text
+	InstagramUrl pgtype.Text
+	LinkedinUrl  pgtype.Text
+	WebsiteUrl   pgtype.Text
+}
+
+func (q *Queries) updateUserMeta(ctx context.Context, arg updateUserMetaParams) (UserMetum, error) {
+	row := q.db.QueryRow(ctx, updateUserMeta,
+		arg.UserID,
+		arg.FacebookUrl,
+		arg.TwitterUrl,
+		arg.InstagramUrl,
+		arg.LinkedinUrl,
+		arg.WebsiteUrl,
 	)
 	var i UserMetum
 	err := row.Scan(
