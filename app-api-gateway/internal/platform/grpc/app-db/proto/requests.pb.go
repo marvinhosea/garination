@@ -20,6 +20,99 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CarFilter_Condition int32
+
+const (
+	CarFilter_EQUAL                 CarFilter_Condition = 0
+	CarFilter_GREATER_THAN          CarFilter_Condition = 1
+	CarFilter_LESS_THAN             CarFilter_Condition = 2
+	CarFilter_GREATER_THAN_OR_EQUAL CarFilter_Condition = 3
+	CarFilter_LESS_THAN_OR_EQUAL    CarFilter_Condition = 4
+)
+
+// Enum value maps for CarFilter_Condition.
+var (
+	CarFilter_Condition_name = map[int32]string{
+		0: "EQUAL",
+		1: "GREATER_THAN",
+		2: "LESS_THAN",
+		3: "GREATER_THAN_OR_EQUAL",
+		4: "LESS_THAN_OR_EQUAL",
+	}
+	CarFilter_Condition_value = map[string]int32{
+		"EQUAL":                 0,
+		"GREATER_THAN":          1,
+		"LESS_THAN":             2,
+		"GREATER_THAN_OR_EQUAL": 3,
+		"LESS_THAN_OR_EQUAL":    4,
+	}
+)
+
+func (x CarFilter_Condition) Enum() *CarFilter_Condition {
+	p := new(CarFilter_Condition)
+	*p = x
+	return p
+}
+
+func (x CarFilter_Condition) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (CarFilter_Condition) Descriptor() protoreflect.EnumDescriptor {
+	return file_requests_proto_enumTypes[0].Descriptor()
+}
+
+func (CarFilter_Condition) Type() protoreflect.EnumType {
+	return &file_requests_proto_enumTypes[0]
+}
+
+func (x CarFilter_Condition) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use CarFilter_Condition.Descriptor instead.
+func (CarFilter_Condition) EnumDescriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{29, 0}
+}
+
+type HealthCheckRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *HealthCheckRequest) Reset() {
+	*x = HealthCheckRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *HealthCheckRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HealthCheckRequest) ProtoMessage() {}
+
+func (x *HealthCheckRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HealthCheckRequest.ProtoReflect.Descriptor instead.
+func (*HealthCheckRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{0}
+}
+
 type InsertUserMetaRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -31,7 +124,7 @@ type InsertUserMetaRequest struct {
 func (x *InsertUserMetaRequest) Reset() {
 	*x = InsertUserMetaRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[0]
+		mi := &file_requests_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -44,7 +137,7 @@ func (x *InsertUserMetaRequest) String() string {
 func (*InsertUserMetaRequest) ProtoMessage() {}
 
 func (x *InsertUserMetaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[0]
+	mi := &file_requests_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +150,7 @@ func (x *InsertUserMetaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertUserMetaRequest.ProtoReflect.Descriptor instead.
 func (*InsertUserMetaRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{0}
+	return file_requests_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *InsertUserMetaRequest) GetUserMeta() *UserMetum {
@@ -78,7 +171,7 @@ type InsertDealershipRequest struct {
 func (x *InsertDealershipRequest) Reset() {
 	*x = InsertDealershipRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[1]
+		mi := &file_requests_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -91,7 +184,7 @@ func (x *InsertDealershipRequest) String() string {
 func (*InsertDealershipRequest) ProtoMessage() {}
 
 func (x *InsertDealershipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[1]
+	mi := &file_requests_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +197,7 @@ func (x *InsertDealershipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertDealershipRequest.ProtoReflect.Descriptor instead.
 func (*InsertDealershipRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{1}
+	return file_requests_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *InsertDealershipRequest) GetDealership() *Dealership {
@@ -125,7 +218,7 @@ type InsertUserMetaResponse struct {
 func (x *InsertUserMetaResponse) Reset() {
 	*x = InsertUserMetaResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[2]
+		mi := &file_requests_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -138,7 +231,7 @@ func (x *InsertUserMetaResponse) String() string {
 func (*InsertUserMetaResponse) ProtoMessage() {}
 
 func (x *InsertUserMetaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[2]
+	mi := &file_requests_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -151,7 +244,7 @@ func (x *InsertUserMetaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertUserMetaResponse.ProtoReflect.Descriptor instead.
 func (*InsertUserMetaResponse) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{2}
+	return file_requests_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *InsertUserMetaResponse) GetUserMeta() *UserMetum {
@@ -172,7 +265,7 @@ type UpdateUserMetaRequest struct {
 func (x *UpdateUserMetaRequest) Reset() {
 	*x = UpdateUserMetaRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[3]
+		mi := &file_requests_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -185,7 +278,7 @@ func (x *UpdateUserMetaRequest) String() string {
 func (*UpdateUserMetaRequest) ProtoMessage() {}
 
 func (x *UpdateUserMetaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[3]
+	mi := &file_requests_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -198,7 +291,7 @@ func (x *UpdateUserMetaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserMetaRequest.ProtoReflect.Descriptor instead.
 func (*UpdateUserMetaRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{3}
+	return file_requests_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateUserMetaRequest) GetUserMeta() *UserMetum {
@@ -219,7 +312,7 @@ type GetUserDealershipRequest struct {
 func (x *GetUserDealershipRequest) Reset() {
 	*x = GetUserDealershipRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[4]
+		mi := &file_requests_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -232,7 +325,7 @@ func (x *GetUserDealershipRequest) String() string {
 func (*GetUserDealershipRequest) ProtoMessage() {}
 
 func (x *GetUserDealershipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[4]
+	mi := &file_requests_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +338,7 @@ func (x *GetUserDealershipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserDealershipRequest.ProtoReflect.Descriptor instead.
 func (*GetUserDealershipRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{4}
+	return file_requests_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetUserDealershipRequest) GetUserId() string {
@@ -266,7 +359,7 @@ type UpdateDealershipRequest struct {
 func (x *UpdateDealershipRequest) Reset() {
 	*x = UpdateDealershipRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[5]
+		mi := &file_requests_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -279,7 +372,7 @@ func (x *UpdateDealershipRequest) String() string {
 func (*UpdateDealershipRequest) ProtoMessage() {}
 
 func (x *UpdateDealershipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[5]
+	mi := &file_requests_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -292,7 +385,7 @@ func (x *UpdateDealershipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDealershipRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDealershipRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{5}
+	return file_requests_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateDealershipRequest) GetDealership() *Dealership {
@@ -313,7 +406,7 @@ type DeleteDealershipRequest struct {
 func (x *DeleteDealershipRequest) Reset() {
 	*x = DeleteDealershipRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[6]
+		mi := &file_requests_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -326,7 +419,7 @@ func (x *DeleteDealershipRequest) String() string {
 func (*DeleteDealershipRequest) ProtoMessage() {}
 
 func (x *DeleteDealershipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[6]
+	mi := &file_requests_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -339,7 +432,7 @@ func (x *DeleteDealershipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDealershipRequest.ProtoReflect.Descriptor instead.
 func (*DeleteDealershipRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{6}
+	return file_requests_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteDealershipRequest) GetDealershipId() string {
@@ -360,7 +453,7 @@ type GetDealershipByIDRequest struct {
 func (x *GetDealershipByIDRequest) Reset() {
 	*x = GetDealershipByIDRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_requests_proto_msgTypes[7]
+		mi := &file_requests_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -373,7 +466,7 @@ func (x *GetDealershipByIDRequest) String() string {
 func (*GetDealershipByIDRequest) ProtoMessage() {}
 
 func (x *GetDealershipByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_requests_proto_msgTypes[7]
+	mi := &file_requests_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -386,7 +479,7 @@ func (x *GetDealershipByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDealershipByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetDealershipByIDRequest) Descriptor() ([]byte, []int) {
-	return file_requests_proto_rawDescGZIP(), []int{7}
+	return file_requests_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetDealershipByIDRequest) GetDealershipId() string {
@@ -396,47 +489,1534 @@ func (x *GetDealershipByIDRequest) GetDealershipId() string {
 	return ""
 }
 
+type InsertCarBrandRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrand *CarBrand `protobuf:"bytes,1,opt,name=car_brand,json=carBrand,proto3" json:"car_brand,omitempty"`
+}
+
+func (x *InsertCarBrandRequest) Reset() {
+	*x = InsertCarBrandRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertCarBrandRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertCarBrandRequest) ProtoMessage() {}
+
+func (x *InsertCarBrandRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertCarBrandRequest.ProtoReflect.Descriptor instead.
+func (*InsertCarBrandRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *InsertCarBrandRequest) GetCarBrand() *CarBrand {
+	if x != nil {
+		return x.CarBrand
+	}
+	return nil
+}
+
+type UpdateCarBrandRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrand *CarBrand `protobuf:"bytes,1,opt,name=car_brand,json=carBrand,proto3" json:"car_brand,omitempty"`
+}
+
+func (x *UpdateCarBrandRequest) Reset() {
+	*x = UpdateCarBrandRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarBrandRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarBrandRequest) ProtoMessage() {}
+
+func (x *UpdateCarBrandRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarBrandRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCarBrandRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateCarBrandRequest) GetCarBrand() *CarBrand {
+	if x != nil {
+		return x.CarBrand
+	}
+	return nil
+}
+
+type GetCarBrandsPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int32 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit  int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+}
+
+func (x *GetCarBrandsPaginatedRequest) Reset() {
+	*x = GetCarBrandsPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarBrandsPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarBrandsPaginatedRequest) ProtoMessage() {}
+
+func (x *GetCarBrandsPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarBrandsPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*GetCarBrandsPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetCarBrandsPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetCarBrandsPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type GetCarBrandByIDRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrandId string `protobuf:"bytes,1,opt,name=car_brand_id,json=carBrandId,proto3" json:"car_brand_id,omitempty"`
+}
+
+func (x *GetCarBrandByIDRequest) Reset() {
+	*x = GetCarBrandByIDRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarBrandByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarBrandByIDRequest) ProtoMessage() {}
+
+func (x *GetCarBrandByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarBrandByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetCarBrandByIDRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetCarBrandByIDRequest) GetCarBrandId() string {
+	if x != nil {
+		return x.CarBrandId
+	}
+	return ""
+}
+
+type DeleteCarBrandRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrandId string `protobuf:"bytes,1,opt,name=car_brand_id,json=carBrandId,proto3" json:"car_brand_id,omitempty"`
+}
+
+func (x *DeleteCarBrandRequest) Reset() {
+	*x = DeleteCarBrandRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCarBrandRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCarBrandRequest) ProtoMessage() {}
+
+func (x *DeleteCarBrandRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCarBrandRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCarBrandRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DeleteCarBrandRequest) GetCarBrandId() string {
+	if x != nil {
+		return x.CarBrandId
+	}
+	return ""
+}
+
+type InsertCarExtraFeatureRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarExtraFeature *CarExtraFeature `protobuf:"bytes,1,opt,name=car_extra_feature,json=carExtraFeature,proto3" json:"car_extra_feature,omitempty"`
+}
+
+func (x *InsertCarExtraFeatureRequest) Reset() {
+	*x = InsertCarExtraFeatureRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertCarExtraFeatureRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertCarExtraFeatureRequest) ProtoMessage() {}
+
+func (x *InsertCarExtraFeatureRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertCarExtraFeatureRequest.ProtoReflect.Descriptor instead.
+func (*InsertCarExtraFeatureRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *InsertCarExtraFeatureRequest) GetCarExtraFeature() *CarExtraFeature {
+	if x != nil {
+		return x.CarExtraFeature
+	}
+	return nil
+}
+
+type UpdateCarExtraFeatureRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarExtraFeature *CarExtraFeature `protobuf:"bytes,1,opt,name=car_extra_feature,json=carExtraFeature,proto3" json:"car_extra_feature,omitempty"`
+}
+
+func (x *UpdateCarExtraFeatureRequest) Reset() {
+	*x = UpdateCarExtraFeatureRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarExtraFeatureRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarExtraFeatureRequest) ProtoMessage() {}
+
+func (x *UpdateCarExtraFeatureRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarExtraFeatureRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCarExtraFeatureRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UpdateCarExtraFeatureRequest) GetCarExtraFeature() *CarExtraFeature {
+	if x != nil {
+		return x.CarExtraFeature
+	}
+	return nil
+}
+
+type GetCarExtraFeaturesPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int32  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit  int32  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	CarId  string `protobuf:"bytes,3,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *GetCarExtraFeaturesPaginatedRequest) Reset() {
+	*x = GetCarExtraFeaturesPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarExtraFeaturesPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarExtraFeaturesPaginatedRequest) ProtoMessage() {}
+
+func (x *GetCarExtraFeaturesPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarExtraFeaturesPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*GetCarExtraFeaturesPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetCarExtraFeaturesPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetCarExtraFeaturesPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetCarExtraFeaturesPaginatedRequest) GetCarId() string {
+	if x != nil {
+		return x.CarId
+	}
+	return ""
+}
+
+type CreateCarImageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarImage []*CarImage `protobuf:"bytes,1,rep,name=car_image,json=carImage,proto3" json:"car_image,omitempty"`
+}
+
+func (x *CreateCarImageRequest) Reset() {
+	*x = CreateCarImageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCarImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCarImageRequest) ProtoMessage() {}
+
+func (x *CreateCarImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCarImageRequest.ProtoReflect.Descriptor instead.
+func (*CreateCarImageRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *CreateCarImageRequest) GetCarImage() []*CarImage {
+	if x != nil {
+		return x.CarImage
+	}
+	return nil
+}
+
+type UpdateCarImageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarImage *CarImage `protobuf:"bytes,1,opt,name=car_image,json=carImage,proto3" json:"car_image,omitempty"`
+}
+
+func (x *UpdateCarImageRequest) Reset() {
+	*x = UpdateCarImageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarImageRequest) ProtoMessage() {}
+
+func (x *UpdateCarImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarImageRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCarImageRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *UpdateCarImageRequest) GetCarImage() *CarImage {
+	if x != nil {
+		return x.CarImage
+	}
+	return nil
+}
+
+type GetCarImagesPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int32  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit  int32  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	CarId  string `protobuf:"bytes,3,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *GetCarImagesPaginatedRequest) Reset() {
+	*x = GetCarImagesPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarImagesPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarImagesPaginatedRequest) ProtoMessage() {}
+
+func (x *GetCarImagesPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarImagesPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*GetCarImagesPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetCarImagesPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetCarImagesPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetCarImagesPaginatedRequest) GetCarId() string {
+	if x != nil {
+		return x.CarId
+	}
+	return ""
+}
+
+type DeleteCarImageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarImageId string `protobuf:"bytes,1,opt,name=car_image_id,json=carImageId,proto3" json:"car_image_id,omitempty"`
+}
+
+func (x *DeleteCarImageRequest) Reset() {
+	*x = DeleteCarImageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCarImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCarImageRequest) ProtoMessage() {}
+
+func (x *DeleteCarImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCarImageRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCarImageRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *DeleteCarImageRequest) GetCarImageId() string {
+	if x != nil {
+		return x.CarImageId
+	}
+	return ""
+}
+
+type InsertCarRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Car *Car `protobuf:"bytes,1,opt,name=car,proto3" json:"car,omitempty"`
+}
+
+func (x *InsertCarRequest) Reset() {
+	*x = InsertCarRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertCarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertCarRequest) ProtoMessage() {}
+
+func (x *InsertCarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertCarRequest.ProtoReflect.Descriptor instead.
+func (*InsertCarRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *InsertCarRequest) GetCar() *Car {
+	if x != nil {
+		return x.Car
+	}
+	return nil
+}
+
+type UpdateCarRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Car *Car `protobuf:"bytes,1,opt,name=car,proto3" json:"car,omitempty"`
+}
+
+func (x *UpdateCarRequest) Reset() {
+	*x = UpdateCarRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateCarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCarRequest) ProtoMessage() {}
+
+func (x *UpdateCarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCarRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCarRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *UpdateCarRequest) GetCar() *Car {
+	if x != nil {
+		return x.Car
+	}
+	return nil
+}
+
+type GetOneCarRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarId string `protobuf:"bytes,1,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *GetOneCarRequest) Reset() {
+	*x = GetOneCarRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOneCarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOneCarRequest) ProtoMessage() {}
+
+func (x *GetOneCarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOneCarRequest.ProtoReflect.Descriptor instead.
+func (*GetOneCarRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetOneCarRequest) GetCarId() string {
+	if x != nil {
+		return x.CarId
+	}
+	return ""
+}
+
+type GetCarsPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int32 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit  int32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	SortBy int32 `protobuf:"varint,3,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
+}
+
+func (x *GetCarsPaginatedRequest) Reset() {
+	*x = GetCarsPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsPaginatedRequest) ProtoMessage() {}
+
+func (x *GetCarsPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*GetCarsPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetCarsPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetCarsPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetCarsPaginatedRequest) GetSortBy() int32 {
+	if x != nil {
+		return x.SortBy
+	}
+	return 0
+}
+
+type GetCarsByDealershipIDPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset       int32  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit        int32  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	DealershipId string `protobuf:"bytes,3,opt,name=dealership_id,json=dealershipId,proto3" json:"dealership_id,omitempty"`
+}
+
+func (x *GetCarsByDealershipIDPaginatedRequest) Reset() {
+	*x = GetCarsByDealershipIDPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsByDealershipIDPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsByDealershipIDPaginatedRequest) ProtoMessage() {}
+
+func (x *GetCarsByDealershipIDPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsByDealershipIDPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*GetCarsByDealershipIDPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetCarsByDealershipIDPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetCarsByDealershipIDPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetCarsByDealershipIDPaginatedRequest) GetDealershipId() string {
+	if x != nil {
+		return x.DealershipId
+	}
+	return ""
+}
+
+type GetCarsByDealerIDPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset   int32  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit    int32  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	DealerId string `protobuf:"bytes,3,opt,name=dealer_id,json=dealerId,proto3" json:"dealer_id,omitempty"`
+}
+
+func (x *GetCarsByDealerIDPaginatedRequest) Reset() {
+	*x = GetCarsByDealerIDPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsByDealerIDPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsByDealerIDPaginatedRequest) ProtoMessage() {}
+
+func (x *GetCarsByDealerIDPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsByDealerIDPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*GetCarsByDealerIDPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *GetCarsByDealerIDPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetCarsByDealerIDPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetCarsByDealerIDPaginatedRequest) GetDealerId() string {
+	if x != nil {
+		return x.DealerId
+	}
+	return ""
+}
+
+type GetCarsByBrandIDPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset     int32  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit      int32  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	CarBrandId string `protobuf:"bytes,3,opt,name=car_brand_id,json=carBrandId,proto3" json:"car_brand_id,omitempty"`
+}
+
+func (x *GetCarsByBrandIDPaginatedRequest) Reset() {
+	*x = GetCarsByBrandIDPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarsByBrandIDPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarsByBrandIDPaginatedRequest) ProtoMessage() {}
+
+func (x *GetCarsByBrandIDPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarsByBrandIDPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*GetCarsByBrandIDPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *GetCarsByBrandIDPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetCarsByBrandIDPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetCarsByBrandIDPaginatedRequest) GetCarBrandId() string {
+	if x != nil {
+		return x.CarBrandId
+	}
+	return ""
+}
+
+type SearchCarsPaginatedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int32  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit  int32  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Query  string `protobuf:"bytes,3,opt,name=query,proto3" json:"query,omitempty"`
+}
+
+func (x *SearchCarsPaginatedRequest) Reset() {
+	*x = SearchCarsPaginatedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SearchCarsPaginatedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchCarsPaginatedRequest) ProtoMessage() {}
+
+func (x *SearchCarsPaginatedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchCarsPaginatedRequest.ProtoReflect.Descriptor instead.
+func (*SearchCarsPaginatedRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *SearchCarsPaginatedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *SearchCarsPaginatedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *SearchCarsPaginatedRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+type CarFilter struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Condition CarFilter_Condition `protobuf:"varint,1,opt,name=condition,proto3,enum=CarFilter_Condition" json:"condition,omitempty"`
+	Value     string              `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *CarFilter) Reset() {
+	*x = CarFilter{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CarFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CarFilter) ProtoMessage() {}
+
+func (x *CarFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CarFilter.ProtoReflect.Descriptor instead.
+func (*CarFilter) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *CarFilter) GetCondition() CarFilter_Condition {
+	if x != nil {
+		return x.Condition
+	}
+	return CarFilter_EQUAL
+}
+
+func (x *CarFilter) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+type GetCarByFieldRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter map[string]*CarFilter `protobuf:"bytes,1,rep,name=filter,proto3" json:"filter,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+}
+
+func (x *GetCarByFieldRequest) Reset() {
+	*x = GetCarByFieldRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByFieldRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByFieldRequest) ProtoMessage() {}
+
+func (x *GetCarByFieldRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByFieldRequest.ProtoReflect.Descriptor instead.
+func (*GetCarByFieldRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *GetCarByFieldRequest) GetFilter() map[string]*CarFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type GetCarByDealerCountRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DealerId string `protobuf:"bytes,1,opt,name=dealer_id,json=dealerId,proto3" json:"dealer_id,omitempty"`
+}
+
+func (x *GetCarByDealerCountRequest) Reset() {
+	*x = GetCarByDealerCountRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByDealerCountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByDealerCountRequest) ProtoMessage() {}
+
+func (x *GetCarByDealerCountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByDealerCountRequest.ProtoReflect.Descriptor instead.
+func (*GetCarByDealerCountRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *GetCarByDealerCountRequest) GetDealerId() string {
+	if x != nil {
+		return x.DealerId
+	}
+	return ""
+}
+
+type GetCarByDealershipCountRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DealershipId string `protobuf:"bytes,1,opt,name=dealership_id,json=dealershipId,proto3" json:"dealership_id,omitempty"`
+}
+
+func (x *GetCarByDealershipCountRequest) Reset() {
+	*x = GetCarByDealershipCountRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByDealershipCountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByDealershipCountRequest) ProtoMessage() {}
+
+func (x *GetCarByDealershipCountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByDealershipCountRequest.ProtoReflect.Descriptor instead.
+func (*GetCarByDealershipCountRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *GetCarByDealershipCountRequest) GetDealershipId() string {
+	if x != nil {
+		return x.DealershipId
+	}
+	return ""
+}
+
+type GetCarByBrandCountRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarBrandId string `protobuf:"bytes,1,opt,name=car_brand_id,json=carBrandId,proto3" json:"car_brand_id,omitempty"`
+}
+
+func (x *GetCarByBrandCountRequest) Reset() {
+	*x = GetCarByBrandCountRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCarByBrandCountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCarByBrandCountRequest) ProtoMessage() {}
+
+func (x *GetCarByBrandCountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCarByBrandCountRequest.ProtoReflect.Descriptor instead.
+func (*GetCarByBrandCountRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetCarByBrandCountRequest) GetCarBrandId() string {
+	if x != nil {
+		return x.CarBrandId
+	}
+	return ""
+}
+
+type DeleteCarRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CarId string `protobuf:"bytes,1,opt,name=car_id,json=carId,proto3" json:"car_id,omitempty"`
+}
+
+func (x *DeleteCarRequest) Reset() {
+	*x = DeleteCarRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_requests_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCarRequest) ProtoMessage() {}
+
+func (x *DeleteCarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_requests_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCarRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCarRequest) Descriptor() ([]byte, []int) {
+	return file_requests_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *DeleteCarRequest) GetCarId() string {
+	if x != nil {
+		return x.CarId
+	}
+	return ""
+}
+
 var File_requests_proto protoreflect.FileDescriptor
 
 var file_requests_proto_rawDesc = []byte{
 	0x0a, 0x0e, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x1a, 0x0b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x40, 0x0a,
-	0x15, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d,
-	0x65, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72,
-	0x4d, 0x65, 0x74, 0x75, 0x6d, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x22,
-	0x46, 0x0a, 0x17, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73,
-	0x68, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x0a, 0x64, 0x65,
-	0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b,
-	0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x0a, 0x64, 0x65, 0x61,
-	0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22, 0x41, 0x0a, 0x16, 0x49, 0x6e, 0x73, 0x65, 0x72,
-	0x74, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x27, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x75, 0x6d,
-	0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x22, 0x40, 0x0a, 0x15, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74,
-	0x75, 0x6d, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x22, 0x33, 0x0a, 0x18,
-	0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69,
-	0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72,
-	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49,
-	0x64, 0x22, 0x46, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x65, 0x61, 0x6c, 0x65,
-	0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x0a,
-	0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x0a, 0x64,
-	0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22, 0x3e, 0x0a, 0x17, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x71,
+	0x1a, 0x0b, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a,
+	0x12, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x22, 0x40, 0x0a, 0x15, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x55, 0x73, 0x65,
+	0x72, 0x4d, 0x65, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x09,
+	0x75, 0x73, 0x65, 0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x0a, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x75, 0x6d, 0x52, 0x08, 0x75, 0x73, 0x65,
+	0x72, 0x4d, 0x65, 0x74, 0x61, 0x22, 0x46, 0x0a, 0x17, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x44,
+	0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x2b, 0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69,
+	0x70, 0x52, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22, 0x41, 0x0a,
+	0x16, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x27, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f,
+	0x6d, 0x65, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x55, 0x73, 0x65,
+	0x72, 0x4d, 0x65, 0x74, 0x75, 0x6d, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x61,
+	0x22, 0x40, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65,
+	0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x09, 0x75, 0x73, 0x65,
+	0x72, 0x5f, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x55,
+	0x73, 0x65, 0x72, 0x4d, 0x65, 0x74, 0x75, 0x6d, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x4d, 0x65,
+	0x74, 0x61, 0x22, 0x33, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x44, 0x65, 0x61,
+	0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17,
+	0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x46, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x2b, 0x0a, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73,
+	0x68, 0x69, 0x70, 0x52, 0x0a, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x22,
+	0x3e, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73,
+	0x68, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x64, 0x65,
+	0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0c, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x49, 0x64, 0x22,
+	0x3f, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70,
+	0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x64,
+	0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0c, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x49, 0x64,
+	0x22, 0x3f, 0x0a, 0x15, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61,
+	0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x26, 0x0a, 0x09, 0x63, 0x61, 0x72,
+	0x5f, 0x62, 0x72, 0x61, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x43,
+	0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x52, 0x08, 0x63, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e,
+	0x64, 0x22, 0x3f, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x42, 0x72,
+	0x61, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x26, 0x0a, 0x09, 0x63, 0x61,
+	0x72, 0x5f, 0x62, 0x72, 0x61, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e,
+	0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x52, 0x08, 0x63, 0x61, 0x72, 0x42, 0x72, 0x61,
+	0x6e, 0x64, 0x22, 0x4c, 0x0a, 0x1c, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e,
+	0x64, 0x73, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69,
+	0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74,
+	0x22, 0x3a, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x42,
+	0x79, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x63, 0x61,
+	0x72, 0x5f, 0x62, 0x72, 0x61, 0x6e, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0a, 0x63, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x49, 0x64, 0x22, 0x39, 0x0a, 0x15,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x62, 0x72, 0x61,
+	0x6e, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x61, 0x72,
+	0x42, 0x72, 0x61, 0x6e, 0x64, 0x49, 0x64, 0x22, 0x5c, 0x0a, 0x1c, 0x49, 0x6e, 0x73, 0x65, 0x72,
+	0x74, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3c, 0x0a, 0x11, 0x63, 0x61, 0x72, 0x5f, 0x65,
+	0x78, 0x74, 0x72, 0x61, 0x5f, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x10, 0x2e, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61,
+	0x74, 0x75, 0x72, 0x65, 0x52, 0x0f, 0x63, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65,
+	0x61, 0x74, 0x75, 0x72, 0x65, 0x22, 0x5c, 0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43,
+	0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3c, 0x0a, 0x11, 0x63, 0x61, 0x72, 0x5f, 0x65, 0x78, 0x74,
+	0x72, 0x61, 0x5f, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x10, 0x2e, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x52, 0x0f, 0x63, 0x61, 0x72, 0x45, 0x78, 0x74, 0x72, 0x61, 0x46, 0x65, 0x61, 0x74,
+	0x75, 0x72, 0x65, 0x22, 0x6a, 0x0a, 0x23, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x45, 0x78, 0x74,
+	0x72, 0x61, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x73, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61,
+	0x74, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66,
+	0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73,
+	0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x63, 0x61, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x61, 0x72, 0x49, 0x64, 0x22,
+	0x3f, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x26, 0x0a, 0x09, 0x63, 0x61, 0x72, 0x5f,
+	0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x43, 0x61,
+	0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x08, 0x63, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65,
+	0x22, 0x3f, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x49, 0x6d, 0x61,
+	0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x26, 0x0a, 0x09, 0x63, 0x61, 0x72,
+	0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x43,
+	0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x08, 0x63, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67,
+	0x65, 0x22, 0x63, 0x0a, 0x1c, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65,
+	0x73, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d,
+	0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12,
+	0x15, 0x0a, 0x06, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x63, 0x61, 0x72, 0x49, 0x64, 0x22, 0x39, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x43, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x61, 0x72, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x49,
+	0x64, 0x22, 0x2a, 0x0a, 0x10, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x43, 0x61, 0x72, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x03, 0x63, 0x61, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x04, 0x2e, 0x43, 0x61, 0x72, 0x52, 0x03, 0x63, 0x61, 0x72, 0x22, 0x2a, 0x0a,
+	0x10, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x16, 0x0a, 0x03, 0x63, 0x61, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x04,
+	0x2e, 0x43, 0x61, 0x72, 0x52, 0x03, 0x63, 0x61, 0x72, 0x22, 0x29, 0x0a, 0x10, 0x47, 0x65, 0x74,
+	0x4f, 0x6e, 0x65, 0x43, 0x61, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a,
+	0x06, 0x63, 0x61, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63,
+	0x61, 0x72, 0x49, 0x64, 0x22, 0x60, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x73, 0x50,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x17, 0x0a,
+	0x07, 0x73, 0x6f, 0x72, 0x74, 0x5f, 0x62, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06,
+	0x73, 0x6f, 0x72, 0x74, 0x42, 0x79, 0x22, 0x7a, 0x0a, 0x25, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72,
+	0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x49, 0x44, 0x50,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x23, 0x0a,
+	0x0d, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70,
+	0x49, 0x64, 0x22, 0x6e, 0x0a, 0x21, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x73, 0x42, 0x79, 0x44,
+	0x65, 0x61, 0x6c, 0x65, 0x72, 0x49, 0x44, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12,
+	0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05,
+	0x6c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72,
+	0x49, 0x64, 0x22, 0x72, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x73, 0x42, 0x79, 0x42,
+	0x72, 0x61, 0x6e, 0x64, 0x49, 0x44, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x14,
+	0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c,
+	0x69, 0x6d, 0x69, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x62, 0x72, 0x61, 0x6e,
+	0x64, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x61, 0x72, 0x42,
+	0x72, 0x61, 0x6e, 0x64, 0x49, 0x64, 0x22, 0x60, 0x0a, 0x1a, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68,
+	0x43, 0x61, 0x72, 0x73, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d,
+	0x69, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x22, 0xc1, 0x01, 0x0a, 0x09, 0x43, 0x61, 0x72,
+	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x32, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e, 0x43, 0x61, 0x72, 0x46,
+	0x69, 0x6c, 0x74, 0x65, 0x72, 0x2e, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52,
+	0x09, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x22, 0x6a, 0x0a, 0x09, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x09, 0x0a,
+	0x05, 0x45, 0x51, 0x55, 0x41, 0x4c, 0x10, 0x00, 0x12, 0x10, 0x0a, 0x0c, 0x47, 0x52, 0x45, 0x41,
+	0x54, 0x45, 0x52, 0x5f, 0x54, 0x48, 0x41, 0x4e, 0x10, 0x01, 0x12, 0x0d, 0x0a, 0x09, 0x4c, 0x45,
+	0x53, 0x53, 0x5f, 0x54, 0x48, 0x41, 0x4e, 0x10, 0x02, 0x12, 0x19, 0x0a, 0x15, 0x47, 0x52, 0x45,
+	0x41, 0x54, 0x45, 0x52, 0x5f, 0x54, 0x48, 0x41, 0x4e, 0x5f, 0x4f, 0x52, 0x5f, 0x45, 0x51, 0x55,
+	0x41, 0x4c, 0x10, 0x03, 0x12, 0x16, 0x0a, 0x12, 0x4c, 0x45, 0x53, 0x53, 0x5f, 0x54, 0x48, 0x41,
+	0x4e, 0x5f, 0x4f, 0x52, 0x5f, 0x45, 0x51, 0x55, 0x41, 0x4c, 0x10, 0x04, 0x22, 0x98, 0x01, 0x0a,
+	0x14, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x79, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x39, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x79,
+	0x46, 0x69, 0x65, 0x6c, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x46, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72,
+	0x1a, 0x45, 0x0a, 0x0b, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12,
+	0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65,
+	0x79, 0x12, 0x20, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x0a, 0x2e, 0x43, 0x61, 0x72, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x39, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x43, 0x61,
+	0x72, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72,
+	0x49, 0x64, 0x22, 0x45, 0x0a, 0x1e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x42, 0x79, 0x44, 0x65,
+	0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68,
 	0x69, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x64, 0x65, 0x61,
-	0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x49, 0x64, 0x22, 0x3f, 0x0a, 0x18, 0x47, 0x65, 0x74,
-	0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x64, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73,
-	0x68, 0x69, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x64, 0x65,
-	0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x49, 0x64, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x61,
-	0x72, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x62, 0x2f,
-	0x73, 0x64, 0x6b, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x49, 0x64, 0x22, 0x3d, 0x0a, 0x19, 0x47, 0x65, 0x74,
+	0x43, 0x61, 0x72, 0x42, 0x79, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x63, 0x61, 0x72, 0x5f, 0x62, 0x72,
+	0x61, 0x6e, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x61,
+	0x72, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x49, 0x64, 0x22, 0x29, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x43, 0x61, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06,
+	0x63, 0x61, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x61,
+	0x72, 0x49, 0x64, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x61, 0x72, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x62, 0x2f, 0x73, 0x64, 0x6b, 0x2f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -451,30 +2031,75 @@ func file_requests_proto_rawDescGZIP() []byte {
 	return file_requests_proto_rawDescData
 }
 
-var file_requests_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_requests_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_requests_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_requests_proto_goTypes = []interface{}{
-	(*InsertUserMetaRequest)(nil),    // 0: InsertUserMetaRequest
-	(*InsertDealershipRequest)(nil),  // 1: InsertDealershipRequest
-	(*InsertUserMetaResponse)(nil),   // 2: InsertUserMetaResponse
-	(*UpdateUserMetaRequest)(nil),    // 3: UpdateUserMetaRequest
-	(*GetUserDealershipRequest)(nil), // 4: GetUserDealershipRequest
-	(*UpdateDealershipRequest)(nil),  // 5: UpdateDealershipRequest
-	(*DeleteDealershipRequest)(nil),  // 6: DeleteDealershipRequest
-	(*GetDealershipByIDRequest)(nil), // 7: GetDealershipByIDRequest
-	(*UserMetum)(nil),                // 8: UserMetum
-	(*Dealership)(nil),               // 9: Dealership
+	(CarFilter_Condition)(0),                      // 0: CarFilter.Condition
+	(*HealthCheckRequest)(nil),                    // 1: HealthCheckRequest
+	(*InsertUserMetaRequest)(nil),                 // 2: InsertUserMetaRequest
+	(*InsertDealershipRequest)(nil),               // 3: InsertDealershipRequest
+	(*InsertUserMetaResponse)(nil),                // 4: InsertUserMetaResponse
+	(*UpdateUserMetaRequest)(nil),                 // 5: UpdateUserMetaRequest
+	(*GetUserDealershipRequest)(nil),              // 6: GetUserDealershipRequest
+	(*UpdateDealershipRequest)(nil),               // 7: UpdateDealershipRequest
+	(*DeleteDealershipRequest)(nil),               // 8: DeleteDealershipRequest
+	(*GetDealershipByIDRequest)(nil),              // 9: GetDealershipByIDRequest
+	(*InsertCarBrandRequest)(nil),                 // 10: InsertCarBrandRequest
+	(*UpdateCarBrandRequest)(nil),                 // 11: UpdateCarBrandRequest
+	(*GetCarBrandsPaginatedRequest)(nil),          // 12: GetCarBrandsPaginatedRequest
+	(*GetCarBrandByIDRequest)(nil),                // 13: GetCarBrandByIDRequest
+	(*DeleteCarBrandRequest)(nil),                 // 14: DeleteCarBrandRequest
+	(*InsertCarExtraFeatureRequest)(nil),          // 15: InsertCarExtraFeatureRequest
+	(*UpdateCarExtraFeatureRequest)(nil),          // 16: UpdateCarExtraFeatureRequest
+	(*GetCarExtraFeaturesPaginatedRequest)(nil),   // 17: GetCarExtraFeaturesPaginatedRequest
+	(*CreateCarImageRequest)(nil),                 // 18: CreateCarImageRequest
+	(*UpdateCarImageRequest)(nil),                 // 19: UpdateCarImageRequest
+	(*GetCarImagesPaginatedRequest)(nil),          // 20: GetCarImagesPaginatedRequest
+	(*DeleteCarImageRequest)(nil),                 // 21: DeleteCarImageRequest
+	(*InsertCarRequest)(nil),                      // 22: InsertCarRequest
+	(*UpdateCarRequest)(nil),                      // 23: UpdateCarRequest
+	(*GetOneCarRequest)(nil),                      // 24: GetOneCarRequest
+	(*GetCarsPaginatedRequest)(nil),               // 25: GetCarsPaginatedRequest
+	(*GetCarsByDealershipIDPaginatedRequest)(nil), // 26: GetCarsByDealershipIDPaginatedRequest
+	(*GetCarsByDealerIDPaginatedRequest)(nil),     // 27: GetCarsByDealerIDPaginatedRequest
+	(*GetCarsByBrandIDPaginatedRequest)(nil),      // 28: GetCarsByBrandIDPaginatedRequest
+	(*SearchCarsPaginatedRequest)(nil),            // 29: SearchCarsPaginatedRequest
+	(*CarFilter)(nil),                             // 30: CarFilter
+	(*GetCarByFieldRequest)(nil),                  // 31: GetCarByFieldRequest
+	(*GetCarByDealerCountRequest)(nil),            // 32: GetCarByDealerCountRequest
+	(*GetCarByDealershipCountRequest)(nil),        // 33: GetCarByDealershipCountRequest
+	(*GetCarByBrandCountRequest)(nil),             // 34: GetCarByBrandCountRequest
+	(*DeleteCarRequest)(nil),                      // 35: DeleteCarRequest
+	nil,                                           // 36: GetCarByFieldRequest.FilterEntry
+	(*UserMetum)(nil),                             // 37: UserMetum
+	(*Dealership)(nil),                            // 38: Dealership
+	(*CarBrand)(nil),                              // 39: CarBrand
+	(*CarExtraFeature)(nil),                       // 40: CarExtraFeature
+	(*CarImage)(nil),                              // 41: CarImage
+	(*Car)(nil),                                   // 42: Car
 }
 var file_requests_proto_depIdxs = []int32{
-	8, // 0: InsertUserMetaRequest.user_meta:type_name -> UserMetum
-	9, // 1: InsertDealershipRequest.dealership:type_name -> Dealership
-	8, // 2: InsertUserMetaResponse.user_meta:type_name -> UserMetum
-	8, // 3: UpdateUserMetaRequest.user_meta:type_name -> UserMetum
-	9, // 4: UpdateDealershipRequest.dealership:type_name -> Dealership
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	37, // 0: InsertUserMetaRequest.user_meta:type_name -> UserMetum
+	38, // 1: InsertDealershipRequest.dealership:type_name -> Dealership
+	37, // 2: InsertUserMetaResponse.user_meta:type_name -> UserMetum
+	37, // 3: UpdateUserMetaRequest.user_meta:type_name -> UserMetum
+	38, // 4: UpdateDealershipRequest.dealership:type_name -> Dealership
+	39, // 5: InsertCarBrandRequest.car_brand:type_name -> CarBrand
+	39, // 6: UpdateCarBrandRequest.car_brand:type_name -> CarBrand
+	40, // 7: InsertCarExtraFeatureRequest.car_extra_feature:type_name -> CarExtraFeature
+	40, // 8: UpdateCarExtraFeatureRequest.car_extra_feature:type_name -> CarExtraFeature
+	41, // 9: CreateCarImageRequest.car_image:type_name -> CarImage
+	41, // 10: UpdateCarImageRequest.car_image:type_name -> CarImage
+	42, // 11: InsertCarRequest.car:type_name -> Car
+	42, // 12: UpdateCarRequest.car:type_name -> Car
+	0,  // 13: CarFilter.condition:type_name -> CarFilter.Condition
+	36, // 14: GetCarByFieldRequest.filter:type_name -> GetCarByFieldRequest.FilterEntry
+	30, // 15: GetCarByFieldRequest.FilterEntry.value:type_name -> CarFilter
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_requests_proto_init() }
@@ -485,7 +2110,7 @@ func file_requests_proto_init() {
 	file_model_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_requests_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertUserMetaRequest); i {
+			switch v := v.(*HealthCheckRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -497,7 +2122,7 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertDealershipRequest); i {
+			switch v := v.(*InsertUserMetaRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -509,7 +2134,7 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertUserMetaResponse); i {
+			switch v := v.(*InsertDealershipRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -521,7 +2146,7 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateUserMetaRequest); i {
+			switch v := v.(*InsertUserMetaResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -533,7 +2158,7 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserDealershipRequest); i {
+			switch v := v.(*UpdateUserMetaRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -545,7 +2170,7 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateDealershipRequest); i {
+			switch v := v.(*GetUserDealershipRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -557,7 +2182,7 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteDealershipRequest); i {
+			switch v := v.(*UpdateDealershipRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -569,7 +2194,331 @@ func file_requests_proto_init() {
 			}
 		}
 		file_requests_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteDealershipRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetDealershipByIDRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertCarBrandRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarBrandRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarBrandsPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarBrandByIDRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCarBrandRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertCarExtraFeatureRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarExtraFeatureRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarExtraFeaturesPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCarImageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarImageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarImagesPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCarImageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertCarRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateCarRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOneCarRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsByDealershipIDPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsByDealerIDPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarsByBrandIDPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SearchCarsPaginatedRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CarFilter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByFieldRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByDealerCountRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByDealershipCountRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCarByBrandCountRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_requests_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCarRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -586,13 +2535,14 @@ func file_requests_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_requests_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   8,
+			NumEnums:      1,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_requests_proto_goTypes,
 		DependencyIndexes: file_requests_proto_depIdxs,
+		EnumInfos:         file_requests_proto_enumTypes,
 		MessageInfos:      file_requests_proto_msgTypes,
 	}.Build()
 	File_requests_proto = out.File
