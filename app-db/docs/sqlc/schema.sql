@@ -1,7 +1,7 @@
 -- Database schema for the app-db
 -- Tables
 
--- user-meta
+-- user-meta-meta
 CREATE TABLE "user_meta"
 (
     user_meta_id VARCHAR(100) not null primary key,

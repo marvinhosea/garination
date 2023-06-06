@@ -22,7 +22,8 @@ UPDATE user_meta SET
     twitter_url = $3,
     instagram_url = $4,
     linkedin_url = $5,
-    website_url = $6
+    website_url = $6,
+    user_meta_id = $7
 WHERE user_id = $1 RETURNING *;
 
 -- name: GetUserDealership :one

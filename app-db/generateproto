@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#Generate db proto to sdk/go-proto-gen
+protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_relative --go-grpc_out=./sdk/proto --go-grpc_opt=paths=source_relative ./docs/proto/model.proto
+protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_relative --go-grpc_out=./sdk/proto --go-grpc_opt=paths=source_relative ./docs/proto/requests.proto
+protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_relative --go-grpc_out=./sdk/proto --go-grpc_opt=paths=source_relative ./docs/proto/responses.proto
+protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_relative --go-grpc_out=./sdk/proto --go-grpc_opt=paths=source_relative ./docs/proto/server.proto

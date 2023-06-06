@@ -219,7 +219,8 @@ UPDATE user_meta SET
     twitter_url = $3,
     instagram_url = $4,
     linkedin_url = $5,
-    website_url = $6
+    website_url = $6,
+    user_meta_id = $7
 WHERE user_id = $1 RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
 `
 
@@ -230,6 +231,7 @@ type UpdateUserMetaParams struct {
 	InstagramUrl pgtype.Text
 	LinkedinUrl  pgtype.Text
 	WebsiteUrl   pgtype.Text
+	UserMetaID   string
 }
 
 func (q *Queries) UpdateUserMeta(ctx context.Context, arg UpdateUserMetaParams) (UserMetum, error) {
@@ -240,6 +242,7 @@ func (q *Queries) UpdateUserMeta(ctx context.Context, arg UpdateUserMetaParams) 
 		arg.InstagramUrl,
 		arg.LinkedinUrl,
 		arg.WebsiteUrl,
+		arg.UserMetaID,
 	)
 	var i UserMetum
 	err := row.Scan(

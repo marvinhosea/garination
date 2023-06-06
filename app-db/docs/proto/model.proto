@@ -1,0 +1,38 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+option go_package="garination.com/db/sdk/proto";
+
+message Dealership {
+  string dealership_id = 1;
+  string owner_id = 2;
+  string name = 3;
+  string display_name = 4;
+  string address = 5;
+  string city = 6;
+  string state = 7;
+  string zip = 8;
+  string phone = 9;
+  string email = 10;
+  string website = 11;
+  string facebook_url = 12;
+  string twitter_url = 13;
+  string instagram_url = 14;
+  string linkedin_url = 15;
+  string logo_url = 16;
+  string cover_url = 17;
+  string description = 18;
+  google.protobuf.Timestamp created_at = 19;
+  google.protobuf.Timestamp updated_at = 20;
+}
+
+message UserMetum {
+  string user_meta_id = 1;
+  string user_id = 2;
+  string facebook_url = 3;
+  string twitter_url = 4;
+  string instagram_url = 5;
+  string linkedin_url = 6;
+  string website_url = 7;
+  string dealership_id = 8;
+}

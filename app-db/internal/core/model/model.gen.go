@@ -2,7 +2,7 @@
 // versions:
 //   sqlc v1.17.0
 
-package postgres
+package model
 
 import (
 	"github.com/jackc/pgx/v5/pgtype"

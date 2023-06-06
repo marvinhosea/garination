@@ -1,4 +1,7 @@
 #!/bin/sh
 
 sqlc generate --experimental
+# copy the generated file to the model folder
 cp internal/platform/postgres/model.gen.go internal/core/model/model.gen.go
+# change the package name from postgres to model
+sed -i 's/package postgres/package model/g' internal/core/model/model.gen.go

@@ -1,9 +1,9 @@
 package postgres
 
 import (
-	"car-marketplace-backend/config"
 	"context"
 	"fmt"
+	"garination.com/db/config"
 	"github.com/jackc/pgx/v5"
 )
 
@@ -13,10 +13,8 @@ type Connection struct {
 }
 
 // NewConnection return new PGX connection pool
-func NewConnection(cfg *config.Postgres) (*pgx.Conn, error) {
-	// urlExample := "postgres://username:password@localhost:5432/database_name"
-
-	connection := Connection{}
+func NewConnection(cfg *config.Postgres) (*Connection, error) {
+	connection := &Connection{}
 	url := fmt.Sprintf("postgres://%s:%s@%s:%d/%s", cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
 	conn, err := pgx.Connect(context.Background(), url)
 	if err != nil {
@@ -33,7 +31,7 @@ func NewConnection(cfg *config.Postgres) (*pgx.Conn, error) {
 
 	connection.Queries = New(tx)
 
-	return conn, nil
+	return connection, nil
 }
 
 func (c *Connection) Close() {

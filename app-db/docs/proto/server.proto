@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package="garination.com/db/sdk/proto";
+
+import "requests.proto";
+import "responses.proto";
+
+service DatabaseService {
+  rpc GetUserDealership(GetUserDealershipRequest) returns (GetUserDealershipResponse);
+  rpc GetUserMeta(GetUserMetaRequest) returns (GetUserMetaResponse);
+  rpc InsertDealership(InsertDealershipRequest) returns (InsertDealershipResponse);
+  rpc InsertUserMeta(InsertUserMetaRequest) returns (InsertUserMetaResponse);
+  rpc UpdateUserMeta(UpdateUserMetaRequest) returns (UpdateUserMetaResponse);
+}
