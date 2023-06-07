@@ -1,14 +1,5 @@
 package config
 
-type Casdoor struct {
-	Endpoint         string
-	ClientId         string
-	ClientSecret     string
-	OrganisationName string
-	ApplicationName  string
-	CertificateX509  string
-}
-
 type Postgres struct {
 	Host     string
 	Port     string
@@ -22,7 +13,6 @@ type App struct {
 }
 
 type Config struct {
-	Casdoor  Casdoor
 	Postgres Postgres
 	App      App
 }

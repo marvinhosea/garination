@@ -15,7 +15,7 @@ type Connection struct {
 // NewConnection return new PGX connection pool
 func NewConnection(cfg *config.Postgres) (*Connection, error) {
 	connection := &Connection{}
-	url := fmt.Sprintf("postgres://%s:%s@%s:%d/%s", cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
+	url := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
 	conn, err := pgx.Connect(context.Background(), url)
 	if err != nil {
 		return nil, err

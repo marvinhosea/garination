@@ -8,6 +8,15 @@ type Postgres struct {
 	Database string
 }
 
+type Casdoor struct {
+	Endpoint         string
+	ClientId         string
+	ClientSecret     string
+	OrganisationName string
+	ApplicationName  string
+	CertificateX509  string
+}
+
 type Redis struct {
 	Host     string
 	Port     int
@@ -17,4 +26,5 @@ type Redis struct {
 type Config struct {
 	Postgres Postgres
 	Redis    Redis
+	Casdoor  Casdoor
 }
