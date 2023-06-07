@@ -7,10 +7,13 @@ import (
 	"garination.com/db/internal/core/adapters/service"
 	"garination.com/db/internal/core/adapters/storage"
 	"garination.com/db/internal/platform/postgres"
+	"garination.com/db/internal/platform/prom"
 	"garination.com/db/sdk/proto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"google.golang.org/grpc"
 	"log"
 	"net"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -21,6 +24,9 @@ type Server struct {
 }
 
 func (s *Server) Run() {
+
+	// prometheus promMetrics
+	promMetrics := prom.NewMetrics()
 
 	// create database client
 	postgresClient, err := postgres.NewConnection(&s.cfg.Postgres)
@@ -39,7 +45,7 @@ func (s *Server) Run() {
 	userService := service.NewUserService(userRepo)
 
 	// create handler
-	grpcHandler := handlers.NewHandler(userService)
+	grpcHandler := handlers.NewHandler(promMetrics, userService)
 
 	// run server
 	lis, err := net.Listen("tcp", ":"+s.cfg.App.Port)
@@ -62,6 +68,15 @@ func (s *Server) Run() {
 		if err != nil {
 			log.Fatal("cannot start apps server:", err)
 			return
+		}
+	}()
+
+	// Expose Prometheus promMetrics endpoint
+	http.Handle("/metrics", promhttp.Handler())
+	go func() {
+		log.Println("Starting Prometheus Metrics EXPOSE server on port", s.cfg.App.MetricsPort)
+		if err := http.ListenAndServe(":"+s.cfg.App.MetricsPort, nil); err != nil {
+			log.Fatal("Failed to start Prometheus promMetrics server: ", err)
 		}
 	}()
 

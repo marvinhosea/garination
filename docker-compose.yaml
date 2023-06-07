@@ -26,10 +26,10 @@ services:
         build:
             context: ./app-db
             dockerfile: Dockerfile
-        environment:
-            - PORT=5001
         ports:
             - "5002:5002"
+        expose:
+            - 5003
         restart: always
         healthcheck:
             test: sh -c "ping -c3 service_database:5002"
@@ -121,6 +121,8 @@ services:
             - 3000:3000
         volumes:
             - grafana_data:/var/lib/grafana
+
+
 volumes:
     postgres:
         driver: local

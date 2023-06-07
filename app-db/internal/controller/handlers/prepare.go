@@ -3,6 +3,7 @@ package handlers
 import (
 	"errors"
 	"garination.com/db/internal/core/ports"
+	"garination.com/db/internal/platform/prom"
 	"garination.com/db/sdk/proto"
 )
 
@@ -13,10 +14,12 @@ var (
 type Handler struct {
 	proto.UnimplementedDatabaseServiceServer
 	userService ports.UserService
+	promMetrics prom.Metrics
 }
 
-func NewHandler(userRepo ports.UserService) *Handler {
+func NewHandler(metrics prom.Metrics, userRepo ports.UserService) *Handler {
 	return &Handler{
 		userService: userRepo,
+		promMetrics: metrics,
 	}
 }

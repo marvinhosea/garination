@@ -9,7 +9,8 @@ type Postgres struct {
 }
 
 type App struct {
-	Port string
+	Port        string
+	MetricsPort string
 }
 
 type Config struct {

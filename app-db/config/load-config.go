@@ -41,5 +41,10 @@ func LoadConfig() (Config, error) {
 		return config, fmt.Errorf("APP_PORT environment variable not set")
 	}
 
+	config.App.MetricsPort, found = os.LookupEnv("APP_METRICS_PORT")
+	if !found {
+		return config, fmt.Errorf("APP_METRICS_PORT environment variable not set")
+	}
+
 	return config, nil
 }
