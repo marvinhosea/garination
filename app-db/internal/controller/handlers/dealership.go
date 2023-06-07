@@ -6,6 +6,7 @@ import (
 	"garination.com/db/sdk/proto"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/prometheus/client_golang/prometheus"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"time"
 )
@@ -65,12 +66,20 @@ func (h *Handler) InsertDealership(ctx context.Context, req *proto.InsertDealers
 	}, nil
 }
 
+var getUserDealershipLabel = "GetUserDealership"
+
 func (h *Handler) GetUserDealership(ctx context.Context, req *proto.GetUserDealershipRequest) (*proto.GetUserDealershipResponse, error) {
+	timer := prometheus.NewTimer(h.promMetrics.ResponseDuration.WithLabelValues(getUserDealershipLabel))
+	h.promMetrics.RequestCount.WithLabelValues(getUserDealershipLabel).Inc()
+
+	defer timer.ObserveDuration()
 	userDealership, err := h.userService.GetUserDealership(ctx, req.UserId)
 	if err != nil {
+		h.promMetrics.ResponseStatus.WithLabelValues(getUserDealershipLabel, "error").Inc()
 		return nil, err
 	}
 
+	h.promMetrics.ResponseStatus.WithLabelValues(getUserDealershipLabel, "success").Inc()
 	return &proto.GetUserDealershipResponse{
 		Dealership: &proto.Dealership{
 			DealershipId: userDealership.DealershipID,
