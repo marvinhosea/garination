@@ -7,38 +7,7 @@ import (
 
 func LoadConfig() (Config, error) {
 	var config Config
-
-	// Load Casdoor configuration
-	casdoorEndpoint, found := os.LookupEnv("CASDOOR_ENDPOINT")
-	if !found {
-		return config, fmt.Errorf("CASDOOR_ENDPOINT environment variable not set")
-	}
-	config.Casdoor.Endpoint = casdoorEndpoint
-
-	config.Casdoor.ClientId, found = os.LookupEnv("CASDOOR_CLIENT_ID")
-	if !found {
-		return config, fmt.Errorf("CASDOOR_CLIENT_ID environment variable not set")
-	}
-
-	config.Casdoor.ClientSecret, found = os.LookupEnv("CASDOOR_CLIENT_SECRET")
-	if !found {
-		return config, fmt.Errorf("CASDOOR_CLIENT_SECRET environment variable not set")
-	}
-
-	config.Casdoor.OrganisationName, found = os.LookupEnv("CASDOOR_ORGANISATION_NAME")
-	if !found {
-		return config, fmt.Errorf("CASDOOR_ORGANISATION_NAME environment variable not set")
-	}
-
-	config.Casdoor.ApplicationName, found = os.LookupEnv("CASDOOR_APPLICATION_NAME")
-	if !found {
-		return config, fmt.Errorf("CASDOOR_APPLICATION_NAME environment variable not set")
-	}
-
-	config.Casdoor.CertificateX509, found = os.LookupEnv("CASDOOR_CERTIFICATE_X509")
-	if !found {
-		return config, fmt.Errorf("CASDOOR_CERTIFICATE_X509 environment variable not set")
-	}
+	var found bool
 
 	// Load Postgres configuration
 	config.Postgres.Host, found = os.LookupEnv("POSTGRES_HOST")
