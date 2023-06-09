@@ -9,7 +9,7 @@ func LoadConfig() (Config, error) {
 	var config Config
 	var found bool
 
-	// Load Postgres configuration
+	// Load AppDb configuration
 	config.Postgres.Host, found = os.LookupEnv("POSTGRES_HOST")
 	if !found {
 		return config, fmt.Errorf("POSTGRES_HOST environment variable not set")
