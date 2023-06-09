@@ -11,18 +11,18 @@ func LoadConfig() (Config, error) {
 	var found bool
 
 	// Load AppDb configuration
-	config.AppDb.Host, found = os.LookupEnv("POSTGRES_HOST")
+	config.AppDb.Host, found = os.LookupEnv("APP_DB_HOST")
 	if !found {
-		return config, fmt.Errorf("POSTGRES_HOST environment variable not set")
+		return config, fmt.Errorf("APP_DB_HOST environment variable not set")
 	}
 
-	portStr, found := os.LookupEnv("POSTGRES_PORT")
+	portStr, found := os.LookupEnv("APP_DB_PORT")
 	if !found {
-		return config, fmt.Errorf("POSTGRES_PORT environment variable not set")
+		return config, fmt.Errorf("APP_DB_PORT environment variable not set")
 	}
 	_, err := strconv.Atoi(portStr)
 	if err != nil {
-		return config, fmt.Errorf("failed to parse POSTGRES_PORT as integer: %v", err)
+		return config, fmt.Errorf("failed to parse APP_DB_PORT as integer: %v", err)
 	}
 	config.AppDb.Port = portStr
 
@@ -73,6 +73,22 @@ func LoadConfig() (Config, error) {
 	if !found {
 		return config, fmt.Errorf("CASDOOR_CERTIFICATE_X509 environment variable not set")
 	}
+
+	// Load AppDb configuration
+	config.AppDb.Host, found = os.LookupEnv("APP_DB_HOST")
+	if !found {
+		return config, fmt.Errorf("APP_DB_HOST environment variable not set")
+	}
+
+	portStr, found = os.LookupEnv("APP_DB_PORT")
+	if !found {
+		return config, fmt.Errorf("APP_DB_PORT environment variable not set")
+	}
+	_, err = strconv.Atoi(portStr)
+	if err != nil {
+		return config, fmt.Errorf("failed to parse APP_DB_PORT as integer: %v", err)
+	}
+	config.AppDb.Port = portStr
 
 	return config, nil
 }
