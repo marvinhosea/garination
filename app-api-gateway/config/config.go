@@ -1,11 +1,8 @@
 package config
 
-type Postgres struct {
-	Host     string
-	Port     int
-	User     string
-	Password string
-	Database string
+type AppDb struct {
+	Host string
+	Port string
 }
 
 type Casdoor struct {
@@ -19,12 +16,12 @@ type Casdoor struct {
 
 type Redis struct {
 	Host     string
-	Port     int
+	Port     string
 	Password string
 }
 
 type Config struct {
-	Postgres Postgres
-	Redis    Redis
-	Casdoor  Casdoor
+	AppDb   AppDb
+	Redis   Redis
+	Casdoor Casdoor
 }
