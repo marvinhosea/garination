@@ -10,8 +10,8 @@ func LoadConfig() (Config, error) {
 	var config Config
 	var found bool
 
-	// Load Postgres configuration
-	config.Postgres.Host, found = os.LookupEnv("POSTGRES_HOST")
+	// Load AppDb configuration
+	config.AppDb.Host, found = os.LookupEnv("POSTGRES_HOST")
 	if !found {
 		return config, fmt.Errorf("POSTGRES_HOST environment variable not set")
 	}
@@ -20,26 +20,11 @@ func LoadConfig() (Config, error) {
 	if !found {
 		return config, fmt.Errorf("POSTGRES_PORT environment variable not set")
 	}
-	port, err := strconv.Atoi(portStr)
+	_, err := strconv.Atoi(portStr)
 	if err != nil {
 		return config, fmt.Errorf("failed to parse POSTGRES_PORT as integer: %v", err)
 	}
-	config.Postgres.Port = port
-
-	config.Postgres.User, found = os.LookupEnv("POSTGRES_USER")
-	if !found {
-		return config, fmt.Errorf("POSTGRES_USER environment variable not set")
-	}
-
-	config.Postgres.Password, found = os.LookupEnv("POSTGRES_PASSWORD")
-	if !found {
-		return config, fmt.Errorf("POSTGRES_PASSWORD environment variable not set")
-	}
-
-	config.Postgres.Database, found = os.LookupEnv("POSTGRES_DATABASE")
-	if !found {
-		return config, fmt.Errorf("POSTGRES_DATABASE environment variable not set")
-	}
+	config.AppDb.Port = portStr
 
 	// Load Redis configuration
 	config.Redis.Host, found = os.LookupEnv("REDIS_HOST")
@@ -51,11 +36,7 @@ func LoadConfig() (Config, error) {
 	if !found {
 		return config, fmt.Errorf("REDIS_PORT environment variable not set")
 	}
-	port, err = strconv.Atoi(portStr)
-	if err != nil {
-		return config, fmt.Errorf("failed to parse REDIS_PORT as integer: %v", err)
-	}
-	config.Redis.Port = port
+	config.Redis.Port = portStr
 
 	config.Redis.Password, found = os.LookupEnv("REDIS_PASSWORD")
 	if !found {
