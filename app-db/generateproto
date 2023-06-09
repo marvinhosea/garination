@@ -5,3 +5,7 @@ protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_rela
 protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_relative --go-grpc_out=./sdk/proto --go-grpc_opt=paths=source_relative ./docs/proto/requests.proto
 protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_relative --go-grpc_out=./sdk/proto --go-grpc_opt=paths=source_relative ./docs/proto/responses.proto
 protoc --proto_path=./docs/proto --go_out=./sdk/proto --go_opt=paths=source_relative --go-grpc_out=./sdk/proto --go-grpc_opt=paths=source_relative ./docs/proto/server.proto
+
+# Generate db proto to api gateway
+mkdir -p ../app-api-gateway/internal/platform/grpc/app-db/proto
+cp -r ./sdk/proto/* ../app-api-gateway/internal/platform/grpc/app-db/proto
