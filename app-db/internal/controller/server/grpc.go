@@ -64,6 +64,7 @@ func (s *Server) Run() {
 	signal.Notify(quit, os.Interrupt, syscall.SIGTERM)
 
 	go func() {
+		log.Println("Starting GRPC server on port", s.cfg.App.Port)
 		err = grpcServer.Serve(lis)
 		if err != nil {
 			log.Fatal("cannot start apps server:", err)
