@@ -5,13 +5,13 @@ services:
         build:
             context: ./app-api-gateway
             dockerfile: Dockerfile
-        environment:
-            - PORT=5000
         ports:
-            - "5000:5000"
+            - "5004:5004"
+        expose:
+            - 5005
         restart: always
         healthcheck:
-            test: sh -c "ping -c3 service_api_gateway:5000"
+            test: sh -c "ping -c3 service_api_gateway:5004"
             interval: 10s
             retries: 10
         networks:
@@ -83,7 +83,7 @@ services:
         restart: always
         command: --port 6379
         healthcheck:
-            test: ping -c3 redis-db:6379
+            test: ping -c3 cache-db:6379
             interval: 10s
             retries: 10
         networks:
@@ -114,6 +114,9 @@ services:
             - ./prometheus.yaml:/etc/prometheus/prometheus.yml
         command:
             - '--config.file=/etc/prometheus/prometheus.yml'
+        networks:
+            - internal_network
+
     grafana:
         image: grafana/grafana
         container_name: grafana
@@ -121,6 +124,8 @@ services:
             - 3000:3000
         volumes:
             - grafana_data:/var/lib/grafana
+        networks:
+            - internal_network
 
 
 volumes:
