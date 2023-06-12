@@ -107,3 +107,122 @@ create table dealership_reviews
     FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
 );
 
+ALTER TABLE "dealership_reviews"
+    ADD CONSTRAINT unique_id_dealership_reviews UNIQUE (dealership_review_id);
+
+CREATE TABLE car_brands (
+                            brand_id varchar(100) not null PRIMARY KEY,
+                            name VARCHAR(50),
+                            country VARCHAR(50),
+                            logo_url VARCHAR(100),
+                            created_at TIMESTAMP,
+                            updated_at TIMESTAMP
+);
+
+ALTER TABLE "car_brands"
+    ADD CONSTRAINT unique_id_car_brands UNIQUE (brand_id);
+
+
+CREATE TABLE cars (
+                      car_id varchar(100)  not null PRIMARY KEY,
+                      brand_id varchar(100) not null,
+                      category_id varchar(100) not null,
+                      model VARCHAR(50),
+                      year INT,
+                      price DECIMAL(10, 2),
+                      mileage INT,
+                      color VARCHAR(20),
+                      transmission VARCHAR(20),
+                      fuel_type VARCHAR(20),
+                      engine_capacity VARCHAR(10),
+                      description TEXT,
+                      dealership_id varchar(100),
+                      dealer_id varchar(100),
+                      created_at TIMESTAMP,
+                      updated_at TIMESTAMP,
+                      FOREIGN KEY (brand_id) REFERENCES car_brands(brand_id),
+                      FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id),
+                      FOREIGN KEY (dealer_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+ALTER TABLE "cars"
+    ADD CONSTRAINT unique_id_cars UNIQUE (car_id);
+
+CREATE TABLE car_extra_features (
+                                    car_extra_feature_id varchar(100) not null PRIMARY KEY,
+                                    car_id varchar(100) not null,
+                                    name VARCHAR(100),
+                                    value VARCHAR(100),
+                                    created_at TIMESTAMP,
+                                    updated_at TIMESTAMP,
+                                    FOREIGN KEY (car_id) REFERENCES cars(car_id)
+);
+
+ALTER TABLE "car_extra_features"
+    ADD CONSTRAINT unique_id_car_extra_fx UNIQUE (car_extra_feature_id);
+
+CREATE TABLE car_images (
+                            car_image_id varchar(100) not null PRIMARY KEY,
+                            car_id varchar(100) not null,
+                            image_url VARCHAR(100),
+                            created_at TIMESTAMP,
+                            updated_at TIMESTAMP,
+                            FOREIGN KEY (car_id) REFERENCES cars(car_id)
+);
+
+ALTER TABLE "car_images"
+    ADD CONSTRAINT unique_id_car_images UNIQUE (car_image_id);
+
+CREATE TABLE car_videos (
+                            car_video_id varchar(100) not null PRIMARY KEY,
+                            car_id varchar(100) not null,
+                            video_url VARCHAR(100),
+                            created_at TIMESTAMP,
+                            updated_at TIMESTAMP,
+                            FOREIGN KEY (car_id) REFERENCES cars(car_id)
+);
+ALTER TABLE "car_videos"
+    ADD CONSTRAINT unique_id_car_videos UNIQUE (car_video_id);
+
+CREATE TABLE car_reviews (
+                             car_review_id varchar(100) not null PRIMARY KEY,
+                             car_id varchar(100) not null,
+                             user_id varchar(100) not null,
+                             rating INT,
+                             review TEXT,
+                             created_at TIMESTAMP,
+                             updated_at TIMESTAMP,
+                             FOREIGN KEY (car_id) REFERENCES cars(car_id),
+                             FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+ALTER TABLE "car_reviews"
+    ADD CONSTRAINT unique_id_car_reviews UNIQUE (car_review_id);
+
+CREATE TABLE car_ratings (
+                             car_rating_id varchar(100) not null PRIMARY KEY,
+                             car_id varchar(100) not null,
+                             user_id varchar(100) not null,
+                             rating INT,
+                             created_at TIMESTAMP,
+                             updated_at TIMESTAMP,
+                             FOREIGN KEY (car_id) REFERENCES cars(car_id),
+                             FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+ALTER TABLE "car_ratings"
+    ADD CONSTRAINT unique_id_car_ratings UNIQUE (car_rating_id);
+
+
+CREATE TABLE car_likes (
+                           car_like_id varchar(100) not null PRIMARY KEY,
+                           car_id varchar(100) not null,
+                           user_id varchar(100) not null,
+                           created_at TIMESTAMP,
+                           updated_at TIMESTAMP,
+                           FOREIGN KEY (car_id) REFERENCES cars(car_id),
+                           FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+ALTER TABLE "car_likes"
+    ADD CONSTRAINT unique_id_car_likes UNIQUE (car_like_id);
