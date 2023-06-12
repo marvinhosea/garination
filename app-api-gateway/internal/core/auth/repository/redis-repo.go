@@ -13,7 +13,7 @@ import (
 const DefaultCacheExpiry = 3600
 
 type redisRepo struct {
-	client redis.Client
+	client *redis.Client
 }
 
 func (r redisRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserMetum, error) {
@@ -40,7 +40,7 @@ func (r redisRepo) InsertUserMeta(ctx context.Context, arg model.UserMetum) (*mo
 		return nil, fmt.Errorf("failed to marshal user meta: %w", err)
 	}
 
-	// set the userMeta in redis
+	// set the userMeta in cache
 	err = r.client.Set(ctx, arg.UserID, userMetaBytes, DefaultCacheExpiry).Err()
 	if err != nil {
 		return nil, fmt.Errorf("failed to set user meta: %w", err)
@@ -49,6 +49,6 @@ func (r redisRepo) InsertUserMeta(ctx context.Context, arg model.UserMetum) (*mo
 	return &arg, nil
 }
 
-func NewRedisRepo(client redis.Client) ports.AuthRedisRepo {
+func NewRedisRepo(client *redis.Client) ports.AuthRedisRepo {
 	return &redisRepo{client: client}
 }
