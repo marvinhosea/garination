@@ -63,6 +63,18 @@ CREATE TABLE user_followers
 ALTER TABLE "user_followers"
     ADD CONSTRAINT unique_id_followers UNIQUE (user_follower_id);
 
+CREATE TABLE user_reviews
+(
+    user_review_id varchar(100) not null primary key,
+    user_id varchar(100) not null,
+    reviewer_id varchar(100) not null,
+    rating int not null,
+    review varchar(1024) not null,
+    created_at timestamp not null,
+    updated_at timestamp not null,
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id),
+    FOREIGN KEY (reviewer_id) REFERENCES "user_meta" (user_meta_id)
+);
 
 
 
