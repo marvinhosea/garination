@@ -20,8 +20,14 @@ type Redis struct {
 	Password string
 }
 
+type App struct {
+	Port        string
+	MetricsPort string
+}
+
 type Config struct {
 	AppDb   AppDb
 	Redis   Redis
 	Casdoor Casdoor
+	App     App
 }
