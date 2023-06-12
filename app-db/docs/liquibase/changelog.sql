@@ -90,6 +90,8 @@ create table dealership_followers
     FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
 );
 
+ALTER TABLE "dealership_followers"
+    ADD CONSTRAINT unique_id_dealership_followers UNIQUE (dealership_follower_id);
 
 
 
