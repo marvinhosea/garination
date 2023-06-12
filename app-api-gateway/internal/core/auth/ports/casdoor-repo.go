@@ -5,7 +5,7 @@ import (
 	"github.com/casdoor/casdoor-go-sdk/casdoorsdk"
 )
 
-type CasdoorRepo interface {
+type AuthCasdoorRepo interface {
 	GetUser(username string) (*casdoorsdk.User, error)
 	GetUserByEmail(email string) (*casdoorsdk.User, error)
 	GetPermission(name string) (*casdoorsdk.Permission, error)

@@ -34,6 +34,6 @@ func (c casdoorRepo) GetPaginationUsers(filter casdoor.PaginationUsersFilter) ([
 	return c.client.GetPaginationUsers(filter)
 }
 
-func NewCasdoorRepo(client casdoor.CasdoorClient) ports.CasdoorRepo {
+func NewCasdoorRepo(client casdoor.CasdoorClient) ports.AuthCasdoorRepo {
 	return &casdoorRepo{client: client}
 }
