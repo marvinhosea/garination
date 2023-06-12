@@ -76,6 +76,8 @@ CREATE TABLE user_reviews
     FOREIGN KEY (reviewer_id) REFERENCES "user_meta" (user_meta_id)
 );
 
+ALTER TABLE "user_reviews"
+    ADD CONSTRAINT unique_id_reviews UNIQUE (user_review_id);
 
 
 
