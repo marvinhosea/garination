@@ -7,6 +7,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/prometheus/client_golang/prometheus"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"time"
 )
@@ -38,13 +40,13 @@ func (h *Handler) InsertDealership(ctx context.Context, req *proto.InsertDealers
 		CoverUrl:     req.Dealership.CoverUrl,
 		Description:  req.Dealership.Description,
 		CreatedAt:    pgtype.Timestamp{Time: time.Now(), Valid: true},
-		UpdatedAt:    pgtype.Timestamp{},
+		UpdatedAt:    pgtype.Timestamp{Time: time.Now(), Valid: true},
 	}
 
 	res, err := h.dealershipService.InsertDealership(ctx, dealerShipModel)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(insertDealershipLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.Internal, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(insertDealershipLabel, "success").Inc()
@@ -85,7 +87,7 @@ func (h *Handler) GetUserDealership(ctx context.Context, req *proto.GetUserDeale
 	userDealership, err := h.dealershipService.GetUserDealership(ctx, req.UserId)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(getUserDealershipLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.Internal, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(getUserDealershipLabel, "success").Inc()
@@ -146,7 +148,7 @@ func (h *Handler) UpdateDealership(ctx context.Context, req *proto.UpdateDealers
 	res, err := h.dealershipService.UpdateDealership(ctx, dealership)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(updateDealershipLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.Internal, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(updateDealershipLabel, "success").Inc()
@@ -186,7 +188,7 @@ func (h *Handler) GetDealershipByUserId(ctx context.Context, req *proto.GetUserD
 	userDealership, err := h.dealershipService.GetUserDealership(ctx, req.UserId)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(getDealershipByUserIDLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.NotFound, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(getDealershipByUserIDLabel, "success").Inc()
@@ -226,7 +228,7 @@ func (h *Handler) GetDealershipByID(ctx context.Context, req *proto.GetDealershi
 	dealership, err := h.dealershipService.GetDealershipByID(ctx, req.DealershipId)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(getDealershipByIDLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.NotFound, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(getDealershipByIDLabel, "success").Inc()
@@ -266,7 +268,7 @@ func (h *Handler) DeleteDealership(ctx context.Context, req *proto.DeleteDealers
 	err := h.dealershipService.DeleteDealership(ctx, req.DealershipId)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(deleteDealershipLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.NotFound, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(deleteDealershipLabel, "success").Inc()
