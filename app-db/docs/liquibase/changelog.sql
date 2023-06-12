@@ -48,6 +48,20 @@ CREATE TABLE "user_meta"
 ALTER TABLE "user_meta"
     ADD CONSTRAINT unique_id UNIQUE (user_id);
 
+--changeSet oyamo:3
+CREATE TABLE user_followers
+(
+    user_follower_id varchar(100) not null primary key,
+    user_id varchar(100) not null,
+    follower_id varchar(100) not null,
+    created_at timestamp not null,
+    updated_at timestamp not null,
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id),
+    FOREIGN KEY (follower_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+ALTER TABLE "user_followers"
+    ADD CONSTRAINT unique_id_followers UNIQUE (user_follower_id);
 
 
 
