@@ -1,12 +1,11 @@
 package ports
 
 import (
-	"context"
-	"garination.com/gateway/internal/core/auth/dto"
+	"github.com/gin-gonic/gin"
 )
 
-type Delivery interface {
-	InitiateLogin(ctx context.Context, req *dto.AuthLoginRequest) (*dto.AuthLoginResponse, error)
-	InitiateRegister(ctx context.Context, req *dto.AuthRegisterRequest) (*dto.AuthRegisterResponse, error)
-	Logout(ctx context.Context, req *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error)
+type AuthHttpHandler interface {
+	InitiateLogin() gin.HandlerFunc
+	InitiateRegister() gin.HandlerFunc
+	Logout() gin.HandlerFunc
 }
