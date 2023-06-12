@@ -93,7 +93,7 @@ func (d databaseRepo) UpdateUserMeta(ctx context.Context, arg model.UserMetum) (
 	}, nil
 }
 
-func NewDatabaseRepo(client proto.DatabaseServiceClient) ports.DatabaseRepo {
+func NewDatabaseRepo(client proto.DatabaseServiceClient) ports.AuthDbRepo {
 	return &databaseRepo{
 		client: client,
 	}
