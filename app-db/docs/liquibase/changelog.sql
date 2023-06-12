@@ -94,4 +94,16 @@ ALTER TABLE "dealership_followers"
     ADD CONSTRAINT unique_id_dealership_followers UNIQUE (dealership_follower_id);
 
 
+create table dealership_reviews
+(
+    dealership_review_id varchar(100) not null primary key,
+    dealership_id varchar(100) not null,
+    user_id varchar(100) not null,
+    rating int not null,
+    review varchar(1024) not null,
+    created_at timestamp not null,
+    updated_at timestamp not null,
+    FOREIGN KEY (dealership_id) REFERENCES "dealership" (dealership_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+);
 
