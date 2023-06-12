@@ -79,6 +79,16 @@ CREATE TABLE user_reviews
 ALTER TABLE "user_reviews"
     ADD CONSTRAINT unique_id_reviews UNIQUE (user_review_id);
 
+create table dealership_followers
+(
+    dealership_follower_id varchar(100) not null primary key,
+    dealership_id varchar(100) not null,
+    user_id varchar(100) not null,
+    created_at timestamp not null,
+    updated_at timestamp not null,
+    FOREIGN KEY (dealership_id) REFERENCES "dealership" (dealership_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+);
 
 
 
