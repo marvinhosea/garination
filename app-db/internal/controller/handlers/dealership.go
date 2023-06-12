@@ -11,7 +11,13 @@ import (
 	"time"
 )
 
+var insertDealershipLabel = "InsertDealership"
+
 func (h *Handler) InsertDealership(ctx context.Context, req *proto.InsertDealershipRequest) (*proto.InsertDealershipResponse, error) {
+	timer := prometheus.NewTimer(h.promMetrics.ResponseDuration.WithLabelValues(insertDealershipLabel))
+	h.promMetrics.RequestCount.WithLabelValues(insertDealershipLabel).Inc()
+	defer timer.ObserveDuration()
+
 	dealerShipModel := model.Dealership{
 		DealershipID: uuid.NewString(),
 		OwnerID:      req.Dealership.OwnerId,
@@ -37,8 +43,11 @@ func (h *Handler) InsertDealership(ctx context.Context, req *proto.InsertDealers
 
 	res, err := h.userService.InsertDealership(ctx, dealerShipModel)
 	if err != nil {
+		h.promMetrics.ResponseStatus.WithLabelValues(insertDealershipLabel, "error").Inc()
 		return nil, err
 	}
+
+	h.promMetrics.ResponseStatus.WithLabelValues(insertDealershipLabel, "success").Inc()
 
 	return &proto.InsertDealershipResponse{
 		Dealership: &proto.Dealership{
