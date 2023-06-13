@@ -54,7 +54,7 @@ services:
         volumes:
             - postgres:/var/lib/postgresql/data
         healthcheck:
-            test: ping -c3 postgres-db:5432
+            test: ping -c3 postgres_database:5432
             interval: 10s
             retries: 10
         networks:
@@ -83,7 +83,7 @@ services:
         restart: always
         command: --port 6379
         healthcheck:
-            test: ping -c3 cache-db:6379
+            test: ping -c3 redis_database:6379
             interval: 10s
             retries: 10
         networks:
@@ -99,7 +99,7 @@ services:
         volumes:
             - ./casdoor.conf:/conf/app.conf
         healthcheck:
-            test: ping -c3 casbin-casdoor:8000
+            test: ping -c3 casbin_casdoor:8000
             interval: 10s
             retries: 10
         networks:
