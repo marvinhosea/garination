@@ -141,21 +141,21 @@ func (a authUsecase) RegisterCallback(ctx context.Context, req *dto.AuthRegister
 	}, nil
 }
 
-func (a authUsecase) InitiateLogin(ctx context.Context, req *dto.AuthLoginRequest) (*dto.AuthLoginResponse, error) {
+func (a authUsecase) InitiateLogin(_ context.Context, req *dto.AuthLoginRequest) (*dto.AuthLoginResponse, error) {
 	res := a.casdoorRepo.GetSigninUrl(req.RedirectURL)
 	return &dto.AuthLoginResponse{
 		RedirectURL: res,
 	}, nil
 }
 
-func (a authUsecase) InitiateRegister(ctx context.Context, req *dto.AuthRegisterRequest) (*dto.AuthRegisterResponse, error) {
+func (a authUsecase) InitiateRegister(_ context.Context, req *dto.AuthRegisterRequest) (*dto.AuthRegisterResponse, error) {
 	res := a.casdoorRepo.GetSignupUrl(true, req.RedirectURL)
 	return &dto.AuthRegisterResponse{
 		RedirectURL: res,
 	}, nil
 }
 
-func (a authUsecase) Logout(ctx context.Context, req *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error) {
+func (a authUsecase) Logout(context.Context, *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error) {
 	panic("implement me")
 }
 
