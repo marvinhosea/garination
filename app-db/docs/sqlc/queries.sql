@@ -55,3 +55,31 @@ INSERT INTO dealership (
              $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20
          ) RETURNING *;
 
+
+-- name: UpdateDealership :one
+UPDATE dealership SET
+    name = $2,
+    display_name = $3,
+    address = $4,
+    city = $5,
+    state = $6,
+    zip = $7,
+    phone = $8,
+    email = $9,
+    website = $10,
+    facebook_url = $11,
+    twitter_url = $12,
+    instagram_url = $13,
+    linkedin_url = $14,
+    logo_url = $15,
+    cover_url = $16,
+    description = $17,
+    updated_at = $18
+WHERE dealership_id = $1 RETURNING *;
+
+
+-- name: GetDealershipById :one
+SELECT * FROM dealership WHERE dealership_id = $1 LIMIT 1;
+
+-- name: DeleteDealership :one
+DELETE FROM dealership WHERE dealership_id = $1 RETURNING *;

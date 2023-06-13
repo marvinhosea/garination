@@ -16,13 +16,13 @@ type redisRepo struct {
 	client *redis.Client
 }
 
-func (r redisRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserMetum, error) {
+func (r redisRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserMeta, error) {
 	userMetaBytes, err := r.client.Get(ctx, userID).Bytes()
 	if err != nil {
 		return nil, err
 	}
 
-	var userMeta model.UserMetum
+	var userMeta model.UserMeta
 
 	// unmarshall  the json bytes into the userMeta struct
 	err = json.Unmarshal(userMetaBytes, &userMeta)
@@ -33,7 +33,7 @@ func (r redisRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserM
 	return &userMeta, nil
 }
 
-func (r redisRepo) InsertUserMeta(ctx context.Context, arg model.UserMetum) (*model.UserMetum, error) {
+func (r redisRepo) InsertUserMeta(ctx context.Context, arg model.UserMeta) (*model.UserMeta, error) {
 	// marshall the userMeta struct into json bytes
 	userMetaBytes, err := json.Marshal(arg)
 	if err != nil {

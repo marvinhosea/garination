@@ -2,7 +2,7 @@ package storage
 
 import (
 	"context"
-	"garination.com/db/internal/core/ports"
+	"garination.com/db/internal/core/ports/user"
 	"garination.com/db/internal/platform/postgres"
 )
 
@@ -30,6 +30,6 @@ func (u userPostgresStorage) UpdateUserMeta(ctx context.Context, arg postgres.Up
 	return u.conn.Queries.UpdateUserMeta(ctx, arg)
 }
 
-func NewUserPostgresStorage(conn *postgres.Connection) ports.UserPostgresStorage {
+func NewUserPostgresStorage(conn *postgres.Connection) user.UserPostgresStorage {
 	return &userPostgresStorage{conn: conn}
 }

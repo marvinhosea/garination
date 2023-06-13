@@ -37,7 +37,7 @@ create table dealership
     cover_url varchar(100) not null,
     description varchar(100) not null,
     created_at timestamp not null,
-    updated_at timestamp not null,
+    updated_at timestamp not null
 );
 
 

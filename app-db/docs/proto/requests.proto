@@ -7,6 +7,11 @@ message InsertUserMetaRequest {
   UserMetum user_meta = 1;
 }
 
+
+message InsertDealershipRequest {
+  Dealership dealership = 1;
+}
+
 message InsertUserMetaResponse {
   UserMetum user_meta = 1;
 }
@@ -15,10 +20,20 @@ message UpdateUserMetaRequest {
   UserMetum user_meta = 1;
 }
 
-message UpdateUserMetaResponse {
-  UserMetum user_meta = 1;
-}
 
 message GetUserDealershipRequest {
   string user_id = 1;
+}
+
+
+message UpdateDealershipRequest {
+  Dealership dealership = 1;
+}
+
+message DeleteDealershipRequest {
+  string dealership_id = 1;
+}
+
+message GetDealershipByIDRequest {
+  string dealership_id = 1;
 }

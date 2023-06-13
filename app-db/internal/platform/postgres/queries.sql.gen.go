@@ -11,6 +11,70 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const deleteDealership = `-- name: DeleteDealership :one
+DELETE FROM dealership WHERE dealership_id = $1 RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
+`
+
+func (q *Queries) DeleteDealership(ctx context.Context, dealershipID string) (Dealership, error) {
+	row := q.db.QueryRow(ctx, deleteDealership, dealershipID)
+	var i Dealership
+	err := row.Scan(
+		&i.DealershipID,
+		&i.OwnerID,
+		&i.Name,
+		&i.DisplayName,
+		&i.Address,
+		&i.City,
+		&i.State,
+		&i.Zip,
+		&i.Phone,
+		&i.Email,
+		&i.Website,
+		&i.FacebookUrl,
+		&i.TwitterUrl,
+		&i.InstagramUrl,
+		&i.LinkedinUrl,
+		&i.LogoUrl,
+		&i.CoverUrl,
+		&i.Description,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getDealershipById = `-- name: GetDealershipById :one
+SELECT dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at FROM dealership WHERE dealership_id = $1 LIMIT 1
+`
+
+func (q *Queries) GetDealershipById(ctx context.Context, dealershipID string) (Dealership, error) {
+	row := q.db.QueryRow(ctx, getDealershipById, dealershipID)
+	var i Dealership
+	err := row.Scan(
+		&i.DealershipID,
+		&i.OwnerID,
+		&i.Name,
+		&i.DisplayName,
+		&i.Address,
+		&i.City,
+		&i.State,
+		&i.Zip,
+		&i.Phone,
+		&i.Email,
+		&i.Website,
+		&i.FacebookUrl,
+		&i.TwitterUrl,
+		&i.InstagramUrl,
+		&i.LinkedinUrl,
+		&i.LogoUrl,
+		&i.CoverUrl,
+		&i.Description,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const getUserDealership = `-- name: GetUserDealership :one
 SELECT d.dealership_id, d.owner_id, d.name, d.display_name, d.address, d.city, d.state, d.zip, d.phone, d.email, d.website, d.facebook_url, d.twitter_url, d.instagram_url, d.linkedin_url, d.logo_url, d.cover_url, d.description, d.created_at, d.updated_at FROM dealership d JOIN user_meta u ON d.dealership_id = u.dealership_id WHERE u.user_id = $1 LIMIT 1
 `
@@ -209,6 +273,96 @@ func (q *Queries) InsertUserMeta(ctx context.Context, arg InsertUserMetaParams) 
 		&i.LinkedinUrl,
 		&i.WebsiteUrl,
 		&i.DealershipID,
+	)
+	return i, err
+}
+
+const updateDealership = `-- name: UpdateDealership :one
+UPDATE dealership SET
+    name = $2,
+    display_name = $3,
+    address = $4,
+    city = $5,
+    state = $6,
+    zip = $7,
+    phone = $8,
+    email = $9,
+    website = $10,
+    facebook_url = $11,
+    twitter_url = $12,
+    instagram_url = $13,
+    linkedin_url = $14,
+    logo_url = $15,
+    cover_url = $16,
+    description = $17,
+    updated_at = $18
+WHERE dealership_id = $1 RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
+`
+
+type UpdateDealershipParams struct {
+	DealershipID string
+	Name         string
+	DisplayName  string
+	Address      string
+	City         string
+	State        string
+	Zip          string
+	Phone        string
+	Email        string
+	Website      string
+	FacebookUrl  string
+	TwitterUrl   string
+	InstagramUrl string
+	LinkedinUrl  string
+	LogoUrl      string
+	CoverUrl     string
+	Description  string
+	UpdatedAt    pgtype.Timestamp
+}
+
+func (q *Queries) UpdateDealership(ctx context.Context, arg UpdateDealershipParams) (Dealership, error) {
+	row := q.db.QueryRow(ctx, updateDealership,
+		arg.DealershipID,
+		arg.Name,
+		arg.DisplayName,
+		arg.Address,
+		arg.City,
+		arg.State,
+		arg.Zip,
+		arg.Phone,
+		arg.Email,
+		arg.Website,
+		arg.FacebookUrl,
+		arg.TwitterUrl,
+		arg.InstagramUrl,
+		arg.LinkedinUrl,
+		arg.LogoUrl,
+		arg.CoverUrl,
+		arg.Description,
+		arg.UpdatedAt,
+	)
+	var i Dealership
+	err := row.Scan(
+		&i.DealershipID,
+		&i.OwnerID,
+		&i.Name,
+		&i.DisplayName,
+		&i.Address,
+		&i.City,
+		&i.State,
+		&i.Zip,
+		&i.Phone,
+		&i.Email,
+		&i.Website,
+		&i.FacebookUrl,
+		&i.TwitterUrl,
+		&i.InstagramUrl,
+		&i.LinkedinUrl,
+		&i.LogoUrl,
+		&i.CoverUrl,
+		&i.Description,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 	)
 	return i, err
 }

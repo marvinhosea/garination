@@ -6,9 +6,12 @@ import "requests.proto";
 import "responses.proto";
 
 service DatabaseService {
-  rpc GetUserDealership(GetUserDealershipRequest) returns (GetUserDealershipResponse);
   rpc GetUserMeta(GetUserMetaRequest) returns (GetUserMetaResponse);
-  rpc InsertDealership(InsertDealershipRequest) returns (InsertDealershipResponse);
   rpc InsertUserMeta(InsertUserMetaRequest) returns (InsertUserMetaResponse);
   rpc UpdateUserMeta(UpdateUserMetaRequest) returns (UpdateUserMetaResponse);
+  rpc InsertDealership(InsertDealershipRequest) returns (InsertDealershipResponse);
+  rpc UpdateDealership(UpdateDealershipRequest) returns (UpdateDealershipResponse);
+  rpc GetDealershipByUserId(GetUserDealershipRequest) returns (GetDealershipByUserIDResponse);
+  rpc GetDealershipByID(GetDealershipByIDRequest) returns (GetDealershipByIDResponse);
+  rpc DeleteDealership(DeleteDealershipRequest) returns (DeleteDealershipResponse);
 }

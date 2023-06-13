@@ -8,6 +8,86 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type Car struct {
+	CarID          string
+	BrandID        string
+	CategoryID     string
+	Model          pgtype.Text
+	Year           pgtype.Int4
+	Price          pgtype.Numeric
+	Mileage        pgtype.Int4
+	Color          pgtype.Text
+	Transmission   pgtype.Text
+	FuelType       pgtype.Text
+	EngineCapacity pgtype.Text
+	Description    pgtype.Text
+	DealershipID   pgtype.Text
+	DealerID       pgtype.Text
+	CreatedAt      pgtype.Timestamp
+	UpdatedAt      pgtype.Timestamp
+}
+
+type CarBrand struct {
+	BrandID   string
+	Name      pgtype.Text
+	Country   pgtype.Text
+	LogoUrl   pgtype.Text
+	CreatedAt pgtype.Timestamp
+	UpdatedAt pgtype.Timestamp
+}
+
+type CarExtraFeature struct {
+	CarExtraFeatureID string
+	CarID             string
+	Name              pgtype.Text
+	Value             pgtype.Text
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+}
+
+type CarImage struct {
+	CarImageID string
+	CarID      string
+	ImageUrl   pgtype.Text
+	CreatedAt  pgtype.Timestamp
+	UpdatedAt  pgtype.Timestamp
+}
+
+type CarLike struct {
+	CarLikeID string
+	CarID     string
+	UserID    string
+	CreatedAt pgtype.Timestamp
+	UpdatedAt pgtype.Timestamp
+}
+
+type CarRating struct {
+	CarRatingID string
+	CarID       string
+	UserID      string
+	Rating      pgtype.Int4
+	CreatedAt   pgtype.Timestamp
+	UpdatedAt   pgtype.Timestamp
+}
+
+type CarReview struct {
+	CarReviewID string
+	CarID       string
+	UserID      string
+	Rating      pgtype.Int4
+	Review      pgtype.Text
+	CreatedAt   pgtype.Timestamp
+	UpdatedAt   pgtype.Timestamp
+}
+
+type CarVideo struct {
+	CarVideoID string
+	CarID      string
+	VideoUrl   pgtype.Text
+	CreatedAt  pgtype.Timestamp
+	UpdatedAt  pgtype.Timestamp
+}
+
 type Dealership struct {
 	DealershipID string
 	OwnerID      string
@@ -31,6 +111,32 @@ type Dealership struct {
 	UpdatedAt    pgtype.Timestamp
 }
 
+type DealershipFollower struct {
+	DealershipFollowerID string
+	DealershipID         string
+	UserID               string
+	CreatedAt            pgtype.Timestamp
+	UpdatedAt            pgtype.Timestamp
+}
+
+type DealershipReview struct {
+	DealershipReviewID string
+	DealershipID       string
+	UserID             string
+	Rating             int32
+	Review             string
+	CreatedAt          pgtype.Timestamp
+	UpdatedAt          pgtype.Timestamp
+}
+
+type UserFollower struct {
+	UserFollowerID string
+	UserID         string
+	FollowerID     string
+	CreatedAt      pgtype.Timestamp
+	UpdatedAt      pgtype.Timestamp
+}
+
 type UserMetum struct {
 	UserMetaID   string
 	UserID       string
@@ -40,4 +146,14 @@ type UserMetum struct {
 	LinkedinUrl  pgtype.Text
 	WebsiteUrl   pgtype.Text
 	DealershipID pgtype.Text
+}
+
+type UserReview struct {
+	UserReviewID string
+	UserID       string
+	ReviewerID   string
+	Rating       int32
+	Review       string
+	CreatedAt    pgtype.Timestamp
+	UpdatedAt    pgtype.Timestamp
 }

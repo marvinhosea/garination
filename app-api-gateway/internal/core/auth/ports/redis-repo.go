@@ -6,6 +6,6 @@ import (
 )
 
 type AuthRedisRepo interface {
-	GetUserMeta(ctx context.Context, userID string) (*model.UserMetum, error)
-	InsertUserMeta(ctx context.Context, arg model.UserMetum) (*model.UserMetum, error)
+	GetUserMeta(ctx context.Context, userID string) (*model.UserMeta, error)
+	InsertUserMeta(ctx context.Context, arg model.UserMeta) (*model.UserMeta, error)
 }

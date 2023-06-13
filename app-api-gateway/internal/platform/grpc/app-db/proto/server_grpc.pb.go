@@ -19,22 +19,28 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DatabaseService_GetUserDealership_FullMethodName = "/DatabaseService/GetUserDealership"
-	DatabaseService_GetUserMeta_FullMethodName       = "/DatabaseService/GetUserMeta"
-	DatabaseService_InsertDealership_FullMethodName  = "/DatabaseService/InsertDealership"
-	DatabaseService_InsertUserMeta_FullMethodName    = "/DatabaseService/InsertUserMeta"
-	DatabaseService_UpdateUserMeta_FullMethodName    = "/DatabaseService/UpdateUserMeta"
+	DatabaseService_GetUserMeta_FullMethodName           = "/DatabaseService/GetUserMeta"
+	DatabaseService_InsertUserMeta_FullMethodName        = "/DatabaseService/InsertUserMeta"
+	DatabaseService_UpdateUserMeta_FullMethodName        = "/DatabaseService/UpdateUserMeta"
+	DatabaseService_InsertDealership_FullMethodName      = "/DatabaseService/InsertDealership"
+	DatabaseService_UpdateDealership_FullMethodName      = "/DatabaseService/UpdateDealership"
+	DatabaseService_GetDealershipByUserId_FullMethodName = "/DatabaseService/GetDealershipByUserId"
+	DatabaseService_GetDealershipByID_FullMethodName     = "/DatabaseService/GetDealershipByID"
+	DatabaseService_DeleteDealership_FullMethodName      = "/DatabaseService/DeleteDealership"
 )
 
 // DatabaseServiceClient is the client API for DatabaseService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DatabaseServiceClient interface {
-	GetUserDealership(ctx context.Context, in *GetUserDealershipRequest, opts ...grpc.CallOption) (*GetUserDealershipResponse, error)
 	GetUserMeta(ctx context.Context, in *GetUserMetaRequest, opts ...grpc.CallOption) (*GetUserMetaResponse, error)
-	InsertDealership(ctx context.Context, in *InsertDealershipRequest, opts ...grpc.CallOption) (*InsertDealershipResponse, error)
 	InsertUserMeta(ctx context.Context, in *InsertUserMetaRequest, opts ...grpc.CallOption) (*InsertUserMetaResponse, error)
 	UpdateUserMeta(ctx context.Context, in *UpdateUserMetaRequest, opts ...grpc.CallOption) (*UpdateUserMetaResponse, error)
+	InsertDealership(ctx context.Context, in *InsertDealershipRequest, opts ...grpc.CallOption) (*InsertDealershipResponse, error)
+	UpdateDealership(ctx context.Context, in *UpdateDealershipRequest, opts ...grpc.CallOption) (*UpdateDealershipResponse, error)
+	GetDealershipByUserId(ctx context.Context, in *GetUserDealershipRequest, opts ...grpc.CallOption) (*GetDealershipByUserIDResponse, error)
+	GetDealershipByID(ctx context.Context, in *GetDealershipByIDRequest, opts ...grpc.CallOption) (*GetDealershipByIDResponse, error)
+	DeleteDealership(ctx context.Context, in *DeleteDealershipRequest, opts ...grpc.CallOption) (*DeleteDealershipResponse, error)
 }
 
 type databaseServiceClient struct {
@@ -45,27 +51,9 @@ func NewDatabaseServiceClient(cc grpc.ClientConnInterface) DatabaseServiceClient
 	return &databaseServiceClient{cc}
 }
 
-func (c *databaseServiceClient) GetUserDealership(ctx context.Context, in *GetUserDealershipRequest, opts ...grpc.CallOption) (*GetUserDealershipResponse, error) {
-	out := new(GetUserDealershipResponse)
-	err := c.cc.Invoke(ctx, DatabaseService_GetUserDealership_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *databaseServiceClient) GetUserMeta(ctx context.Context, in *GetUserMetaRequest, opts ...grpc.CallOption) (*GetUserMetaResponse, error) {
 	out := new(GetUserMetaResponse)
 	err := c.cc.Invoke(ctx, DatabaseService_GetUserMeta_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *databaseServiceClient) InsertDealership(ctx context.Context, in *InsertDealershipRequest, opts ...grpc.CallOption) (*InsertDealershipResponse, error) {
-	out := new(InsertDealershipResponse)
-	err := c.cc.Invoke(ctx, DatabaseService_InsertDealership_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,15 +78,63 @@ func (c *databaseServiceClient) UpdateUserMeta(ctx context.Context, in *UpdateUs
 	return out, nil
 }
 
+func (c *databaseServiceClient) InsertDealership(ctx context.Context, in *InsertDealershipRequest, opts ...grpc.CallOption) (*InsertDealershipResponse, error) {
+	out := new(InsertDealershipResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_InsertDealership_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) UpdateDealership(ctx context.Context, in *UpdateDealershipRequest, opts ...grpc.CallOption) (*UpdateDealershipResponse, error) {
+	out := new(UpdateDealershipResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdateDealership_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetDealershipByUserId(ctx context.Context, in *GetUserDealershipRequest, opts ...grpc.CallOption) (*GetDealershipByUserIDResponse, error) {
+	out := new(GetDealershipByUserIDResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetDealershipByUserId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetDealershipByID(ctx context.Context, in *GetDealershipByIDRequest, opts ...grpc.CallOption) (*GetDealershipByIDResponse, error) {
+	out := new(GetDealershipByIDResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetDealershipByID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) DeleteDealership(ctx context.Context, in *DeleteDealershipRequest, opts ...grpc.CallOption) (*DeleteDealershipResponse, error) {
+	out := new(DeleteDealershipResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_DeleteDealership_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DatabaseServiceServer is the server API for DatabaseService service.
 // All implementations must embed UnimplementedDatabaseServiceServer
 // for forward compatibility
 type DatabaseServiceServer interface {
-	GetUserDealership(context.Context, *GetUserDealershipRequest) (*GetUserDealershipResponse, error)
 	GetUserMeta(context.Context, *GetUserMetaRequest) (*GetUserMetaResponse, error)
-	InsertDealership(context.Context, *InsertDealershipRequest) (*InsertDealershipResponse, error)
 	InsertUserMeta(context.Context, *InsertUserMetaRequest) (*InsertUserMetaResponse, error)
 	UpdateUserMeta(context.Context, *UpdateUserMetaRequest) (*UpdateUserMetaResponse, error)
+	InsertDealership(context.Context, *InsertDealershipRequest) (*InsertDealershipResponse, error)
+	UpdateDealership(context.Context, *UpdateDealershipRequest) (*UpdateDealershipResponse, error)
+	GetDealershipByUserId(context.Context, *GetUserDealershipRequest) (*GetDealershipByUserIDResponse, error)
+	GetDealershipByID(context.Context, *GetDealershipByIDRequest) (*GetDealershipByIDResponse, error)
+	DeleteDealership(context.Context, *DeleteDealershipRequest) (*DeleteDealershipResponse, error)
 	mustEmbedUnimplementedDatabaseServiceServer()
 }
 
@@ -106,20 +142,29 @@ type DatabaseServiceServer interface {
 type UnimplementedDatabaseServiceServer struct {
 }
 
-func (UnimplementedDatabaseServiceServer) GetUserDealership(context.Context, *GetUserDealershipRequest) (*GetUserDealershipResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserDealership not implemented")
-}
 func (UnimplementedDatabaseServiceServer) GetUserMeta(context.Context, *GetUserMetaRequest) (*GetUserMetaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserMeta not implemented")
-}
-func (UnimplementedDatabaseServiceServer) InsertDealership(context.Context, *InsertDealershipRequest) (*InsertDealershipResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InsertDealership not implemented")
 }
 func (UnimplementedDatabaseServiceServer) InsertUserMeta(context.Context, *InsertUserMetaRequest) (*InsertUserMetaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InsertUserMeta not implemented")
 }
 func (UnimplementedDatabaseServiceServer) UpdateUserMeta(context.Context, *UpdateUserMetaRequest) (*UpdateUserMetaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserMeta not implemented")
+}
+func (UnimplementedDatabaseServiceServer) InsertDealership(context.Context, *InsertDealershipRequest) (*InsertDealershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertDealership not implemented")
+}
+func (UnimplementedDatabaseServiceServer) UpdateDealership(context.Context, *UpdateDealershipRequest) (*UpdateDealershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDealership not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetDealershipByUserId(context.Context, *GetUserDealershipRequest) (*GetDealershipByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDealershipByUserId not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetDealershipByID(context.Context, *GetDealershipByIDRequest) (*GetDealershipByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDealershipByID not implemented")
+}
+func (UnimplementedDatabaseServiceServer) DeleteDealership(context.Context, *DeleteDealershipRequest) (*DeleteDealershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDealership not implemented")
 }
 func (UnimplementedDatabaseServiceServer) mustEmbedUnimplementedDatabaseServiceServer() {}
 
@@ -132,24 +177,6 @@ type UnsafeDatabaseServiceServer interface {
 
 func RegisterDatabaseServiceServer(s grpc.ServiceRegistrar, srv DatabaseServiceServer) {
 	s.RegisterService(&DatabaseService_ServiceDesc, srv)
-}
-
-func _DatabaseService_GetUserDealership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserDealershipRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DatabaseServiceServer).GetUserDealership(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DatabaseService_GetUserDealership_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServiceServer).GetUserDealership(ctx, req.(*GetUserDealershipRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _DatabaseService_GetUserMeta_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -166,24 +193,6 @@ func _DatabaseService_GetUserMeta_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DatabaseServiceServer).GetUserMeta(ctx, req.(*GetUserMetaRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DatabaseService_InsertDealership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InsertDealershipRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DatabaseServiceServer).InsertDealership(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DatabaseService_InsertDealership_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServiceServer).InsertDealership(ctx, req.(*InsertDealershipRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -224,6 +233,96 @@ func _DatabaseService_UpdateUserMeta_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DatabaseService_InsertDealership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertDealershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).InsertDealership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_InsertDealership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).InsertDealership(ctx, req.(*InsertDealershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_UpdateDealership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDealershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdateDealership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdateDealership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdateDealership(ctx, req.(*UpdateDealershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetDealershipByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserDealershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetDealershipByUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetDealershipByUserId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetDealershipByUserId(ctx, req.(*GetUserDealershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetDealershipByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDealershipByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetDealershipByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetDealershipByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetDealershipByID(ctx, req.(*GetDealershipByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_DeleteDealership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteDealershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).DeleteDealership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_DeleteDealership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).DeleteDealership(ctx, req.(*DeleteDealershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DatabaseService_ServiceDesc is the grpc.ServiceDesc for DatabaseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -232,16 +331,8 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DatabaseServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetUserDealership",
-			Handler:    _DatabaseService_GetUserDealership_Handler,
-		},
-		{
 			MethodName: "GetUserMeta",
 			Handler:    _DatabaseService_GetUserMeta_Handler,
-		},
-		{
-			MethodName: "InsertDealership",
-			Handler:    _DatabaseService_InsertDealership_Handler,
 		},
 		{
 			MethodName: "InsertUserMeta",
@@ -250,6 +341,26 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateUserMeta",
 			Handler:    _DatabaseService_UpdateUserMeta_Handler,
+		},
+		{
+			MethodName: "InsertDealership",
+			Handler:    _DatabaseService_InsertDealership_Handler,
+		},
+		{
+			MethodName: "UpdateDealership",
+			Handler:    _DatabaseService_UpdateDealership_Handler,
+		},
+		{
+			MethodName: "GetDealershipByUserId",
+			Handler:    _DatabaseService_GetDealershipByUserId_Handler,
+		},
+		{
+			MethodName: "GetDealershipByID",
+			Handler:    _DatabaseService_GetDealershipByID_Handler,
+		},
+		{
+			MethodName: "DeleteDealership",
+			Handler:    _DatabaseService_DeleteDealership_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
