@@ -23,9 +23,19 @@ type CasdoorClient interface {
 	GetPaginationUsers(filter PaginationUsersFilter) ([]*casdoorsdk.User, int, error)
 	GetOAuthToken(code string, state string) (*oauth2.Token, error)
 	ParseJwtToken(token string) (*casdoorsdk.Claims, error)
+	RefreshOAuthToken(refreshToken string) (*oauth2.Token, error)
+	DeleteToken(name string) (bool, error)
 }
 
 type casdoorClient struct {
+}
+
+func (c casdoorClient) RefreshOAuthToken(refreshToken string) (*oauth2.Token, error) {
+	return casdoorsdk.RefreshOAuthToken(refreshToken)
+}
+
+func (c casdoorClient) DeleteToken(name string) (bool, error) {
+	return casdoorsdk.DeleteToken(name)
 }
 
 func (c casdoorClient) GetOAuthToken(code string, state string) (*oauth2.Token, error) {

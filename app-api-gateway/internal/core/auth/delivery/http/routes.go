@@ -12,6 +12,7 @@ func MapAuthRoutes(group *gin.RouterGroup, authHttpHandler ports.AuthHttpHandler
 	group.POST("/register", authHttpHandler.InitiateRegister())
 	group.POST("/register/verify", authHttpHandler.RegisterCallback())
 	group.GET("/user/:user_id", authHttpHandler.GetUserMeta())
-	group.PUT("/user/:user_id", authHttpHandler.UpdateUserMeta())
-	group.GET("/logout", authHttpHandler.Logout())
+	group.PUT("/user/:user_id", mw.Auth, authHttpHandler.UpdateUserMeta())
+	group.POST("/refresh", authHttpHandler.RefreshToken())
+	group.GET("/logout", mw.Auth, authHttpHandler.Logout())
 }

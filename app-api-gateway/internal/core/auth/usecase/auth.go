@@ -14,6 +14,24 @@ type authUsecase struct {
 	authDBRepo    ports.AuthDbRepo
 }
 
+func (a authUsecase) RefreshToken(ctx context.Context, req *dto.AuthRefreshTokenRequest) (*dto.AuthRefreshTokenResponse, error) {
+	if req == nil {
+		return nil, errors.New("request is nil")
+	}
+
+	refreshToken, err := a.casdoorRepo.RefreshOAuthToken(req.RefreshToken)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dto.AuthRefreshTokenResponse{
+		AccessToken:  refreshToken.AccessToken,
+		RefreshToken: refreshToken.RefreshToken,
+		TokenType:    "Bearer",
+		Expiry:       refreshToken.Expiry,
+	}, nil
+}
+
 func (a authUsecase) GetUserMeta(ctx context.Context, req *dto.AuthGetUserMetaRequest) (*dto.AuthGetUserMetaResponse, error) {
 	if req == nil {
 		return nil, errors.New("request is nil")
@@ -150,8 +168,19 @@ func (a authUsecase) InitiateRegister(_ context.Context, req *dto.AuthRegisterRe
 	}, nil
 }
 
-func (a authUsecase) Logout(context.Context, *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error) {
-	panic("implement me")
+func (a authUsecase) Logout(ctx context.Context, req *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error) {
+	res, err := a.casdoorRepo.DeleteToken(req.Name)
+	if err != nil {
+		return nil, err
+	}
+
+	if !res {
+		return nil, errors.New("we tried to logout but failed")
+	}
+
+	return &dto.AuthLogoutResponse{
+		State: "success",
+	}, nil
 }
 
 func NewAuthUsecase(authRedisRepo ports.AuthRedisRepo, casdoorRepo ports.AuthCasdoorRepo, authDBRepo ports.AuthDbRepo) ports.AuthUsecase {

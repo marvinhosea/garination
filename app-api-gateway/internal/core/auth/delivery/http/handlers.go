@@ -11,6 +11,44 @@ type handler struct {
 	authUseCase ports.AuthUsecase
 }
 
+func (h handler) RefreshToken() gin.HandlerFunc {
+	return func(context *gin.Context) {
+		var response common.HttpReponse
+		if context.IsAborted() {
+			return
+		}
+
+		var refreshTokenRequest dto.AuthRefreshTokenRequest
+		if err := context.ShouldBindJSON(&refreshTokenRequest); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "we received an invalid json body"
+			context.JSON(400, response)
+			return
+		}
+
+		if err := refreshTokenRequest.Validate(); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "we did not receive the required fields"
+			context.JSON(400, response)
+			return
+		}
+
+		// call usecase
+		refreshTokenResponse, err := h.authUseCase.RefreshToken(context, &refreshTokenRequest)
+		if err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Internal server error"
+			context.JSON(500, response)
+			return
+		}
+
+		response.Data = refreshTokenResponse
+		response.Message = "success"
+		response.Success = true
+		context.JSON(200, response)
+	}
+}
+
 func (h handler) GetUserMeta() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		var response common.HttpReponse

@@ -15,4 +15,6 @@ type AuthCasdoorRepo interface {
 	GetPaginationUsers(filter casdoor.PaginationUsersFilter) ([]*casdoorsdk.User, int, error)
 	GetOAuthToken(code string, state string) (*oauth2.Token, error)
 	ParseJwtToken(token string) (*casdoorsdk.Claims, error)
+	RefreshOAuthToken(refreshToken string) (*oauth2.Token, error)
+	DeleteToken(name string) (bool, error)
 }
