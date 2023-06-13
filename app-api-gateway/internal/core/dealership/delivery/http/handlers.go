@@ -38,6 +38,7 @@ func (d dealershipHandler) GetDealershipByID() gin.HandlerFunc {
 
 		response.Data = dealership
 		response.Message = "success"
+		response.Success = true
 		context.JSON(200, response)
 	}
 }
@@ -71,6 +72,7 @@ func (d dealershipHandler) GetDealershipByUserID() gin.HandlerFunc {
 
 		response.Data = dealership
 		response.Message = "success"
+		response.Success = true
 		context.JSON(200, response)
 	}
 }
@@ -102,6 +104,7 @@ func (d dealershipHandler) UpdateDealership() gin.HandlerFunc {
 
 		response.Data = dealership
 		response.Message = "success"
+		response.Success = true
 		context.JSON(200, response)
 	}
 }
@@ -132,6 +135,9 @@ func (d dealershipHandler) CreateDealership() gin.HandlerFunc {
 		}
 
 		response.Data = dealership
+		response.Message = "success"
+		response.Success = true
+		context.JSON(200, response)
 	}
 }
 
@@ -162,6 +168,7 @@ func (d dealershipHandler) DeleteDealership() gin.HandlerFunc {
 
 		response.Data = dealership
 		response.Message = "success"
+		response.Success = true
 		context.JSON(200, response)
 	}
 }

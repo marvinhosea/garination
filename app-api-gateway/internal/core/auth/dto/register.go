@@ -10,14 +10,12 @@ import (
 // AuthRegisterRequest ...
 type AuthRegisterRequest struct {
 	RedirectURL string `json:"redirect_url"` // redirect_url is the url to redirect after login
-	Origin      string `json:"origin"`       // origin is the url of the client
-	Provider    string `json:"provider"`     // provider is the name of the provider
 }
 
 // AuthRegisterResponse ...
 type AuthRegisterResponse struct {
-	RedirectURL  string `json:"redirect_url"`   // redirect_url is the url to redirect after login
-	LoginPageURL string `json:"login_page_url"` // login_page_url is the url of the login page
+	RedirectURL     string `json:"redirect_url"`      // redirect_url is the url to redirect after login
+	RegisterPageUrl string `json:"register_page_url"` // login_page_url is the url of the login page
 }
 
 // AuthRegisterCallbackRequest ...
@@ -42,28 +40,10 @@ func (a AuthRegisterRequest) Validate() error {
 		issues = errors.Join(issues, errors.New("redirect_url is required"))
 	}
 
-	if a.Origin == "" {
-		issues = errors.Join(issues, errors.New("origin is required"))
-	}
-
-	if a.Provider == "" {
-		issues = errors.Join(issues, errors.New("provider is required"))
-	}
-
-	// validate provider (facebook, google, apple only)
-	if a.Provider != "facebook" && a.Provider != "google" && a.Provider != "apple" {
-		issues = errors.Join(issues, errors.New("provider is not supported"))
-	}
-
 	// validate redirect_url is a valid url
 	re := regexp.MustCompile(urlRegex)
 	if !re.MatchString(a.RedirectURL) {
 		issues = errors.Join(issues, errors.New("redirect_url is not a valid url"))
-	}
-
-	// validate origin is a valid url
-	if !re.MatchString(a.Origin) {
-		issues = errors.Join(issues, errors.New("origin is not a valid url"))
 	}
 
 	return issues

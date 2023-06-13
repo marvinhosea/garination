@@ -204,7 +204,7 @@ func (h handler) InitiateLogin() gin.HandlerFunc {
 		response.Message = "Login request initiated"
 
 		// return response
-		ctx.JSON(200, loginResponse)
+		ctx.JSON(200, response)
 
 	}
 }
@@ -248,7 +248,7 @@ func (h handler) InitiateRegister() gin.HandlerFunc {
 		response.Message = "Register request initiated"
 
 		// return response
-		ctx.JSON(200, registerResponse)
+		ctx.JSON(200, response)
 
 	}
 }
@@ -291,7 +291,7 @@ func (h handler) Logout() gin.HandlerFunc {
 		response.Message = "Logout request initiated"
 
 		// return response
-		ctx.JSON(200, logoutResponse)
+		ctx.JSON(200, response)
 
 	}
 }

@@ -4,6 +4,7 @@ import (
 	"garination.com/gateway/config"
 	"github.com/casdoor/casdoor-go-sdk/casdoorsdk"
 	"golang.org/x/oauth2"
+	"os"
 	"strconv"
 )
 
@@ -72,7 +73,32 @@ func (c casdoorClient) GetPermission(name string) (*casdoorsdk.Permission, error
 	return casdoorsdk.GetPermission(name)
 }
 
-func NewCasdoorClient(cfg config.Casdoor) CasdoorClient {
-	casdoorsdk.InitConfig(cfg.Endpoint, cfg.ClientId, cfg.ClientSecret, cfg.CertificateX509, cfg.OrganisationName, cfg.ApplicationName)
-	return &casdoorClient{}
+func NewCasdoorClient(cfg config.Casdoor) (CasdoorClient, error) {
+	// open certificate
+	file, err := os.Open(cfg.CertificateX509)
+	if err != nil {
+		return nil, err
+	}
+
+	// close file
+	defer func() {
+		if err := file.Close(); err != nil {
+			panic(err)
+		}
+	}()
+
+	// read certificate
+	stat, err := file.Stat()
+	if err != nil {
+		return nil, err
+	}
+
+	// read certificate
+	certificate := make([]byte, stat.Size())
+	_, err = file.Read(certificate)
+	if err != nil {
+		return nil, err
+	}
+	casdoorsdk.InitConfig(cfg.Endpoint, cfg.ClientId, cfg.ClientSecret, string(certificate), cfg.OrganisationName, cfg.ApplicationName)
+	return &casdoorClient{}, nil
 }

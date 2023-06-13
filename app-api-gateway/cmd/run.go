@@ -28,7 +28,10 @@ func Execute() {
 	}
 
 	// init casdoor client
-	casdoorClient := casdoor.NewCasdoorClient(configurations.Casdoor)
+	casdoorClient, err := casdoor.NewCasdoorClient(configurations.Casdoor)
+	if err != nil {
+		log.Panicf("Failed to initialise casdoor client: %v", err)
+	}
 
 	// start server
 	httpServer := http.NewServer(&configurations, redisClient, appDbClient, casdoorClient)
