@@ -11,7 +11,7 @@ type databaseRepo struct {
 	client proto.DatabaseServiceClient
 }
 
-func (d databaseRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserMetum, error) {
+func (d databaseRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserMeta, error) {
 	req := &proto.GetUserMetaRequest{
 		UserId: userID,
 	}
@@ -21,7 +21,7 @@ func (d databaseRepo) GetUserMeta(ctx context.Context, userID string) (*model.Us
 		return nil, err
 	}
 
-	return &model.UserMetum{
+	return &model.UserMeta{
 		UserMetaID:   res.UserMeta.UserMetaId,
 		UserID:       res.UserMeta.UserId,
 		FacebookUrl:  res.UserMeta.FacebookUrl,
@@ -33,7 +33,7 @@ func (d databaseRepo) GetUserMeta(ctx context.Context, userID string) (*model.Us
 	}, nil
 }
 
-func (d databaseRepo) InsertUserMeta(ctx context.Context, arg model.UserMetum) (*model.UserMetum, error) {
+func (d databaseRepo) InsertUserMeta(ctx context.Context, arg model.UserMeta) (*model.UserMeta, error) {
 	req := &proto.InsertUserMetaRequest{
 		UserMeta: &proto.UserMetum{
 			UserId:       arg.UserID,
@@ -51,7 +51,7 @@ func (d databaseRepo) InsertUserMeta(ctx context.Context, arg model.UserMetum) (
 		return nil, err
 	}
 
-	return &model.UserMetum{
+	return &model.UserMeta{
 		UserMetaID:   res.UserMeta.UserMetaId,
 		UserID:       res.UserMeta.UserId,
 		FacebookUrl:  res.UserMeta.FacebookUrl,
@@ -63,7 +63,7 @@ func (d databaseRepo) InsertUserMeta(ctx context.Context, arg model.UserMetum) (
 	}, nil
 }
 
-func (d databaseRepo) UpdateUserMeta(ctx context.Context, arg model.UserMetum) (*model.UserMetum, error) {
+func (d databaseRepo) UpdateUserMeta(ctx context.Context, arg model.UserMeta) (*model.UserMeta, error) {
 	req := &proto.UpdateUserMetaRequest{
 		UserMeta: &proto.UserMetum{
 			UserMetaId:   arg.UserMetaID,
@@ -81,7 +81,7 @@ func (d databaseRepo) UpdateUserMeta(ctx context.Context, arg model.UserMetum) (
 		return nil, err
 	}
 
-	return &model.UserMetum{
+	return &model.UserMeta{
 		UserMetaID:   res.UserMeta.UserMetaId,
 		UserID:       res.UserMeta.UserId,
 		FacebookUrl:  res.UserMeta.FacebookUrl,
