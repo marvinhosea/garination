@@ -3,6 +3,7 @@ package casdoor
 import (
 	"garination.com/gateway/config"
 	"github.com/casdoor/casdoor-go-sdk/casdoorsdk"
+	"golang.org/x/oauth2"
 	"strconv"
 )
 
@@ -19,9 +20,19 @@ type CasdoorClient interface {
 	GetSigninUrl(redirectUri string) string
 	GetSignupUrl(enablePassword bool, redirectUri string) string
 	GetPaginationUsers(filter PaginationUsersFilter) ([]*casdoorsdk.User, int, error)
+	GetOAuthToken(code string, state string) (*oauth2.Token, error)
+	ParseJwtToken(token string) (*casdoorsdk.Claims, error)
 }
 
 type casdoorClient struct {
+}
+
+func (c casdoorClient) GetOAuthToken(code string, state string) (*oauth2.Token, error) {
+	return casdoorsdk.GetOAuthToken(code, state)
+}
+
+func (c casdoorClient) ParseJwtToken(token string) (*casdoorsdk.Claims, error) {
+	return casdoorsdk.ParseJwtToken(token)
 }
 
 func (c casdoorClient) GetSigninUrl(redirectUri string) string {
