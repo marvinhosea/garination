@@ -1,0 +1,142 @@
+services:
+    service_api_gateway:
+        container_name: service_api_gateway
+        env_file: app-api-gateway/.env.dev
+        build:
+            context: ./app-api-gateway
+            dockerfile: Dockerfile
+        ports:
+            - "5004:5004"
+        expose:
+            - 5005
+        restart: always
+        healthcheck:
+            test: sh -c "ping -c3 service_api_gateway:5004"
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+        depends_on:
+            - postgres_database
+            - redis_database
+
+    service_database:
+        container_name: service_database
+        env_file: app-db/.env.dev
+        build:
+            context: ./app-db
+            dockerfile: Dockerfile
+        ports:
+            - "5002:5002"
+        expose:
+            - 5003
+        restart: always
+        healthcheck:
+            test: sh -c "ping -c3 service_database:5002"
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+        depends_on:
+            - postgres_database
+            - redis_database
+
+    postgres_database:
+        image: postgres:13-alpine
+        restart: always
+        container_name: postgres_database
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=marketplace
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        healthcheck:
+            test: ping -c3 postgres_database:5432
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+
+    liquibase:
+        image: liquibase/liquibase:latest
+        volumes:
+            - ./app-db/liquibase.properties:/liquibase/liquibase.properties
+            - ./app-db/docs/liquibase/changelog.sql:/liquibase/changelog/changelog.sql
+        depends_on:
+            - postgres_database
+            - casbin_casdoor
+        command:
+            - --defaultsFile=/liquibase/liquibase.properties
+            - update
+            - --log-level=info
+        networks:
+            - internal_network
+
+    redis_database:
+        image: redis:6-alpine
+        container_name: redis_database
+        expose:
+            - '6379'
+        restart: always
+        command: --port 6379
+        healthcheck:
+            test: ping -c3 redis_database:6379
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+
+
+    casbin_casdoor:
+        image: casbin/casdoor:latest
+        container_name: casbin_casdoor
+        ports:
+            -  "8000:8000"
+        restart: always
+        volumes:
+            - ./casdoor.conf:/conf/app.conf
+        healthcheck:
+            test: ping -c3 casbin_casdoor:8000
+            interval: 10s
+            retries: 10
+        networks:
+            - internal_network
+
+    prometheus:
+        image: prom/prometheus
+        container_name: prometheus
+        ports:
+            - 9090:9090
+        volumes:
+            - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+        command:
+            - '--config.file=/etc/prometheus/prometheus.yml'
+        networks:
+            - internal_network
+
+    grafana:
+        image: grafana/grafana
+        container_name: grafana
+        ports:
+            - 3000:3000
+        volumes:
+            - grafana_data:/var/lib/grafana
+        networks:
+            - internal_network
+
+
+volumes:
+    postgres:
+        driver: local
+    grafana_data:
+        driver: local
+    prometheus_data:
+        driver: local
+
+
+networks:
+    internal_network:
+        driver: bridge

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package="garination.com/db/sdk/proto";
+import "model.proto";
+
+message GetDealershipByUserIDResponse {
+  Dealership dealership = 1;
+}
+
+message GetUserMetaRequest {
+  string user_id = 1;
+}
+
+message GetUserMetaResponse {
+  UserMetum user_meta = 1;
+}
+
+
+message InsertDealershipResponse {
+  Dealership dealership = 1;
+}
+
+message UpdateUserMetaResponse {
+  UserMetum user_meta = 1;
+}
+
+
+message GetDealershipByIDResponse {
+  Dealership dealership = 1;
+}
+
+message UpdateDealershipResponse {
+  Dealership dealership = 1;
+}
+
+message DeleteDealershipResponse {
+}

@@ -1,2 +1,5 @@
+.git
+.idea
+
 .env.prod
 .env.staging
