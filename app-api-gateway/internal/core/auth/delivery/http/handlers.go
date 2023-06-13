@@ -11,10 +11,161 @@ type handler struct {
 	authUseCase ports.AuthUsecase
 }
 
+func (h handler) GetUserMeta() gin.HandlerFunc {
+	return func(context *gin.Context) {
+		var response common.HttpReponse
+		if context.IsAborted() {
+			return
+		}
+
+		var getUserMetaRequest dto.AuthGetUserMetaRequest
+		// get user id from  :user_id
+		getUserMetaRequest.UserID = context.Param("user_id")
+
+		if err := getUserMetaRequest.Validate(); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Bad request"
+			context.JSON(400, response)
+			return
+		}
+
+		// call usecase
+		getUserMetaResponse, err := h.authUseCase.GetUserMeta(context, &getUserMetaRequest)
+		if err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Internal server error"
+			context.JSON(500, response)
+			return
+		}
+
+		response.Data = getUserMetaResponse
+		context.JSON(200, response)
+
+	}
+}
+
+func (h handler) UpdateUserMeta() gin.HandlerFunc {
+	return func(context *gin.Context) {
+		var response common.HttpReponse
+		if context.IsAborted() {
+			return
+		}
+
+		var updateUserMetaRequest dto.AuthUpdateUserMetaRequest
+
+		if err := context.ShouldBindJSON(&updateUserMetaRequest); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Bad request"
+			context.JSON(400, response)
+			return
+		}
+
+		// validate request
+		if err := updateUserMetaRequest.Validate(); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Errors in the data"
+			context.JSON(400, response)
+			return
+		}
+
+		// call usecase
+		updateUserMetaResponse, err := h.authUseCase.UpdateUserMeta(context, &updateUserMetaRequest)
+		if err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Error while updating user meta"
+			context.JSON(400, response)
+			return
+		}
+
+		// return response
+		response.Data = updateUserMetaResponse
+		response.Message = "Successfully updated user meta"
+		context.JSON(200, response)
+	}
+}
+
+func (h handler) LoginCallback() gin.HandlerFunc {
+	return func(context *gin.Context) {
+		var response common.HttpReponse
+		if context.IsAborted() {
+			return
+		}
+
+		var loginCallbackRequest dto.AuthLoginCallbackRequest
+
+		if err := context.ShouldBindJSON(&loginCallbackRequest); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Bad request"
+			context.JSON(400, response)
+			return
+		}
+
+		// validate request
+		if err := loginCallbackRequest.Validate(); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Errors in the data"
+			context.JSON(400, response)
+			return
+		}
+
+		// call usecase
+		loginCallbackResponse, err := h.authUseCase.LoginCallback(context, &loginCallbackRequest)
+		if err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Error while logging in"
+			context.JSON(400, response)
+			return
+		}
+
+		// return response
+		response.Data = loginCallbackResponse
+		response.Message = "Successfully logged in"
+		context.JSON(200, response)
+	}
+}
+
+func (h handler) RegisterCallback() gin.HandlerFunc {
+	return func(context *gin.Context) {
+		var response common.HttpReponse
+		if context.IsAborted() {
+			return
+		}
+
+		var registerCallbackRequest dto.AuthRegisterCallbackRequest
+
+		if err := context.ShouldBindJSON(&registerCallbackRequest); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Bad request"
+			context.JSON(400, response)
+			return
+		}
+
+		// validate request
+		if err := registerCallbackRequest.Validate(); err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Errors in the data"
+			context.JSON(400, response)
+			return
+		}
+
+		// call usecase
+		registerCallbackResponse, err := h.authUseCase.RegisterCallback(context, &registerCallbackRequest)
+		if err != nil {
+			response.Errors = append(response.Errors, err.Error())
+			response.Message = "Error while registering"
+			context.JSON(400, response)
+			return
+		}
+
+		// return response
+		response.Data = registerCallbackResponse
+		response.Message = "Successfully registered"
+		context.JSON(200, response)
+	}
+}
+
 func (h handler) InitiateLogin() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-
-		panic("implement me")
 
 		var response common.HttpReponse
 

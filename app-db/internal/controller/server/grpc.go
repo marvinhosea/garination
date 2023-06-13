@@ -37,15 +37,18 @@ func (s *Server) Run() {
 
 	// Create User storage
 	userStorage := storage.NewUserPostgresStorage(postgresClient)
+	dealershipStorage := storage.NewDealershipPostgresStorage(postgresClient)
 
 	// create  repository
 	userRepo := repository.NewUserRepo(userStorage)
+	dealershipRepo := repository.NewDealershipRepo(dealershipStorage)
 
 	// create user service
 	userService := service.NewUserService(userRepo)
+	dealershipService := service.NewDealershipService(dealershipRepo)
 
 	// create handler
-	grpcHandler := handlers.NewHandler(promMetrics, userService)
+	grpcHandler := handlers.NewHandler(promMetrics, userService, dealershipService)
 
 	// run server
 	lis, err := net.Listen("tcp", ":"+s.cfg.App.Port)
