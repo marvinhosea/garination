@@ -1,6 +1,9 @@
 package middleware
 
-import "github.com/gin-gonic/gin"
+import (
+	"garination.com/gateway/internal/core/common"
+	"github.com/gin-gonic/gin"
+)
 
 func (m middlewareManager) Cors(ctx *gin.Context) {
 
@@ -37,6 +40,12 @@ func (m middlewareManager) Cors(ctx *gin.Context) {
 
 	} else {
 		ctx.AbortWithStatus(403)
+		ctx.JSON(403, common.HttpReponse{
+			Success: false,
+			Message: "Forbidden",
+			Data:    nil,
+			Errors:  []string{"oops! you are not allowed to access this resource"},
+		})
 		return
 	}
 }

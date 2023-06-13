@@ -16,6 +16,8 @@ services:
             retries: 10
         networks:
             - internal_network
+        volumes:
+            - ./app-api-gateway/casdoor.pem:/etc/casdoor/cert.pem
         depends_on:
             - postgres_database
             - redis_database
@@ -26,10 +28,9 @@ services:
         build:
             context: ./app-db
             dockerfile: Dockerfile
-        ports:
-            - "5002:5002"
         expose:
             - 5003
+            - 5002
         restart: always
         healthcheck:
             test: sh -c "ping -c3 service_database:5002"
@@ -97,7 +98,7 @@ services:
             -  "8000:8000"
         restart: always
         volumes:
-            - ./casdoor.conf:/conf/app.conf
+            - ./app-api-gateway/casdoor.conf:/conf/app.conf
         healthcheck:
             test: ping -c3 casbin_casdoor:8000
             interval: 10s

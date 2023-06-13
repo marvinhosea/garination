@@ -82,11 +82,7 @@ func (a authUsecase) LoginCallback(ctx context.Context, req *dto.AuthLoginCallba
 	}
 
 	// get user meta
-	userMeta, err := a.authDBRepo.GetUserMeta(ctx, claims.GetId())
-	if err != nil {
-		return nil, err
-	}
-
+	userMeta, _ := a.authDBRepo.GetUserMeta(ctx, claims.GetId())
 	claims.AccessToken = token.AccessToken
 
 	return &dto.AuthLoginCallbackResponse{
@@ -119,10 +115,7 @@ func (a authUsecase) RegisterCallback(ctx context.Context, req *dto.AuthRegister
 	}
 
 	// get user meta
-	userMeta, err := a.authDBRepo.GetUserMeta(ctx, claims.GetId())
-	if err != nil {
-		return nil, err
-	}
+	userMeta, _ := a.authDBRepo.GetUserMeta(ctx, claims.GetId())
 
 	claims.AccessToken = token.AccessToken
 
@@ -144,14 +137,16 @@ func (a authUsecase) RegisterCallback(ctx context.Context, req *dto.AuthRegister
 func (a authUsecase) InitiateLogin(_ context.Context, req *dto.AuthLoginRequest) (*dto.AuthLoginResponse, error) {
 	res := a.casdoorRepo.GetSigninUrl(req.RedirectURL)
 	return &dto.AuthLoginResponse{
-		RedirectURL: res,
+		LoginPageURL: res,
+		RedirectURL:  req.RedirectURL,
 	}, nil
 }
 
 func (a authUsecase) InitiateRegister(_ context.Context, req *dto.AuthRegisterRequest) (*dto.AuthRegisterResponse, error) {
 	res := a.casdoorRepo.GetSignupUrl(true, req.RedirectURL)
 	return &dto.AuthRegisterResponse{
-		RedirectURL: res,
+		RegisterPageUrl: res,
+		RedirectURL:     req.RedirectURL,
 	}, nil
 }
 
