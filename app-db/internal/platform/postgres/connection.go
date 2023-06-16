@@ -20,17 +20,8 @@ func NewConnection(cfg *config.Postgres) (*Connection, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	connection.conn = conn
-
-	tx, err := conn.Begin(context.Background())
-
-	if err != nil {
-		return nil, err
-	}
-
-	connection.Queries = New(tx)
-
+	queries := New(conn)
+	connection.Queries = queries
 	return connection, nil
 }
 
