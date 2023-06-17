@@ -226,3 +226,70 @@ CREATE TABLE car_likes (
 
 ALTER TABLE "car_likes"
     ADD CONSTRAINT unique_id_car_likes UNIQUE (car_like_id);
+
+
+-- changeSet oyamo:4
+ALTER TABLE "user_meta"
+    ALTER COLUMN dealership_id DROP NOT NULL;
+
+-- changeSet oyamo:5
+ALTER TABLE "user_meta"
+    ALTER COLUMN facebook_url DROP NOT NULL;
+
+ALTER TABLE "user_meta"
+    ALTER COLUMN twitter_url DROP NOT NULL;
+
+ALTER TABLE "user_meta"
+    ALTER COLUMN instagram_url DROP NOT NULL;
+
+ALTER TABLE "user_meta"
+    ALTER COLUMN linkedin_url DROP NOT NULL;
+
+
+-- changeSet oyamo:6
+ALTER TABLE "cars"
+    DROP COLUMN category_id;
+
+-- changeSet oyamo:7
+ALTER TABLE "cars"
+    ADD COLUMN title VARCHAR(100);
+
+
+-- changeSet oyamo:8
+ALTER TABLE "user_meta"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "dealership"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "dealership_followers"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "dealership_reviews"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "car_brands"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "cars"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "car_extra_features"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "car_images"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "car_videos"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "car_reviews"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "car_ratings"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+ALTER TABLE "car_likes"
+    ADD COLUMN deleted_at TIMESTAMP;
+
+
