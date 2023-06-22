@@ -5,14 +5,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var unauthorised = common.HttpReponse{
-	Success: false,
-	Message: "Unauthorised",
-	Data:    nil,
-	Errors:  []string{"Access to resource is unauthorised"},
-}
-
 func (m middlewareManager) Auth(ctx *gin.Context) {
+	var unauthorised = common.HttpReponse{
+		Success: false,
+		Message: "Unauthorised",
+		Data:    nil,
+		Errors:  []string{"Access to resource is unauthorised"},
+	}
+
 	// get token from header (Authorization: Bearer <token>)
 	token := ctx.GetHeader("Authorization")
 	if token == "" {
