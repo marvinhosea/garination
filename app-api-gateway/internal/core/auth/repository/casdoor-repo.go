@@ -11,6 +11,14 @@ type casdoorRepo struct {
 	client casdoor.CasdoorClient
 }
 
+func (c casdoorRepo) RefreshOAuthToken(refreshToken string) (*oauth2.Token, error) {
+	return c.client.RefreshOAuthToken(refreshToken)
+}
+
+func (c casdoorRepo) DeleteToken(name string) (bool, error) {
+	return c.client.DeleteToken(name)
+}
+
 func (c casdoorRepo) GetOAuthToken(code string, state string) (*oauth2.Token, error) {
 	return c.client.GetOAuthToken(code, state)
 }

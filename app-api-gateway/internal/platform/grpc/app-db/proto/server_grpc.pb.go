@@ -19,20 +19,47 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DatabaseService_GetUserMeta_FullMethodName           = "/DatabaseService/GetUserMeta"
-	DatabaseService_InsertUserMeta_FullMethodName        = "/DatabaseService/InsertUserMeta"
-	DatabaseService_UpdateUserMeta_FullMethodName        = "/DatabaseService/UpdateUserMeta"
-	DatabaseService_InsertDealership_FullMethodName      = "/DatabaseService/InsertDealership"
-	DatabaseService_UpdateDealership_FullMethodName      = "/DatabaseService/UpdateDealership"
-	DatabaseService_GetDealershipByUserId_FullMethodName = "/DatabaseService/GetDealershipByUserId"
-	DatabaseService_GetDealershipByID_FullMethodName     = "/DatabaseService/GetDealershipByID"
-	DatabaseService_DeleteDealership_FullMethodName      = "/DatabaseService/DeleteDealership"
+	DatabaseService_HealthCheck_FullMethodName                    = "/DatabaseService/HealthCheck"
+	DatabaseService_GetUserMeta_FullMethodName                    = "/DatabaseService/GetUserMeta"
+	DatabaseService_InsertUserMeta_FullMethodName                 = "/DatabaseService/InsertUserMeta"
+	DatabaseService_UpdateUserMeta_FullMethodName                 = "/DatabaseService/UpdateUserMeta"
+	DatabaseService_InsertDealership_FullMethodName               = "/DatabaseService/InsertDealership"
+	DatabaseService_UpdateDealership_FullMethodName               = "/DatabaseService/UpdateDealership"
+	DatabaseService_GetDealershipByUserId_FullMethodName          = "/DatabaseService/GetDealershipByUserId"
+	DatabaseService_GetDealershipByID_FullMethodName              = "/DatabaseService/GetDealershipByID"
+	DatabaseService_DeleteDealership_FullMethodName               = "/DatabaseService/DeleteDealership"
+	DatabaseService_InsertCarBrand_FullMethodName                 = "/DatabaseService/InsertCarBrand"
+	DatabaseService_UpdateCarBrand_FullMethodName                 = "/DatabaseService/UpdateCarBrand"
+	DatabaseService_GetCarBrandByID_FullMethodName                = "/DatabaseService/GetCarBrandByID"
+	DatabaseService_GetCarBrandsPaginated_FullMethodName          = "/DatabaseService/GetCarBrandsPaginated"
+	DatabaseService_DeleteCarBrand_FullMethodName                 = "/DatabaseService/DeleteCarBrand"
+	DatabaseService_InsertCarExtraFeature_FullMethodName          = "/DatabaseService/InsertCarExtraFeature"
+	DatabaseService_UpdateCarExtraFeature_FullMethodName          = "/DatabaseService/UpdateCarExtraFeature"
+	DatabaseService_GetCarExtraFeaturePaginated_FullMethodName    = "/DatabaseService/GetCarExtraFeaturePaginated"
+	DatabaseService_CreateCarImage_FullMethodName                 = "/DatabaseService/CreateCarImage"
+	DatabaseService_UpdateCarImage_FullMethodName                 = "/DatabaseService/UpdateCarImage"
+	DatabaseService_GetCarImagePaginated_FullMethodName           = "/DatabaseService/GetCarImagePaginated"
+	DatabaseService_DeleteCarImage_FullMethodName                 = "/DatabaseService/DeleteCarImage"
+	DatabaseService_InsertCar_FullMethodName                      = "/DatabaseService/InsertCar"
+	DatabaseService_UpdateCar_FullMethodName                      = "/DatabaseService/UpdateCar"
+	DatabaseService_GetOneCar_FullMethodName                      = "/DatabaseService/GetOneCar"
+	DatabaseService_GetCarsPaginated_FullMethodName               = "/DatabaseService/GetCarsPaginated"
+	DatabaseService_GetCarsByDealershipIDPaginated_FullMethodName = "/DatabaseService/GetCarsByDealershipIDPaginated"
+	DatabaseService_GetCarsByBrandIDPaginated_FullMethodName      = "/DatabaseService/GetCarsByBrandIDPaginated"
+	DatabaseService_GetCarsByDealerIDPaginated_FullMethodName     = "/DatabaseService/GetCarsByDealerIDPaginated"
+	DatabaseService_SearchCarsPaginated_FullMethodName            = "/DatabaseService/SearchCarsPaginated"
+	DatabaseService_GetCarByField_FullMethodName                  = "/DatabaseService/GetCarByField"
+	DatabaseService_GetCarByDealerCount_FullMethodName            = "/DatabaseService/GetCarByDealerCount"
+	DatabaseService_GetCarByDealershipCount_FullMethodName        = "/DatabaseService/GetCarByDealershipCount"
+	DatabaseService_GetCarByBrandCount_FullMethodName             = "/DatabaseService/GetCarByBrandCount"
+	DatabaseService_DeleteCar_FullMethodName                      = "/DatabaseService/DeleteCar"
 )
 
 // DatabaseServiceClient is the client API for DatabaseService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DatabaseServiceClient interface {
+	HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
 	GetUserMeta(ctx context.Context, in *GetUserMetaRequest, opts ...grpc.CallOption) (*GetUserMetaResponse, error)
 	InsertUserMeta(ctx context.Context, in *InsertUserMetaRequest, opts ...grpc.CallOption) (*InsertUserMetaResponse, error)
 	UpdateUserMeta(ctx context.Context, in *UpdateUserMetaRequest, opts ...grpc.CallOption) (*UpdateUserMetaResponse, error)
@@ -41,6 +68,31 @@ type DatabaseServiceClient interface {
 	GetDealershipByUserId(ctx context.Context, in *GetUserDealershipRequest, opts ...grpc.CallOption) (*GetDealershipByUserIDResponse, error)
 	GetDealershipByID(ctx context.Context, in *GetDealershipByIDRequest, opts ...grpc.CallOption) (*GetDealershipByIDResponse, error)
 	DeleteDealership(ctx context.Context, in *DeleteDealershipRequest, opts ...grpc.CallOption) (*DeleteDealershipResponse, error)
+	InsertCarBrand(ctx context.Context, in *InsertCarBrandRequest, opts ...grpc.CallOption) (*InsertCarBrandResponse, error)
+	UpdateCarBrand(ctx context.Context, in *UpdateCarBrandRequest, opts ...grpc.CallOption) (*UpdateCarBrandResponse, error)
+	GetCarBrandByID(ctx context.Context, in *GetCarBrandByIDRequest, opts ...grpc.CallOption) (*GetCarBrandByIDResponse, error)
+	GetCarBrandsPaginated(ctx context.Context, in *GetCarBrandsPaginatedRequest, opts ...grpc.CallOption) (*GetCarBrandsPaginatedResponse, error)
+	DeleteCarBrand(ctx context.Context, in *DeleteCarBrandRequest, opts ...grpc.CallOption) (*DeleteCarBrandResponse, error)
+	InsertCarExtraFeature(ctx context.Context, in *InsertCarExtraFeatureRequest, opts ...grpc.CallOption) (*InsertCarExtraFeatureResponse, error)
+	UpdateCarExtraFeature(ctx context.Context, in *UpdateCarExtraFeatureRequest, opts ...grpc.CallOption) (*UpdateCarExtraFeatureResponse, error)
+	GetCarExtraFeaturePaginated(ctx context.Context, in *GetCarExtraFeaturesPaginatedRequest, opts ...grpc.CallOption) (*GetCarExtraFeaturesPaginatedResponse, error)
+	CreateCarImage(ctx context.Context, in *CreateCarImageRequest, opts ...grpc.CallOption) (*CreateCarImageResponse, error)
+	UpdateCarImage(ctx context.Context, in *UpdateCarImageRequest, opts ...grpc.CallOption) (*UpdateCarImageResponse, error)
+	GetCarImagePaginated(ctx context.Context, in *GetCarImagesPaginatedRequest, opts ...grpc.CallOption) (*GetCarImagesPaginatedResponse, error)
+	DeleteCarImage(ctx context.Context, in *DeleteCarImageRequest, opts ...grpc.CallOption) (*DeleteCarImageResponse, error)
+	InsertCar(ctx context.Context, in *InsertCarRequest, opts ...grpc.CallOption) (*InsertCarResponse, error)
+	UpdateCar(ctx context.Context, in *UpdateCarRequest, opts ...grpc.CallOption) (*UpdateCarResponse, error)
+	GetOneCar(ctx context.Context, in *GetOneCarRequest, opts ...grpc.CallOption) (*GetOneCarResponse, error)
+	GetCarsPaginated(ctx context.Context, in *GetCarsPaginatedRequest, opts ...grpc.CallOption) (*GetCarsPaginatedResponse, error)
+	GetCarsByDealershipIDPaginated(ctx context.Context, in *GetCarsByDealershipIDPaginatedRequest, opts ...grpc.CallOption) (*GetCarsByDealershipIDPaginatedResponse, error)
+	GetCarsByBrandIDPaginated(ctx context.Context, in *GetCarsByBrandIDPaginatedRequest, opts ...grpc.CallOption) (*GetCarsByCarBrandIDPaginatedResponse, error)
+	GetCarsByDealerIDPaginated(ctx context.Context, in *GetCarsByDealerIDPaginatedRequest, opts ...grpc.CallOption) (*GetCarsByDealerIDPaginatedResponse, error)
+	SearchCarsPaginated(ctx context.Context, in *SearchCarsPaginatedRequest, opts ...grpc.CallOption) (*SearchCarsPaginatedResponse, error)
+	GetCarByField(ctx context.Context, in *GetCarByFieldRequest, opts ...grpc.CallOption) (*GetCarByFieldResponse, error)
+	GetCarByDealerCount(ctx context.Context, in *GetCarByDealerCountRequest, opts ...grpc.CallOption) (*GetCarByDealerCountResponse, error)
+	GetCarByDealershipCount(ctx context.Context, in *GetCarByDealershipCountRequest, opts ...grpc.CallOption) (*GetCarByDealershipCountResponse, error)
+	GetCarByBrandCount(ctx context.Context, in *GetCarByBrandCountRequest, opts ...grpc.CallOption) (*GetCarByCarBrandCountResponse, error)
+	DeleteCar(ctx context.Context, in *DeleteCarRequest, opts ...grpc.CallOption) (*DeleteCarResponse, error)
 }
 
 type databaseServiceClient struct {
@@ -49,6 +101,15 @@ type databaseServiceClient struct {
 
 func NewDatabaseServiceClient(cc grpc.ClientConnInterface) DatabaseServiceClient {
 	return &databaseServiceClient{cc}
+}
+
+func (c *databaseServiceClient) HealthCheck(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
+	out := new(HealthCheckResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_HealthCheck_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *databaseServiceClient) GetUserMeta(ctx context.Context, in *GetUserMetaRequest, opts ...grpc.CallOption) (*GetUserMetaResponse, error) {
@@ -123,10 +184,236 @@ func (c *databaseServiceClient) DeleteDealership(ctx context.Context, in *Delete
 	return out, nil
 }
 
+func (c *databaseServiceClient) InsertCarBrand(ctx context.Context, in *InsertCarBrandRequest, opts ...grpc.CallOption) (*InsertCarBrandResponse, error) {
+	out := new(InsertCarBrandResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_InsertCarBrand_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) UpdateCarBrand(ctx context.Context, in *UpdateCarBrandRequest, opts ...grpc.CallOption) (*UpdateCarBrandResponse, error) {
+	out := new(UpdateCarBrandResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdateCarBrand_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarBrandByID(ctx context.Context, in *GetCarBrandByIDRequest, opts ...grpc.CallOption) (*GetCarBrandByIDResponse, error) {
+	out := new(GetCarBrandByIDResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarBrandByID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarBrandsPaginated(ctx context.Context, in *GetCarBrandsPaginatedRequest, opts ...grpc.CallOption) (*GetCarBrandsPaginatedResponse, error) {
+	out := new(GetCarBrandsPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarBrandsPaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) DeleteCarBrand(ctx context.Context, in *DeleteCarBrandRequest, opts ...grpc.CallOption) (*DeleteCarBrandResponse, error) {
+	out := new(DeleteCarBrandResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_DeleteCarBrand_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) InsertCarExtraFeature(ctx context.Context, in *InsertCarExtraFeatureRequest, opts ...grpc.CallOption) (*InsertCarExtraFeatureResponse, error) {
+	out := new(InsertCarExtraFeatureResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_InsertCarExtraFeature_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) UpdateCarExtraFeature(ctx context.Context, in *UpdateCarExtraFeatureRequest, opts ...grpc.CallOption) (*UpdateCarExtraFeatureResponse, error) {
+	out := new(UpdateCarExtraFeatureResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdateCarExtraFeature_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarExtraFeaturePaginated(ctx context.Context, in *GetCarExtraFeaturesPaginatedRequest, opts ...grpc.CallOption) (*GetCarExtraFeaturesPaginatedResponse, error) {
+	out := new(GetCarExtraFeaturesPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarExtraFeaturePaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) CreateCarImage(ctx context.Context, in *CreateCarImageRequest, opts ...grpc.CallOption) (*CreateCarImageResponse, error) {
+	out := new(CreateCarImageResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_CreateCarImage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) UpdateCarImage(ctx context.Context, in *UpdateCarImageRequest, opts ...grpc.CallOption) (*UpdateCarImageResponse, error) {
+	out := new(UpdateCarImageResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdateCarImage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarImagePaginated(ctx context.Context, in *GetCarImagesPaginatedRequest, opts ...grpc.CallOption) (*GetCarImagesPaginatedResponse, error) {
+	out := new(GetCarImagesPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarImagePaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) DeleteCarImage(ctx context.Context, in *DeleteCarImageRequest, opts ...grpc.CallOption) (*DeleteCarImageResponse, error) {
+	out := new(DeleteCarImageResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_DeleteCarImage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) InsertCar(ctx context.Context, in *InsertCarRequest, opts ...grpc.CallOption) (*InsertCarResponse, error) {
+	out := new(InsertCarResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_InsertCar_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) UpdateCar(ctx context.Context, in *UpdateCarRequest, opts ...grpc.CallOption) (*UpdateCarResponse, error) {
+	out := new(UpdateCarResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdateCar_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetOneCar(ctx context.Context, in *GetOneCarRequest, opts ...grpc.CallOption) (*GetOneCarResponse, error) {
+	out := new(GetOneCarResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetOneCar_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarsPaginated(ctx context.Context, in *GetCarsPaginatedRequest, opts ...grpc.CallOption) (*GetCarsPaginatedResponse, error) {
+	out := new(GetCarsPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarsPaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarsByDealershipIDPaginated(ctx context.Context, in *GetCarsByDealershipIDPaginatedRequest, opts ...grpc.CallOption) (*GetCarsByDealershipIDPaginatedResponse, error) {
+	out := new(GetCarsByDealershipIDPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarsByDealershipIDPaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarsByBrandIDPaginated(ctx context.Context, in *GetCarsByBrandIDPaginatedRequest, opts ...grpc.CallOption) (*GetCarsByCarBrandIDPaginatedResponse, error) {
+	out := new(GetCarsByCarBrandIDPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarsByBrandIDPaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarsByDealerIDPaginated(ctx context.Context, in *GetCarsByDealerIDPaginatedRequest, opts ...grpc.CallOption) (*GetCarsByDealerIDPaginatedResponse, error) {
+	out := new(GetCarsByDealerIDPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarsByDealerIDPaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) SearchCarsPaginated(ctx context.Context, in *SearchCarsPaginatedRequest, opts ...grpc.CallOption) (*SearchCarsPaginatedResponse, error) {
+	out := new(SearchCarsPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_SearchCarsPaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarByField(ctx context.Context, in *GetCarByFieldRequest, opts ...grpc.CallOption) (*GetCarByFieldResponse, error) {
+	out := new(GetCarByFieldResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarByField_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarByDealerCount(ctx context.Context, in *GetCarByDealerCountRequest, opts ...grpc.CallOption) (*GetCarByDealerCountResponse, error) {
+	out := new(GetCarByDealerCountResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarByDealerCount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarByDealershipCount(ctx context.Context, in *GetCarByDealershipCountRequest, opts ...grpc.CallOption) (*GetCarByDealershipCountResponse, error) {
+	out := new(GetCarByDealershipCountResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarByDealershipCount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetCarByBrandCount(ctx context.Context, in *GetCarByBrandCountRequest, opts ...grpc.CallOption) (*GetCarByCarBrandCountResponse, error) {
+	out := new(GetCarByCarBrandCountResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetCarByBrandCount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) DeleteCar(ctx context.Context, in *DeleteCarRequest, opts ...grpc.CallOption) (*DeleteCarResponse, error) {
+	out := new(DeleteCarResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_DeleteCar_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DatabaseServiceServer is the server API for DatabaseService service.
 // All implementations must embed UnimplementedDatabaseServiceServer
 // for forward compatibility
 type DatabaseServiceServer interface {
+	HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
 	GetUserMeta(context.Context, *GetUserMetaRequest) (*GetUserMetaResponse, error)
 	InsertUserMeta(context.Context, *InsertUserMetaRequest) (*InsertUserMetaResponse, error)
 	UpdateUserMeta(context.Context, *UpdateUserMetaRequest) (*UpdateUserMetaResponse, error)
@@ -135,6 +422,31 @@ type DatabaseServiceServer interface {
 	GetDealershipByUserId(context.Context, *GetUserDealershipRequest) (*GetDealershipByUserIDResponse, error)
 	GetDealershipByID(context.Context, *GetDealershipByIDRequest) (*GetDealershipByIDResponse, error)
 	DeleteDealership(context.Context, *DeleteDealershipRequest) (*DeleteDealershipResponse, error)
+	InsertCarBrand(context.Context, *InsertCarBrandRequest) (*InsertCarBrandResponse, error)
+	UpdateCarBrand(context.Context, *UpdateCarBrandRequest) (*UpdateCarBrandResponse, error)
+	GetCarBrandByID(context.Context, *GetCarBrandByIDRequest) (*GetCarBrandByIDResponse, error)
+	GetCarBrandsPaginated(context.Context, *GetCarBrandsPaginatedRequest) (*GetCarBrandsPaginatedResponse, error)
+	DeleteCarBrand(context.Context, *DeleteCarBrandRequest) (*DeleteCarBrandResponse, error)
+	InsertCarExtraFeature(context.Context, *InsertCarExtraFeatureRequest) (*InsertCarExtraFeatureResponse, error)
+	UpdateCarExtraFeature(context.Context, *UpdateCarExtraFeatureRequest) (*UpdateCarExtraFeatureResponse, error)
+	GetCarExtraFeaturePaginated(context.Context, *GetCarExtraFeaturesPaginatedRequest) (*GetCarExtraFeaturesPaginatedResponse, error)
+	CreateCarImage(context.Context, *CreateCarImageRequest) (*CreateCarImageResponse, error)
+	UpdateCarImage(context.Context, *UpdateCarImageRequest) (*UpdateCarImageResponse, error)
+	GetCarImagePaginated(context.Context, *GetCarImagesPaginatedRequest) (*GetCarImagesPaginatedResponse, error)
+	DeleteCarImage(context.Context, *DeleteCarImageRequest) (*DeleteCarImageResponse, error)
+	InsertCar(context.Context, *InsertCarRequest) (*InsertCarResponse, error)
+	UpdateCar(context.Context, *UpdateCarRequest) (*UpdateCarResponse, error)
+	GetOneCar(context.Context, *GetOneCarRequest) (*GetOneCarResponse, error)
+	GetCarsPaginated(context.Context, *GetCarsPaginatedRequest) (*GetCarsPaginatedResponse, error)
+	GetCarsByDealershipIDPaginated(context.Context, *GetCarsByDealershipIDPaginatedRequest) (*GetCarsByDealershipIDPaginatedResponse, error)
+	GetCarsByBrandIDPaginated(context.Context, *GetCarsByBrandIDPaginatedRequest) (*GetCarsByCarBrandIDPaginatedResponse, error)
+	GetCarsByDealerIDPaginated(context.Context, *GetCarsByDealerIDPaginatedRequest) (*GetCarsByDealerIDPaginatedResponse, error)
+	SearchCarsPaginated(context.Context, *SearchCarsPaginatedRequest) (*SearchCarsPaginatedResponse, error)
+	GetCarByField(context.Context, *GetCarByFieldRequest) (*GetCarByFieldResponse, error)
+	GetCarByDealerCount(context.Context, *GetCarByDealerCountRequest) (*GetCarByDealerCountResponse, error)
+	GetCarByDealershipCount(context.Context, *GetCarByDealershipCountRequest) (*GetCarByDealershipCountResponse, error)
+	GetCarByBrandCount(context.Context, *GetCarByBrandCountRequest) (*GetCarByCarBrandCountResponse, error)
+	DeleteCar(context.Context, *DeleteCarRequest) (*DeleteCarResponse, error)
 	mustEmbedUnimplementedDatabaseServiceServer()
 }
 
@@ -142,6 +454,9 @@ type DatabaseServiceServer interface {
 type UnimplementedDatabaseServiceServer struct {
 }
 
+func (UnimplementedDatabaseServiceServer) HealthCheck(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HealthCheck not implemented")
+}
 func (UnimplementedDatabaseServiceServer) GetUserMeta(context.Context, *GetUserMetaRequest) (*GetUserMetaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserMeta not implemented")
 }
@@ -166,6 +481,81 @@ func (UnimplementedDatabaseServiceServer) GetDealershipByID(context.Context, *Ge
 func (UnimplementedDatabaseServiceServer) DeleteDealership(context.Context, *DeleteDealershipRequest) (*DeleteDealershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDealership not implemented")
 }
+func (UnimplementedDatabaseServiceServer) InsertCarBrand(context.Context, *InsertCarBrandRequest) (*InsertCarBrandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertCarBrand not implemented")
+}
+func (UnimplementedDatabaseServiceServer) UpdateCarBrand(context.Context, *UpdateCarBrandRequest) (*UpdateCarBrandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCarBrand not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarBrandByID(context.Context, *GetCarBrandByIDRequest) (*GetCarBrandByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarBrandByID not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarBrandsPaginated(context.Context, *GetCarBrandsPaginatedRequest) (*GetCarBrandsPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarBrandsPaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) DeleteCarBrand(context.Context, *DeleteCarBrandRequest) (*DeleteCarBrandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCarBrand not implemented")
+}
+func (UnimplementedDatabaseServiceServer) InsertCarExtraFeature(context.Context, *InsertCarExtraFeatureRequest) (*InsertCarExtraFeatureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertCarExtraFeature not implemented")
+}
+func (UnimplementedDatabaseServiceServer) UpdateCarExtraFeature(context.Context, *UpdateCarExtraFeatureRequest) (*UpdateCarExtraFeatureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCarExtraFeature not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarExtraFeaturePaginated(context.Context, *GetCarExtraFeaturesPaginatedRequest) (*GetCarExtraFeaturesPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarExtraFeaturePaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) CreateCarImage(context.Context, *CreateCarImageRequest) (*CreateCarImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCarImage not implemented")
+}
+func (UnimplementedDatabaseServiceServer) UpdateCarImage(context.Context, *UpdateCarImageRequest) (*UpdateCarImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCarImage not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarImagePaginated(context.Context, *GetCarImagesPaginatedRequest) (*GetCarImagesPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarImagePaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) DeleteCarImage(context.Context, *DeleteCarImageRequest) (*DeleteCarImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCarImage not implemented")
+}
+func (UnimplementedDatabaseServiceServer) InsertCar(context.Context, *InsertCarRequest) (*InsertCarResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertCar not implemented")
+}
+func (UnimplementedDatabaseServiceServer) UpdateCar(context.Context, *UpdateCarRequest) (*UpdateCarResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCar not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetOneCar(context.Context, *GetOneCarRequest) (*GetOneCarResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOneCar not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarsPaginated(context.Context, *GetCarsPaginatedRequest) (*GetCarsPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarsPaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarsByDealershipIDPaginated(context.Context, *GetCarsByDealershipIDPaginatedRequest) (*GetCarsByDealershipIDPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarsByDealershipIDPaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarsByBrandIDPaginated(context.Context, *GetCarsByBrandIDPaginatedRequest) (*GetCarsByCarBrandIDPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarsByBrandIDPaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarsByDealerIDPaginated(context.Context, *GetCarsByDealerIDPaginatedRequest) (*GetCarsByDealerIDPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarsByDealerIDPaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) SearchCarsPaginated(context.Context, *SearchCarsPaginatedRequest) (*SearchCarsPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchCarsPaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarByField(context.Context, *GetCarByFieldRequest) (*GetCarByFieldResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarByField not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarByDealerCount(context.Context, *GetCarByDealerCountRequest) (*GetCarByDealerCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarByDealerCount not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarByDealershipCount(context.Context, *GetCarByDealershipCountRequest) (*GetCarByDealershipCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarByDealershipCount not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetCarByBrandCount(context.Context, *GetCarByBrandCountRequest) (*GetCarByCarBrandCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCarByBrandCount not implemented")
+}
+func (UnimplementedDatabaseServiceServer) DeleteCar(context.Context, *DeleteCarRequest) (*DeleteCarResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCar not implemented")
+}
 func (UnimplementedDatabaseServiceServer) mustEmbedUnimplementedDatabaseServiceServer() {}
 
 // UnsafeDatabaseServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -177,6 +567,24 @@ type UnsafeDatabaseServiceServer interface {
 
 func RegisterDatabaseServiceServer(s grpc.ServiceRegistrar, srv DatabaseServiceServer) {
 	s.RegisterService(&DatabaseService_ServiceDesc, srv)
+}
+
+func _DatabaseService_HealthCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HealthCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).HealthCheck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_HealthCheck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).HealthCheck(ctx, req.(*HealthCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DatabaseService_GetUserMeta_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -323,6 +731,456 @@ func _DatabaseService_DeleteDealership_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DatabaseService_InsertCarBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertCarBrandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).InsertCarBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_InsertCarBrand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).InsertCarBrand(ctx, req.(*InsertCarBrandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_UpdateCarBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCarBrandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdateCarBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdateCarBrand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdateCarBrand(ctx, req.(*UpdateCarBrandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarBrandByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarBrandByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarBrandByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarBrandByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarBrandByID(ctx, req.(*GetCarBrandByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarBrandsPaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarBrandsPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarBrandsPaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarBrandsPaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarBrandsPaginated(ctx, req.(*GetCarBrandsPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_DeleteCarBrand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCarBrandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).DeleteCarBrand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_DeleteCarBrand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).DeleteCarBrand(ctx, req.(*DeleteCarBrandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_InsertCarExtraFeature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertCarExtraFeatureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).InsertCarExtraFeature(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_InsertCarExtraFeature_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).InsertCarExtraFeature(ctx, req.(*InsertCarExtraFeatureRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_UpdateCarExtraFeature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCarExtraFeatureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdateCarExtraFeature(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdateCarExtraFeature_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdateCarExtraFeature(ctx, req.(*UpdateCarExtraFeatureRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarExtraFeaturePaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarExtraFeaturesPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarExtraFeaturePaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarExtraFeaturePaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarExtraFeaturePaginated(ctx, req.(*GetCarExtraFeaturesPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_CreateCarImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCarImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).CreateCarImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_CreateCarImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).CreateCarImage(ctx, req.(*CreateCarImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_UpdateCarImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCarImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdateCarImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdateCarImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdateCarImage(ctx, req.(*UpdateCarImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarImagePaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarImagesPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarImagePaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarImagePaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarImagePaginated(ctx, req.(*GetCarImagesPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_DeleteCarImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCarImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).DeleteCarImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_DeleteCarImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).DeleteCarImage(ctx, req.(*DeleteCarImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_InsertCar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertCarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).InsertCar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_InsertCar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).InsertCar(ctx, req.(*InsertCarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_UpdateCar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateCarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdateCar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdateCar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdateCar(ctx, req.(*UpdateCarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetOneCar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOneCarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetOneCar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetOneCar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetOneCar(ctx, req.(*GetOneCarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarsPaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarsPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarsPaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarsPaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarsPaginated(ctx, req.(*GetCarsPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarsByDealershipIDPaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarsByDealershipIDPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarsByDealershipIDPaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarsByDealershipIDPaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarsByDealershipIDPaginated(ctx, req.(*GetCarsByDealershipIDPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarsByBrandIDPaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarsByBrandIDPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarsByBrandIDPaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarsByBrandIDPaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarsByBrandIDPaginated(ctx, req.(*GetCarsByBrandIDPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarsByDealerIDPaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarsByDealerIDPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarsByDealerIDPaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarsByDealerIDPaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarsByDealerIDPaginated(ctx, req.(*GetCarsByDealerIDPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_SearchCarsPaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchCarsPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).SearchCarsPaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_SearchCarsPaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).SearchCarsPaginated(ctx, req.(*SearchCarsPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarByField_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarByFieldRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarByField(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarByField_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarByField(ctx, req.(*GetCarByFieldRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarByDealerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarByDealerCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarByDealerCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarByDealerCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarByDealerCount(ctx, req.(*GetCarByDealerCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarByDealershipCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarByDealershipCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarByDealershipCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarByDealershipCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarByDealershipCount(ctx, req.(*GetCarByDealershipCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetCarByBrandCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCarByBrandCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetCarByBrandCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetCarByBrandCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetCarByBrandCount(ctx, req.(*GetCarByBrandCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_DeleteCar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).DeleteCar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_DeleteCar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).DeleteCar(ctx, req.(*DeleteCarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DatabaseService_ServiceDesc is the grpc.ServiceDesc for DatabaseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -330,6 +1188,10 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "DatabaseService",
 	HandlerType: (*DatabaseServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "HealthCheck",
+			Handler:    _DatabaseService_HealthCheck_Handler,
+		},
 		{
 			MethodName: "GetUserMeta",
 			Handler:    _DatabaseService_GetUserMeta_Handler,
@@ -361,6 +1223,106 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteDealership",
 			Handler:    _DatabaseService_DeleteDealership_Handler,
+		},
+		{
+			MethodName: "InsertCarBrand",
+			Handler:    _DatabaseService_InsertCarBrand_Handler,
+		},
+		{
+			MethodName: "UpdateCarBrand",
+			Handler:    _DatabaseService_UpdateCarBrand_Handler,
+		},
+		{
+			MethodName: "GetCarBrandByID",
+			Handler:    _DatabaseService_GetCarBrandByID_Handler,
+		},
+		{
+			MethodName: "GetCarBrandsPaginated",
+			Handler:    _DatabaseService_GetCarBrandsPaginated_Handler,
+		},
+		{
+			MethodName: "DeleteCarBrand",
+			Handler:    _DatabaseService_DeleteCarBrand_Handler,
+		},
+		{
+			MethodName: "InsertCarExtraFeature",
+			Handler:    _DatabaseService_InsertCarExtraFeature_Handler,
+		},
+		{
+			MethodName: "UpdateCarExtraFeature",
+			Handler:    _DatabaseService_UpdateCarExtraFeature_Handler,
+		},
+		{
+			MethodName: "GetCarExtraFeaturePaginated",
+			Handler:    _DatabaseService_GetCarExtraFeaturePaginated_Handler,
+		},
+		{
+			MethodName: "CreateCarImage",
+			Handler:    _DatabaseService_CreateCarImage_Handler,
+		},
+		{
+			MethodName: "UpdateCarImage",
+			Handler:    _DatabaseService_UpdateCarImage_Handler,
+		},
+		{
+			MethodName: "GetCarImagePaginated",
+			Handler:    _DatabaseService_GetCarImagePaginated_Handler,
+		},
+		{
+			MethodName: "DeleteCarImage",
+			Handler:    _DatabaseService_DeleteCarImage_Handler,
+		},
+		{
+			MethodName: "InsertCar",
+			Handler:    _DatabaseService_InsertCar_Handler,
+		},
+		{
+			MethodName: "UpdateCar",
+			Handler:    _DatabaseService_UpdateCar_Handler,
+		},
+		{
+			MethodName: "GetOneCar",
+			Handler:    _DatabaseService_GetOneCar_Handler,
+		},
+		{
+			MethodName: "GetCarsPaginated",
+			Handler:    _DatabaseService_GetCarsPaginated_Handler,
+		},
+		{
+			MethodName: "GetCarsByDealershipIDPaginated",
+			Handler:    _DatabaseService_GetCarsByDealershipIDPaginated_Handler,
+		},
+		{
+			MethodName: "GetCarsByBrandIDPaginated",
+			Handler:    _DatabaseService_GetCarsByBrandIDPaginated_Handler,
+		},
+		{
+			MethodName: "GetCarsByDealerIDPaginated",
+			Handler:    _DatabaseService_GetCarsByDealerIDPaginated_Handler,
+		},
+		{
+			MethodName: "SearchCarsPaginated",
+			Handler:    _DatabaseService_SearchCarsPaginated_Handler,
+		},
+		{
+			MethodName: "GetCarByField",
+			Handler:    _DatabaseService_GetCarByField_Handler,
+		},
+		{
+			MethodName: "GetCarByDealerCount",
+			Handler:    _DatabaseService_GetCarByDealerCount_Handler,
+		},
+		{
+			MethodName: "GetCarByDealershipCount",
+			Handler:    _DatabaseService_GetCarByDealershipCount_Handler,
+		},
+		{
+			MethodName: "GetCarByBrandCount",
+			Handler:    _DatabaseService_GetCarByBrandCount_Handler,
+		},
+		{
+			MethodName: "DeleteCar",
+			Handler:    _DatabaseService_DeleteCar_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

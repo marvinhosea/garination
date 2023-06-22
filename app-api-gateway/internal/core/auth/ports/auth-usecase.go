@@ -12,5 +12,6 @@ type AuthUsecase interface {
 	GetUserMeta(ctx context.Context, req *dto.AuthGetUserMetaRequest) (*dto.AuthGetUserMetaResponse, error)
 	UpdateUserMeta(ctx context.Context, req *dto.AuthUpdateUserMetaRequest) (*dto.AuthUpdateUserMetaResponse, error)
 	RegisterCallback(ctx context.Context, req *dto.AuthRegisterCallbackRequest) (*dto.AuthRegisterCallbackResponse, error)
+	RefreshToken(ctx context.Context, req *dto.AuthRefreshTokenRequest) (*dto.AuthRefreshTokenResponse, error)
 	Logout(ctx context.Context, req *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error)
 }

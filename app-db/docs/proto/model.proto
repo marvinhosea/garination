@@ -36,3 +36,56 @@ message UserMetum {
   string website_url = 7;
   string dealership_id = 8;
 }
+
+message CarBrand {
+  string brand_id = 1;
+  string name = 2;
+  string logo_url = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+
+message CarImage {
+  string car_image_id = 1;
+  string car_id = 2;
+  string url = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message Car {
+  string car_id = 1;
+  string brand_id = 2;
+  string category_id = 3;
+  string model = 4;
+  int32 year = 5;
+  double price = 6;
+  int32 mileage = 7;
+  string color = 8;
+  string transmission = 9;
+  string fuel_type = 10;
+  string engine_capacity = 11;
+  string description = 12;
+  string dealership_id = 13;
+  string dealer_id = 14;
+  google.protobuf.Timestamp created_at = 15;
+  google.protobuf.Timestamp updated_at = 16;
+}
+
+message SingleCar {
+  Car car = 1;
+  repeated CarImage images = 2;
+  repeated CarExtraFeature extras = 3;
+  CarBrand brand = 4;
+}
+
+
+message CarExtraFeature {
+  string car_extra_id = 1;
+  string car_id = 2;
+  string name = 3;
+  string value = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}

@@ -14,12 +14,8 @@ type dealershipHandler struct {
 func (d dealershipHandler) GetDealershipByID() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		var response common.HttpReponse
-		var request dto.GetDealershipRequest
-
-		if err := context.ShouldBindJSON(&request); err != nil {
-			response.Errors = append(response.Errors, err.Error())
-			response.Message = "it'd be nice if you could provide a valid request"
-			context.JSON(400, response)
+		var request = dto.GetDealershipRequest{
+			ID: context.Param("id"),
 		}
 
 		// validate request
@@ -27,6 +23,7 @@ func (d dealershipHandler) GetDealershipByID() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		dealership, err := d.dealershipUsecase.GetDealershipByID(context, &request)
@@ -34,6 +31,7 @@ func (d dealershipHandler) GetDealershipByID() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "something went wrong"
 			context.JSON(400, response)
+			return
 		}
 
 		response.Data = dealership
@@ -61,6 +59,7 @@ func (d dealershipHandler) GetDealershipByUserID() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		dealership, err := d.dealershipUsecase.GetDealershipByUserID(context, request)
@@ -68,6 +67,7 @@ func (d dealershipHandler) GetDealershipByUserID() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "something went wrong"
 			context.JSON(400, response)
+			return
 		}
 
 		response.Data = dealership
@@ -86,6 +86,7 @@ func (d dealershipHandler) UpdateDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		// validate request
@@ -93,6 +94,7 @@ func (d dealershipHandler) UpdateDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		dealership, err := d.dealershipUsecase.UpdateDealership(context, &request)
@@ -100,6 +102,7 @@ func (d dealershipHandler) UpdateDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "something went wrong"
 			context.JSON(400, response)
+			return
 		}
 
 		response.Data = dealership
@@ -118,6 +121,7 @@ func (d dealershipHandler) CreateDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		// validate request
@@ -125,6 +129,7 @@ func (d dealershipHandler) CreateDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		dealership, err := d.dealershipUsecase.CreateDealership(context, &request)
@@ -132,6 +137,7 @@ func (d dealershipHandler) CreateDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "something went wrong"
 			context.JSON(400, response)
+			return
 		}
 
 		response.Data = dealership
@@ -150,6 +156,7 @@ func (d dealershipHandler) DeleteDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		// validate request
@@ -157,6 +164,7 @@ func (d dealershipHandler) DeleteDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "it'd be nice if you could provide a valid request"
 			context.JSON(400, response)
+			return
 		}
 
 		dealership, err := d.dealershipUsecase.DeleteDealership(context, &request)
@@ -164,6 +172,7 @@ func (d dealershipHandler) DeleteDealership() gin.HandlerFunc {
 			response.Errors = append(response.Errors, err.Error())
 			response.Message = "something went wrong"
 			context.JSON(400, response)
+			return
 		}
 
 		response.Data = dealership

@@ -11,5 +11,6 @@ type AuthHttpHandler interface {
 	RegisterCallback() gin.HandlerFunc
 	UpdateUserMeta() gin.HandlerFunc
 	GetUserMeta() gin.HandlerFunc
+	RefreshToken() gin.HandlerFunc
 	Logout() gin.HandlerFunc
 }

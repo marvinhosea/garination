@@ -2,13 +2,13 @@ package dto
 
 import (
 	"errors"
+	"fmt"
 	"garination.com/gateway/pkg/validationutil"
 	"github.com/google/uuid"
 )
 
 type CreateDealershipRequest struct {
 	OwnerID      string `json:"owner_id"`
-	DealershipID string `json:"dealership_id"`
 	Name         string `json:"name"`
 	DisplayName  string `json:"display_name"`
 	Address      string `json:"address"`
@@ -28,14 +28,8 @@ type CreateDealershipRequest struct {
 }
 
 func (r CreateDealershipRequest) Validate() error {
-	// check if it is a valid uuid
-	_, err := uuid.Parse(r.DealershipID)
-	if err != nil {
-		return errors.New("dealership_id is not a valid uuid")
-	}
-
 	// check if owner id is a valid uuid
-	_, err = uuid.Parse(r.OwnerID)
+	_, err := uuid.Parse(r.OwnerID)
 	if err != nil {
 		return errors.New("owner_id is not a valid uuid")
 	}
@@ -72,7 +66,7 @@ func (r CreateDealershipRequest) Validate() error {
 
 	// validate phone is not empty
 	if !validationutil.ValidatePhone(r.Phone) {
-		return errors.New("valid phone is required")
+		return fmt.Errorf("phone is not a valid phone number: %s", r.Phone)
 	}
 
 	// validate email is not empty
@@ -123,7 +117,7 @@ func (r CreateDealershipRequest) Validate() error {
 		}
 	}
 
-	if r.Description != "" {
+	if len(r.Description) < 10 || len(r.Description) > 500 {
 		return errors.New("it'd be nice to have a description")
 	}
 

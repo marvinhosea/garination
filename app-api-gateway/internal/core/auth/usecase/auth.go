@@ -6,12 +6,33 @@ import (
 	"garination.com/gateway/internal/core/auth/dto"
 	"garination.com/gateway/internal/core/auth/model"
 	"garination.com/gateway/internal/core/auth/ports"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"log"
 )
 
 type authUsecase struct {
 	authRedisRepo ports.AuthRedisRepo
 	casdoorRepo   ports.AuthCasdoorRepo
 	authDBRepo    ports.AuthDbRepo
+}
+
+func (a authUsecase) RefreshToken(ctx context.Context, req *dto.AuthRefreshTokenRequest) (*dto.AuthRefreshTokenResponse, error) {
+	if req == nil {
+		return nil, errors.New("request is nil")
+	}
+
+	refreshToken, err := a.casdoorRepo.RefreshOAuthToken(req.RefreshToken)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dto.AuthRefreshTokenResponse{
+		AccessToken:  refreshToken.AccessToken,
+		RefreshToken: refreshToken.RefreshToken,
+		TokenType:    "Bearer",
+		Expiry:       refreshToken.Expiry,
+	}, nil
 }
 
 func (a authUsecase) GetUserMeta(ctx context.Context, req *dto.AuthGetUserMetaRequest) (*dto.AuthGetUserMetaResponse, error) {
@@ -52,7 +73,13 @@ func (a authUsecase) UpdateUserMeta(ctx context.Context, req *dto.AuthUpdateUser
 	}
 
 	userMetaRes, err := a.authDBRepo.UpdateUserMeta(ctx, userMeta)
-	if err != nil {
+	if err != nil && status.Code(err) == codes.NotFound {
+		log.Println(err, "inserting user meta")
+		userMetaRes, err = a.authDBRepo.InsertUserMeta(ctx, userMeta)
+		if err != nil {
+			return nil, err
+		}
+	} else if err != nil {
 		return nil, err
 	}
 
@@ -150,8 +177,19 @@ func (a authUsecase) InitiateRegister(_ context.Context, req *dto.AuthRegisterRe
 	}, nil
 }
 
-func (a authUsecase) Logout(context.Context, *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error) {
-	panic("implement me")
+func (a authUsecase) Logout(ctx context.Context, req *dto.AuthLogoutRequest) (*dto.AuthLogoutResponse, error) {
+	res, err := a.casdoorRepo.DeleteToken(req.Name)
+	if err != nil {
+		return nil, err
+	}
+
+	if !res {
+		return nil, errors.New("we tried to logout but failed")
+	}
+
+	return &dto.AuthLogoutResponse{
+		State: "success",
+	}, nil
 }
 
 func NewAuthUsecase(authRedisRepo ports.AuthRedisRepo, casdoorRepo ports.AuthCasdoorRepo, authDBRepo ports.AuthDbRepo) ports.AuthUsecase {

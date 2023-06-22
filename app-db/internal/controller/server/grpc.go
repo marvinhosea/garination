@@ -45,7 +45,7 @@ func (s *Server) Run() {
 
 	// create user service
 	userService := service.NewUserService(userRepo)
-	dealershipService := service.NewDealershipService(dealershipRepo)
+	dealershipService := service.NewDealershipService(dealershipRepo, userRepo)
 
 	// create handler
 	grpcHandler := handlers.NewHandler(promMetrics, userService, dealershipService)

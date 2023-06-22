@@ -3,6 +3,9 @@ syntax = "proto3";
 option go_package="garination.com/db/sdk/proto";
 import "model.proto";
 
+message HealthCheckRequest {
+}
+
 message InsertUserMetaRequest {
   UserMetum user_meta = 1;
 }
@@ -36,4 +39,132 @@ message DeleteDealershipRequest {
 
 message GetDealershipByIDRequest {
   string dealership_id = 1;
+}
+
+message InsertCarBrandRequest {
+  CarBrand car_brand = 1;
+}
+
+message UpdateCarBrandRequest {
+  CarBrand car_brand = 1;
+}
+
+message GetCarBrandsPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+}
+
+message GetCarBrandByIDRequest {
+  string car_brand_id = 1;
+}
+
+message DeleteCarBrandRequest {
+  string car_brand_id = 1;
+}
+
+message InsertCarExtraFeatureRequest {
+  CarExtraFeature car_extra_feature = 1;
+}
+
+message UpdateCarExtraFeatureRequest {
+  CarExtraFeature car_extra_feature = 1;
+}
+
+message GetCarExtraFeaturesPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+  string car_id = 3;
+}
+
+message CreateCarImageRequest {
+  repeated CarImage car_image = 1;
+}
+
+message UpdateCarImageRequest {
+  CarImage car_image = 1;
+}
+
+message GetCarImagesPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+  string car_id = 3;
+}
+
+message DeleteCarImageRequest {
+  string car_image_id = 1;
+}
+
+message InsertCarRequest {
+  Car car = 1;
+}
+
+message UpdateCarRequest {
+  Car car = 1;
+}
+
+message GetOneCarRequest {
+  string car_id = 1;
+}
+
+message GetCarsPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+  int32 sort_by = 3;
+}
+
+message GetCarsByDealershipIDPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+  string dealership_id = 3;
+}
+
+message GetCarsByDealerIDPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+  string dealer_id = 3;
+}
+
+message GetCarsByBrandIDPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+  string car_brand_id = 3;
+}
+
+message SearchCarsPaginatedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+  string query = 3;
+}
+
+
+message CarFilter {
+  enum Condition {
+    EQUAL = 0;
+    GREATER_THAN = 1;
+    LESS_THAN = 2;
+    GREATER_THAN_OR_EQUAL = 3;
+    LESS_THAN_OR_EQUAL = 4;
+  }
+  Condition condition = 1;
+  string value = 2;
+}
+
+message GetCarByFieldRequest {
+   map<string, CarFilter> filter = 1;
+}
+
+message GetCarByDealerCountRequest {
+  string dealer_id = 1;
+}
+
+message GetCarByDealershipCountRequest {
+  string dealership_id = 1;
+}
+
+message GetCarByBrandCountRequest {
+  string car_brand_id = 1;
+}
+
+message DeleteCarRequest {
+  string car_id = 1;
 }

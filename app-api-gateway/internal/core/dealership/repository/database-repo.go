@@ -4,6 +4,8 @@ import (
 	"context"
 	"garination.com/gateway/internal/core/dealership/ports"
 	"garination.com/gateway/internal/platform/grpc/app-db/proto"
+	"github.com/google/uuid"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type dealershipDatabaseRepo struct {
@@ -117,13 +119,17 @@ func (d dealershipDatabaseRepo) CreateDealership(ctx context.Context, dealership
 		Dealership: dealership,
 	}
 
+	req.Dealership.DealershipId = uuid.NewString()
+	req.Dealership.CreatedAt = timestamppb.Now()
+	req.Dealership.UpdatedAt = timestamppb.Now()
+
 	res, err := d.client.InsertDealership(ctx, req)
 	if err != nil {
 		return nil, err
 	}
 
 	return &proto.Dealership{
-		DealershipId: res.Dealership.DealershipId,
+		DealershipId: uuid.NewString(),
 		OwnerId:      res.Dealership.OwnerId,
 		Name:         res.Dealership.Name,
 		DisplayName:  res.Dealership.DisplayName,

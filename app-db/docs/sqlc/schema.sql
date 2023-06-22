@@ -11,7 +11,7 @@ CREATE TABLE "user_meta"
     instagram_url varchar(100) ,
     linkedin_url varchar(100) ,
     website_url varchar(100) ,
-    dealership_id varchar(100) ,
+    dealership_id VARCHAR(100) DEFAULT NULL,
     FOREIGN KEY (dealership_id) REFERENCES "dealership" (dealership_id)
 );
 

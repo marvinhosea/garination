@@ -6,12 +6,47 @@ import "requests.proto";
 import "responses.proto";
 
 service DatabaseService {
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
   rpc GetUserMeta(GetUserMetaRequest) returns (GetUserMetaResponse);
   rpc InsertUserMeta(InsertUserMetaRequest) returns (InsertUserMetaResponse);
   rpc UpdateUserMeta(UpdateUserMetaRequest) returns (UpdateUserMetaResponse);
+
   rpc InsertDealership(InsertDealershipRequest) returns (InsertDealershipResponse);
   rpc UpdateDealership(UpdateDealershipRequest) returns (UpdateDealershipResponse);
   rpc GetDealershipByUserId(GetUserDealershipRequest) returns (GetDealershipByUserIDResponse);
   rpc GetDealershipByID(GetDealershipByIDRequest) returns (GetDealershipByIDResponse);
   rpc DeleteDealership(DeleteDealershipRequest) returns (DeleteDealershipResponse);
+
+  rpc InsertCarBrand(InsertCarBrandRequest) returns (InsertCarBrandResponse);
+  rpc UpdateCarBrand(UpdateCarBrandRequest) returns (UpdateCarBrandResponse);
+  rpc GetCarBrandByID(GetCarBrandByIDRequest) returns (GetCarBrandByIDResponse);
+  rpc GetCarBrandsPaginated(GetCarBrandsPaginatedRequest) returns (GetCarBrandsPaginatedResponse);
+  rpc DeleteCarBrand(DeleteCarBrandRequest) returns (DeleteCarBrandResponse);
+
+  rpc InsertCarExtraFeature(InsertCarExtraFeatureRequest) returns (InsertCarExtraFeatureResponse);
+  rpc UpdateCarExtraFeature(UpdateCarExtraFeatureRequest) returns (UpdateCarExtraFeatureResponse);
+  rpc GetCarExtraFeaturePaginated(GetCarExtraFeaturesPaginatedRequest) returns (GetCarExtraFeaturesPaginatedResponse);
+
+  rpc CreateCarImage(CreateCarImageRequest) returns (CreateCarImageResponse);
+  rpc UpdateCarImage(UpdateCarImageRequest) returns (UpdateCarImageResponse);
+  rpc GetCarImagePaginated(GetCarImagesPaginatedRequest) returns (GetCarImagesPaginatedResponse);
+  rpc DeleteCarImage(DeleteCarImageRequest) returns (DeleteCarImageResponse);
+
+  rpc InsertCar(InsertCarRequest) returns (InsertCarResponse);
+  rpc UpdateCar(UpdateCarRequest) returns (UpdateCarResponse);
+  rpc GetOneCar(GetOneCarRequest) returns (GetOneCarResponse);
+  rpc GetCarsPaginated(GetCarsPaginatedRequest) returns (GetCarsPaginatedResponse);
+  rpc GetCarsByDealershipIDPaginated(GetCarsByDealershipIDPaginatedRequest) returns (GetCarsByDealershipIDPaginatedResponse);
+  rpc GetCarsByBrandIDPaginated(GetCarsByBrandIDPaginatedRequest) returns (GetCarsByCarBrandIDPaginatedResponse);
+  rpc GetCarsByDealerIDPaginated(GetCarsByDealerIDPaginatedRequest) returns (GetCarsByDealerIDPaginatedResponse);
+  rpc SearchCarsPaginated(SearchCarsPaginatedRequest) returns (SearchCarsPaginatedResponse);
+  rpc GetCarByField(GetCarByFieldRequest) returns (GetCarByFieldResponse);
+  rpc GetCarByDealerCount(GetCarByDealerCountRequest) returns (GetCarByDealerCountResponse);
+  rpc GetCarByDealershipCount(GetCarByDealershipCountRequest) returns (GetCarByDealershipCountResponse);
+  rpc GetCarByBrandCount(GetCarByBrandCountRequest) returns (GetCarByCarBrandCountResponse);
+  rpc DeleteCar(DeleteCarRequest) returns (DeleteCarResponse);
+
+  // todo KYC
+  // todo Spare
+  // todo payments
 }

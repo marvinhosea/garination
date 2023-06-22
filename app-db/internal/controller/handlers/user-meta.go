@@ -7,6 +7,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/prometheus/client_golang/prometheus"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"log"
 )
 
 var getUserMetaLabel = "GetUserMeta"
@@ -19,7 +22,7 @@ func (h *Handler) GetUserMeta(ctx context.Context, req *proto.GetUserMetaRequest
 	userMeta, err := h.userService.GetUserMeta(ctx, req.UserId)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(getUserMetaLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.Internal, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(getUserMetaLabel, "success").Inc()
@@ -44,6 +47,13 @@ func (h *Handler) InsertUserMeta(ctx context.Context, req *proto.InsertUserMetaR
 	h.promMetrics.RequestCount.WithLabelValues(insertUserMetaLabel).Inc()
 	defer timer.ObserveDuration()
 
+	if len(req.UserMeta.UserId) == 0 {
+		h.promMetrics.ResponseStatus.WithLabelValues(insertUserMetaLabel, "error").Inc()
+		return nil, status.Error(codes.InvalidArgument, "user_id is required")
+	}
+
+	log.Println(req)
+
 	userMeta := model.UserMetum{
 		UserMetaID:   uuid.NewString(),
 		UserID:       req.UserMeta.UserId,
@@ -58,7 +68,8 @@ func (h *Handler) InsertUserMeta(ctx context.Context, req *proto.InsertUserMetaR
 	res, err := h.userService.InsertUserMeta(ctx, userMeta)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(insertUserMetaLabel, "error").Inc()
-		return nil, err
+		log.Println(err)
+		return nil, status.Error(codes.Internal, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(insertUserMetaLabel, "success").Inc()
@@ -84,19 +95,19 @@ func (h *Handler) UpdateUserMeta(ctx context.Context, req *proto.UpdateUserMetaR
 	defer timer.ObserveDuration()
 
 	userMeta := model.UserMetum{
-		UserMetaID:   uuid.NewString(),
 		FacebookUrl:  pgtype.Text{String: req.UserMeta.FacebookUrl, Valid: true},
 		TwitterUrl:   pgtype.Text{String: req.UserMeta.TwitterUrl, Valid: true},
 		InstagramUrl: pgtype.Text{String: req.UserMeta.InstagramUrl, Valid: true},
 		LinkedinUrl:  pgtype.Text{String: req.UserMeta.LinkedinUrl, Valid: true},
 		WebsiteUrl:   pgtype.Text{String: req.UserMeta.WebsiteUrl, Valid: true},
 		DealershipID: pgtype.Text{String: req.UserMeta.DealershipId, Valid: true},
+		UserID:       req.UserMeta.UserId,
 	}
 
 	res, err := h.userService.UpdateUserMeta(ctx, userMeta)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(updateUserMetaLabel, "error").Inc()
-		return nil, err
+		return nil, status.Error(codes.NotFound, err.Error())
 	}
 
 	h.promMetrics.ResponseStatus.WithLabelValues(updateUserMetaLabel, "success").Inc()

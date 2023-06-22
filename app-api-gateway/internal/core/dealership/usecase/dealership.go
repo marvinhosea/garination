@@ -153,8 +153,19 @@ func (d dealershipUsecase) CreateDealership(ctx context.Context, createDealershi
 		return nil, errors.New("it'd be nice if you could provide a valid request")
 	}
 
+	ownerId, ok := ctx.Value("user-uuid").(string)
+	if !ok {
+		return nil, errors.New("it'd be nice if you could provide a valid request")
+	}
+
+	// get dealership from database
+	_, err := d.dealershipDatabaseRepo.GetDealershipByUserID(ctx, ownerId)
+	if err == nil {
+		return nil, errors.New("sorry, at this time, you cant create more than one dealership. Please contact support for more information")
+	}
+
 	dealershipReq := &proto.Dealership{
-		OwnerId:      createDealershipRequest.OwnerID,
+		OwnerId:      ownerId,
 		Name:         createDealershipRequest.Name,
 		DisplayName:  createDealershipRequest.DisplayName,
 		Address:      createDealershipRequest.Address,

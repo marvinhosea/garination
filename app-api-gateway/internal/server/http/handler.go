@@ -23,7 +23,7 @@ func (s *Server) maphandlers() error {
 	dealershipUsecase := dealershipusecase.NewDealershipUsecase(dealershipRepo)
 
 	// initialise middlewares
-	middlewareManager := middleware.NewMiddlewareManager(s.promMetrics)
+	middlewareManager := middleware.NewMiddlewareManager(s.promMetrics, s.casdoorClient)
 
 	// map middlewares
 	s.engine.Use(middlewareManager.RequestMetrics)

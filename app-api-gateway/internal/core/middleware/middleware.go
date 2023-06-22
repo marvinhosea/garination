@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"garination.com/gateway/internal/platform/casdoor"
 	"garination.com/gateway/internal/platform/prom"
 	"github.com/gin-gonic/gin"
 )
@@ -17,11 +18,13 @@ type MiddlewareManager interface {
 }
 
 type middlewareManager struct {
-	promMetrics prom.Metrics
+	promMetrics   prom.Metrics
+	casdoorClient casdoor.CasdoorClient
 }
 
-func NewMiddlewareManager(promMetrics prom.Metrics) MiddlewareManager {
+func NewMiddlewareManager(promMetrics prom.Metrics, casdoorClient casdoor.CasdoorClient) MiddlewareManager {
 	return &middlewareManager{
-		promMetrics: promMetrics,
+		promMetrics:   promMetrics,
+		casdoorClient: casdoorClient,
 	}
 }

@@ -66,6 +66,7 @@ func (d databaseRepo) InsertUserMeta(ctx context.Context, arg model.UserMeta) (*
 func (d databaseRepo) UpdateUserMeta(ctx context.Context, arg model.UserMeta) (*model.UserMeta, error) {
 	req := &proto.UpdateUserMetaRequest{
 		UserMeta: &proto.UserMetum{
+			UserId:       arg.UserID,
 			UserMetaId:   arg.UserMetaID,
 			FacebookUrl:  arg.FacebookUrl,
 			TwitterUrl:   arg.TwitterUrl,

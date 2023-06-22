@@ -10,6 +10,6 @@ func MapDealershipRoutes(group *gin.RouterGroup, h ports.DealerShiphandler, mw m
 	group.GET("/:id", h.GetDealershipByID())
 	group.GET("/user/:id", mw.Auth, h.GetDealershipByUserID())
 	group.PUT("/:id", mw.Auth, h.UpdateDealership())
-	group.POST("/dealership", mw.Auth, h.CreateDealership())
+	group.POST("/", mw.Auth, h.CreateDealership())
 	group.DELETE("/:id", mw.Auth, h.DeleteDealership())
 }
