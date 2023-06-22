@@ -6,6 +6,9 @@ import (
 	"garination.com/gateway/internal/core/auth/dto"
 	"garination.com/gateway/internal/core/auth/model"
 	"garination.com/gateway/internal/core/auth/ports"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"log"
 )
 
 type authUsecase struct {
@@ -70,7 +73,13 @@ func (a authUsecase) UpdateUserMeta(ctx context.Context, req *dto.AuthUpdateUser
 	}
 
 	userMetaRes, err := a.authDBRepo.UpdateUserMeta(ctx, userMeta)
-	if err != nil {
+	if err != nil && status.Code(err) == codes.NotFound {
+		log.Println(err, "inserting user meta")
+		userMetaRes, err = a.authDBRepo.InsertUserMeta(ctx, userMeta)
+		if err != nil {
+			return nil, err
+		}
+	} else if err != nil {
 		return nil, err
 	}
 
