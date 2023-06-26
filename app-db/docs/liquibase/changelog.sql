@@ -292,4 +292,9 @@ ALTER TABLE "car_ratings"
 ALTER TABLE "car_likes"
     ADD COLUMN deleted_at TIMESTAMP;
 
+-- changeSet oyamo:9
+ALTER TABLE "user_meta"
+    ADD COLUMN created_at TIMESTAMP;
 
+ALTER TABLE "user_meta"
+    ADD COLUMN updated_at TIMESTAMP;

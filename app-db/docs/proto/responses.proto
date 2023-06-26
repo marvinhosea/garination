@@ -39,6 +39,10 @@ message UpdateDealershipResponse {
 message DeleteDealershipResponse {
 }
 
+message ChangeDealershipResponse {
+   string dealership_id = 1;
+}
+
 message InsertCarBrandResponse {
   string car_brand_id = 1;
 }
@@ -73,13 +77,15 @@ message GetCarExtraFeaturesPaginatedResponse {
 }
 
 message UpdateCarExtraFeatureResponse {
-  repeated string car_extra_feature_id = 1;
+   string car_extra_feature_id = 1;
 }
 
-
+message DeleteCarExtraFeatureResponse {
+  string car_extra_feature_id = 1;
+}
 
 message CreateCarImageResponse {
-  string car_image_id = 1;
+  repeated string car_image_ids = 1;
 }
 
 message UpdateCarImageResponse {
@@ -148,15 +154,15 @@ message GetCarByFieldResponse {
 }
 
 message GetCarByDealershipCountResponse {
-  int32 total_cars = 1;
+  int64 total_cars = 1;
 }
 
 message GetCarByDealerCountResponse {
-  int32 total_cars = 1;
+  int64 total_cars = 1;
 }
 
 message GetCarByCarBrandCountResponse {
-  int32 total_cars = 1;
+  int64 total_cars = 1;
 }
 
 message GetCarByFieldCountResponse {

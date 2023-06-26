@@ -10,6 +10,7 @@ service DatabaseService {
   rpc GetUserMeta(GetUserMetaRequest) returns (GetUserMetaResponse);
   rpc InsertUserMeta(InsertUserMetaRequest) returns (InsertUserMetaResponse);
   rpc UpdateUserMeta(UpdateUserMetaRequest) returns (UpdateUserMetaResponse);
+  rpc ChangeDealership(ChangeDealershipRequest) returns (ChangeDealershipResponse);
 
   rpc InsertDealership(InsertDealershipRequest) returns (InsertDealershipResponse);
   rpc UpdateDealership(UpdateDealershipRequest) returns (UpdateDealershipResponse);
@@ -26,6 +27,7 @@ service DatabaseService {
   rpc InsertCarExtraFeature(InsertCarExtraFeatureRequest) returns (InsertCarExtraFeatureResponse);
   rpc UpdateCarExtraFeature(UpdateCarExtraFeatureRequest) returns (UpdateCarExtraFeatureResponse);
   rpc GetCarExtraFeaturePaginated(GetCarExtraFeaturesPaginatedRequest) returns (GetCarExtraFeaturesPaginatedResponse);
+  rpc DeleteCarExtraFeature(DeleteCarExtraFeatureRequest) returns (DeleteCarExtraFeatureResponse);
 
   rpc CreateCarImage(CreateCarImageRequest) returns (CreateCarImageResponse);
   rpc UpdateCarImage(UpdateCarImageRequest) returns (UpdateCarImageResponse);

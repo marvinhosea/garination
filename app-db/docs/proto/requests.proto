@@ -49,6 +49,11 @@ message UpdateCarBrandRequest {
   CarBrand car_brand = 1;
 }
 
+message ChangeDealershipRequest {
+  string user_id = 1;
+  string dealership_id = 2;
+}
+
 message GetCarBrandsPaginatedRequest {
   int32 offset = 1;
   int32 limit = 2;
@@ -74,6 +79,10 @@ message GetCarExtraFeaturesPaginatedRequest {
   int32 offset = 1;
   int32 limit = 2;
   string car_id = 3;
+}
+
+message DeleteCarExtraFeatureRequest {
+  string car_extra_feature_id = 1;
 }
 
 message CreateCarImageRequest {
@@ -136,21 +145,24 @@ message SearchCarsPaginatedRequest {
   string query = 3;
 }
 
+enum Condition {
+  EQUAL = 0;
+  GREATER_THAN = 1;
+  LESS_THAN = 2;
+  GREATER_THAN_OR_EQUAL = 3;
+  LESS_THAN_OR_EQUAL = 4;
+}
 
 message CarFilter {
-  enum Condition {
-    EQUAL = 0;
-    GREATER_THAN = 1;
-    LESS_THAN = 2;
-    GREATER_THAN_OR_EQUAL = 3;
-    LESS_THAN_OR_EQUAL = 4;
-  }
+
   Condition condition = 1;
   string value = 2;
 }
 
 message GetCarByFieldRequest {
    map<string, CarFilter> filter = 1;
+    int32 offset = 2;
+    int32 limit = 3;
 }
 
 message GetCarByDealerCountRequest {

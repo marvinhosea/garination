@@ -114,3 +114,37 @@ type AuthGetUserMetaResponse struct {
 	WebsiteUrl   string `json:"website_url"`
 	DealershipID string `json:"dealership_id"`
 }
+
+type AuthChangeUserDealershipRequest struct {
+	UserID       string `json:"user_id"`
+	DealershipID string `json:"dealership_id"`
+}
+
+func (r AuthChangeUserDealershipRequest) Validate() error {
+
+	var err error
+	if r.UserID == "" {
+		err = errors.Join(err, errors.New("user_id is required"))
+	}
+
+	if r.DealershipID == "" {
+		err = errors.Join(err, errors.New("dealership_id is required"))
+	}
+
+	// check if it is a valid uuid
+	_, err = uuid.Parse(r.UserID)
+	if err != nil {
+		err = errors.Join(err, errors.New("user_id is not a valid uuid"))
+	}
+
+	_, err = uuid.Parse(r.DealershipID)
+	if err != nil {
+		err = errors.Join(err, errors.New("dealership_id is not a valid uuid"))
+	}
+
+	return err
+}
+
+type AuthChangeUserDealershipResponse struct {
+	DealershipID string `json:"dealership_id"`
+}

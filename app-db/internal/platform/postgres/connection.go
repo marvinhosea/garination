@@ -9,7 +9,7 @@ import (
 
 type Connection struct {
 	Queries *Queries
-	conn    *pgx.Conn
+	Conn    *pgx.Conn
 }
 
 // NewConnection return new PGX connection pool
@@ -26,5 +26,5 @@ func NewConnection(cfg *config.Postgres) (*Connection, error) {
 }
 
 func (c *Connection) Close() {
-	c.conn.Close(context.Background())
+	c.Conn.Close(context.Background())
 }

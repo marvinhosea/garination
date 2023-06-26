@@ -11,6 +11,21 @@ type databaseRepo struct {
 	client proto.DatabaseServiceClient
 }
 
+func (d databaseRepo) ChangeUserDealership(ctx context.Context, arg model.UserMeta) (string, error) {
+	req := &proto.ChangeDealershipRequest{
+		UserId:       arg.UserID,
+		DealershipId: arg.DealershipID,
+	}
+
+	res, err := d.client.ChangeDealership(ctx, req)
+
+	if err != nil {
+		return "", err
+	}
+
+	return res.DealershipId, nil
+}
+
 func (d databaseRepo) GetUserMeta(ctx context.Context, userID string) (*model.UserMeta, error) {
 	req := &proto.GetUserMetaRequest{
 		UserId: userID,

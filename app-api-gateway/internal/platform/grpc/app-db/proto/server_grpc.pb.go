@@ -23,6 +23,7 @@ const (
 	DatabaseService_GetUserMeta_FullMethodName                    = "/DatabaseService/GetUserMeta"
 	DatabaseService_InsertUserMeta_FullMethodName                 = "/DatabaseService/InsertUserMeta"
 	DatabaseService_UpdateUserMeta_FullMethodName                 = "/DatabaseService/UpdateUserMeta"
+	DatabaseService_ChangeDealership_FullMethodName               = "/DatabaseService/ChangeDealership"
 	DatabaseService_InsertDealership_FullMethodName               = "/DatabaseService/InsertDealership"
 	DatabaseService_UpdateDealership_FullMethodName               = "/DatabaseService/UpdateDealership"
 	DatabaseService_GetDealershipByUserId_FullMethodName          = "/DatabaseService/GetDealershipByUserId"
@@ -36,6 +37,7 @@ const (
 	DatabaseService_InsertCarExtraFeature_FullMethodName          = "/DatabaseService/InsertCarExtraFeature"
 	DatabaseService_UpdateCarExtraFeature_FullMethodName          = "/DatabaseService/UpdateCarExtraFeature"
 	DatabaseService_GetCarExtraFeaturePaginated_FullMethodName    = "/DatabaseService/GetCarExtraFeaturePaginated"
+	DatabaseService_DeleteCarExtraFeature_FullMethodName          = "/DatabaseService/DeleteCarExtraFeature"
 	DatabaseService_CreateCarImage_FullMethodName                 = "/DatabaseService/CreateCarImage"
 	DatabaseService_UpdateCarImage_FullMethodName                 = "/DatabaseService/UpdateCarImage"
 	DatabaseService_GetCarImagePaginated_FullMethodName           = "/DatabaseService/GetCarImagePaginated"
@@ -63,6 +65,7 @@ type DatabaseServiceClient interface {
 	GetUserMeta(ctx context.Context, in *GetUserMetaRequest, opts ...grpc.CallOption) (*GetUserMetaResponse, error)
 	InsertUserMeta(ctx context.Context, in *InsertUserMetaRequest, opts ...grpc.CallOption) (*InsertUserMetaResponse, error)
 	UpdateUserMeta(ctx context.Context, in *UpdateUserMetaRequest, opts ...grpc.CallOption) (*UpdateUserMetaResponse, error)
+	ChangeDealership(ctx context.Context, in *ChangeDealershipRequest, opts ...grpc.CallOption) (*ChangeDealershipResponse, error)
 	InsertDealership(ctx context.Context, in *InsertDealershipRequest, opts ...grpc.CallOption) (*InsertDealershipResponse, error)
 	UpdateDealership(ctx context.Context, in *UpdateDealershipRequest, opts ...grpc.CallOption) (*UpdateDealershipResponse, error)
 	GetDealershipByUserId(ctx context.Context, in *GetUserDealershipRequest, opts ...grpc.CallOption) (*GetDealershipByUserIDResponse, error)
@@ -76,6 +79,7 @@ type DatabaseServiceClient interface {
 	InsertCarExtraFeature(ctx context.Context, in *InsertCarExtraFeatureRequest, opts ...grpc.CallOption) (*InsertCarExtraFeatureResponse, error)
 	UpdateCarExtraFeature(ctx context.Context, in *UpdateCarExtraFeatureRequest, opts ...grpc.CallOption) (*UpdateCarExtraFeatureResponse, error)
 	GetCarExtraFeaturePaginated(ctx context.Context, in *GetCarExtraFeaturesPaginatedRequest, opts ...grpc.CallOption) (*GetCarExtraFeaturesPaginatedResponse, error)
+	DeleteCarExtraFeature(ctx context.Context, in *DeleteCarExtraFeatureRequest, opts ...grpc.CallOption) (*DeleteCarExtraFeatureResponse, error)
 	CreateCarImage(ctx context.Context, in *CreateCarImageRequest, opts ...grpc.CallOption) (*CreateCarImageResponse, error)
 	UpdateCarImage(ctx context.Context, in *UpdateCarImageRequest, opts ...grpc.CallOption) (*UpdateCarImageResponse, error)
 	GetCarImagePaginated(ctx context.Context, in *GetCarImagesPaginatedRequest, opts ...grpc.CallOption) (*GetCarImagesPaginatedResponse, error)
@@ -133,6 +137,15 @@ func (c *databaseServiceClient) InsertUserMeta(ctx context.Context, in *InsertUs
 func (c *databaseServiceClient) UpdateUserMeta(ctx context.Context, in *UpdateUserMetaRequest, opts ...grpc.CallOption) (*UpdateUserMetaResponse, error) {
 	out := new(UpdateUserMetaResponse)
 	err := c.cc.Invoke(ctx, DatabaseService_UpdateUserMeta_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) ChangeDealership(ctx context.Context, in *ChangeDealershipRequest, opts ...grpc.CallOption) (*ChangeDealershipResponse, error) {
+	out := new(ChangeDealershipResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_ChangeDealership_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -250,6 +263,15 @@ func (c *databaseServiceClient) UpdateCarExtraFeature(ctx context.Context, in *U
 func (c *databaseServiceClient) GetCarExtraFeaturePaginated(ctx context.Context, in *GetCarExtraFeaturesPaginatedRequest, opts ...grpc.CallOption) (*GetCarExtraFeaturesPaginatedResponse, error) {
 	out := new(GetCarExtraFeaturesPaginatedResponse)
 	err := c.cc.Invoke(ctx, DatabaseService_GetCarExtraFeaturePaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) DeleteCarExtraFeature(ctx context.Context, in *DeleteCarExtraFeatureRequest, opts ...grpc.CallOption) (*DeleteCarExtraFeatureResponse, error) {
+	out := new(DeleteCarExtraFeatureResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_DeleteCarExtraFeature_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -417,6 +439,7 @@ type DatabaseServiceServer interface {
 	GetUserMeta(context.Context, *GetUserMetaRequest) (*GetUserMetaResponse, error)
 	InsertUserMeta(context.Context, *InsertUserMetaRequest) (*InsertUserMetaResponse, error)
 	UpdateUserMeta(context.Context, *UpdateUserMetaRequest) (*UpdateUserMetaResponse, error)
+	ChangeDealership(context.Context, *ChangeDealershipRequest) (*ChangeDealershipResponse, error)
 	InsertDealership(context.Context, *InsertDealershipRequest) (*InsertDealershipResponse, error)
 	UpdateDealership(context.Context, *UpdateDealershipRequest) (*UpdateDealershipResponse, error)
 	GetDealershipByUserId(context.Context, *GetUserDealershipRequest) (*GetDealershipByUserIDResponse, error)
@@ -430,6 +453,7 @@ type DatabaseServiceServer interface {
 	InsertCarExtraFeature(context.Context, *InsertCarExtraFeatureRequest) (*InsertCarExtraFeatureResponse, error)
 	UpdateCarExtraFeature(context.Context, *UpdateCarExtraFeatureRequest) (*UpdateCarExtraFeatureResponse, error)
 	GetCarExtraFeaturePaginated(context.Context, *GetCarExtraFeaturesPaginatedRequest) (*GetCarExtraFeaturesPaginatedResponse, error)
+	DeleteCarExtraFeature(context.Context, *DeleteCarExtraFeatureRequest) (*DeleteCarExtraFeatureResponse, error)
 	CreateCarImage(context.Context, *CreateCarImageRequest) (*CreateCarImageResponse, error)
 	UpdateCarImage(context.Context, *UpdateCarImageRequest) (*UpdateCarImageResponse, error)
 	GetCarImagePaginated(context.Context, *GetCarImagesPaginatedRequest) (*GetCarImagesPaginatedResponse, error)
@@ -465,6 +489,9 @@ func (UnimplementedDatabaseServiceServer) InsertUserMeta(context.Context, *Inser
 }
 func (UnimplementedDatabaseServiceServer) UpdateUserMeta(context.Context, *UpdateUserMetaRequest) (*UpdateUserMetaResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserMeta not implemented")
+}
+func (UnimplementedDatabaseServiceServer) ChangeDealership(context.Context, *ChangeDealershipRequest) (*ChangeDealershipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeDealership not implemented")
 }
 func (UnimplementedDatabaseServiceServer) InsertDealership(context.Context, *InsertDealershipRequest) (*InsertDealershipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InsertDealership not implemented")
@@ -504,6 +531,9 @@ func (UnimplementedDatabaseServiceServer) UpdateCarExtraFeature(context.Context,
 }
 func (UnimplementedDatabaseServiceServer) GetCarExtraFeaturePaginated(context.Context, *GetCarExtraFeaturesPaginatedRequest) (*GetCarExtraFeaturesPaginatedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCarExtraFeaturePaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) DeleteCarExtraFeature(context.Context, *DeleteCarExtraFeatureRequest) (*DeleteCarExtraFeatureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCarExtraFeature not implemented")
 }
 func (UnimplementedDatabaseServiceServer) CreateCarImage(context.Context, *CreateCarImageRequest) (*CreateCarImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCarImage not implemented")
@@ -637,6 +667,24 @@ func _DatabaseService_UpdateUserMeta_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DatabaseServiceServer).UpdateUserMeta(ctx, req.(*UpdateUserMetaRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_ChangeDealership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeDealershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).ChangeDealership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_ChangeDealership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).ChangeDealership(ctx, req.(*ChangeDealershipRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -871,6 +919,24 @@ func _DatabaseService_GetCarExtraFeaturePaginated_Handler(srv interface{}, ctx c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DatabaseServiceServer).GetCarExtraFeaturePaginated(ctx, req.(*GetCarExtraFeaturesPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_DeleteCarExtraFeature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCarExtraFeatureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).DeleteCarExtraFeature(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_DeleteCarExtraFeature_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).DeleteCarExtraFeature(ctx, req.(*DeleteCarExtraFeatureRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1205,6 +1271,10 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DatabaseService_UpdateUserMeta_Handler,
 		},
 		{
+			MethodName: "ChangeDealership",
+			Handler:    _DatabaseService_ChangeDealership_Handler,
+		},
+		{
 			MethodName: "InsertDealership",
 			Handler:    _DatabaseService_InsertDealership_Handler,
 		},
@@ -1255,6 +1325,10 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCarExtraFeaturePaginated",
 			Handler:    _DatabaseService_GetCarExtraFeaturePaginated_Handler,
+		},
+		{
+			MethodName: "DeleteCarExtraFeature",
+			Handler:    _DatabaseService_DeleteCarExtraFeature_Handler,
 		},
 		{
 			MethodName: "CreateCarImage",

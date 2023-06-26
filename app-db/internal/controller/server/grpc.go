@@ -5,7 +5,6 @@ import (
 	"garination.com/db/internal/controller/handlers"
 	"garination.com/db/internal/core/adapters/repository"
 	"garination.com/db/internal/core/adapters/service"
-	"garination.com/db/internal/core/adapters/storage"
 	"garination.com/db/internal/platform/postgres"
 	"garination.com/db/internal/platform/prom"
 	"garination.com/db/sdk/proto"
@@ -35,20 +34,18 @@ func (s *Server) Run() {
 		log.Panic("error:", err)
 	}
 
-	// Create User storage
-	userStorage := storage.NewUserPostgresStorage(postgresClient)
-	dealershipStorage := storage.NewDealershipPostgresStorage(postgresClient)
-
 	// create  repository
-	userRepo := repository.NewUserRepo(userStorage)
-	dealershipRepo := repository.NewDealershipRepo(dealershipStorage)
+	userRepo := repository.NewUserRepo(postgresClient)
+	dealershipRepo := repository.NewDealershipRepo(postgresClient)
+	carRepo := repository.NewCarRepository(postgresClient)
 
 	// create user service
 	userService := service.NewUserService(userRepo)
 	dealershipService := service.NewDealershipService(dealershipRepo, userRepo)
+	carService := service.NewCarService(carRepo, userRepo, dealershipRepo)
 
 	// create handler
-	grpcHandler := handlers.NewHandler(promMetrics, userService, dealershipService)
+	grpcHandler := handlers.NewHandler(promMetrics, userService, dealershipService, carService)
 
 	// run server
 	lis, err := net.Listen("tcp", ":"+s.cfg.App.Port)

@@ -1,8 +1,13 @@
 package common
 
-import "errors"
+import (
+	"errors"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"log"
+	"net/http"
+)
 
-var NotFoundErr = errors.New("no rows in result set")
 var MissingData = errors.New("missing data")
 var InvalidData = errors.New("invalid data")
 
@@ -14,25 +19,33 @@ type HttpReponse struct {
 }
 
 func ResponseFromError(err error) (int, HttpReponse) {
-	var code int = 400
+	var code int = -1
 	var message string = "Bad request"
 
-	switch {
-	case errors.Is(err, NotFoundErr):
-		code = 404
-		message = "Not found"
+	var errorCode = status.Code(err)
+
+	switch errorCode {
+	case codes.NotFound:
+		code = http.StatusNotFound
+		message = "We looked everywhere but couldn't find what you were looking for"
 		break
-	case errors.Is(err, MissingData):
-		code = 400
-		message = "Invalid request"
+	case codes.InvalidArgument:
+		code = http.StatusBadRequest
+		message = "Your message is probably badly formatted"
 		break
-	case errors.Is(err, InvalidData):
-		code = 400
-		message = "Invalid request"
+	case codes.AlreadyExists:
+		code = http.StatusConflict
+		message = "The resource you are trying to create already exists"
+		break
+	case codes.PermissionDenied:
+		code = http.StatusForbidden
+		message = "You don't have permission to do that"
 		break
 	default:
+		log.Printf("Error: %v", err)
+		log.Printf("Error code: %v", errorCode)
 		code = 500
-		message = "Internal server error"
+		message = "We can't figure out what went wrong"
 		break
 	}
 
@@ -40,6 +53,10 @@ func ResponseFromError(err error) (int, HttpReponse) {
 		Success: false,
 		Message: message,
 		Data:    nil,
-		Errors:  []string{err.Error()},
+		Errors:  []string{status.Convert(err).Message()},
 	}
+}
+
+func ResponseFromErrorWithDetails(code codes.Code, message string) (int, HttpReponse) {
+	return ResponseFromError(status.Error(code, message))
 }
