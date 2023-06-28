@@ -5,6 +5,8 @@ import (
 	"garination.com/gateway/internal/platform/cache"
 	"garination.com/gateway/internal/platform/casdoor"
 	app_db "garination.com/gateway/internal/platform/grpc/app-db"
+	"garination.com/gateway/internal/platform/prom"
+	"garination.com/gateway/internal/platform/wasabi"
 	"garination.com/gateway/internal/server/http"
 	"log"
 )
@@ -33,8 +35,23 @@ func Execute() {
 		log.Panicf("Failed to initialise casdoor client: %v", err)
 	}
 
+	// init s3 client
+	wasabiClient, err := wasabi.NewWasabiClient(configurations.S3)
+	if err != nil {
+		log.Panicf("Failed to initialise wasabi client: %v", err)
+	}
+
+	deps := http.Dependencies{
+		RedisClient:   redisClient,
+		AppDbClient:   appDbClient,
+		CasdoorClient: casdoorClient,
+		WasabiClient:  wasabiClient,
+		Config:        &configurations,
+		PromMetrics:   prom.NewMetrics(),
+	}
+
 	// start server
-	httpServer := http.NewServer(&configurations, redisClient, appDbClient, casdoorClient)
+	httpServer := http.NewServer(deps)
 	if err := httpServer.Start(); err != nil {
 		log.Panicf("Failed to start server: %v", err)
 	}

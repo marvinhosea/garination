@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"garination.com/gateway/internal/core/common"
+	"garination.com/gateway/internal/core/common/model"
 	"github.com/gin-gonic/gin"
 )
 
@@ -40,7 +40,7 @@ func (m middlewareManager) Cors(ctx *gin.Context) {
 
 	} else {
 		ctx.AbortWithStatus(403)
-		ctx.JSON(403, common.HttpReponse{
+		ctx.JSON(403, model.HttpReponse{
 			Success: false,
 			Message: "Forbidden",
 			Data:    nil,

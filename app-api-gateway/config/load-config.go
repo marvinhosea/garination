@@ -101,5 +101,26 @@ func LoadConfig() (Config, error) {
 		return config, fmt.Errorf("APP_METRICS_PORT environment variable not set")
 	}
 
+	// Load S3 configuration
+	config.S3.Region, found = os.LookupEnv("AWS_REGION")
+	if !found {
+		return config, fmt.Errorf("AWS_REGION environment variable not set")
+	}
+
+	config.S3.Endpoint, found = os.LookupEnv("AWS_ENDPOINT")
+	if !found {
+		return config, fmt.Errorf("AWS_ENDPOINT environment variable not set")
+	}
+
+	config.S3.AccessKey, found = os.LookupEnv("AWS_SECRET_ACCESS_KEY")
+	if !found {
+		return config, fmt.Errorf("AWS_SECRET_ACCESS_KEY environment variable not set")
+	}
+
+	config.S3.AccessId, found = os.LookupEnv("AWS_ACCESS_KEY_ID")
+	if !found {
+		return config, fmt.Errorf("AWS_ACCESS_KEY_ID environment variable not set")
+	}
+
 	return config, nil
 }

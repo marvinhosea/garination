@@ -1,12 +1,12 @@
 package middleware
 
 import (
-	"garination.com/gateway/internal/core/common"
+	"garination.com/gateway/internal/core/common/model"
 	"github.com/gin-gonic/gin"
 )
 
 func (m middlewareManager) Auth(ctx *gin.Context) {
-	var unauthorised = common.HttpReponse{
+	var unauthorised = model.HttpReponse{
 		Success: false,
 		Message: "Sorry, you are not authorised.",
 		Data:    nil,

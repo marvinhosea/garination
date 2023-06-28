@@ -110,18 +110,19 @@ UPDATE dealership SET deleted_at = now(), updated_at = now() WHERE dealership_id
 
 -- name: CreateCarBrand :one
 INSERT INTO car_brands (
-    brand_id, name, logo_url, created_at,
+    brand_id, name, country, logo_url, created_at,
     updated_at
 )
 VALUES
-    ($1, $2, $3, now(), now()) RETURNING *;
+    ($1, $2, $3, $4, now(), now()) RETURNING *;
 -- name: UpdateCarBrand :one
 UPDATE
     car_brands
 SET
     name = $2,
     logo_url = $3,
-    updated_at = $4
+    country = $4,
+    updated_at = now()
 WHERE
         brand_id = $1 RETURNING *;
 -- name: ListCarBrandsPaged :many
@@ -216,13 +217,14 @@ INSERT INTO cars (
     car_id, brand_id, model,
     year, price, mileage, color, transmission,
     fuel_type, engine_capacity, description,
-    dealership_id, dealer_id, created_at,
-    updated_at
+    dealership_id, dealer_id, comfort_specifications, safety_specifications, performance_specifications,
+    horse_power, torque, torque_rpm ,ownership, title,
+    created_at,updated_at
 )
 VALUES
     (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
-        $11, $12, $13, now(), now()
+        $11, $12, $13, $14, $15, $16, $17, $18, $19, $20,$21, now(), now()
     ) RETURNING *;
 
 -- name: UpdateCar :one
@@ -241,6 +243,13 @@ SET
     description = $11,
     dealership_id = $12,
     dealer_id = $13,
+    status = $14,
+    horse_power = $15,
+    torque = $16,
+    safety_specifications = $17,
+    comfort_specifications = $18,
+    ownership = $19,
+    title = $20,
     updated_at = now()
 WHERE
         car_id = $1 RETURNING car_id;
@@ -299,3 +308,5 @@ SELECT * FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY crea
 
 -- name: DeleteCar :one
 UPDATE cars SET deleted_at = now() , updated_at = now() WHERE car_id = $1 RETURNING car_id;
+
+--

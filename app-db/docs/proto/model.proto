@@ -41,6 +41,7 @@ message CarBrand {
   string brand_id = 1;
   string name = 2;
   string logo_url = 3;
+  string country = 6;
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
 }
@@ -64,13 +65,26 @@ message Car {
   string color = 8;
   string transmission = 9;
   string fuel_type = 10;
-  string engine_capacity = 11;
+  int32 engine_capacity = 11;
   string description = 12;
   string dealership_id = 13;
   string dealer_id = 14;
+  string status = 17;
+  string title = 18;
+  bool is_featured = 19;
+  bool is_sold = 20;
+  int32 horse_power = 21;
+  int32 torque = 22;
+  int32 torque_rpm = 23;
+  repeated string safety_specifications = 24;
+  repeated string performance_specifications = 25;
+  repeated string comfort_specifications = 26;
+  string location = 27;
+  string ownership = 28;
   google.protobuf.Timestamp created_at = 15;
   google.protobuf.Timestamp updated_at = 16;
 }
+
 
 message SingleCar {
   Car car = 1;

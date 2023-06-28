@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"garination.com/gateway/internal/core/common"
+	"garination.com/gateway/internal/core/common/model"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net"
@@ -35,7 +35,7 @@ func (m middlewareManager) RecoverHandler(ctx *gin.Context, err any) {
 	ctx.Writer.WriteHeader(http.StatusInternalServerError)
 
 	// Send the "something went wrong" response
-	ctx.JSON(http.StatusInternalServerError, common.HttpReponse{
+	ctx.JSON(http.StatusInternalServerError, model.HttpReponse{
 		Message: "Something went wrong, and it's not your fault.",
 	})
 }
@@ -112,7 +112,7 @@ func (m middlewareManager) Recover(c *gin.Context) {
 				c.Writer.WriteHeader(http.StatusInternalServerError)
 
 				// Send the "something went wrong" response
-				c.JSON(http.StatusInternalServerError, common.HttpReponse{
+				c.JSON(http.StatusInternalServerError, model.HttpReponse{
 					Message: "Something went wrong, and it's not your fault.",
 				})
 			}

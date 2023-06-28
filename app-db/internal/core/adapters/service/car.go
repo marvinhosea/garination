@@ -119,6 +119,16 @@ func (c carService) InsertCar(ctx context.Context, arg postgres.InsertCarParams)
 		return postgres.Car{}, errors.New("invalid_request: dealer or dealership id is required")
 	}
 
+	if arg.DealershipID.String != "" && arg.DealerID.String == "" {
+		// make daler id null
+		arg.DealerID = pgtype.Text{String: "", Valid: false}
+	}
+
+	if arg.DealerID.String != "" && arg.DealershipID.String == "" {
+		// make dealership id null
+		arg.DealershipID = pgtype.Text{String: "", Valid: false}
+	}
+
 	if arg.DealershipID.String != "" {
 		_, err := c.dealershipRepo.GetDealershipByID(ctx, arg.DealershipID.String)
 		if err != nil {

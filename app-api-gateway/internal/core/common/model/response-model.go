@@ -1,15 +1,11 @@
-package common
+package model
 
 import (
-	"errors"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"log"
 	"net/http"
 )
-
-var MissingData = errors.New("missing data")
-var InvalidData = errors.New("invalid data")
 
 type HttpReponse struct {
 	Success bool        `json:"success"`

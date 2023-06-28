@@ -27,34 +27,34 @@ type CasdoorClient interface {
 	DeleteToken(name string) (bool, error)
 }
 
-type casdoorClient struct {
+type casdoorClientImpl struct {
 }
 
-func (c casdoorClient) RefreshOAuthToken(refreshToken string) (*oauth2.Token, error) {
+func (c casdoorClientImpl) RefreshOAuthToken(refreshToken string) (*oauth2.Token, error) {
 	return casdoorsdk.RefreshOAuthToken(refreshToken)
 }
 
-func (c casdoorClient) DeleteToken(name string) (bool, error) {
+func (c casdoorClientImpl) DeleteToken(name string) (bool, error) {
 	return casdoorsdk.DeleteToken(name)
 }
 
-func (c casdoorClient) GetOAuthToken(code string, state string) (*oauth2.Token, error) {
+func (c casdoorClientImpl) GetOAuthToken(code string, state string) (*oauth2.Token, error) {
 	return casdoorsdk.GetOAuthToken(code, state)
 }
 
-func (c casdoorClient) ParseJwtToken(token string) (*casdoorsdk.Claims, error) {
+func (c casdoorClientImpl) ParseJwtToken(token string) (*casdoorsdk.Claims, error) {
 	return casdoorsdk.ParseJwtToken(token)
 }
 
-func (c casdoorClient) GetSigninUrl(redirectUri string) string {
+func (c casdoorClientImpl) GetSigninUrl(redirectUri string) string {
 	return casdoorsdk.GetSigninUrl(redirectUri)
 }
 
-func (c casdoorClient) GetSignupUrl(enablePassword bool, redirectUri string) string {
+func (c casdoorClientImpl) GetSignupUrl(enablePassword bool, redirectUri string) string {
 	return casdoorsdk.GetSignupUrl(enablePassword, redirectUri)
 }
 
-func (c casdoorClient) GetPaginationUsers(filter PaginationUsersFilter) ([]*casdoorsdk.User, int, error) {
+func (c casdoorClientImpl) GetPaginationUsers(filter PaginationUsersFilter) ([]*casdoorsdk.User, int, error) {
 	filterMap := map[string]string{}
 	filterMap["p"] = strconv.Itoa(filter.Page)
 
@@ -71,15 +71,15 @@ func (c casdoorClient) GetPaginationUsers(filter PaginationUsersFilter) ([]*casd
 	return casdoorsdk.GetPaginationUsers(filter.Page, filter.PageSize, filterMap)
 }
 
-func (c casdoorClient) GetUser(username string) (*casdoorsdk.User, error) {
+func (c casdoorClientImpl) GetUser(username string) (*casdoorsdk.User, error) {
 	return casdoorsdk.GetUser(username)
 }
 
-func (c casdoorClient) GetUserByEmail(email string) (*casdoorsdk.User, error) {
+func (c casdoorClientImpl) GetUserByEmail(email string) (*casdoorsdk.User, error) {
 	return casdoorsdk.GetUserByEmail(email)
 }
 
-func (c casdoorClient) GetPermission(name string) (*casdoorsdk.Permission, error) {
+func (c casdoorClientImpl) GetPermission(name string) (*casdoorsdk.Permission, error) {
 	return casdoorsdk.GetPermission(name)
 }
 
@@ -110,5 +110,5 @@ func NewCasdoorClient(cfg config.Casdoor) (CasdoorClient, error) {
 		return nil, err
 	}
 	casdoorsdk.InitConfig(cfg.Endpoint, cfg.ClientId, cfg.ClientSecret, string(certificate), cfg.OrganisationName, cfg.ApplicationName)
-	return &casdoorClient{}, nil
+	return &casdoorClientImpl{}, nil
 }

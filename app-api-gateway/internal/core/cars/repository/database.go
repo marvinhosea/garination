@@ -115,6 +115,6 @@ func (d databaseRepoImpl) DeleteCar(ctx context.Context, in *proto.DeleteCarRequ
 	return d.dbService.DeleteCar(ctx, in, opts...)
 }
 
-func NewDatabaseRepo(dbService proto.DatabaseServiceClient) ports.CarDatabaseRepo {
+func NewCarRepo(dbService proto.DatabaseServiceClient) ports.CarDatabaseRepo {
 	return &databaseRepoImpl{dbService: dbService}
 }

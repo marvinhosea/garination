@@ -18,6 +18,7 @@ func (h *Handler) InsertCarBrand(ctx context.Context, request *proto.InsertCarBr
 	req := postgres.CreateCarBrandParams{
 		Name:    pgtype.Text{String: request.CarBrand.Name, Valid: true},
 		LogoUrl: pgtype.Text{String: request.CarBrand.LogoUrl, Valid: true},
+		Country: pgtype.Text{String: request.CarBrand.Country, Valid: true},
 	}
 
 	brand, err := h.carService.CreateCarBrand(ctx, req)

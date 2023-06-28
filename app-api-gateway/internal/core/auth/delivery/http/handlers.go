@@ -3,7 +3,7 @@ package http
 import (
 	"garination.com/gateway/internal/core/auth/dto"
 	"garination.com/gateway/internal/core/auth/ports"
-	"garination.com/gateway/internal/core/common"
+	"garination.com/gateway/internal/core/common/model"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
@@ -15,7 +15,7 @@ type handlerImpl struct {
 
 func (h handlerImpl) ChangeUserDealership() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		var response common.HttpReponse
+		var response model.HttpReponse
 		if context.IsAborted() {
 			return
 		}
@@ -23,14 +23,14 @@ func (h handlerImpl) ChangeUserDealership() gin.HandlerFunc {
 		// get userid from param
 		userID := context.Param("user_id")
 		if userID == "" {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, "user_id is required")
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, "user_id is required")
 			context.JSON(code, res)
 			return
 		}
 
 		// validate uuid
 		if _, err := uuid.Parse(userID); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
@@ -40,13 +40,13 @@ func (h handlerImpl) ChangeUserDealership() gin.HandlerFunc {
 
 		var changeUserDealershipRequest dto.AuthChangeUserDealershipRequest
 		if err := context.ShouldBindJSON(&changeUserDealershipRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
 
 		if err := changeUserDealershipRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
@@ -54,7 +54,7 @@ func (h handlerImpl) ChangeUserDealership() gin.HandlerFunc {
 		// call usecase
 		changeUserDealershipResponse, err := h.authUseCase.ChangeUserDealership(context, &changeUserDealershipRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			context.JSON(code, res)
 			return
 		}
@@ -69,20 +69,20 @@ func (h handlerImpl) ChangeUserDealership() gin.HandlerFunc {
 
 func (h handlerImpl) RefreshToken() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		var response common.HttpReponse
+		var response model.HttpReponse
 		if context.IsAborted() {
 			return
 		}
 
 		var refreshTokenRequest dto.AuthRefreshTokenRequest
 		if err := context.ShouldBindJSON(&refreshTokenRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
 
 		if err := refreshTokenRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
@@ -90,7 +90,7 @@ func (h handlerImpl) RefreshToken() gin.HandlerFunc {
 		// call usecase
 		refreshTokenResponse, err := h.authUseCase.RefreshToken(context, &refreshTokenRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			context.JSON(code, res)
 			return
 		}
@@ -104,7 +104,7 @@ func (h handlerImpl) RefreshToken() gin.HandlerFunc {
 
 func (h handlerImpl) GetUserMeta() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		var response common.HttpReponse
+		var response model.HttpReponse
 		if context.IsAborted() {
 			return
 		}
@@ -114,7 +114,7 @@ func (h handlerImpl) GetUserMeta() gin.HandlerFunc {
 		getUserMetaRequest.UserID = context.Param("user_id")
 
 		if err := getUserMetaRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
@@ -122,7 +122,7 @@ func (h handlerImpl) GetUserMeta() gin.HandlerFunc {
 		// call usecase
 		getUserMetaResponse, err := h.authUseCase.GetUserMeta(context, &getUserMetaRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			context.JSON(code, res)
 			return
 		}
@@ -137,7 +137,7 @@ func (h handlerImpl) GetUserMeta() gin.HandlerFunc {
 
 func (h handlerImpl) UpdateUserMeta() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		var response common.HttpReponse
+		var response model.HttpReponse
 		if context.IsAborted() {
 			return
 		}
@@ -145,14 +145,14 @@ func (h handlerImpl) UpdateUserMeta() gin.HandlerFunc {
 		var updateUserMetaRequest dto.AuthUpdateUserMetaRequest
 
 		if err := context.ShouldBindJSON(&updateUserMetaRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
 
 		// validate request
 		if err := updateUserMetaRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
@@ -160,7 +160,7 @@ func (h handlerImpl) UpdateUserMeta() gin.HandlerFunc {
 		// call usecase
 		updateUserMetaResponse, err := h.authUseCase.UpdateUserMeta(context, &updateUserMetaRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			context.JSON(code, res)
 			return
 		}
@@ -175,7 +175,7 @@ func (h handlerImpl) UpdateUserMeta() gin.HandlerFunc {
 
 func (h handlerImpl) LoginCallback() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		var response common.HttpReponse
+		var response model.HttpReponse
 		if context.IsAborted() {
 			return
 		}
@@ -183,14 +183,14 @@ func (h handlerImpl) LoginCallback() gin.HandlerFunc {
 		var loginCallbackRequest dto.AuthLoginCallbackRequest
 
 		if err := context.ShouldBindJSON(&loginCallbackRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
 
 		// validate request
 		if err := loginCallbackRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
@@ -198,7 +198,7 @@ func (h handlerImpl) LoginCallback() gin.HandlerFunc {
 		// call usecase
 		loginCallbackResponse, err := h.authUseCase.LoginCallback(context, &loginCallbackRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			context.JSON(code, res)
 			return
 		}
@@ -213,7 +213,7 @@ func (h handlerImpl) LoginCallback() gin.HandlerFunc {
 
 func (h handlerImpl) RegisterCallback() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		var response common.HttpReponse
+		var response model.HttpReponse
 		if context.IsAborted() {
 			return
 		}
@@ -221,14 +221,14 @@ func (h handlerImpl) RegisterCallback() gin.HandlerFunc {
 		var registerCallbackRequest dto.AuthRegisterCallbackRequest
 
 		if err := context.ShouldBindJSON(&registerCallbackRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
 
 		// validate request
 		if err := registerCallbackRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			context.JSON(code, res)
 			return
 		}
@@ -236,7 +236,7 @@ func (h handlerImpl) RegisterCallback() gin.HandlerFunc {
 		// call usecase
 		registerCallbackResponse, err := h.authUseCase.RegisterCallback(context, &registerCallbackRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			context.JSON(code, res)
 			return
 		}
@@ -252,7 +252,7 @@ func (h handlerImpl) RegisterCallback() gin.HandlerFunc {
 func (h handlerImpl) InitiateLogin() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 
-		var response common.HttpReponse
+		var response model.HttpReponse
 
 		if ctx.IsAborted() {
 			return
@@ -261,14 +261,14 @@ func (h handlerImpl) InitiateLogin() gin.HandlerFunc {
 		var loginRequest dto.AuthLoginRequest
 
 		if err := ctx.ShouldBindJSON(&loginRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			ctx.JSON(code, res)
 			return
 		}
 
 		// validate request
 		if err := loginRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			ctx.JSON(code, res)
 			return
 		}
@@ -276,7 +276,7 @@ func (h handlerImpl) InitiateLogin() gin.HandlerFunc {
 		// call usecase
 		loginResponse, err := h.authUseCase.InitiateLogin(ctx, &loginRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			ctx.JSON(code, res)
 			return
 		}
@@ -294,7 +294,7 @@ func (h handlerImpl) InitiateLogin() gin.HandlerFunc {
 
 func (h handlerImpl) InitiateRegister() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		var response common.HttpReponse
+		var response model.HttpReponse
 
 		if ctx.IsAborted() {
 			return
@@ -303,14 +303,14 @@ func (h handlerImpl) InitiateRegister() gin.HandlerFunc {
 		var registerRequest dto.AuthRegisterRequest
 
 		if err := ctx.ShouldBindJSON(&registerRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			ctx.JSON(code, res)
 			return
 		}
 
 		// validate request
 		if err := registerRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			ctx.JSON(code, res)
 			return
 		}
@@ -318,7 +318,7 @@ func (h handlerImpl) InitiateRegister() gin.HandlerFunc {
 		// call usecase
 		registerResponse, err := h.authUseCase.InitiateRegister(ctx, &registerRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			ctx.JSON(code, res)
 			return
 		}
@@ -335,7 +335,7 @@ func (h handlerImpl) InitiateRegister() gin.HandlerFunc {
 }
 
 func (h handlerImpl) Logout() gin.HandlerFunc {
-	var response common.HttpReponse
+	var response model.HttpReponse
 	return func(ctx *gin.Context) {
 		if ctx.IsAborted() {
 			return
@@ -344,14 +344,14 @@ func (h handlerImpl) Logout() gin.HandlerFunc {
 		var logoutRequest dto.AuthLogoutRequest
 
 		if err := ctx.ShouldBindJSON(&logoutRequest); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			ctx.JSON(code, res)
 			return
 		}
 
 		// validate request
 		if err := logoutRequest.Validate(); err != nil {
-			code, res := common.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
+			code, res := model.ResponseFromErrorWithDetails(codes.InvalidArgument, err.Error())
 			ctx.JSON(code, res)
 			return
 		}
@@ -359,7 +359,7 @@ func (h handlerImpl) Logout() gin.HandlerFunc {
 		// call usecase
 		logoutResponse, err := h.authUseCase.Logout(ctx, &logoutRequest)
 		if err != nil {
-			code, res := common.ResponseFromError(err)
+			code, res := model.ResponseFromError(err)
 			ctx.JSON(code, res)
 			return
 		}

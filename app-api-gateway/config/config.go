@@ -25,9 +25,17 @@ type App struct {
 	MetricsPort string
 }
 
+type S3 struct {
+	Region    string
+	Endpoint  string
+	AccessKey string
+	AccessId  string
+}
+
 type Config struct {
 	AppDb   AppDb
 	Redis   Redis
 	Casdoor Casdoor
 	App     App
+	S3      S3
 }

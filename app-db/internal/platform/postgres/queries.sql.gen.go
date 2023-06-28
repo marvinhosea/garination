@@ -45,7 +45,7 @@ func (q *Queries) CarByDealershipCount(ctx context.Context, dealershipID pgtype.
 }
 
 const carsByDealerPaged = `-- name: CarsByDealerPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE dealer_id = $1  AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealer_id = $1  AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type CarsByDealerPagedParams struct {
@@ -66,7 +66,6 @@ func (q *Queries) CarsByDealerPaged(ctx context.Context, arg CarsByDealerPagedPa
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -80,6 +79,18 @@ func (q *Queries) CarsByDealerPaged(ctx context.Context, arg CarsByDealerPagedPa
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -92,7 +103,7 @@ func (q *Queries) CarsByDealerPaged(ctx context.Context, arg CarsByDealerPagedPa
 }
 
 const carsByDealershipPaged = `-- name: CarsByDealershipPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type CarsByDealershipPagedParams struct {
@@ -113,7 +124,6 @@ func (q *Queries) CarsByDealershipPaged(ctx context.Context, arg CarsByDealershi
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -127,6 +137,18 @@ func (q *Queries) CarsByDealershipPaged(ctx context.Context, arg CarsByDealershi
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -140,21 +162,27 @@ func (q *Queries) CarsByDealershipPaged(ctx context.Context, arg CarsByDealershi
 
 const createCarBrand = `-- name: CreateCarBrand :one
 INSERT INTO car_brands (
-    brand_id, name, logo_url, created_at,
+    brand_id, name, country, logo_url, created_at,
     updated_at
 )
 VALUES
-    ($1, $2, $3, now(), now()) RETURNING brand_id, name, country, logo_url, created_at, updated_at
+    ($1, $2, $3, $4, now(), now()) RETURNING brand_id, name, country, logo_url, created_at, updated_at
 `
 
 type CreateCarBrandParams struct {
 	BrandID string
 	Name    pgtype.Text
+	Country pgtype.Text
 	LogoUrl pgtype.Text
 }
 
 func (q *Queries) CreateCarBrand(ctx context.Context, arg CreateCarBrandParams) (CarBrand, error) {
-	row := q.db.QueryRow(ctx, createCarBrand, arg.BrandID, arg.Name, arg.LogoUrl)
+	row := q.db.QueryRow(ctx, createCarBrand,
+		arg.BrandID,
+		arg.Name,
+		arg.Country,
+		arg.LogoUrl,
+	)
 	var i CarBrand
 	err := row.Scan(
 		&i.BrandID,
@@ -310,7 +338,7 @@ func (q *Queries) GetCarBrandById(ctx context.Context, brandID string) (CarBrand
 }
 
 const getCarById = `-- name: GetCarById :one
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE car_id = $1 AND deleted_at IS NULL LIMIT 1
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE car_id = $1 AND deleted_at IS NULL LIMIT 1
 `
 
 func (q *Queries) GetCarById(ctx context.Context, carID string) (Car, error) {
@@ -319,7 +347,6 @@ func (q *Queries) GetCarById(ctx context.Context, carID string) (Car, error) {
 	err := row.Scan(
 		&i.CarID,
 		&i.BrandID,
-		&i.CategoryID,
 		&i.Model,
 		&i.Year,
 		&i.Price,
@@ -333,6 +360,18 @@ func (q *Queries) GetCarById(ctx context.Context, carID string) (Car, error) {
 		&i.DealerID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.Status,
+		&i.Title,
+		&i.IsFeatured,
+		&i.IsSold,
+		&i.HorsePower,
+		&i.Torque,
+		&i.TorqueRpm,
+		&i.SafetySpecifications,
+		&i.PerformanceSpecifications,
+		&i.ComfortSpecifications,
+		&i.Location,
+		&i.Ownership,
 	)
 	return i, err
 }
@@ -451,30 +490,39 @@ INSERT INTO cars (
     car_id, brand_id, model,
     year, price, mileage, color, transmission,
     fuel_type, engine_capacity, description,
-    dealership_id, dealer_id, created_at,
-    updated_at
+    dealership_id, dealer_id, comfort_specifications, safety_specifications, performance_specifications,
+    horse_power, torque, torque_rpm ,ownership, title,
+    created_at,updated_at
 )
 VALUES
     (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
-        $11, $12, $13, now(), now()
-    ) RETURNING car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at
+        $11, $12, $13, $14, $15, $16, $17, $18, $19, $20,$21, now(), now()
+    ) RETURNING car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership
 `
 
 type InsertCarParams struct {
-	CarID          string
-	BrandID        string
-	Model          pgtype.Text
-	Year           pgtype.Int4
-	Price          pgtype.Numeric
-	Mileage        pgtype.Int4
-	Color          pgtype.Text
-	Transmission   pgtype.Text
-	FuelType       pgtype.Text
-	EngineCapacity pgtype.Text
-	Description    pgtype.Text
-	DealershipID   pgtype.Text
-	DealerID       pgtype.Text
+	CarID                     string
+	BrandID                   string
+	Model                     pgtype.Text
+	Year                      pgtype.Int4
+	Price                     pgtype.Numeric
+	Mileage                   pgtype.Int4
+	Color                     pgtype.Text
+	Transmission              pgtype.Text
+	FuelType                  pgtype.Text
+	EngineCapacity            pgtype.Int4
+	Description               pgtype.Text
+	DealershipID              pgtype.Text
+	DealerID                  pgtype.Text
+	ComfortSpecifications     pgtype.Array[string]
+	SafetySpecifications      pgtype.Array[string]
+	PerformanceSpecifications pgtype.Array[string]
+	HorsePower                pgtype.Int4
+	Torque                    pgtype.Int4
+	TorqueRpm                 pgtype.Int4
+	Ownership                 pgtype.Text
+	Title                     pgtype.Text
 }
 
 func (q *Queries) InsertCar(ctx context.Context, arg InsertCarParams) (Car, error) {
@@ -492,12 +540,19 @@ func (q *Queries) InsertCar(ctx context.Context, arg InsertCarParams) (Car, erro
 		arg.Description,
 		arg.DealershipID,
 		arg.DealerID,
+		arg.ComfortSpecifications,
+		arg.SafetySpecifications,
+		arg.PerformanceSpecifications,
+		arg.HorsePower,
+		arg.Torque,
+		arg.TorqueRpm,
+		arg.Ownership,
+		arg.Title,
 	)
 	var i Car
 	err := row.Scan(
 		&i.CarID,
 		&i.BrandID,
-		&i.CategoryID,
 		&i.Model,
 		&i.Year,
 		&i.Price,
@@ -511,6 +566,18 @@ func (q *Queries) InsertCar(ctx context.Context, arg InsertCarParams) (Car, erro
 		&i.DealerID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.Status,
+		&i.Title,
+		&i.IsFeatured,
+		&i.IsSold,
+		&i.HorsePower,
+		&i.Torque,
+		&i.TorqueRpm,
+		&i.SafetySpecifications,
+		&i.PerformanceSpecifications,
+		&i.ComfortSpecifications,
+		&i.Location,
+		&i.Ownership,
 	)
 	return i, err
 }
@@ -807,7 +874,7 @@ func (q *Queries) ListCarImagesForCar(ctx context.Context, carID string) ([]CarI
 }
 
 const listCarsByBrandPaged = `-- name: ListCarsByBrandPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE brand_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE brand_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type ListCarsByBrandPagedParams struct {
@@ -828,7 +895,6 @@ func (q *Queries) ListCarsByBrandPaged(ctx context.Context, arg ListCarsByBrandP
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -842,6 +908,18 @@ func (q *Queries) ListCarsByBrandPaged(ctx context.Context, arg ListCarsByBrandP
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -854,7 +932,7 @@ func (q *Queries) ListCarsByBrandPaged(ctx context.Context, arg ListCarsByBrandP
 }
 
 const listCarsByDealerPaged = `-- name: ListCarsByDealerPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE dealer_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealer_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type ListCarsByDealerPagedParams struct {
@@ -875,7 +953,6 @@ func (q *Queries) ListCarsByDealerPaged(ctx context.Context, arg ListCarsByDeale
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -889,6 +966,18 @@ func (q *Queries) ListCarsByDealerPaged(ctx context.Context, arg ListCarsByDeale
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -901,7 +990,7 @@ func (q *Queries) ListCarsByDealerPaged(ctx context.Context, arg ListCarsByDeale
 }
 
 const listCarsByDealershipPaged = `-- name: ListCarsByDealershipPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type ListCarsByDealershipPagedParams struct {
@@ -922,7 +1011,6 @@ func (q *Queries) ListCarsByDealershipPaged(ctx context.Context, arg ListCarsByD
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -936,6 +1024,18 @@ func (q *Queries) ListCarsByDealershipPaged(ctx context.Context, arg ListCarsByD
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -948,7 +1048,7 @@ func (q *Queries) ListCarsByDealershipPaged(ctx context.Context, arg ListCarsByD
 }
 
 const listCarsPaged = `-- name: ListCarsPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT $1 OFFSET $2
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT $1 OFFSET $2
 `
 
 type ListCarsPagedParams struct {
@@ -968,7 +1068,6 @@ func (q *Queries) ListCarsPaged(ctx context.Context, arg ListCarsPagedParams) ([
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -982,6 +1081,18 @@ func (q *Queries) ListCarsPaged(ctx context.Context, arg ListCarsPagedParams) ([
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -1034,7 +1145,7 @@ func (q *Queries) ListExtraFeaturesForCar(ctx context.Context, carID string) ([]
 
 const searchCarsPaged = `-- name: SearchCarsPaged :many
 SELECT
-    c.car_id, c.brand_id, c.category_id, c.model, c.year, c.price, c.mileage, c.color, c.transmission, c.fuel_type, c.engine_capacity, c.description, c.dealership_id, c.dealer_id, c.created_at, c.updated_at
+    c.car_id, c.brand_id, c.model, c.year, c.price, c.mileage, c.color, c.transmission, c.fuel_type, c.engine_capacity, c.description, c.dealership_id, c.dealer_id, c.created_at, c.updated_at, c.status, c.title, c.is_featured, c.is_sold, c.horse_power, c.torque, c.torque_rpm, c.safety_specifications, c.performance_specifications, c.comfort_specifications, c.location, c.ownership
 FROM
     cars c
     LEFT JOIN car_extra_features f ON c.car_id = f.car_id
@@ -1072,7 +1183,6 @@ func (q *Queries) SearchCarsPaged(ctx context.Context, arg SearchCarsPagedParams
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -1086,6 +1196,18 @@ func (q *Queries) SearchCarsPaged(ctx context.Context, arg SearchCarsPagedParams
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -1113,25 +1235,39 @@ SET
     description = $11,
     dealership_id = $12,
     dealer_id = $13,
+    status = $14,
+    horse_power = $15,
+    torque = $16,
+    safety_specifications = $17,
+    comfort_specifications = $18,
+    ownership = $19,
+    title = $20,
     updated_at = now()
 WHERE
         car_id = $1 RETURNING car_id
 `
 
 type UpdateCarParams struct {
-	CarID          string
-	BrandID        string
-	Model          pgtype.Text
-	Year           pgtype.Int4
-	Price          pgtype.Numeric
-	Mileage        pgtype.Int4
-	Color          pgtype.Text
-	Transmission   pgtype.Text
-	FuelType       pgtype.Text
-	EngineCapacity pgtype.Text
-	Description    pgtype.Text
-	DealershipID   pgtype.Text
-	DealerID       pgtype.Text
+	CarID                 string
+	BrandID               string
+	Model                 pgtype.Text
+	Year                  pgtype.Int4
+	Price                 pgtype.Numeric
+	Mileage               pgtype.Int4
+	Color                 pgtype.Text
+	Transmission          pgtype.Text
+	FuelType              pgtype.Text
+	EngineCapacity        pgtype.Int4
+	Description           pgtype.Text
+	DealershipID          pgtype.Text
+	DealerID              pgtype.Text
+	Status                pgtype.Text
+	HorsePower            pgtype.Int4
+	Torque                pgtype.Int4
+	SafetySpecifications  pgtype.Array[string]
+	ComfortSpecifications pgtype.Array[string]
+	Ownership             pgtype.Text
+	Title                 pgtype.Text
 }
 
 func (q *Queries) UpdateCar(ctx context.Context, arg UpdateCarParams) (string, error) {
@@ -1149,6 +1285,13 @@ func (q *Queries) UpdateCar(ctx context.Context, arg UpdateCarParams) (string, e
 		arg.Description,
 		arg.DealershipID,
 		arg.DealerID,
+		arg.Status,
+		arg.HorsePower,
+		arg.Torque,
+		arg.SafetySpecifications,
+		arg.ComfortSpecifications,
+		arg.Ownership,
+		arg.Title,
 	)
 	var car_id string
 	err := row.Scan(&car_id)
@@ -1161,16 +1304,17 @@ UPDATE
 SET
     name = $2,
     logo_url = $3,
-    updated_at = $4
+    country = $4,
+    updated_at = now()
 WHERE
         brand_id = $1 RETURNING brand_id, name, country, logo_url, created_at, updated_at
 `
 
 type UpdateCarBrandParams struct {
-	BrandID   string
-	Name      pgtype.Text
-	LogoUrl   pgtype.Text
-	UpdatedAt pgtype.Timestamp
+	BrandID string
+	Name    pgtype.Text
+	LogoUrl pgtype.Text
+	Country pgtype.Text
 }
 
 func (q *Queries) UpdateCarBrand(ctx context.Context, arg UpdateCarBrandParams) (CarBrand, error) {
@@ -1178,7 +1322,7 @@ func (q *Queries) UpdateCarBrand(ctx context.Context, arg UpdateCarBrandParams) 
 		arg.BrandID,
 		arg.Name,
 		arg.LogoUrl,
-		arg.UpdatedAt,
+		arg.Country,
 	)
 	var i CarBrand
 	err := row.Scan(

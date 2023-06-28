@@ -298,3 +298,48 @@ ALTER TABLE "user_meta"
 
 ALTER TABLE "user_meta"
     ADD COLUMN updated_at TIMESTAMP;
+
+-- changeSet oyamo:10
+ALTER TABLE "cars"
+   ALTER COLUMN engine_capacity TYPE integer USING (engine_capacity::integer);
+
+-- changeSet oyamo:11
+ALTER TABLE "car_brands"
+   ADD constraint unique_name_car_brands UNIQUE (name);
+
+
+-- changeSet oyamo:12
+ALTER TABLE "cars"
+   ADD COLUMN status VARCHAR(20) DEFAULT 'pending';
+
+ALTER TABLE "cars"
+   ADD COLUMN is_featured BOOLEAN;
+
+ALTER TABLE "cars"
+    ADD COLUMN is_sold BOOLEAN;
+
+ALTER TABLE "cars"
+    ADD COLUMN horse_power INT;
+
+ALTER TABLE "cars"
+    ADD COLUMN torque INT;
+
+ALTER TABLE "cars"
+    ADD COLUMN torque_rpm INT;
+
+ALTER TABLE "cars"
+    ADD COLUMN safety_specifications varchar(100)[];
+
+ALTER TABLE "cars"
+    ADD COLUMN performance_specifications varchar(100)[];
+
+ALTER TABLE "cars"
+    ADD COLUMN comfort_specifications varchar(100)[];
+
+-- changeSet oyamo:13
+ALTER TABLE "cars"
+    ADD COLUMN LOCATION VARCHAR(100);
+
+-- changeSet oyamo:14
+ALTER TABLE "cars"
+    ADD COLUMN ownership VARCHAR(32);
