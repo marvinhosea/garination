@@ -19,42 +19,58 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DatabaseService_HealthCheck_FullMethodName                    = "/DatabaseService/HealthCheck"
-	DatabaseService_GetUserMeta_FullMethodName                    = "/DatabaseService/GetUserMeta"
-	DatabaseService_InsertUserMeta_FullMethodName                 = "/DatabaseService/InsertUserMeta"
-	DatabaseService_UpdateUserMeta_FullMethodName                 = "/DatabaseService/UpdateUserMeta"
-	DatabaseService_ChangeDealership_FullMethodName               = "/DatabaseService/ChangeDealership"
-	DatabaseService_InsertDealership_FullMethodName               = "/DatabaseService/InsertDealership"
-	DatabaseService_UpdateDealership_FullMethodName               = "/DatabaseService/UpdateDealership"
-	DatabaseService_GetDealershipByUserId_FullMethodName          = "/DatabaseService/GetDealershipByUserId"
-	DatabaseService_GetDealershipByID_FullMethodName              = "/DatabaseService/GetDealershipByID"
-	DatabaseService_DeleteDealership_FullMethodName               = "/DatabaseService/DeleteDealership"
-	DatabaseService_InsertCarBrand_FullMethodName                 = "/DatabaseService/InsertCarBrand"
-	DatabaseService_UpdateCarBrand_FullMethodName                 = "/DatabaseService/UpdateCarBrand"
-	DatabaseService_GetCarBrandByID_FullMethodName                = "/DatabaseService/GetCarBrandByID"
-	DatabaseService_GetCarBrandsPaginated_FullMethodName          = "/DatabaseService/GetCarBrandsPaginated"
-	DatabaseService_DeleteCarBrand_FullMethodName                 = "/DatabaseService/DeleteCarBrand"
-	DatabaseService_InsertCarExtraFeature_FullMethodName          = "/DatabaseService/InsertCarExtraFeature"
-	DatabaseService_UpdateCarExtraFeature_FullMethodName          = "/DatabaseService/UpdateCarExtraFeature"
-	DatabaseService_GetCarExtraFeaturePaginated_FullMethodName    = "/DatabaseService/GetCarExtraFeaturePaginated"
-	DatabaseService_DeleteCarExtraFeature_FullMethodName          = "/DatabaseService/DeleteCarExtraFeature"
-	DatabaseService_CreateCarImage_FullMethodName                 = "/DatabaseService/CreateCarImage"
-	DatabaseService_UpdateCarImage_FullMethodName                 = "/DatabaseService/UpdateCarImage"
-	DatabaseService_GetCarImagePaginated_FullMethodName           = "/DatabaseService/GetCarImagePaginated"
-	DatabaseService_DeleteCarImage_FullMethodName                 = "/DatabaseService/DeleteCarImage"
-	DatabaseService_InsertCar_FullMethodName                      = "/DatabaseService/InsertCar"
-	DatabaseService_UpdateCar_FullMethodName                      = "/DatabaseService/UpdateCar"
-	DatabaseService_GetOneCar_FullMethodName                      = "/DatabaseService/GetOneCar"
-	DatabaseService_GetCarsPaginated_FullMethodName               = "/DatabaseService/GetCarsPaginated"
-	DatabaseService_GetCarsByDealershipIDPaginated_FullMethodName = "/DatabaseService/GetCarsByDealershipIDPaginated"
-	DatabaseService_GetCarsByBrandIDPaginated_FullMethodName      = "/DatabaseService/GetCarsByBrandIDPaginated"
-	DatabaseService_GetCarsByDealerIDPaginated_FullMethodName     = "/DatabaseService/GetCarsByDealerIDPaginated"
-	DatabaseService_SearchCarsPaginated_FullMethodName            = "/DatabaseService/SearchCarsPaginated"
-	DatabaseService_GetCarByField_FullMethodName                  = "/DatabaseService/GetCarByField"
-	DatabaseService_GetCarByDealerCount_FullMethodName            = "/DatabaseService/GetCarByDealerCount"
-	DatabaseService_GetCarByDealershipCount_FullMethodName        = "/DatabaseService/GetCarByDealershipCount"
-	DatabaseService_GetCarByBrandCount_FullMethodName             = "/DatabaseService/GetCarByBrandCount"
-	DatabaseService_DeleteCar_FullMethodName                      = "/DatabaseService/DeleteCar"
+	DatabaseService_HealthCheck_FullMethodName                         = "/DatabaseService/HealthCheck"
+	DatabaseService_GetUserMeta_FullMethodName                         = "/DatabaseService/GetUserMeta"
+	DatabaseService_InsertUserMeta_FullMethodName                      = "/DatabaseService/InsertUserMeta"
+	DatabaseService_UpdateUserMeta_FullMethodName                      = "/DatabaseService/UpdateUserMeta"
+	DatabaseService_ChangeDealership_FullMethodName                    = "/DatabaseService/ChangeDealership"
+	DatabaseService_InsertDealership_FullMethodName                    = "/DatabaseService/InsertDealership"
+	DatabaseService_UpdateDealership_FullMethodName                    = "/DatabaseService/UpdateDealership"
+	DatabaseService_GetDealershipByUserId_FullMethodName               = "/DatabaseService/GetDealershipByUserId"
+	DatabaseService_GetDealershipByID_FullMethodName                   = "/DatabaseService/GetDealershipByID"
+	DatabaseService_DeleteDealership_FullMethodName                    = "/DatabaseService/DeleteDealership"
+	DatabaseService_InsertCarBrand_FullMethodName                      = "/DatabaseService/InsertCarBrand"
+	DatabaseService_UpdateCarBrand_FullMethodName                      = "/DatabaseService/UpdateCarBrand"
+	DatabaseService_GetCarBrandByID_FullMethodName                     = "/DatabaseService/GetCarBrandByID"
+	DatabaseService_GetCarBrandsPaginated_FullMethodName               = "/DatabaseService/GetCarBrandsPaginated"
+	DatabaseService_DeleteCarBrand_FullMethodName                      = "/DatabaseService/DeleteCarBrand"
+	DatabaseService_InsertCarExtraFeature_FullMethodName               = "/DatabaseService/InsertCarExtraFeature"
+	DatabaseService_UpdateCarExtraFeature_FullMethodName               = "/DatabaseService/UpdateCarExtraFeature"
+	DatabaseService_GetCarExtraFeaturePaginated_FullMethodName         = "/DatabaseService/GetCarExtraFeaturePaginated"
+	DatabaseService_DeleteCarExtraFeature_FullMethodName               = "/DatabaseService/DeleteCarExtraFeature"
+	DatabaseService_CreateCarImage_FullMethodName                      = "/DatabaseService/CreateCarImage"
+	DatabaseService_UpdateCarImage_FullMethodName                      = "/DatabaseService/UpdateCarImage"
+	DatabaseService_GetCarImagePaginated_FullMethodName                = "/DatabaseService/GetCarImagePaginated"
+	DatabaseService_DeleteCarImage_FullMethodName                      = "/DatabaseService/DeleteCarImage"
+	DatabaseService_InsertCar_FullMethodName                           = "/DatabaseService/InsertCar"
+	DatabaseService_UpdateCar_FullMethodName                           = "/DatabaseService/UpdateCar"
+	DatabaseService_GetOneCar_FullMethodName                           = "/DatabaseService/GetOneCar"
+	DatabaseService_GetCarsPaginated_FullMethodName                    = "/DatabaseService/GetCarsPaginated"
+	DatabaseService_GetCarsByDealershipIDPaginated_FullMethodName      = "/DatabaseService/GetCarsByDealershipIDPaginated"
+	DatabaseService_GetCarsByBrandIDPaginated_FullMethodName           = "/DatabaseService/GetCarsByBrandIDPaginated"
+	DatabaseService_GetCarsByDealerIDPaginated_FullMethodName          = "/DatabaseService/GetCarsByDealerIDPaginated"
+	DatabaseService_SearchCarsPaginated_FullMethodName                 = "/DatabaseService/SearchCarsPaginated"
+	DatabaseService_GetCarByField_FullMethodName                       = "/DatabaseService/GetCarByField"
+	DatabaseService_GetCarByDealerCount_FullMethodName                 = "/DatabaseService/GetCarByDealerCount"
+	DatabaseService_GetCarByDealershipCount_FullMethodName             = "/DatabaseService/GetCarByDealershipCount"
+	DatabaseService_GetCarByBrandCount_FullMethodName                  = "/DatabaseService/GetCarByBrandCount"
+	DatabaseService_DeleteCar_FullMethodName                           = "/DatabaseService/DeleteCar"
+	DatabaseService_GetSparePartByID_FullMethodName                    = "/DatabaseService/GetSparePartByID"
+	DatabaseService_DeleteSparePart_FullMethodName                     = "/DatabaseService/DeleteSparePart"
+	DatabaseService_FilterSparePartByBrandPaginated_FullMethodName     = "/DatabaseService/FilterSparePartByBrandPaginated"
+	DatabaseService_FilterSparePartByCategory_FullMethodName           = "/DatabaseService/FilterSparePartByCategory"
+	DatabaseService_FilterSparePartByCarModel_FullMethodName           = "/DatabaseService/FilterSparePartByCarModel"
+	DatabaseService_GetSparePartImageByID_FullMethodName               = "/DatabaseService/GetSparePartImageByID"
+	DatabaseService_InsertSparePart_FullMethodName                     = "/DatabaseService/InsertSparePart"
+	DatabaseService_InsertSparePartImage_FullMethodName                = "/DatabaseService/InsertSparePartImage"
+	DatabaseService_ListSparePartImagesBySparePartPaged_FullMethodName = "/DatabaseService/ListSparePartImagesBySparePartPaged"
+	DatabaseService_ListSparePartImagesPaged_FullMethodName            = "/DatabaseService/ListSparePartImagesPaged"
+	DatabaseService_ListSparePartsByDealerPaged_FullMethodName         = "/DatabaseService/ListSparePartsByDealerPaged"
+	DatabaseService_ListSparePartsByDealershipPaged_FullMethodName     = "/DatabaseService/ListSparePartsByDealershipPaged"
+	DatabaseService_ListSparePartsPaged_FullMethodName                 = "/DatabaseService/ListSparePartsPaged"
+	DatabaseService_SearchSparePartsPaged_FullMethodName               = "/DatabaseService/SearchSparePartsPaged"
+	DatabaseService_UpdateSparePart_FullMethodName                     = "/DatabaseService/UpdateSparePart"
+	DatabaseService_UpdateSparePartImage_FullMethodName                = "/DatabaseService/UpdateSparePartImage"
 )
 
 // DatabaseServiceClient is the client API for DatabaseService service.
@@ -97,6 +113,22 @@ type DatabaseServiceClient interface {
 	GetCarByDealershipCount(ctx context.Context, in *GetCarByDealershipCountRequest, opts ...grpc.CallOption) (*GetCarByDealershipCountResponse, error)
 	GetCarByBrandCount(ctx context.Context, in *GetCarByBrandCountRequest, opts ...grpc.CallOption) (*GetCarByCarBrandCountResponse, error)
 	DeleteCar(ctx context.Context, in *DeleteCarRequest, opts ...grpc.CallOption) (*DeleteCarResponse, error)
+	GetSparePartByID(ctx context.Context, in *GetSparePartByIDRequest, opts ...grpc.CallOption) (*GetSparePartByIDResponse, error)
+	DeleteSparePart(ctx context.Context, in *DeleteSparePartRequest, opts ...grpc.CallOption) (*DeleteSparePartResponse, error)
+	FilterSparePartByBrandPaginated(ctx context.Context, in *FilterSparePartByBrandPaginatedRequest, opts ...grpc.CallOption) (*FilterSparePartByBrandPaginatedResponse, error)
+	FilterSparePartByCategory(ctx context.Context, in *FilterSparePartByCategoryPaginatedRequest, opts ...grpc.CallOption) (*FilterSparePartByCategoryPaginatedResponse, error)
+	FilterSparePartByCarModel(ctx context.Context, in *FilterSparePartByCarModelPaginatedRequest, opts ...grpc.CallOption) (*FilterSparePartByCarModelPaginatedResponse, error)
+	GetSparePartImageByID(ctx context.Context, in *GetSparePartImageByIDRequest, opts ...grpc.CallOption) (*GetSparePartImageByIDResponse, error)
+	InsertSparePart(ctx context.Context, in *InsertSparePartRequest, opts ...grpc.CallOption) (*InsertSparePartResponse, error)
+	InsertSparePartImage(ctx context.Context, in *InsertSparePartImageRequest, opts ...grpc.CallOption) (*InsertSparePartImageResponse, error)
+	ListSparePartImagesBySparePartPaged(ctx context.Context, in *ListSparePartImagesBySparePartPagedRequest, opts ...grpc.CallOption) (*ListSparePartImagesBySparePartPagedResponse, error)
+	ListSparePartImagesPaged(ctx context.Context, in *ListSparePartImagesPagedRequest, opts ...grpc.CallOption) (*ListSparePartImagesPagedResponse, error)
+	ListSparePartsByDealerPaged(ctx context.Context, in *ListSparePartsByDealerPagedRequest, opts ...grpc.CallOption) (*ListSparePartsByDealerPagedResponse, error)
+	ListSparePartsByDealershipPaged(ctx context.Context, in *ListSparePartsByDealershipPagedRequest, opts ...grpc.CallOption) (*ListSparePartsByDealershipPagedResponse, error)
+	ListSparePartsPaged(ctx context.Context, in *ListSparePartsPagedRequest, opts ...grpc.CallOption) (*ListSparePartsPagedResponse, error)
+	SearchSparePartsPaged(ctx context.Context, in *SearchSparePartsPagedRequest, opts ...grpc.CallOption) (*SearchSparePartsPagedResponse, error)
+	UpdateSparePart(ctx context.Context, in *UpdateSparePartRequest, opts ...grpc.CallOption) (*UpdateSparePartResponse, error)
+	UpdateSparePartImage(ctx context.Context, in *UpdateSparePartImageRequest, opts ...grpc.CallOption) (*UpdateSparePartImageResponse, error)
 }
 
 type databaseServiceClient struct {
@@ -431,6 +463,150 @@ func (c *databaseServiceClient) DeleteCar(ctx context.Context, in *DeleteCarRequ
 	return out, nil
 }
 
+func (c *databaseServiceClient) GetSparePartByID(ctx context.Context, in *GetSparePartByIDRequest, opts ...grpc.CallOption) (*GetSparePartByIDResponse, error) {
+	out := new(GetSparePartByIDResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetSparePartByID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) DeleteSparePart(ctx context.Context, in *DeleteSparePartRequest, opts ...grpc.CallOption) (*DeleteSparePartResponse, error) {
+	out := new(DeleteSparePartResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_DeleteSparePart_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) FilterSparePartByBrandPaginated(ctx context.Context, in *FilterSparePartByBrandPaginatedRequest, opts ...grpc.CallOption) (*FilterSparePartByBrandPaginatedResponse, error) {
+	out := new(FilterSparePartByBrandPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_FilterSparePartByBrandPaginated_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) FilterSparePartByCategory(ctx context.Context, in *FilterSparePartByCategoryPaginatedRequest, opts ...grpc.CallOption) (*FilterSparePartByCategoryPaginatedResponse, error) {
+	out := new(FilterSparePartByCategoryPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_FilterSparePartByCategory_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) FilterSparePartByCarModel(ctx context.Context, in *FilterSparePartByCarModelPaginatedRequest, opts ...grpc.CallOption) (*FilterSparePartByCarModelPaginatedResponse, error) {
+	out := new(FilterSparePartByCarModelPaginatedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_FilterSparePartByCarModel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) GetSparePartImageByID(ctx context.Context, in *GetSparePartImageByIDRequest, opts ...grpc.CallOption) (*GetSparePartImageByIDResponse, error) {
+	out := new(GetSparePartImageByIDResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_GetSparePartImageByID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) InsertSparePart(ctx context.Context, in *InsertSparePartRequest, opts ...grpc.CallOption) (*InsertSparePartResponse, error) {
+	out := new(InsertSparePartResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_InsertSparePart_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) InsertSparePartImage(ctx context.Context, in *InsertSparePartImageRequest, opts ...grpc.CallOption) (*InsertSparePartImageResponse, error) {
+	out := new(InsertSparePartImageResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_InsertSparePartImage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) ListSparePartImagesBySparePartPaged(ctx context.Context, in *ListSparePartImagesBySparePartPagedRequest, opts ...grpc.CallOption) (*ListSparePartImagesBySparePartPagedResponse, error) {
+	out := new(ListSparePartImagesBySparePartPagedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_ListSparePartImagesBySparePartPaged_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) ListSparePartImagesPaged(ctx context.Context, in *ListSparePartImagesPagedRequest, opts ...grpc.CallOption) (*ListSparePartImagesPagedResponse, error) {
+	out := new(ListSparePartImagesPagedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_ListSparePartImagesPaged_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) ListSparePartsByDealerPaged(ctx context.Context, in *ListSparePartsByDealerPagedRequest, opts ...grpc.CallOption) (*ListSparePartsByDealerPagedResponse, error) {
+	out := new(ListSparePartsByDealerPagedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_ListSparePartsByDealerPaged_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) ListSparePartsByDealershipPaged(ctx context.Context, in *ListSparePartsByDealershipPagedRequest, opts ...grpc.CallOption) (*ListSparePartsByDealershipPagedResponse, error) {
+	out := new(ListSparePartsByDealershipPagedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_ListSparePartsByDealershipPaged_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) ListSparePartsPaged(ctx context.Context, in *ListSparePartsPagedRequest, opts ...grpc.CallOption) (*ListSparePartsPagedResponse, error) {
+	out := new(ListSparePartsPagedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_ListSparePartsPaged_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) SearchSparePartsPaged(ctx context.Context, in *SearchSparePartsPagedRequest, opts ...grpc.CallOption) (*SearchSparePartsPagedResponse, error) {
+	out := new(SearchSparePartsPagedResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_SearchSparePartsPaged_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) UpdateSparePart(ctx context.Context, in *UpdateSparePartRequest, opts ...grpc.CallOption) (*UpdateSparePartResponse, error) {
+	out := new(UpdateSparePartResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdateSparePart_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) UpdateSparePartImage(ctx context.Context, in *UpdateSparePartImageRequest, opts ...grpc.CallOption) (*UpdateSparePartImageResponse, error) {
+	out := new(UpdateSparePartImageResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdateSparePartImage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DatabaseServiceServer is the server API for DatabaseService service.
 // All implementations must embed UnimplementedDatabaseServiceServer
 // for forward compatibility
@@ -471,6 +647,22 @@ type DatabaseServiceServer interface {
 	GetCarByDealershipCount(context.Context, *GetCarByDealershipCountRequest) (*GetCarByDealershipCountResponse, error)
 	GetCarByBrandCount(context.Context, *GetCarByBrandCountRequest) (*GetCarByCarBrandCountResponse, error)
 	DeleteCar(context.Context, *DeleteCarRequest) (*DeleteCarResponse, error)
+	GetSparePartByID(context.Context, *GetSparePartByIDRequest) (*GetSparePartByIDResponse, error)
+	DeleteSparePart(context.Context, *DeleteSparePartRequest) (*DeleteSparePartResponse, error)
+	FilterSparePartByBrandPaginated(context.Context, *FilterSparePartByBrandPaginatedRequest) (*FilterSparePartByBrandPaginatedResponse, error)
+	FilterSparePartByCategory(context.Context, *FilterSparePartByCategoryPaginatedRequest) (*FilterSparePartByCategoryPaginatedResponse, error)
+	FilterSparePartByCarModel(context.Context, *FilterSparePartByCarModelPaginatedRequest) (*FilterSparePartByCarModelPaginatedResponse, error)
+	GetSparePartImageByID(context.Context, *GetSparePartImageByIDRequest) (*GetSparePartImageByIDResponse, error)
+	InsertSparePart(context.Context, *InsertSparePartRequest) (*InsertSparePartResponse, error)
+	InsertSparePartImage(context.Context, *InsertSparePartImageRequest) (*InsertSparePartImageResponse, error)
+	ListSparePartImagesBySparePartPaged(context.Context, *ListSparePartImagesBySparePartPagedRequest) (*ListSparePartImagesBySparePartPagedResponse, error)
+	ListSparePartImagesPaged(context.Context, *ListSparePartImagesPagedRequest) (*ListSparePartImagesPagedResponse, error)
+	ListSparePartsByDealerPaged(context.Context, *ListSparePartsByDealerPagedRequest) (*ListSparePartsByDealerPagedResponse, error)
+	ListSparePartsByDealershipPaged(context.Context, *ListSparePartsByDealershipPagedRequest) (*ListSparePartsByDealershipPagedResponse, error)
+	ListSparePartsPaged(context.Context, *ListSparePartsPagedRequest) (*ListSparePartsPagedResponse, error)
+	SearchSparePartsPaged(context.Context, *SearchSparePartsPagedRequest) (*SearchSparePartsPagedResponse, error)
+	UpdateSparePart(context.Context, *UpdateSparePartRequest) (*UpdateSparePartResponse, error)
+	UpdateSparePartImage(context.Context, *UpdateSparePartImageRequest) (*UpdateSparePartImageResponse, error)
 	mustEmbedUnimplementedDatabaseServiceServer()
 }
 
@@ -585,6 +777,54 @@ func (UnimplementedDatabaseServiceServer) GetCarByBrandCount(context.Context, *G
 }
 func (UnimplementedDatabaseServiceServer) DeleteCar(context.Context, *DeleteCarRequest) (*DeleteCarResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCar not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetSparePartByID(context.Context, *GetSparePartByIDRequest) (*GetSparePartByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSparePartByID not implemented")
+}
+func (UnimplementedDatabaseServiceServer) DeleteSparePart(context.Context, *DeleteSparePartRequest) (*DeleteSparePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSparePart not implemented")
+}
+func (UnimplementedDatabaseServiceServer) FilterSparePartByBrandPaginated(context.Context, *FilterSparePartByBrandPaginatedRequest) (*FilterSparePartByBrandPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FilterSparePartByBrandPaginated not implemented")
+}
+func (UnimplementedDatabaseServiceServer) FilterSparePartByCategory(context.Context, *FilterSparePartByCategoryPaginatedRequest) (*FilterSparePartByCategoryPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FilterSparePartByCategory not implemented")
+}
+func (UnimplementedDatabaseServiceServer) FilterSparePartByCarModel(context.Context, *FilterSparePartByCarModelPaginatedRequest) (*FilterSparePartByCarModelPaginatedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FilterSparePartByCarModel not implemented")
+}
+func (UnimplementedDatabaseServiceServer) GetSparePartImageByID(context.Context, *GetSparePartImageByIDRequest) (*GetSparePartImageByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSparePartImageByID not implemented")
+}
+func (UnimplementedDatabaseServiceServer) InsertSparePart(context.Context, *InsertSparePartRequest) (*InsertSparePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertSparePart not implemented")
+}
+func (UnimplementedDatabaseServiceServer) InsertSparePartImage(context.Context, *InsertSparePartImageRequest) (*InsertSparePartImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertSparePartImage not implemented")
+}
+func (UnimplementedDatabaseServiceServer) ListSparePartImagesBySparePartPaged(context.Context, *ListSparePartImagesBySparePartPagedRequest) (*ListSparePartImagesBySparePartPagedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSparePartImagesBySparePartPaged not implemented")
+}
+func (UnimplementedDatabaseServiceServer) ListSparePartImagesPaged(context.Context, *ListSparePartImagesPagedRequest) (*ListSparePartImagesPagedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSparePartImagesPaged not implemented")
+}
+func (UnimplementedDatabaseServiceServer) ListSparePartsByDealerPaged(context.Context, *ListSparePartsByDealerPagedRequest) (*ListSparePartsByDealerPagedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSparePartsByDealerPaged not implemented")
+}
+func (UnimplementedDatabaseServiceServer) ListSparePartsByDealershipPaged(context.Context, *ListSparePartsByDealershipPagedRequest) (*ListSparePartsByDealershipPagedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSparePartsByDealershipPaged not implemented")
+}
+func (UnimplementedDatabaseServiceServer) ListSparePartsPaged(context.Context, *ListSparePartsPagedRequest) (*ListSparePartsPagedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSparePartsPaged not implemented")
+}
+func (UnimplementedDatabaseServiceServer) SearchSparePartsPaged(context.Context, *SearchSparePartsPagedRequest) (*SearchSparePartsPagedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchSparePartsPaged not implemented")
+}
+func (UnimplementedDatabaseServiceServer) UpdateSparePart(context.Context, *UpdateSparePartRequest) (*UpdateSparePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSparePart not implemented")
+}
+func (UnimplementedDatabaseServiceServer) UpdateSparePartImage(context.Context, *UpdateSparePartImageRequest) (*UpdateSparePartImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSparePartImage not implemented")
 }
 func (UnimplementedDatabaseServiceServer) mustEmbedUnimplementedDatabaseServiceServer() {}
 
@@ -1247,6 +1487,294 @@ func _DatabaseService_DeleteCar_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DatabaseService_GetSparePartByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSparePartByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetSparePartByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetSparePartByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetSparePartByID(ctx, req.(*GetSparePartByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_DeleteSparePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSparePartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).DeleteSparePart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_DeleteSparePart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).DeleteSparePart(ctx, req.(*DeleteSparePartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_FilterSparePartByBrandPaginated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FilterSparePartByBrandPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).FilterSparePartByBrandPaginated(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_FilterSparePartByBrandPaginated_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).FilterSparePartByBrandPaginated(ctx, req.(*FilterSparePartByBrandPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_FilterSparePartByCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FilterSparePartByCategoryPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).FilterSparePartByCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_FilterSparePartByCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).FilterSparePartByCategory(ctx, req.(*FilterSparePartByCategoryPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_FilterSparePartByCarModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FilterSparePartByCarModelPaginatedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).FilterSparePartByCarModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_FilterSparePartByCarModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).FilterSparePartByCarModel(ctx, req.(*FilterSparePartByCarModelPaginatedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_GetSparePartImageByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSparePartImageByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).GetSparePartImageByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_GetSparePartImageByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).GetSparePartImageByID(ctx, req.(*GetSparePartImageByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_InsertSparePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertSparePartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).InsertSparePart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_InsertSparePart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).InsertSparePart(ctx, req.(*InsertSparePartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_InsertSparePartImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InsertSparePartImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).InsertSparePartImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_InsertSparePartImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).InsertSparePartImage(ctx, req.(*InsertSparePartImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_ListSparePartImagesBySparePartPaged_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSparePartImagesBySparePartPagedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).ListSparePartImagesBySparePartPaged(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_ListSparePartImagesBySparePartPaged_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).ListSparePartImagesBySparePartPaged(ctx, req.(*ListSparePartImagesBySparePartPagedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_ListSparePartImagesPaged_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSparePartImagesPagedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).ListSparePartImagesPaged(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_ListSparePartImagesPaged_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).ListSparePartImagesPaged(ctx, req.(*ListSparePartImagesPagedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_ListSparePartsByDealerPaged_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSparePartsByDealerPagedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).ListSparePartsByDealerPaged(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_ListSparePartsByDealerPaged_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).ListSparePartsByDealerPaged(ctx, req.(*ListSparePartsByDealerPagedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_ListSparePartsByDealershipPaged_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSparePartsByDealershipPagedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).ListSparePartsByDealershipPaged(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_ListSparePartsByDealershipPaged_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).ListSparePartsByDealershipPaged(ctx, req.(*ListSparePartsByDealershipPagedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_ListSparePartsPaged_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSparePartsPagedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).ListSparePartsPaged(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_ListSparePartsPaged_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).ListSparePartsPaged(ctx, req.(*ListSparePartsPagedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_SearchSparePartsPaged_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchSparePartsPagedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).SearchSparePartsPaged(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_SearchSparePartsPaged_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).SearchSparePartsPaged(ctx, req.(*SearchSparePartsPagedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_UpdateSparePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSparePartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdateSparePart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdateSparePart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdateSparePart(ctx, req.(*UpdateSparePartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DatabaseService_UpdateSparePartImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSparePartImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdateSparePartImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdateSparePartImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdateSparePartImage(ctx, req.(*UpdateSparePartImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DatabaseService_ServiceDesc is the grpc.ServiceDesc for DatabaseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1397,6 +1925,70 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCar",
 			Handler:    _DatabaseService_DeleteCar_Handler,
+		},
+		{
+			MethodName: "GetSparePartByID",
+			Handler:    _DatabaseService_GetSparePartByID_Handler,
+		},
+		{
+			MethodName: "DeleteSparePart",
+			Handler:    _DatabaseService_DeleteSparePart_Handler,
+		},
+		{
+			MethodName: "FilterSparePartByBrandPaginated",
+			Handler:    _DatabaseService_FilterSparePartByBrandPaginated_Handler,
+		},
+		{
+			MethodName: "FilterSparePartByCategory",
+			Handler:    _DatabaseService_FilterSparePartByCategory_Handler,
+		},
+		{
+			MethodName: "FilterSparePartByCarModel",
+			Handler:    _DatabaseService_FilterSparePartByCarModel_Handler,
+		},
+		{
+			MethodName: "GetSparePartImageByID",
+			Handler:    _DatabaseService_GetSparePartImageByID_Handler,
+		},
+		{
+			MethodName: "InsertSparePart",
+			Handler:    _DatabaseService_InsertSparePart_Handler,
+		},
+		{
+			MethodName: "InsertSparePartImage",
+			Handler:    _DatabaseService_InsertSparePartImage_Handler,
+		},
+		{
+			MethodName: "ListSparePartImagesBySparePartPaged",
+			Handler:    _DatabaseService_ListSparePartImagesBySparePartPaged_Handler,
+		},
+		{
+			MethodName: "ListSparePartImagesPaged",
+			Handler:    _DatabaseService_ListSparePartImagesPaged_Handler,
+		},
+		{
+			MethodName: "ListSparePartsByDealerPaged",
+			Handler:    _DatabaseService_ListSparePartsByDealerPaged_Handler,
+		},
+		{
+			MethodName: "ListSparePartsByDealershipPaged",
+			Handler:    _DatabaseService_ListSparePartsByDealershipPaged_Handler,
+		},
+		{
+			MethodName: "ListSparePartsPaged",
+			Handler:    _DatabaseService_ListSparePartsPaged_Handler,
+		},
+		{
+			MethodName: "SearchSparePartsPaged",
+			Handler:    _DatabaseService_SearchSparePartsPaged_Handler,
+		},
+		{
+			MethodName: "UpdateSparePart",
+			Handler:    _DatabaseService_UpdateSparePart_Handler,
+		},
+		{
+			MethodName: "UpdateSparePartImage",
+			Handler:    _DatabaseService_UpdateSparePartImage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

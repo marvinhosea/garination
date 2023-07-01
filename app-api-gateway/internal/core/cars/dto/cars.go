@@ -342,9 +342,9 @@ type GetCarsByDealerIDPaginatedResponse struct {
 }
 
 type SearchCarsPaginatedRequest struct {
-	Search string `json:"search,omitempty"`
-	Offset int32  `json:"offset,omitempty"`
-	Limit  int32  `json:"limit,omitempty"`
+	Search string `form:"search,omitempty"`
+	Offset int32  `form:"offset,omitempty"`
+	Limit  int32  `form:"limit,omitempty"`
 }
 
 func (i *SearchCarsPaginatedRequest) Validate() error {

@@ -48,7 +48,23 @@ service DatabaseService {
   rpc GetCarByBrandCount(GetCarByBrandCountRequest) returns (GetCarByCarBrandCountResponse);
   rpc DeleteCar(DeleteCarRequest) returns (DeleteCarResponse);
 
+  rpc GetSparePartByID(GetSparePartByIDRequest) returns (GetSparePartByIDResponse);
+  rpc DeleteSparePart(DeleteSparePartRequest) returns (DeleteSparePartResponse);
+  rpc FilterSparePartByBrandPaginated(FilterSparePartByBrandPaginatedRequest) returns (FilterSparePartByBrandPaginatedResponse);
+  rpc FilterSparePartByCategory(FilterSparePartByCategoryPaginatedRequest) returns (FilterSparePartByCategoryPaginatedResponse);
+  rpc FilterSparePartByCarModel(FilterSparePartByCarModelPaginatedRequest) returns (FilterSparePartByCarModelPaginatedResponse);
+  rpc GetSparePartImageByID(GetSparePartImageByIDRequest) returns (GetSparePartImageByIDResponse);
+  rpc InsertSparePart(InsertSparePartRequest) returns (InsertSparePartResponse);
+  rpc InsertSparePartImage(InsertSparePartImageRequest) returns (InsertSparePartImageResponse);
+  rpc ListSparePartImagesBySparePartPaged(ListSparePartImagesBySparePartPagedRequest) returns (ListSparePartImagesBySparePartPagedResponse);
+  rpc ListSparePartImagesPaged(ListSparePartImagesPagedRequest) returns (ListSparePartImagesPagedResponse);
+  rpc ListSparePartsByDealerPaged(ListSparePartsByDealerPagedRequest) returns (ListSparePartsByDealerPagedResponse);
+  rpc ListSparePartsByDealershipPaged(ListSparePartsByDealershipPagedRequest) returns (ListSparePartsByDealershipPagedResponse);
+  rpc ListSparePartsPaged(ListSparePartsPagedRequest) returns (ListSparePartsPagedResponse);
+  rpc SearchSparePartsPaged(SearchSparePartsPagedRequest) returns (SearchSparePartsPagedResponse);
+  rpc UpdateSparePart(UpdateSparePartRequest) returns (UpdateSparePartResponse);
+  rpc UpdateSparePartImage(UpdateSparePartImageRequest) returns (UpdateSparePartImageResponse);
+
   // todo KYC
-  // todo Spare
   // todo payments
 }

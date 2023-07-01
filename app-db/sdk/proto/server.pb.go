@@ -25,7 +25,7 @@ var file_server_proto_rawDesc = []byte{
 	0x0a, 0x0c, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0e,
 	0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0f,
 	0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32,
-	0xb8, 0x15, 0x0a, 0x0f, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0xa5, 0x21, 0x0a, 0x0f, 0x44, 0x61, 0x74, 0x61, 0x62, 0x61, 0x73, 0x65, 0x53, 0x65, 0x72, 0x76,
 	0x69, 0x63, 0x65, 0x12, 0x38, 0x0a, 0x0b, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65,
 	0x63, 0x6b, 0x12, 0x13, 0x2e, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68,
@@ -196,164 +196,322 @@ var file_server_proto_rawDesc = []byte{
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a, 0x09, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
 	0x43, 0x61, 0x72, 0x12, 0x11, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43,
-	0x61, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x61,
-	0x72, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x62, 0x2f,
-	0x73, 0x64, 0x6b, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x61, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x10, 0x47, 0x65,
+	0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x49, 0x44, 0x12, 0x18,
+	0x2e, 0x47, 0x65, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x49,
+	0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x12, 0x17, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53,
+	0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x18, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x74, 0x0a, 0x1f, 0x46, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x42, 0x72,
+	0x61, 0x6e, 0x64, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x12, 0x27, 0x2e, 0x46,
+	0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79,
+	0x42, 0x72, 0x61, 0x6e, 0x64, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x50, 0x61,
+	0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x74, 0x0a, 0x19, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61,
+	0x72, 0x74, 0x42, 0x79, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x2a, 0x2e, 0x46,
+	0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79,
+	0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65,
+	0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x43, 0x61, 0x74, 0x65,
+	0x67, 0x6f, 0x72, 0x79, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x74, 0x0a, 0x19, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x53,
+	0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x43, 0x61, 0x72, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0x12, 0x2a, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70, 0x61, 0x72, 0x65,
+	0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x43, 0x61, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x61,
+	0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b,
+	0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74,
+	0x42, 0x79, 0x43, 0x61, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61,
+	0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x15, 0x47,
+	0x65, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65,
+	0x42, 0x79, 0x49, 0x44, 0x12, 0x1d, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61,
+	0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0f, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x12, 0x17, 0x2e, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x53,
+	0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x18, 0x2e, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x14, 0x49, 0x6e, 0x73,
+	0x65, 0x72, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67,
+	0x65, 0x12, 0x1c, 0x2e, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x1d, 0x2e, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x80,
+	0x01, 0x0a, 0x23, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74,
+	0x49, 0x6d, 0x61, 0x67, 0x65, 0x73, 0x42, 0x79, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x50, 0x61, 0x67, 0x65, 0x64, 0x12, 0x2b, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73, 0x42, 0x79, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73, 0x42, 0x79, 0x53, 0x70, 0x61, 0x72, 0x65,
+	0x50, 0x61, 0x72, 0x74, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x5f, 0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61,
+	0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x12, 0x20, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61,
+	0x67, 0x65, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x21, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49,
+	0x6d, 0x61, 0x67, 0x65, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x68, 0x0a, 0x1b, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x50, 0x61, 0x67, 0x65,
+	0x64, 0x12, 0x23, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x50,
+	0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x74, 0x0a, 0x1f,
+	0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x42, 0x79,
+	0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x50, 0x61, 0x67, 0x65, 0x64, 0x12,
+	0x27, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73,
+	0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x50, 0x61, 0x67, 0x65,
+	0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53,
+	0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65,
+	0x72, 0x73, 0x68, 0x69, 0x70, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x50, 0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x12, 0x1b, 0x2e, 0x4c, 0x69, 0x73, 0x74,
+	0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x15, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x12, 0x1d, 0x2e,
+	0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73,
+	0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x53,
+	0x65, 0x61, 0x72, 0x63, 0x68, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x50,
+	0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0f,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x12,
+	0x17, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x53, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x70, 0x61, 0x72,
+	0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x1c, 0x2e, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x61, 0x72, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x62, 0x2f, 0x73, 0x64, 0x6b,
+	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_server_proto_goTypes = []interface{}{
-	(*HealthCheckRequest)(nil),                     // 0: HealthCheckRequest
-	(*GetUserMetaRequest)(nil),                     // 1: GetUserMetaRequest
-	(*InsertUserMetaRequest)(nil),                  // 2: InsertUserMetaRequest
-	(*UpdateUserMetaRequest)(nil),                  // 3: UpdateUserMetaRequest
-	(*ChangeDealershipRequest)(nil),                // 4: ChangeDealershipRequest
-	(*InsertDealershipRequest)(nil),                // 5: InsertDealershipRequest
-	(*UpdateDealershipRequest)(nil),                // 6: UpdateDealershipRequest
-	(*GetUserDealershipRequest)(nil),               // 7: GetUserDealershipRequest
-	(*GetDealershipByIDRequest)(nil),               // 8: GetDealershipByIDRequest
-	(*DeleteDealershipRequest)(nil),                // 9: DeleteDealershipRequest
-	(*InsertCarBrandRequest)(nil),                  // 10: InsertCarBrandRequest
-	(*UpdateCarBrandRequest)(nil),                  // 11: UpdateCarBrandRequest
-	(*GetCarBrandByIDRequest)(nil),                 // 12: GetCarBrandByIDRequest
-	(*GetCarBrandsPaginatedRequest)(nil),           // 13: GetCarBrandsPaginatedRequest
-	(*DeleteCarBrandRequest)(nil),                  // 14: DeleteCarBrandRequest
-	(*InsertCarExtraFeatureRequest)(nil),           // 15: InsertCarExtraFeatureRequest
-	(*UpdateCarExtraFeatureRequest)(nil),           // 16: UpdateCarExtraFeatureRequest
-	(*GetCarExtraFeaturesPaginatedRequest)(nil),    // 17: GetCarExtraFeaturesPaginatedRequest
-	(*DeleteCarExtraFeatureRequest)(nil),           // 18: DeleteCarExtraFeatureRequest
-	(*CreateCarImageRequest)(nil),                  // 19: CreateCarImageRequest
-	(*UpdateCarImageRequest)(nil),                  // 20: UpdateCarImageRequest
-	(*GetCarImagesPaginatedRequest)(nil),           // 21: GetCarImagesPaginatedRequest
-	(*DeleteCarImageRequest)(nil),                  // 22: DeleteCarImageRequest
-	(*InsertCarRequest)(nil),                       // 23: InsertCarRequest
-	(*UpdateCarRequest)(nil),                       // 24: UpdateCarRequest
-	(*GetOneCarRequest)(nil),                       // 25: GetOneCarRequest
-	(*GetCarsPaginatedRequest)(nil),                // 26: GetCarsPaginatedRequest
-	(*GetCarsByDealershipIDPaginatedRequest)(nil),  // 27: GetCarsByDealershipIDPaginatedRequest
-	(*GetCarsByBrandIDPaginatedRequest)(nil),       // 28: GetCarsByBrandIDPaginatedRequest
-	(*GetCarsByDealerIDPaginatedRequest)(nil),      // 29: GetCarsByDealerIDPaginatedRequest
-	(*SearchCarsPaginatedRequest)(nil),             // 30: SearchCarsPaginatedRequest
-	(*GetCarByFieldRequest)(nil),                   // 31: GetCarByFieldRequest
-	(*GetCarByDealerCountRequest)(nil),             // 32: GetCarByDealerCountRequest
-	(*GetCarByDealershipCountRequest)(nil),         // 33: GetCarByDealershipCountRequest
-	(*GetCarByBrandCountRequest)(nil),              // 34: GetCarByBrandCountRequest
-	(*DeleteCarRequest)(nil),                       // 35: DeleteCarRequest
-	(*HealthCheckResponse)(nil),                    // 36: HealthCheckResponse
-	(*GetUserMetaResponse)(nil),                    // 37: GetUserMetaResponse
-	(*InsertUserMetaResponse)(nil),                 // 38: InsertUserMetaResponse
-	(*UpdateUserMetaResponse)(nil),                 // 39: UpdateUserMetaResponse
-	(*ChangeDealershipResponse)(nil),               // 40: ChangeDealershipResponse
-	(*InsertDealershipResponse)(nil),               // 41: InsertDealershipResponse
-	(*UpdateDealershipResponse)(nil),               // 42: UpdateDealershipResponse
-	(*GetDealershipByUserIDResponse)(nil),          // 43: GetDealershipByUserIDResponse
-	(*GetDealershipByIDResponse)(nil),              // 44: GetDealershipByIDResponse
-	(*DeleteDealershipResponse)(nil),               // 45: DeleteDealershipResponse
-	(*InsertCarBrandResponse)(nil),                 // 46: InsertCarBrandResponse
-	(*UpdateCarBrandResponse)(nil),                 // 47: UpdateCarBrandResponse
-	(*GetCarBrandByIDResponse)(nil),                // 48: GetCarBrandByIDResponse
-	(*GetCarBrandsPaginatedResponse)(nil),          // 49: GetCarBrandsPaginatedResponse
-	(*DeleteCarBrandResponse)(nil),                 // 50: DeleteCarBrandResponse
-	(*InsertCarExtraFeatureResponse)(nil),          // 51: InsertCarExtraFeatureResponse
-	(*UpdateCarExtraFeatureResponse)(nil),          // 52: UpdateCarExtraFeatureResponse
-	(*GetCarExtraFeaturesPaginatedResponse)(nil),   // 53: GetCarExtraFeaturesPaginatedResponse
-	(*DeleteCarExtraFeatureResponse)(nil),          // 54: DeleteCarExtraFeatureResponse
-	(*CreateCarImageResponse)(nil),                 // 55: CreateCarImageResponse
-	(*UpdateCarImageResponse)(nil),                 // 56: UpdateCarImageResponse
-	(*GetCarImagesPaginatedResponse)(nil),          // 57: GetCarImagesPaginatedResponse
-	(*DeleteCarImageResponse)(nil),                 // 58: DeleteCarImageResponse
-	(*InsertCarResponse)(nil),                      // 59: InsertCarResponse
-	(*UpdateCarResponse)(nil),                      // 60: UpdateCarResponse
-	(*GetOneCarResponse)(nil),                      // 61: GetOneCarResponse
-	(*GetCarsPaginatedResponse)(nil),               // 62: GetCarsPaginatedResponse
-	(*GetCarsByDealershipIDPaginatedResponse)(nil), // 63: GetCarsByDealershipIDPaginatedResponse
-	(*GetCarsByCarBrandIDPaginatedResponse)(nil),   // 64: GetCarsByCarBrandIDPaginatedResponse
-	(*GetCarsByDealerIDPaginatedResponse)(nil),     // 65: GetCarsByDealerIDPaginatedResponse
-	(*SearchCarsPaginatedResponse)(nil),            // 66: SearchCarsPaginatedResponse
-	(*GetCarByFieldResponse)(nil),                  // 67: GetCarByFieldResponse
-	(*GetCarByDealerCountResponse)(nil),            // 68: GetCarByDealerCountResponse
-	(*GetCarByDealershipCountResponse)(nil),        // 69: GetCarByDealershipCountResponse
-	(*GetCarByCarBrandCountResponse)(nil),          // 70: GetCarByCarBrandCountResponse
-	(*DeleteCarResponse)(nil),                      // 71: DeleteCarResponse
+	(*HealthCheckRequest)(nil),                          // 0: HealthCheckRequest
+	(*GetUserMetaRequest)(nil),                          // 1: GetUserMetaRequest
+	(*InsertUserMetaRequest)(nil),                       // 2: InsertUserMetaRequest
+	(*UpdateUserMetaRequest)(nil),                       // 3: UpdateUserMetaRequest
+	(*ChangeDealershipRequest)(nil),                     // 4: ChangeDealershipRequest
+	(*InsertDealershipRequest)(nil),                     // 5: InsertDealershipRequest
+	(*UpdateDealershipRequest)(nil),                     // 6: UpdateDealershipRequest
+	(*GetUserDealershipRequest)(nil),                    // 7: GetUserDealershipRequest
+	(*GetDealershipByIDRequest)(nil),                    // 8: GetDealershipByIDRequest
+	(*DeleteDealershipRequest)(nil),                     // 9: DeleteDealershipRequest
+	(*InsertCarBrandRequest)(nil),                       // 10: InsertCarBrandRequest
+	(*UpdateCarBrandRequest)(nil),                       // 11: UpdateCarBrandRequest
+	(*GetCarBrandByIDRequest)(nil),                      // 12: GetCarBrandByIDRequest
+	(*GetCarBrandsPaginatedRequest)(nil),                // 13: GetCarBrandsPaginatedRequest
+	(*DeleteCarBrandRequest)(nil),                       // 14: DeleteCarBrandRequest
+	(*InsertCarExtraFeatureRequest)(nil),                // 15: InsertCarExtraFeatureRequest
+	(*UpdateCarExtraFeatureRequest)(nil),                // 16: UpdateCarExtraFeatureRequest
+	(*GetCarExtraFeaturesPaginatedRequest)(nil),         // 17: GetCarExtraFeaturesPaginatedRequest
+	(*DeleteCarExtraFeatureRequest)(nil),                // 18: DeleteCarExtraFeatureRequest
+	(*CreateCarImageRequest)(nil),                       // 19: CreateCarImageRequest
+	(*UpdateCarImageRequest)(nil),                       // 20: UpdateCarImageRequest
+	(*GetCarImagesPaginatedRequest)(nil),                // 21: GetCarImagesPaginatedRequest
+	(*DeleteCarImageRequest)(nil),                       // 22: DeleteCarImageRequest
+	(*InsertCarRequest)(nil),                            // 23: InsertCarRequest
+	(*UpdateCarRequest)(nil),                            // 24: UpdateCarRequest
+	(*GetOneCarRequest)(nil),                            // 25: GetOneCarRequest
+	(*GetCarsPaginatedRequest)(nil),                     // 26: GetCarsPaginatedRequest
+	(*GetCarsByDealershipIDPaginatedRequest)(nil),       // 27: GetCarsByDealershipIDPaginatedRequest
+	(*GetCarsByBrandIDPaginatedRequest)(nil),            // 28: GetCarsByBrandIDPaginatedRequest
+	(*GetCarsByDealerIDPaginatedRequest)(nil),           // 29: GetCarsByDealerIDPaginatedRequest
+	(*SearchCarsPaginatedRequest)(nil),                  // 30: SearchCarsPaginatedRequest
+	(*GetCarByFieldRequest)(nil),                        // 31: GetCarByFieldRequest
+	(*GetCarByDealerCountRequest)(nil),                  // 32: GetCarByDealerCountRequest
+	(*GetCarByDealershipCountRequest)(nil),              // 33: GetCarByDealershipCountRequest
+	(*GetCarByBrandCountRequest)(nil),                   // 34: GetCarByBrandCountRequest
+	(*DeleteCarRequest)(nil),                            // 35: DeleteCarRequest
+	(*GetSparePartByIDRequest)(nil),                     // 36: GetSparePartByIDRequest
+	(*DeleteSparePartRequest)(nil),                      // 37: DeleteSparePartRequest
+	(*FilterSparePartByBrandPaginatedRequest)(nil),      // 38: FilterSparePartByBrandPaginatedRequest
+	(*FilterSparePartByCategoryPaginatedRequest)(nil),   // 39: FilterSparePartByCategoryPaginatedRequest
+	(*FilterSparePartByCarModelPaginatedRequest)(nil),   // 40: FilterSparePartByCarModelPaginatedRequest
+	(*GetSparePartImageByIDRequest)(nil),                // 41: GetSparePartImageByIDRequest
+	(*InsertSparePartRequest)(nil),                      // 42: InsertSparePartRequest
+	(*InsertSparePartImageRequest)(nil),                 // 43: InsertSparePartImageRequest
+	(*ListSparePartImagesBySparePartPagedRequest)(nil),  // 44: ListSparePartImagesBySparePartPagedRequest
+	(*ListSparePartImagesPagedRequest)(nil),             // 45: ListSparePartImagesPagedRequest
+	(*ListSparePartsByDealerPagedRequest)(nil),          // 46: ListSparePartsByDealerPagedRequest
+	(*ListSparePartsByDealershipPagedRequest)(nil),      // 47: ListSparePartsByDealershipPagedRequest
+	(*ListSparePartsPagedRequest)(nil),                  // 48: ListSparePartsPagedRequest
+	(*SearchSparePartsPagedRequest)(nil),                // 49: SearchSparePartsPagedRequest
+	(*UpdateSparePartRequest)(nil),                      // 50: UpdateSparePartRequest
+	(*UpdateSparePartImageRequest)(nil),                 // 51: UpdateSparePartImageRequest
+	(*HealthCheckResponse)(nil),                         // 52: HealthCheckResponse
+	(*GetUserMetaResponse)(nil),                         // 53: GetUserMetaResponse
+	(*InsertUserMetaResponse)(nil),                      // 54: InsertUserMetaResponse
+	(*UpdateUserMetaResponse)(nil),                      // 55: UpdateUserMetaResponse
+	(*ChangeDealershipResponse)(nil),                    // 56: ChangeDealershipResponse
+	(*InsertDealershipResponse)(nil),                    // 57: InsertDealershipResponse
+	(*UpdateDealershipResponse)(nil),                    // 58: UpdateDealershipResponse
+	(*GetDealershipByUserIDResponse)(nil),               // 59: GetDealershipByUserIDResponse
+	(*GetDealershipByIDResponse)(nil),                   // 60: GetDealershipByIDResponse
+	(*DeleteDealershipResponse)(nil),                    // 61: DeleteDealershipResponse
+	(*InsertCarBrandResponse)(nil),                      // 62: InsertCarBrandResponse
+	(*UpdateCarBrandResponse)(nil),                      // 63: UpdateCarBrandResponse
+	(*GetCarBrandByIDResponse)(nil),                     // 64: GetCarBrandByIDResponse
+	(*GetCarBrandsPaginatedResponse)(nil),               // 65: GetCarBrandsPaginatedResponse
+	(*DeleteCarBrandResponse)(nil),                      // 66: DeleteCarBrandResponse
+	(*InsertCarExtraFeatureResponse)(nil),               // 67: InsertCarExtraFeatureResponse
+	(*UpdateCarExtraFeatureResponse)(nil),               // 68: UpdateCarExtraFeatureResponse
+	(*GetCarExtraFeaturesPaginatedResponse)(nil),        // 69: GetCarExtraFeaturesPaginatedResponse
+	(*DeleteCarExtraFeatureResponse)(nil),               // 70: DeleteCarExtraFeatureResponse
+	(*CreateCarImageResponse)(nil),                      // 71: CreateCarImageResponse
+	(*UpdateCarImageResponse)(nil),                      // 72: UpdateCarImageResponse
+	(*GetCarImagesPaginatedResponse)(nil),               // 73: GetCarImagesPaginatedResponse
+	(*DeleteCarImageResponse)(nil),                      // 74: DeleteCarImageResponse
+	(*InsertCarResponse)(nil),                           // 75: InsertCarResponse
+	(*UpdateCarResponse)(nil),                           // 76: UpdateCarResponse
+	(*GetOneCarResponse)(nil),                           // 77: GetOneCarResponse
+	(*GetCarsPaginatedResponse)(nil),                    // 78: GetCarsPaginatedResponse
+	(*GetCarsByDealershipIDPaginatedResponse)(nil),      // 79: GetCarsByDealershipIDPaginatedResponse
+	(*GetCarsByCarBrandIDPaginatedResponse)(nil),        // 80: GetCarsByCarBrandIDPaginatedResponse
+	(*GetCarsByDealerIDPaginatedResponse)(nil),          // 81: GetCarsByDealerIDPaginatedResponse
+	(*SearchCarsPaginatedResponse)(nil),                 // 82: SearchCarsPaginatedResponse
+	(*GetCarByFieldResponse)(nil),                       // 83: GetCarByFieldResponse
+	(*GetCarByDealerCountResponse)(nil),                 // 84: GetCarByDealerCountResponse
+	(*GetCarByDealershipCountResponse)(nil),             // 85: GetCarByDealershipCountResponse
+	(*GetCarByCarBrandCountResponse)(nil),               // 86: GetCarByCarBrandCountResponse
+	(*DeleteCarResponse)(nil),                           // 87: DeleteCarResponse
+	(*GetSparePartByIDResponse)(nil),                    // 88: GetSparePartByIDResponse
+	(*DeleteSparePartResponse)(nil),                     // 89: DeleteSparePartResponse
+	(*FilterSparePartByBrandPaginatedResponse)(nil),     // 90: FilterSparePartByBrandPaginatedResponse
+	(*FilterSparePartByCategoryPaginatedResponse)(nil),  // 91: FilterSparePartByCategoryPaginatedResponse
+	(*FilterSparePartByCarModelPaginatedResponse)(nil),  // 92: FilterSparePartByCarModelPaginatedResponse
+	(*GetSparePartImageByIDResponse)(nil),               // 93: GetSparePartImageByIDResponse
+	(*InsertSparePartResponse)(nil),                     // 94: InsertSparePartResponse
+	(*InsertSparePartImageResponse)(nil),                // 95: InsertSparePartImageResponse
+	(*ListSparePartImagesBySparePartPagedResponse)(nil), // 96: ListSparePartImagesBySparePartPagedResponse
+	(*ListSparePartImagesPagedResponse)(nil),            // 97: ListSparePartImagesPagedResponse
+	(*ListSparePartsByDealerPagedResponse)(nil),         // 98: ListSparePartsByDealerPagedResponse
+	(*ListSparePartsByDealershipPagedResponse)(nil),     // 99: ListSparePartsByDealershipPagedResponse
+	(*ListSparePartsPagedResponse)(nil),                 // 100: ListSparePartsPagedResponse
+	(*SearchSparePartsPagedResponse)(nil),               // 101: SearchSparePartsPagedResponse
+	(*UpdateSparePartResponse)(nil),                     // 102: UpdateSparePartResponse
+	(*UpdateSparePartImageResponse)(nil),                // 103: UpdateSparePartImageResponse
 }
 var file_server_proto_depIdxs = []int32{
-	0,  // 0: DatabaseService.HealthCheck:input_type -> HealthCheckRequest
-	1,  // 1: DatabaseService.GetUserMeta:input_type -> GetUserMetaRequest
-	2,  // 2: DatabaseService.InsertUserMeta:input_type -> InsertUserMetaRequest
-	3,  // 3: DatabaseService.UpdateUserMeta:input_type -> UpdateUserMetaRequest
-	4,  // 4: DatabaseService.ChangeDealership:input_type -> ChangeDealershipRequest
-	5,  // 5: DatabaseService.InsertDealership:input_type -> InsertDealershipRequest
-	6,  // 6: DatabaseService.UpdateDealership:input_type -> UpdateDealershipRequest
-	7,  // 7: DatabaseService.GetDealershipByUserId:input_type -> GetUserDealershipRequest
-	8,  // 8: DatabaseService.GetDealershipByID:input_type -> GetDealershipByIDRequest
-	9,  // 9: DatabaseService.DeleteDealership:input_type -> DeleteDealershipRequest
-	10, // 10: DatabaseService.InsertCarBrand:input_type -> InsertCarBrandRequest
-	11, // 11: DatabaseService.UpdateCarBrand:input_type -> UpdateCarBrandRequest
-	12, // 12: DatabaseService.GetCarBrandByID:input_type -> GetCarBrandByIDRequest
-	13, // 13: DatabaseService.GetCarBrandsPaginated:input_type -> GetCarBrandsPaginatedRequest
-	14, // 14: DatabaseService.DeleteCarBrand:input_type -> DeleteCarBrandRequest
-	15, // 15: DatabaseService.InsertCarExtraFeature:input_type -> InsertCarExtraFeatureRequest
-	16, // 16: DatabaseService.UpdateCarExtraFeature:input_type -> UpdateCarExtraFeatureRequest
-	17, // 17: DatabaseService.GetCarExtraFeaturePaginated:input_type -> GetCarExtraFeaturesPaginatedRequest
-	18, // 18: DatabaseService.DeleteCarExtraFeature:input_type -> DeleteCarExtraFeatureRequest
-	19, // 19: DatabaseService.CreateCarImage:input_type -> CreateCarImageRequest
-	20, // 20: DatabaseService.UpdateCarImage:input_type -> UpdateCarImageRequest
-	21, // 21: DatabaseService.GetCarImagePaginated:input_type -> GetCarImagesPaginatedRequest
-	22, // 22: DatabaseService.DeleteCarImage:input_type -> DeleteCarImageRequest
-	23, // 23: DatabaseService.InsertCar:input_type -> InsertCarRequest
-	24, // 24: DatabaseService.UpdateCar:input_type -> UpdateCarRequest
-	25, // 25: DatabaseService.GetOneCar:input_type -> GetOneCarRequest
-	26, // 26: DatabaseService.GetCarsPaginated:input_type -> GetCarsPaginatedRequest
-	27, // 27: DatabaseService.GetCarsByDealershipIDPaginated:input_type -> GetCarsByDealershipIDPaginatedRequest
-	28, // 28: DatabaseService.GetCarsByBrandIDPaginated:input_type -> GetCarsByBrandIDPaginatedRequest
-	29, // 29: DatabaseService.GetCarsByDealerIDPaginated:input_type -> GetCarsByDealerIDPaginatedRequest
-	30, // 30: DatabaseService.SearchCarsPaginated:input_type -> SearchCarsPaginatedRequest
-	31, // 31: DatabaseService.GetCarByField:input_type -> GetCarByFieldRequest
-	32, // 32: DatabaseService.GetCarByDealerCount:input_type -> GetCarByDealerCountRequest
-	33, // 33: DatabaseService.GetCarByDealershipCount:input_type -> GetCarByDealershipCountRequest
-	34, // 34: DatabaseService.GetCarByBrandCount:input_type -> GetCarByBrandCountRequest
-	35, // 35: DatabaseService.DeleteCar:input_type -> DeleteCarRequest
-	36, // 36: DatabaseService.HealthCheck:output_type -> HealthCheckResponse
-	37, // 37: DatabaseService.GetUserMeta:output_type -> GetUserMetaResponse
-	38, // 38: DatabaseService.InsertUserMeta:output_type -> InsertUserMetaResponse
-	39, // 39: DatabaseService.UpdateUserMeta:output_type -> UpdateUserMetaResponse
-	40, // 40: DatabaseService.ChangeDealership:output_type -> ChangeDealershipResponse
-	41, // 41: DatabaseService.InsertDealership:output_type -> InsertDealershipResponse
-	42, // 42: DatabaseService.UpdateDealership:output_type -> UpdateDealershipResponse
-	43, // 43: DatabaseService.GetDealershipByUserId:output_type -> GetDealershipByUserIDResponse
-	44, // 44: DatabaseService.GetDealershipByID:output_type -> GetDealershipByIDResponse
-	45, // 45: DatabaseService.DeleteDealership:output_type -> DeleteDealershipResponse
-	46, // 46: DatabaseService.InsertCarBrand:output_type -> InsertCarBrandResponse
-	47, // 47: DatabaseService.UpdateCarBrand:output_type -> UpdateCarBrandResponse
-	48, // 48: DatabaseService.GetCarBrandByID:output_type -> GetCarBrandByIDResponse
-	49, // 49: DatabaseService.GetCarBrandsPaginated:output_type -> GetCarBrandsPaginatedResponse
-	50, // 50: DatabaseService.DeleteCarBrand:output_type -> DeleteCarBrandResponse
-	51, // 51: DatabaseService.InsertCarExtraFeature:output_type -> InsertCarExtraFeatureResponse
-	52, // 52: DatabaseService.UpdateCarExtraFeature:output_type -> UpdateCarExtraFeatureResponse
-	53, // 53: DatabaseService.GetCarExtraFeaturePaginated:output_type -> GetCarExtraFeaturesPaginatedResponse
-	54, // 54: DatabaseService.DeleteCarExtraFeature:output_type -> DeleteCarExtraFeatureResponse
-	55, // 55: DatabaseService.CreateCarImage:output_type -> CreateCarImageResponse
-	56, // 56: DatabaseService.UpdateCarImage:output_type -> UpdateCarImageResponse
-	57, // 57: DatabaseService.GetCarImagePaginated:output_type -> GetCarImagesPaginatedResponse
-	58, // 58: DatabaseService.DeleteCarImage:output_type -> DeleteCarImageResponse
-	59, // 59: DatabaseService.InsertCar:output_type -> InsertCarResponse
-	60, // 60: DatabaseService.UpdateCar:output_type -> UpdateCarResponse
-	61, // 61: DatabaseService.GetOneCar:output_type -> GetOneCarResponse
-	62, // 62: DatabaseService.GetCarsPaginated:output_type -> GetCarsPaginatedResponse
-	63, // 63: DatabaseService.GetCarsByDealershipIDPaginated:output_type -> GetCarsByDealershipIDPaginatedResponse
-	64, // 64: DatabaseService.GetCarsByBrandIDPaginated:output_type -> GetCarsByCarBrandIDPaginatedResponse
-	65, // 65: DatabaseService.GetCarsByDealerIDPaginated:output_type -> GetCarsByDealerIDPaginatedResponse
-	66, // 66: DatabaseService.SearchCarsPaginated:output_type -> SearchCarsPaginatedResponse
-	67, // 67: DatabaseService.GetCarByField:output_type -> GetCarByFieldResponse
-	68, // 68: DatabaseService.GetCarByDealerCount:output_type -> GetCarByDealerCountResponse
-	69, // 69: DatabaseService.GetCarByDealershipCount:output_type -> GetCarByDealershipCountResponse
-	70, // 70: DatabaseService.GetCarByBrandCount:output_type -> GetCarByCarBrandCountResponse
-	71, // 71: DatabaseService.DeleteCar:output_type -> DeleteCarResponse
-	36, // [36:72] is the sub-list for method output_type
-	0,  // [0:36] is the sub-list for method input_type
-	0,  // [0:0] is the sub-list for extension type_name
-	0,  // [0:0] is the sub-list for extension extendee
-	0,  // [0:0] is the sub-list for field type_name
+	0,   // 0: DatabaseService.HealthCheck:input_type -> HealthCheckRequest
+	1,   // 1: DatabaseService.GetUserMeta:input_type -> GetUserMetaRequest
+	2,   // 2: DatabaseService.InsertUserMeta:input_type -> InsertUserMetaRequest
+	3,   // 3: DatabaseService.UpdateUserMeta:input_type -> UpdateUserMetaRequest
+	4,   // 4: DatabaseService.ChangeDealership:input_type -> ChangeDealershipRequest
+	5,   // 5: DatabaseService.InsertDealership:input_type -> InsertDealershipRequest
+	6,   // 6: DatabaseService.UpdateDealership:input_type -> UpdateDealershipRequest
+	7,   // 7: DatabaseService.GetDealershipByUserId:input_type -> GetUserDealershipRequest
+	8,   // 8: DatabaseService.GetDealershipByID:input_type -> GetDealershipByIDRequest
+	9,   // 9: DatabaseService.DeleteDealership:input_type -> DeleteDealershipRequest
+	10,  // 10: DatabaseService.InsertCarBrand:input_type -> InsertCarBrandRequest
+	11,  // 11: DatabaseService.UpdateCarBrand:input_type -> UpdateCarBrandRequest
+	12,  // 12: DatabaseService.GetCarBrandByID:input_type -> GetCarBrandByIDRequest
+	13,  // 13: DatabaseService.GetCarBrandsPaginated:input_type -> GetCarBrandsPaginatedRequest
+	14,  // 14: DatabaseService.DeleteCarBrand:input_type -> DeleteCarBrandRequest
+	15,  // 15: DatabaseService.InsertCarExtraFeature:input_type -> InsertCarExtraFeatureRequest
+	16,  // 16: DatabaseService.UpdateCarExtraFeature:input_type -> UpdateCarExtraFeatureRequest
+	17,  // 17: DatabaseService.GetCarExtraFeaturePaginated:input_type -> GetCarExtraFeaturesPaginatedRequest
+	18,  // 18: DatabaseService.DeleteCarExtraFeature:input_type -> DeleteCarExtraFeatureRequest
+	19,  // 19: DatabaseService.CreateCarImage:input_type -> CreateCarImageRequest
+	20,  // 20: DatabaseService.UpdateCarImage:input_type -> UpdateCarImageRequest
+	21,  // 21: DatabaseService.GetCarImagePaginated:input_type -> GetCarImagesPaginatedRequest
+	22,  // 22: DatabaseService.DeleteCarImage:input_type -> DeleteCarImageRequest
+	23,  // 23: DatabaseService.InsertCar:input_type -> InsertCarRequest
+	24,  // 24: DatabaseService.UpdateCar:input_type -> UpdateCarRequest
+	25,  // 25: DatabaseService.GetOneCar:input_type -> GetOneCarRequest
+	26,  // 26: DatabaseService.GetCarsPaginated:input_type -> GetCarsPaginatedRequest
+	27,  // 27: DatabaseService.GetCarsByDealershipIDPaginated:input_type -> GetCarsByDealershipIDPaginatedRequest
+	28,  // 28: DatabaseService.GetCarsByBrandIDPaginated:input_type -> GetCarsByBrandIDPaginatedRequest
+	29,  // 29: DatabaseService.GetCarsByDealerIDPaginated:input_type -> GetCarsByDealerIDPaginatedRequest
+	30,  // 30: DatabaseService.SearchCarsPaginated:input_type -> SearchCarsPaginatedRequest
+	31,  // 31: DatabaseService.GetCarByField:input_type -> GetCarByFieldRequest
+	32,  // 32: DatabaseService.GetCarByDealerCount:input_type -> GetCarByDealerCountRequest
+	33,  // 33: DatabaseService.GetCarByDealershipCount:input_type -> GetCarByDealershipCountRequest
+	34,  // 34: DatabaseService.GetCarByBrandCount:input_type -> GetCarByBrandCountRequest
+	35,  // 35: DatabaseService.DeleteCar:input_type -> DeleteCarRequest
+	36,  // 36: DatabaseService.GetSparePartByID:input_type -> GetSparePartByIDRequest
+	37,  // 37: DatabaseService.DeleteSparePart:input_type -> DeleteSparePartRequest
+	38,  // 38: DatabaseService.FilterSparePartByBrandPaginated:input_type -> FilterSparePartByBrandPaginatedRequest
+	39,  // 39: DatabaseService.FilterSparePartByCategory:input_type -> FilterSparePartByCategoryPaginatedRequest
+	40,  // 40: DatabaseService.FilterSparePartByCarModel:input_type -> FilterSparePartByCarModelPaginatedRequest
+	41,  // 41: DatabaseService.GetSparePartImageByID:input_type -> GetSparePartImageByIDRequest
+	42,  // 42: DatabaseService.InsertSparePart:input_type -> InsertSparePartRequest
+	43,  // 43: DatabaseService.InsertSparePartImage:input_type -> InsertSparePartImageRequest
+	44,  // 44: DatabaseService.ListSparePartImagesBySparePartPaged:input_type -> ListSparePartImagesBySparePartPagedRequest
+	45,  // 45: DatabaseService.ListSparePartImagesPaged:input_type -> ListSparePartImagesPagedRequest
+	46,  // 46: DatabaseService.ListSparePartsByDealerPaged:input_type -> ListSparePartsByDealerPagedRequest
+	47,  // 47: DatabaseService.ListSparePartsByDealershipPaged:input_type -> ListSparePartsByDealershipPagedRequest
+	48,  // 48: DatabaseService.ListSparePartsPaged:input_type -> ListSparePartsPagedRequest
+	49,  // 49: DatabaseService.SearchSparePartsPaged:input_type -> SearchSparePartsPagedRequest
+	50,  // 50: DatabaseService.UpdateSparePart:input_type -> UpdateSparePartRequest
+	51,  // 51: DatabaseService.UpdateSparePartImage:input_type -> UpdateSparePartImageRequest
+	52,  // 52: DatabaseService.HealthCheck:output_type -> HealthCheckResponse
+	53,  // 53: DatabaseService.GetUserMeta:output_type -> GetUserMetaResponse
+	54,  // 54: DatabaseService.InsertUserMeta:output_type -> InsertUserMetaResponse
+	55,  // 55: DatabaseService.UpdateUserMeta:output_type -> UpdateUserMetaResponse
+	56,  // 56: DatabaseService.ChangeDealership:output_type -> ChangeDealershipResponse
+	57,  // 57: DatabaseService.InsertDealership:output_type -> InsertDealershipResponse
+	58,  // 58: DatabaseService.UpdateDealership:output_type -> UpdateDealershipResponse
+	59,  // 59: DatabaseService.GetDealershipByUserId:output_type -> GetDealershipByUserIDResponse
+	60,  // 60: DatabaseService.GetDealershipByID:output_type -> GetDealershipByIDResponse
+	61,  // 61: DatabaseService.DeleteDealership:output_type -> DeleteDealershipResponse
+	62,  // 62: DatabaseService.InsertCarBrand:output_type -> InsertCarBrandResponse
+	63,  // 63: DatabaseService.UpdateCarBrand:output_type -> UpdateCarBrandResponse
+	64,  // 64: DatabaseService.GetCarBrandByID:output_type -> GetCarBrandByIDResponse
+	65,  // 65: DatabaseService.GetCarBrandsPaginated:output_type -> GetCarBrandsPaginatedResponse
+	66,  // 66: DatabaseService.DeleteCarBrand:output_type -> DeleteCarBrandResponse
+	67,  // 67: DatabaseService.InsertCarExtraFeature:output_type -> InsertCarExtraFeatureResponse
+	68,  // 68: DatabaseService.UpdateCarExtraFeature:output_type -> UpdateCarExtraFeatureResponse
+	69,  // 69: DatabaseService.GetCarExtraFeaturePaginated:output_type -> GetCarExtraFeaturesPaginatedResponse
+	70,  // 70: DatabaseService.DeleteCarExtraFeature:output_type -> DeleteCarExtraFeatureResponse
+	71,  // 71: DatabaseService.CreateCarImage:output_type -> CreateCarImageResponse
+	72,  // 72: DatabaseService.UpdateCarImage:output_type -> UpdateCarImageResponse
+	73,  // 73: DatabaseService.GetCarImagePaginated:output_type -> GetCarImagesPaginatedResponse
+	74,  // 74: DatabaseService.DeleteCarImage:output_type -> DeleteCarImageResponse
+	75,  // 75: DatabaseService.InsertCar:output_type -> InsertCarResponse
+	76,  // 76: DatabaseService.UpdateCar:output_type -> UpdateCarResponse
+	77,  // 77: DatabaseService.GetOneCar:output_type -> GetOneCarResponse
+	78,  // 78: DatabaseService.GetCarsPaginated:output_type -> GetCarsPaginatedResponse
+	79,  // 79: DatabaseService.GetCarsByDealershipIDPaginated:output_type -> GetCarsByDealershipIDPaginatedResponse
+	80,  // 80: DatabaseService.GetCarsByBrandIDPaginated:output_type -> GetCarsByCarBrandIDPaginatedResponse
+	81,  // 81: DatabaseService.GetCarsByDealerIDPaginated:output_type -> GetCarsByDealerIDPaginatedResponse
+	82,  // 82: DatabaseService.SearchCarsPaginated:output_type -> SearchCarsPaginatedResponse
+	83,  // 83: DatabaseService.GetCarByField:output_type -> GetCarByFieldResponse
+	84,  // 84: DatabaseService.GetCarByDealerCount:output_type -> GetCarByDealerCountResponse
+	85,  // 85: DatabaseService.GetCarByDealershipCount:output_type -> GetCarByDealershipCountResponse
+	86,  // 86: DatabaseService.GetCarByBrandCount:output_type -> GetCarByCarBrandCountResponse
+	87,  // 87: DatabaseService.DeleteCar:output_type -> DeleteCarResponse
+	88,  // 88: DatabaseService.GetSparePartByID:output_type -> GetSparePartByIDResponse
+	89,  // 89: DatabaseService.DeleteSparePart:output_type -> DeleteSparePartResponse
+	90,  // 90: DatabaseService.FilterSparePartByBrandPaginated:output_type -> FilterSparePartByBrandPaginatedResponse
+	91,  // 91: DatabaseService.FilterSparePartByCategory:output_type -> FilterSparePartByCategoryPaginatedResponse
+	92,  // 92: DatabaseService.FilterSparePartByCarModel:output_type -> FilterSparePartByCarModelPaginatedResponse
+	93,  // 93: DatabaseService.GetSparePartImageByID:output_type -> GetSparePartImageByIDResponse
+	94,  // 94: DatabaseService.InsertSparePart:output_type -> InsertSparePartResponse
+	95,  // 95: DatabaseService.InsertSparePartImage:output_type -> InsertSparePartImageResponse
+	96,  // 96: DatabaseService.ListSparePartImagesBySparePartPaged:output_type -> ListSparePartImagesBySparePartPagedResponse
+	97,  // 97: DatabaseService.ListSparePartImagesPaged:output_type -> ListSparePartImagesPagedResponse
+	98,  // 98: DatabaseService.ListSparePartsByDealerPaged:output_type -> ListSparePartsByDealerPagedResponse
+	99,  // 99: DatabaseService.ListSparePartsByDealershipPaged:output_type -> ListSparePartsByDealershipPagedResponse
+	100, // 100: DatabaseService.ListSparePartsPaged:output_type -> ListSparePartsPagedResponse
+	101, // 101: DatabaseService.SearchSparePartsPaged:output_type -> SearchSparePartsPagedResponse
+	102, // 102: DatabaseService.UpdateSparePart:output_type -> UpdateSparePartResponse
+	103, // 103: DatabaseService.UpdateSparePartImage:output_type -> UpdateSparePartImageResponse
+	52,  // [52:104] is the sub-list for method output_type
+	0,   // [0:52] is the sub-list for method input_type
+	0,   // [0:0] is the sub-list for extension type_name
+	0,   // [0:0] is the sub-list for extension extendee
+	0,   // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_server_proto_init() }

@@ -1902,6 +1902,910 @@ func (x *DeleteCarResponse) GetCarId() string {
 	return ""
 }
 
+type DeleteSparePartResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartId string `protobuf:"bytes,1,opt,name=spare_part_id,json=sparePartId,proto3" json:"spare_part_id,omitempty"`
+}
+
+func (x *DeleteSparePartResponse) Reset() {
+	*x = DeleteSparePartResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[37]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteSparePartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteSparePartResponse) ProtoMessage() {}
+
+func (x *DeleteSparePartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[37]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteSparePartResponse.ProtoReflect.Descriptor instead.
+func (*DeleteSparePartResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *DeleteSparePartResponse) GetSparePartId() string {
+	if x != nil {
+		return x.SparePartId
+	}
+	return ""
+}
+
+type FilterSparePartByBrandPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SpareParts      []*SparePart `protobuf:"bytes,1,rep,name=spare_parts,json=spareParts,proto3" json:"spare_parts,omitempty"`
+	Size            int32        `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32        `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *FilterSparePartByBrandPaginatedResponse) Reset() {
+	*x = FilterSparePartByBrandPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[38]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FilterSparePartByBrandPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FilterSparePartByBrandPaginatedResponse) ProtoMessage() {}
+
+func (x *FilterSparePartByBrandPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[38]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FilterSparePartByBrandPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*FilterSparePartByBrandPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *FilterSparePartByBrandPaginatedResponse) GetSpareParts() []*SparePart {
+	if x != nil {
+		return x.SpareParts
+	}
+	return nil
+}
+
+func (x *FilterSparePartByBrandPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *FilterSparePartByBrandPaginatedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type FilterSparePartByCategoryPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SpareParts      []*SparePart `protobuf:"bytes,1,rep,name=spare_parts,json=spareParts,proto3" json:"spare_parts,omitempty"`
+	Size            int32        `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32        `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *FilterSparePartByCategoryPaginatedResponse) Reset() {
+	*x = FilterSparePartByCategoryPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[39]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FilterSparePartByCategoryPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FilterSparePartByCategoryPaginatedResponse) ProtoMessage() {}
+
+func (x *FilterSparePartByCategoryPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[39]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FilterSparePartByCategoryPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*FilterSparePartByCategoryPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *FilterSparePartByCategoryPaginatedResponse) GetSpareParts() []*SparePart {
+	if x != nil {
+		return x.SpareParts
+	}
+	return nil
+}
+
+func (x *FilterSparePartByCategoryPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *FilterSparePartByCategoryPaginatedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type FilterSparePartByCarModelPaginatedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SpareParts      []*SparePart `protobuf:"bytes,1,rep,name=spare_parts,json=spareParts,proto3" json:"spare_parts,omitempty"`
+	Size            int32        `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32        `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *FilterSparePartByCarModelPaginatedResponse) Reset() {
+	*x = FilterSparePartByCarModelPaginatedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[40]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FilterSparePartByCarModelPaginatedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FilterSparePartByCarModelPaginatedResponse) ProtoMessage() {}
+
+func (x *FilterSparePartByCarModelPaginatedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[40]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FilterSparePartByCarModelPaginatedResponse.ProtoReflect.Descriptor instead.
+func (*FilterSparePartByCarModelPaginatedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *FilterSparePartByCarModelPaginatedResponse) GetSpareParts() []*SparePart {
+	if x != nil {
+		return x.SpareParts
+	}
+	return nil
+}
+
+func (x *FilterSparePartByCarModelPaginatedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *FilterSparePartByCarModelPaginatedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type GetSparePartImageByIDResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartImage *SparePartImage `protobuf:"bytes,1,opt,name=spare_part_image,json=sparePartImage,proto3" json:"spare_part_image,omitempty"`
+}
+
+func (x *GetSparePartImageByIDResponse) Reset() {
+	*x = GetSparePartImageByIDResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[41]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSparePartImageByIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSparePartImageByIDResponse) ProtoMessage() {}
+
+func (x *GetSparePartImageByIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[41]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSparePartImageByIDResponse.ProtoReflect.Descriptor instead.
+func (*GetSparePartImageByIDResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{41}
+}
+
+func (x *GetSparePartImageByIDResponse) GetSparePartImage() *SparePartImage {
+	if x != nil {
+		return x.SparePartImage
+	}
+	return nil
+}
+
+type InsertSparePartResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartId string `protobuf:"bytes,1,opt,name=spare_part_id,json=sparePartId,proto3" json:"spare_part_id,omitempty"`
+}
+
+func (x *InsertSparePartResponse) Reset() {
+	*x = InsertSparePartResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[42]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertSparePartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertSparePartResponse) ProtoMessage() {}
+
+func (x *InsertSparePartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[42]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertSparePartResponse.ProtoReflect.Descriptor instead.
+func (*InsertSparePartResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{42}
+}
+
+func (x *InsertSparePartResponse) GetSparePartId() string {
+	if x != nil {
+		return x.SparePartId
+	}
+	return ""
+}
+
+type GetSparePartByIDResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePart      *SparePart        `protobuf:"bytes,1,opt,name=spare_part,json=sparePart,proto3" json:"spare_part,omitempty"`
+	SparePartImage []*SparePartImage `protobuf:"bytes,2,rep,name=spare_part_image,json=sparePartImage,proto3" json:"spare_part_image,omitempty"`
+}
+
+func (x *GetSparePartByIDResponse) Reset() {
+	*x = GetSparePartByIDResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[43]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSparePartByIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSparePartByIDResponse) ProtoMessage() {}
+
+func (x *GetSparePartByIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[43]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSparePartByIDResponse.ProtoReflect.Descriptor instead.
+func (*GetSparePartByIDResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{43}
+}
+
+func (x *GetSparePartByIDResponse) GetSparePart() *SparePart {
+	if x != nil {
+		return x.SparePart
+	}
+	return nil
+}
+
+func (x *GetSparePartByIDResponse) GetSparePartImage() []*SparePartImage {
+	if x != nil {
+		return x.SparePartImage
+	}
+	return nil
+}
+
+type InsertSparePartImageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartImageId string `protobuf:"bytes,1,opt,name=spare_part_image_id,json=sparePartImageId,proto3" json:"spare_part_image_id,omitempty"`
+}
+
+func (x *InsertSparePartImageResponse) Reset() {
+	*x = InsertSparePartImageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[44]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InsertSparePartImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InsertSparePartImageResponse) ProtoMessage() {}
+
+func (x *InsertSparePartImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[44]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InsertSparePartImageResponse.ProtoReflect.Descriptor instead.
+func (*InsertSparePartImageResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *InsertSparePartImageResponse) GetSparePartImageId() string {
+	if x != nil {
+		return x.SparePartImageId
+	}
+	return ""
+}
+
+type ListSparePartImagesBySparePartPagedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartImages []*SparePartImage `protobuf:"bytes,1,rep,name=spare_part_images,json=sparePartImages,proto3" json:"spare_part_images,omitempty"`
+	Size            int32             `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32             `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *ListSparePartImagesBySparePartPagedResponse) Reset() {
+	*x = ListSparePartImagesBySparePartPagedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[45]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListSparePartImagesBySparePartPagedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSparePartImagesBySparePartPagedResponse) ProtoMessage() {}
+
+func (x *ListSparePartImagesBySparePartPagedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[45]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSparePartImagesBySparePartPagedResponse.ProtoReflect.Descriptor instead.
+func (*ListSparePartImagesBySparePartPagedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *ListSparePartImagesBySparePartPagedResponse) GetSparePartImages() []*SparePartImage {
+	if x != nil {
+		return x.SparePartImages
+	}
+	return nil
+}
+
+func (x *ListSparePartImagesBySparePartPagedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ListSparePartImagesBySparePartPagedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type ListSparePartImagesPagedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartImages []*SparePartImage `protobuf:"bytes,1,rep,name=spare_part_images,json=sparePartImages,proto3" json:"spare_part_images,omitempty"`
+	Size            int32             `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32             `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *ListSparePartImagesPagedResponse) Reset() {
+	*x = ListSparePartImagesPagedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[46]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListSparePartImagesPagedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSparePartImagesPagedResponse) ProtoMessage() {}
+
+func (x *ListSparePartImagesPagedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[46]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSparePartImagesPagedResponse.ProtoReflect.Descriptor instead.
+func (*ListSparePartImagesPagedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *ListSparePartImagesPagedResponse) GetSparePartImages() []*SparePartImage {
+	if x != nil {
+		return x.SparePartImages
+	}
+	return nil
+}
+
+func (x *ListSparePartImagesPagedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ListSparePartImagesPagedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type ListSparePartsByDealerPagedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SpareParts      []*SparePart `protobuf:"bytes,1,rep,name=spare_parts,json=spareParts,proto3" json:"spare_parts,omitempty"`
+	Size            int32        `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32        `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *ListSparePartsByDealerPagedResponse) Reset() {
+	*x = ListSparePartsByDealerPagedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[47]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListSparePartsByDealerPagedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSparePartsByDealerPagedResponse) ProtoMessage() {}
+
+func (x *ListSparePartsByDealerPagedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[47]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSparePartsByDealerPagedResponse.ProtoReflect.Descriptor instead.
+func (*ListSparePartsByDealerPagedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *ListSparePartsByDealerPagedResponse) GetSpareParts() []*SparePart {
+	if x != nil {
+		return x.SpareParts
+	}
+	return nil
+}
+
+func (x *ListSparePartsByDealerPagedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ListSparePartsByDealerPagedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type ListSparePartsByDealershipPagedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SpareParts      []*SparePart `protobuf:"bytes,1,rep,name=spare_parts,json=spareParts,proto3" json:"spare_parts,omitempty"`
+	Size            int32        `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32        `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *ListSparePartsByDealershipPagedResponse) Reset() {
+	*x = ListSparePartsByDealershipPagedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[48]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListSparePartsByDealershipPagedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSparePartsByDealershipPagedResponse) ProtoMessage() {}
+
+func (x *ListSparePartsByDealershipPagedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[48]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSparePartsByDealershipPagedResponse.ProtoReflect.Descriptor instead.
+func (*ListSparePartsByDealershipPagedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *ListSparePartsByDealershipPagedResponse) GetSpareParts() []*SparePart {
+	if x != nil {
+		return x.SpareParts
+	}
+	return nil
+}
+
+func (x *ListSparePartsByDealershipPagedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ListSparePartsByDealershipPagedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type ListSparePartsPagedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SpareParts      []*SparePart `protobuf:"bytes,1,rep,name=spare_parts,json=spareParts,proto3" json:"spare_parts,omitempty"`
+	Size            int32        `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32        `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *ListSparePartsPagedResponse) Reset() {
+	*x = ListSparePartsPagedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[49]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListSparePartsPagedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListSparePartsPagedResponse) ProtoMessage() {}
+
+func (x *ListSparePartsPagedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[49]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListSparePartsPagedResponse.ProtoReflect.Descriptor instead.
+func (*ListSparePartsPagedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *ListSparePartsPagedResponse) GetSpareParts() []*SparePart {
+	if x != nil {
+		return x.SpareParts
+	}
+	return nil
+}
+
+func (x *ListSparePartsPagedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ListSparePartsPagedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type SearchSparePartsPagedResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SpareParts      []*SparePart `protobuf:"bytes,1,rep,name=spare_parts,json=spareParts,proto3" json:"spare_parts,omitempty"`
+	Size            int32        `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	TotalSpareParts int32        `protobuf:"varint,3,opt,name=total_spare_parts,json=totalSpareParts,proto3" json:"total_spare_parts,omitempty"`
+}
+
+func (x *SearchSparePartsPagedResponse) Reset() {
+	*x = SearchSparePartsPagedResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[50]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SearchSparePartsPagedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchSparePartsPagedResponse) ProtoMessage() {}
+
+func (x *SearchSparePartsPagedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[50]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchSparePartsPagedResponse.ProtoReflect.Descriptor instead.
+func (*SearchSparePartsPagedResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *SearchSparePartsPagedResponse) GetSpareParts() []*SparePart {
+	if x != nil {
+		return x.SpareParts
+	}
+	return nil
+}
+
+func (x *SearchSparePartsPagedResponse) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *SearchSparePartsPagedResponse) GetTotalSpareParts() int32 {
+	if x != nil {
+		return x.TotalSpareParts
+	}
+	return 0
+}
+
+type UpdateSparePartResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartId string `protobuf:"bytes,1,opt,name=spare_part_id,json=sparePartId,proto3" json:"spare_part_id,omitempty"`
+}
+
+func (x *UpdateSparePartResponse) Reset() {
+	*x = UpdateSparePartResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[51]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateSparePartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateSparePartResponse) ProtoMessage() {}
+
+func (x *UpdateSparePartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[51]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateSparePartResponse.ProtoReflect.Descriptor instead.
+func (*UpdateSparePartResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *UpdateSparePartResponse) GetSparePartId() string {
+	if x != nil {
+		return x.SparePartId
+	}
+	return ""
+}
+
+type UpdateSparePartImageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SparePartImageId string `protobuf:"bytes,1,opt,name=spare_part_image_id,json=sparePartImageId,proto3" json:"spare_part_image_id,omitempty"`
+}
+
+func (x *UpdateSparePartImageResponse) Reset() {
+	*x = UpdateSparePartImageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_responses_proto_msgTypes[52]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateSparePartImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateSparePartImageResponse) ProtoMessage() {}
+
+func (x *UpdateSparePartImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_responses_proto_msgTypes[52]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateSparePartImageResponse.ProtoReflect.Descriptor instead.
+func (*UpdateSparePartImageResponse) Descriptor() ([]byte, []int) {
+	return file_responses_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *UpdateSparePartImageResponse) GetSparePartImageId() string {
+	if x != nil {
+		return x.SparePartImageId
+	}
+	return ""
+}
+
 var File_responses_proto protoreflect.FileDescriptor
 
 var file_responses_proto_rawDesc = []byte{
@@ -2083,10 +2987,132 @@ var file_responses_proto_rawDesc = []byte{
 	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x61,
 	0x72, 0x73, 0x22, 0x2a, 0x0a, 0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x15, 0x0a, 0x06, 0x63, 0x61, 0x72, 0x5f, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x61, 0x72, 0x49, 0x64, 0x42, 0x1d,
-	0x5a, 0x1b, 0x67, 0x61, 0x72, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6d,
-	0x2f, 0x64, 0x62, 0x2f, 0x73, 0x64, 0x6b, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x61, 0x72, 0x49, 0x64, 0x22, 0x3d,
+	0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x0d, 0x73, 0x70, 0x61,
+	0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0b, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x64, 0x22, 0x96, 0x01,
+	0x0a, 0x27, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x42, 0x79, 0x42, 0x72, 0x61, 0x6e, 0x64, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65,
+	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0b, 0x73, 0x70, 0x61,
+	0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a,
+	0x2e, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x0a, 0x73, 0x70, 0x61, 0x72,
+	0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x5f, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70, 0x61, 0x72,
+	0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x22, 0x99, 0x01, 0x0a, 0x2a, 0x46, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x43, 0x61, 0x74, 0x65,
+	0x67, 0x6f, 0x72, 0x79, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0b, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70,
+	0x61, 0x72, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x0a, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f,
+	0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x73, 0x22, 0x99, 0x01, 0x0a, 0x2a, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x43, 0x61, 0x72, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x2b, 0x0a, 0x0b, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61,
+	0x72, 0x74, 0x52, 0x0a, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x12, 0x12,
+	0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69,
+	0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x70, 0x61, 0x72,
+	0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x74,
+	0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x22, 0x5a,
+	0x0a, 0x1d, 0x47, 0x65, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d,
+	0x61, 0x67, 0x65, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x39, 0x0a, 0x10, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x6d,
+	0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x53, 0x70, 0x61, 0x72,
+	0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x0e, 0x73, 0x70, 0x61, 0x72,
+	0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x22, 0x3d, 0x0a, 0x17, 0x49, 0x6e,
+	0x73, 0x65, 0x72, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x0d, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70,
+	0x61, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x73, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x64, 0x22, 0x80, 0x01, 0x0a, 0x18, 0x47, 0x65,
+	0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x29, 0x0a, 0x0a, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f,
+	0x70, 0x61, 0x72, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x09, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x12, 0x39, 0x0a, 0x10, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f,
+	0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x0e, 0x73, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x22, 0x4d, 0x0a, 0x1c,
+	0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49,
+	0x6d, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x13,
+	0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x73, 0x70, 0x61, 0x72, 0x65,
+	0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x49, 0x64, 0x22, 0xaa, 0x01, 0x0a, 0x2b,
+	0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61,
+	0x67, 0x65, 0x73, 0x42, 0x79, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x50, 0x61,
+	0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x11, 0x73,
+	0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61,
+	0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x0f, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61,
+	0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74,
+	0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x22, 0x9f, 0x01, 0x0a, 0x20, 0x4c, 0x69, 0x73,
+	0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73,
+	0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a,
+	0x11, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x6d, 0x61, 0x67,
+	0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x53, 0x70, 0x61, 0x72, 0x65,
+	0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x0f, 0x73, 0x70, 0x61, 0x72, 0x65,
+	0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69,
+	0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x2a,
+	0x0a, 0x11, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61,
+	0x72, 0x74, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c,
+	0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x22, 0x92, 0x01, 0x0a, 0x23, 0x4c,
+	0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x42, 0x79, 0x44,
+	0x65, 0x61, 0x6c, 0x65, 0x72, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0b, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x52, 0x0a, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x12,
+	0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73,
+	0x69, 0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x70, 0x61,
+	0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x22,
+	0x96, 0x01, 0x0a, 0x27, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x73, 0x42, 0x79, 0x44, 0x65, 0x61, 0x6c, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x50, 0x61,
+	0x67, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0b, 0x73,
+	0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x0a, 0x2e, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x0a, 0x73, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74,
+	0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x22, 0x8a, 0x01, 0x0a, 0x1b, 0x4c, 0x69, 0x73,
+	0x74, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0b, 0x73, 0x70, 0x61, 0x72,
+	0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e,
+	0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x0a, 0x73, 0x70, 0x61, 0x72, 0x65,
+	0x50, 0x61, 0x72, 0x74, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11, 0x74, 0x6f, 0x74,
+	0x61, 0x6c, 0x5f, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70, 0x61, 0x72, 0x65,
+	0x50, 0x61, 0x72, 0x74, 0x73, 0x22, 0x8c, 0x01, 0x0a, 0x1d, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68,
+	0x53, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x73, 0x50, 0x61, 0x67, 0x65, 0x64, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x0b, 0x73, 0x70, 0x61, 0x72, 0x65,
+	0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x53,
+	0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x0a, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x2a, 0x0a, 0x11, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x5f, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x73, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x0f, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x53, 0x70, 0x61, 0x72, 0x65, 0x50,
+	0x61, 0x72, 0x74, 0x73, 0x22, 0x3d, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x70,
+	0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x22, 0x0a, 0x0d, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72, 0x74, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72,
+	0x74, 0x49, 0x64, 0x22, 0x4d, 0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x70, 0x61,
+	0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x13, 0x73, 0x70, 0x61, 0x72, 0x65, 0x5f, 0x70, 0x61, 0x72,
+	0x74, 0x5f, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x10, 0x73, 0x70, 0x61, 0x72, 0x65, 0x50, 0x61, 0x72, 0x74, 0x49, 0x6d, 0x61, 0x67, 0x65,
+	0x49, 0x64, 0x42, 0x1d, 0x5a, 0x1b, 0x67, 0x61, 0x72, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x62, 0x2f, 0x73, 0x64, 0x6b, 0x2f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2101,76 +3127,106 @@ func file_responses_proto_rawDescGZIP() []byte {
 	return file_responses_proto_rawDescData
 }
 
-var file_responses_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_responses_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
 var file_responses_proto_goTypes = []interface{}{
-	(*HealthCheckResponse)(nil),                    // 0: HealthCheckResponse
-	(*GetDealershipByUserIDResponse)(nil),          // 1: GetDealershipByUserIDResponse
-	(*GetUserMetaRequest)(nil),                     // 2: GetUserMetaRequest
-	(*GetUserMetaResponse)(nil),                    // 3: GetUserMetaResponse
-	(*InsertDealershipResponse)(nil),               // 4: InsertDealershipResponse
-	(*UpdateUserMetaResponse)(nil),                 // 5: UpdateUserMetaResponse
-	(*GetDealershipByIDResponse)(nil),              // 6: GetDealershipByIDResponse
-	(*UpdateDealershipResponse)(nil),               // 7: UpdateDealershipResponse
-	(*DeleteDealershipResponse)(nil),               // 8: DeleteDealershipResponse
-	(*ChangeDealershipResponse)(nil),               // 9: ChangeDealershipResponse
-	(*InsertCarBrandResponse)(nil),                 // 10: InsertCarBrandResponse
-	(*UpdateCarBrandResponse)(nil),                 // 11: UpdateCarBrandResponse
-	(*GetCarBrandsPaginatedResponse)(nil),          // 12: GetCarBrandsPaginatedResponse
-	(*GetCarBrandByIDResponse)(nil),                // 13: GetCarBrandByIDResponse
-	(*DeleteCarBrandResponse)(nil),                 // 14: DeleteCarBrandResponse
-	(*InsertCarExtraFeatureResponse)(nil),          // 15: InsertCarExtraFeatureResponse
-	(*GetCarExtraFeaturesPaginatedResponse)(nil),   // 16: GetCarExtraFeaturesPaginatedResponse
-	(*UpdateCarExtraFeatureResponse)(nil),          // 17: UpdateCarExtraFeatureResponse
-	(*DeleteCarExtraFeatureResponse)(nil),          // 18: DeleteCarExtraFeatureResponse
-	(*CreateCarImageResponse)(nil),                 // 19: CreateCarImageResponse
-	(*UpdateCarImageResponse)(nil),                 // 20: UpdateCarImageResponse
-	(*GetCarImagesPaginatedResponse)(nil),          // 21: GetCarImagesPaginatedResponse
-	(*DeleteCarImageResponse)(nil),                 // 22: DeleteCarImageResponse
-	(*InsertCarResponse)(nil),                      // 23: InsertCarResponse
-	(*UpdateCarResponse)(nil),                      // 24: UpdateCarResponse
-	(*GetOneCarResponse)(nil),                      // 25: GetOneCarResponse
-	(*GetCarsPaginatedResponse)(nil),               // 26: GetCarsPaginatedResponse
-	(*GetCarsByDealershipIDPaginatedResponse)(nil), // 27: GetCarsByDealershipIDPaginatedResponse
-	(*GetCarsByDealerIDPaginatedResponse)(nil),     // 28: GetCarsByDealerIDPaginatedResponse
-	(*GetCarsByCarBrandIDPaginatedResponse)(nil),   // 29: GetCarsByCarBrandIDPaginatedResponse
-	(*SearchCarsPaginatedResponse)(nil),            // 30: SearchCarsPaginatedResponse
-	(*GetCarByFieldResponse)(nil),                  // 31: GetCarByFieldResponse
-	(*GetCarByDealershipCountResponse)(nil),        // 32: GetCarByDealershipCountResponse
-	(*GetCarByDealerCountResponse)(nil),            // 33: GetCarByDealerCountResponse
-	(*GetCarByCarBrandCountResponse)(nil),          // 34: GetCarByCarBrandCountResponse
-	(*GetCarByFieldCountResponse)(nil),             // 35: GetCarByFieldCountResponse
-	(*DeleteCarResponse)(nil),                      // 36: DeleteCarResponse
-	(*Dealership)(nil),                             // 37: Dealership
-	(*UserMetum)(nil),                              // 38: UserMetum
-	(*CarBrand)(nil),                               // 39: CarBrand
-	(*CarExtraFeature)(nil),                        // 40: CarExtraFeature
-	(*CarImage)(nil),                               // 41: CarImage
-	(*SingleCar)(nil),                              // 42: SingleCar
-	(*Car)(nil),                                    // 43: Car
+	(*HealthCheckResponse)(nil),                         // 0: HealthCheckResponse
+	(*GetDealershipByUserIDResponse)(nil),               // 1: GetDealershipByUserIDResponse
+	(*GetUserMetaRequest)(nil),                          // 2: GetUserMetaRequest
+	(*GetUserMetaResponse)(nil),                         // 3: GetUserMetaResponse
+	(*InsertDealershipResponse)(nil),                    // 4: InsertDealershipResponse
+	(*UpdateUserMetaResponse)(nil),                      // 5: UpdateUserMetaResponse
+	(*GetDealershipByIDResponse)(nil),                   // 6: GetDealershipByIDResponse
+	(*UpdateDealershipResponse)(nil),                    // 7: UpdateDealershipResponse
+	(*DeleteDealershipResponse)(nil),                    // 8: DeleteDealershipResponse
+	(*ChangeDealershipResponse)(nil),                    // 9: ChangeDealershipResponse
+	(*InsertCarBrandResponse)(nil),                      // 10: InsertCarBrandResponse
+	(*UpdateCarBrandResponse)(nil),                      // 11: UpdateCarBrandResponse
+	(*GetCarBrandsPaginatedResponse)(nil),               // 12: GetCarBrandsPaginatedResponse
+	(*GetCarBrandByIDResponse)(nil),                     // 13: GetCarBrandByIDResponse
+	(*DeleteCarBrandResponse)(nil),                      // 14: DeleteCarBrandResponse
+	(*InsertCarExtraFeatureResponse)(nil),               // 15: InsertCarExtraFeatureResponse
+	(*GetCarExtraFeaturesPaginatedResponse)(nil),        // 16: GetCarExtraFeaturesPaginatedResponse
+	(*UpdateCarExtraFeatureResponse)(nil),               // 17: UpdateCarExtraFeatureResponse
+	(*DeleteCarExtraFeatureResponse)(nil),               // 18: DeleteCarExtraFeatureResponse
+	(*CreateCarImageResponse)(nil),                      // 19: CreateCarImageResponse
+	(*UpdateCarImageResponse)(nil),                      // 20: UpdateCarImageResponse
+	(*GetCarImagesPaginatedResponse)(nil),               // 21: GetCarImagesPaginatedResponse
+	(*DeleteCarImageResponse)(nil),                      // 22: DeleteCarImageResponse
+	(*InsertCarResponse)(nil),                           // 23: InsertCarResponse
+	(*UpdateCarResponse)(nil),                           // 24: UpdateCarResponse
+	(*GetOneCarResponse)(nil),                           // 25: GetOneCarResponse
+	(*GetCarsPaginatedResponse)(nil),                    // 26: GetCarsPaginatedResponse
+	(*GetCarsByDealershipIDPaginatedResponse)(nil),      // 27: GetCarsByDealershipIDPaginatedResponse
+	(*GetCarsByDealerIDPaginatedResponse)(nil),          // 28: GetCarsByDealerIDPaginatedResponse
+	(*GetCarsByCarBrandIDPaginatedResponse)(nil),        // 29: GetCarsByCarBrandIDPaginatedResponse
+	(*SearchCarsPaginatedResponse)(nil),                 // 30: SearchCarsPaginatedResponse
+	(*GetCarByFieldResponse)(nil),                       // 31: GetCarByFieldResponse
+	(*GetCarByDealershipCountResponse)(nil),             // 32: GetCarByDealershipCountResponse
+	(*GetCarByDealerCountResponse)(nil),                 // 33: GetCarByDealerCountResponse
+	(*GetCarByCarBrandCountResponse)(nil),               // 34: GetCarByCarBrandCountResponse
+	(*GetCarByFieldCountResponse)(nil),                  // 35: GetCarByFieldCountResponse
+	(*DeleteCarResponse)(nil),                           // 36: DeleteCarResponse
+	(*DeleteSparePartResponse)(nil),                     // 37: DeleteSparePartResponse
+	(*FilterSparePartByBrandPaginatedResponse)(nil),     // 38: FilterSparePartByBrandPaginatedResponse
+	(*FilterSparePartByCategoryPaginatedResponse)(nil),  // 39: FilterSparePartByCategoryPaginatedResponse
+	(*FilterSparePartByCarModelPaginatedResponse)(nil),  // 40: FilterSparePartByCarModelPaginatedResponse
+	(*GetSparePartImageByIDResponse)(nil),               // 41: GetSparePartImageByIDResponse
+	(*InsertSparePartResponse)(nil),                     // 42: InsertSparePartResponse
+	(*GetSparePartByIDResponse)(nil),                    // 43: GetSparePartByIDResponse
+	(*InsertSparePartImageResponse)(nil),                // 44: InsertSparePartImageResponse
+	(*ListSparePartImagesBySparePartPagedResponse)(nil), // 45: ListSparePartImagesBySparePartPagedResponse
+	(*ListSparePartImagesPagedResponse)(nil),            // 46: ListSparePartImagesPagedResponse
+	(*ListSparePartsByDealerPagedResponse)(nil),         // 47: ListSparePartsByDealerPagedResponse
+	(*ListSparePartsByDealershipPagedResponse)(nil),     // 48: ListSparePartsByDealershipPagedResponse
+	(*ListSparePartsPagedResponse)(nil),                 // 49: ListSparePartsPagedResponse
+	(*SearchSparePartsPagedResponse)(nil),               // 50: SearchSparePartsPagedResponse
+	(*UpdateSparePartResponse)(nil),                     // 51: UpdateSparePartResponse
+	(*UpdateSparePartImageResponse)(nil),                // 52: UpdateSparePartImageResponse
+	(*Dealership)(nil),                                  // 53: Dealership
+	(*UserMetum)(nil),                                   // 54: UserMetum
+	(*CarBrand)(nil),                                    // 55: CarBrand
+	(*CarExtraFeature)(nil),                             // 56: CarExtraFeature
+	(*CarImage)(nil),                                    // 57: CarImage
+	(*SingleCar)(nil),                                   // 58: SingleCar
+	(*Car)(nil),                                         // 59: Car
+	(*SparePart)(nil),                                   // 60: SparePart
+	(*SparePartImage)(nil),                              // 61: SparePartImage
 }
 var file_responses_proto_depIdxs = []int32{
-	37, // 0: GetDealershipByUserIDResponse.dealership:type_name -> Dealership
-	38, // 1: GetUserMetaResponse.user_meta:type_name -> UserMetum
-	37, // 2: InsertDealershipResponse.dealership:type_name -> Dealership
-	38, // 3: UpdateUserMetaResponse.user_meta:type_name -> UserMetum
-	37, // 4: GetDealershipByIDResponse.dealership:type_name -> Dealership
-	37, // 5: UpdateDealershipResponse.dealership:type_name -> Dealership
-	39, // 6: GetCarBrandsPaginatedResponse.car_brands:type_name -> CarBrand
-	39, // 7: GetCarBrandByIDResponse.car_brand:type_name -> CarBrand
-	40, // 8: GetCarExtraFeaturesPaginatedResponse.car_extra_features:type_name -> CarExtraFeature
-	41, // 9: GetCarImagesPaginatedResponse.car_images:type_name -> CarImage
-	42, // 10: GetOneCarResponse.car:type_name -> SingleCar
-	43, // 11: GetCarsPaginatedResponse.cars:type_name -> Car
-	43, // 12: GetCarsByDealershipIDPaginatedResponse.cars:type_name -> Car
-	43, // 13: GetCarsByDealerIDPaginatedResponse.cars:type_name -> Car
-	43, // 14: GetCarsByCarBrandIDPaginatedResponse.cars:type_name -> Car
-	43, // 15: SearchCarsPaginatedResponse.cars:type_name -> Car
-	43, // 16: GetCarByFieldResponse.cars:type_name -> Car
-	17, // [17:17] is the sub-list for method output_type
-	17, // [17:17] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	53, // 0: GetDealershipByUserIDResponse.dealership:type_name -> Dealership
+	54, // 1: GetUserMetaResponse.user_meta:type_name -> UserMetum
+	53, // 2: InsertDealershipResponse.dealership:type_name -> Dealership
+	54, // 3: UpdateUserMetaResponse.user_meta:type_name -> UserMetum
+	53, // 4: GetDealershipByIDResponse.dealership:type_name -> Dealership
+	53, // 5: UpdateDealershipResponse.dealership:type_name -> Dealership
+	55, // 6: GetCarBrandsPaginatedResponse.car_brands:type_name -> CarBrand
+	55, // 7: GetCarBrandByIDResponse.car_brand:type_name -> CarBrand
+	56, // 8: GetCarExtraFeaturesPaginatedResponse.car_extra_features:type_name -> CarExtraFeature
+	57, // 9: GetCarImagesPaginatedResponse.car_images:type_name -> CarImage
+	58, // 10: GetOneCarResponse.car:type_name -> SingleCar
+	59, // 11: GetCarsPaginatedResponse.cars:type_name -> Car
+	59, // 12: GetCarsByDealershipIDPaginatedResponse.cars:type_name -> Car
+	59, // 13: GetCarsByDealerIDPaginatedResponse.cars:type_name -> Car
+	59, // 14: GetCarsByCarBrandIDPaginatedResponse.cars:type_name -> Car
+	59, // 15: SearchCarsPaginatedResponse.cars:type_name -> Car
+	59, // 16: GetCarByFieldResponse.cars:type_name -> Car
+	60, // 17: FilterSparePartByBrandPaginatedResponse.spare_parts:type_name -> SparePart
+	60, // 18: FilterSparePartByCategoryPaginatedResponse.spare_parts:type_name -> SparePart
+	60, // 19: FilterSparePartByCarModelPaginatedResponse.spare_parts:type_name -> SparePart
+	61, // 20: GetSparePartImageByIDResponse.spare_part_image:type_name -> SparePartImage
+	60, // 21: GetSparePartByIDResponse.spare_part:type_name -> SparePart
+	61, // 22: GetSparePartByIDResponse.spare_part_image:type_name -> SparePartImage
+	61, // 23: ListSparePartImagesBySparePartPagedResponse.spare_part_images:type_name -> SparePartImage
+	61, // 24: ListSparePartImagesPagedResponse.spare_part_images:type_name -> SparePartImage
+	60, // 25: ListSparePartsByDealerPagedResponse.spare_parts:type_name -> SparePart
+	60, // 26: ListSparePartsByDealershipPagedResponse.spare_parts:type_name -> SparePart
+	60, // 27: ListSparePartsPagedResponse.spare_parts:type_name -> SparePart
+	60, // 28: SearchSparePartsPagedResponse.spare_parts:type_name -> SparePart
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_responses_proto_init() }
@@ -2624,6 +3680,198 @@ func file_responses_proto_init() {
 				return nil
 			}
 		}
+		file_responses_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteSparePartResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FilterSparePartByBrandPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FilterSparePartByCategoryPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FilterSparePartByCarModelPaginatedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSparePartImageByIDResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertSparePartResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSparePartByIDResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InsertSparePartImageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListSparePartImagesBySparePartPagedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListSparePartImagesPagedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListSparePartsByDealerPagedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListSparePartsByDealershipPagedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListSparePartsPagedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SearchSparePartsPagedResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateSparePartResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_responses_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateSparePartImageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2631,7 +3879,7 @@ func file_responses_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_responses_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   37,
+			NumMessages:   53,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -209,6 +209,66 @@ CREATE TABLE car_likes (
     FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
 );
 
+-- spareparts table
+CREATE TABLE IF NOT EXISTS "spare_parts" (
+    spare_part_id varchar(100) not null PRIMARY KEY,
+    name VARCHAR(100),
+    description TEXT,
+    price DECIMAL(10, 2),
+    used BOOLEAN,
+    car_model VARCHAR(100),
+    car_brand VARCHAR(100),
+    other_compatible_cars varchar(100)[],
+    car_year int,
+    is_universal BOOLEAN,
+    category VARCHAR(100),
+    part_number VARCHAR(100),
+    dealership_id varchar(100) default null,
+    dealer_id varchar(100) default null,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id),
+    FOREIGN KEY (dealer_id) REFERENCES "user_meta" (user_meta_id)
+    );
 
 
+-- spare parts images
+CREATE TABLE IF NOT EXISTS "spare_part_images" (
+    spare_part_image_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    image_url VARCHAR(100),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id)
+    );
 
+
+-- spare parts reviews
+CREATE TABLE IF NOT EXISTS "spare_part_reviews" (
+    spare_part_review_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    user_id varchar(100) not null,
+    rating INT,
+    review TEXT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+    );
+
+
+-- spare parts ratings
+CREATE TABLE IF NOT EXISTS "spare_part_ratings" (
+    spare_part_rating_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    user_id varchar(100) not null,
+    rating INT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+    );

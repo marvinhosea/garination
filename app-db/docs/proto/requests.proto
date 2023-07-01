@@ -184,3 +184,112 @@ message GetCarByBrandCountRequest {
 message DeleteCarRequest {
   string car_id = 1;
 }
+
+message DeleteSparePartRequest {
+  string spare_part_id = 1;
+}
+
+message FilterSparePartByBrandPaginatedRequest {
+  string query = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+}
+
+message FilterSparePartByCategoryPaginatedRequest {
+  string query = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+}
+
+message FilterSparePartByCarModelPaginatedRequest {
+  string query = 1;
+  int32 offset = 2;
+  int32 limit =  3;
+}
+
+message GetSparePartImageByIDRequest {
+  string spare_part_image_id = 1;
+}
+
+message InsertSparePartRequest {
+  string spare_part_id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  bool used = 5;
+  string car_model = 6;
+  string car_brand = 7;
+  repeated string other_compatible_cars = 8;
+  int32 car_year = 9;
+  bool is_universal = 10;
+  string category = 11;
+  string part_number = 12;
+  string dealership_id = 13;
+  string dealer_id = 14;
+}
+
+message GetSparePartByIDRequest {
+  string spare_part_id = 1;
+}
+
+
+message InsertSparePartImageRequest {
+  string spare_part_image_id = 1;
+  string spare_part_id = 2;
+  string image_url = 3;
+}
+
+message ListSparePartImagesBySparePartPagedRequest {
+  string spare_part_id = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+}
+
+message ListSparePartImagesPagedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+}
+
+message ListSparePartsByDealerPagedRequest {
+  string dealer_id = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+}
+
+message ListSparePartsByDealershipPagedRequest {
+  string dealership_id = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+}
+
+message ListSparePartsPagedRequest {
+  int32 offset = 1;
+  int32 limit = 2;
+}
+
+message SearchSparePartsPagedRequest {
+  string query = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+}
+
+message UpdateSparePartRequest {
+  string spare_part_id = 1;
+  string name = 2;
+  string description = 3;
+  int32 price = 4;
+  bool used = 5;
+  string car_model = 6;
+  string car_brand = 7;
+  repeated string other_compatible_cars = 8;
+  int32 car_year = 9;
+  bool is_universal = 10;
+  string category = 11;
+  string part_number = 12;
+}
+
+message UpdateSparePartImageRequest {
+  string spare_part_id = 1;
+  string image_url = 2;
+}
+

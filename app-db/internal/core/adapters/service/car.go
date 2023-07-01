@@ -10,6 +10,7 @@ import (
 	"garination.com/db/internal/platform/postgres"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
+	"strings"
 )
 
 type carService struct {
@@ -175,6 +176,9 @@ func (c carService) ListExtraFeaturesForCar(ctx context.Context, carID string) (
 }
 
 func (c carService) SearchCarsPaged(ctx context.Context, arg postgres.SearchCarsPagedParams) ([]postgres.Car, error) {
+	// escape % and add % to the beginning and end of the string
+	arg.Lower = strings.ReplaceAll(arg.Lower, "%", "\\%")
+	arg.Lower = "%" + arg.Lower + "%"
 	return c.carRepo.SearchCarsPaged(ctx, arg)
 }
 

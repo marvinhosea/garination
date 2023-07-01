@@ -102,3 +102,54 @@ message CarExtraFeature {
   google.protobuf.Timestamp created_at = 5;
   google.protobuf.Timestamp updated_at = 6;
 }
+
+
+message SparePart {
+  string spare_part_id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  bool used = 5;
+  string car_model = 6;
+  string car_brand = 7;
+  repeated string other_compatible_cars = 8;
+  int32 car_year = 9;
+  bool is_universal = 10;
+  string category = 11;
+  string part_number = 12;
+  string dealership_id = 13;
+  string dealer_id = 14;
+  google.protobuf.Timestamp created_at = 15;
+  google.protobuf.Timestamp updated_at = 16;
+  google.protobuf.Timestamp deleted_at = 17;
+}
+
+message SparePartImage {
+  string spare_part_image_id = 1;
+  string spare_part_id = 2;
+  string image_url = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  google.protobuf.Timestamp deleted_at = 6;
+}
+
+message SparePartRating {
+  string spare_part_rating_id = 1;
+  string spare_part_id = 2;
+  string user_id = 3;
+  int32 rating = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  google.protobuf.Timestamp deleted_at = 7;
+}
+
+message SparePartReview {
+  string spare_part_review_id = 1;
+  string spare_part_id = 2;
+  string user_id = 3;
+  int32 rating = 4;
+  string review = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  google.protobuf.Timestamp deleted_at = 8;
+}

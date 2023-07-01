@@ -140,6 +140,56 @@ type DealershipReview struct {
 	UpdatedAt          pgtype.Timestamp
 }
 
+type SparePart struct {
+	SparePartID         string
+	Name                pgtype.Text
+	Description         pgtype.Text
+	Price               pgtype.Numeric
+	Used                pgtype.Bool
+	CarModel            pgtype.Text
+	CarBrand            pgtype.Text
+	OtherCompatibleCars pgtype.Array[string]
+	CarYear             pgtype.Int4
+	IsUniversal         pgtype.Bool
+	Category            pgtype.Text
+	PartNumber          pgtype.Text
+	DealershipID        pgtype.Text
+	DealerID            pgtype.Text
+	CreatedAt           pgtype.Timestamp
+	UpdatedAt           pgtype.Timestamp
+	DeletedAt           pgtype.Timestamp
+}
+
+type SparePartImage struct {
+	SparePartImageID string
+	SparePartID      string
+	ImageUrl         pgtype.Text
+	CreatedAt        pgtype.Timestamp
+	UpdatedAt        pgtype.Timestamp
+	DeletedAt        pgtype.Timestamp
+}
+
+type SparePartRating struct {
+	SparePartRatingID string
+	SparePartID       string
+	UserID            string
+	Rating            pgtype.Int4
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+	DeletedAt         pgtype.Timestamp
+}
+
+type SparePartReview struct {
+	SparePartReviewID string
+	SparePartID       string
+	UserID            string
+	Rating            pgtype.Int4
+	Review            pgtype.Text
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+	DeletedAt         pgtype.Timestamp
+}
+
 type UserFollower struct {
 	UserFollowerID string
 	UserID         string

@@ -3,7 +3,7 @@ package dto
 import (
 	"errors"
 	"fmt"
-	"garination.com/gateway/pkg/validationutil"
+	"garination.com/gateway/pkg/validation"
 	"github.com/google/uuid"
 )
 
@@ -65,54 +65,54 @@ func (r CreateDealershipRequest) Validate() error {
 	}
 
 	// validate phone is not empty
-	if !validationutil.ValidatePhone(r.Phone) {
+	if !validation.ValidatePhone(r.Phone) {
 		return fmt.Errorf("phone is not a valid phone number: %s", r.Phone)
 	}
 
 	// validate email is not empty
-	if !validationutil.ValidateEmail(r.Email) {
+	if !validation.ValidateEmail(r.Email) {
 		return errors.New("valid email is required")
 	}
 
 	// validate website is not empty
 	if r.Website != "" {
-		if !validationutil.ValidateURL(r.Website) {
+		if !validation.ValidateURL(r.Website) {
 			return errors.New("website is not a valid url")
 		}
 	}
 
 	if r.FacebookUrl != "" {
-		if !validationutil.ValidateURL(r.FacebookUrl) {
+		if !validation.ValidateURL(r.FacebookUrl) {
 			return errors.New("facebook_url is not a valid url")
 		}
 	}
 
 	if r.TwitterUrl != "" {
-		if !validationutil.ValidateURL(r.TwitterUrl) {
+		if !validation.ValidateURL(r.TwitterUrl) {
 			return errors.New("twitter_url is not a valid url")
 		}
 	}
 
 	if r.InstagramUrl != "" {
-		if !validationutil.ValidateURL(r.InstagramUrl) {
+		if !validation.ValidateURL(r.InstagramUrl) {
 			return errors.New("instagram_url is not a valid url")
 		}
 	}
 
 	if r.LinkedinUrl != "" {
-		if !validationutil.ValidateURL(r.LinkedinUrl) {
+		if !validation.ValidateURL(r.LinkedinUrl) {
 			return errors.New("linkedin_url is not a valid url")
 		}
 	}
 
 	if r.LogoUrl != "" {
-		if !validationutil.ValidateURL(r.LogoUrl) {
+		if !validation.ValidateURL(r.LogoUrl) {
 			return errors.New("logo_url is not a valid url")
 		}
 	}
 
 	if r.CoverUrl != "" {
-		if !validationutil.ValidateURL(r.CoverUrl) {
+		if !validation.ValidateURL(r.CoverUrl) {
 			return errors.New("cover_url is not a valid url")
 		}
 	}
