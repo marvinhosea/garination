@@ -11,30 +11,177 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const carByBrandCount = `-- name: CarByBrandCount :one
+SELECT COUNT(*) FROM cars WHERE brand_id = $1 AND deleted_at IS NULL
+`
+
+func (q *Queries) CarByBrandCount(ctx context.Context, brandID string) (int64, error) {
+	row := q.db.QueryRow(ctx, carByBrandCount, brandID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
+const carByDealerCount = `-- name: CarByDealerCount :one
+SELECT COUNT(*) FROM cars WHERE dealer_id = $1 AND deleted_at IS NULL
+`
+
+func (q *Queries) CarByDealerCount(ctx context.Context, dealerID pgtype.Text) (int64, error) {
+	row := q.db.QueryRow(ctx, carByDealerCount, dealerID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
+const carByDealershipCount = `-- name: CarByDealershipCount :one
+SELECT COUNT(*) FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL
+`
+
+func (q *Queries) CarByDealershipCount(ctx context.Context, dealershipID pgtype.Text) (int64, error) {
+	row := q.db.QueryRow(ctx, carByDealershipCount, dealershipID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
+const carsByDealerPaged = `-- name: CarsByDealerPaged :many
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealer_id = $1  AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type CarsByDealerPagedParams struct {
+	DealerID pgtype.Text
+	Limit    int32
+	Offset   int32
+}
+
+func (q *Queries) CarsByDealerPaged(ctx context.Context, arg CarsByDealerPagedParams) ([]Car, error) {
+	rows, err := q.db.Query(ctx, carsByDealerPaged, arg.DealerID, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Car
+	for rows.Next() {
+		var i Car
+		if err := rows.Scan(
+			&i.CarID,
+			&i.BrandID,
+			&i.Model,
+			&i.Year,
+			&i.Price,
+			&i.Mileage,
+			&i.Color,
+			&i.Transmission,
+			&i.FuelType,
+			&i.EngineCapacity,
+			&i.Description,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const carsByDealershipPaged = `-- name: CarsByDealershipPaged :many
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type CarsByDealershipPagedParams struct {
+	DealershipID pgtype.Text
+	Limit        int32
+	Offset       int32
+}
+
+func (q *Queries) CarsByDealershipPaged(ctx context.Context, arg CarsByDealershipPagedParams) ([]Car, error) {
+	rows, err := q.db.Query(ctx, carsByDealershipPaged, arg.DealershipID, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Car
+	for rows.Next() {
+		var i Car
+		if err := rows.Scan(
+			&i.CarID,
+			&i.BrandID,
+			&i.Model,
+			&i.Year,
+			&i.Price,
+			&i.Mileage,
+			&i.Color,
+			&i.Transmission,
+			&i.FuelType,
+			&i.EngineCapacity,
+			&i.Description,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const createCarBrand = `-- name: CreateCarBrand :one
 INSERT INTO car_brands (
-    brand_id, name, logo_url, created_at,
+    brand_id, name, country, logo_url, created_at,
     updated_at
 )
 VALUES
-    ($1, $2, $3, $4, $5) RETURNING brand_id, name, country, logo_url, created_at, updated_at
+    ($1, $2, $3, $4, now(), now()) RETURNING brand_id, name, country, logo_url, created_at, updated_at
 `
 
 type CreateCarBrandParams struct {
-	BrandID   string
-	Name      pgtype.Text
-	LogoUrl   pgtype.Text
-	CreatedAt pgtype.Timestamp
-	UpdatedAt pgtype.Timestamp
+	BrandID string
+	Name    pgtype.Text
+	Country pgtype.Text
+	LogoUrl pgtype.Text
 }
 
 func (q *Queries) CreateCarBrand(ctx context.Context, arg CreateCarBrandParams) (CarBrand, error) {
 	row := q.db.QueryRow(ctx, createCarBrand,
 		arg.BrandID,
 		arg.Name,
+		arg.Country,
 		arg.LogoUrl,
-		arg.CreatedAt,
-		arg.UpdatedAt,
 	)
 	var i CarBrand
 	err := row.Scan(
@@ -48,86 +195,39 @@ func (q *Queries) CreateCarBrand(ctx context.Context, arg CreateCarBrandParams) 
 	return i, err
 }
 
-const createCarImage = `-- name: CreateCarImage :many
+const createCarImage = `-- name: CreateCarImage :one
 INSERT INTO car_images (
     car_image_id, car_id, image_url, created_at,
     updated_at
-) VALUES ($1, $2, $3, $4, $5) RETURNING car_image_id, car_id, image_url, created_at, updated_at
+) VALUES ($1, $2, $3, now(), now()) RETURNING car_image_id
 `
 
 type CreateCarImageParams struct {
 	CarImageID string
 	CarID      string
 	ImageUrl   pgtype.Text
-	CreatedAt  pgtype.Timestamp
-	UpdatedAt  pgtype.Timestamp
 }
 
-func (q *Queries) CreateCarImage(ctx context.Context, arg CreateCarImageParams) ([]CarImage, error) {
-	rows, err := q.db.Query(ctx, createCarImage,
-		arg.CarImageID,
-		arg.CarID,
-		arg.ImageUrl,
-		arg.CreatedAt,
-		arg.UpdatedAt,
-	)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	var items []CarImage
-	for rows.Next() {
-		var i CarImage
-		if err := rows.Scan(
-			&i.CarImageID,
-			&i.CarID,
-			&i.ImageUrl,
-			&i.CreatedAt,
-			&i.UpdatedAt,
-		); err != nil {
-			return nil, err
-		}
-		items = append(items, i)
-	}
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-	return items, nil
+func (q *Queries) CreateCarImage(ctx context.Context, arg CreateCarImageParams) (string, error) {
+	row := q.db.QueryRow(ctx, createCarImage, arg.CarImageID, arg.CarID, arg.ImageUrl)
+	var car_image_id string
+	err := row.Scan(&car_image_id)
+	return car_image_id, err
 }
 
 const deleteCar = `-- name: DeleteCar :one
-DELETE FROM cars WHERE car_id = $1 RETURNING car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at
+UPDATE cars SET deleted_at = now() , updated_at = now() WHERE car_id = $1 RETURNING car_id
 `
 
-func (q *Queries) DeleteCar(ctx context.Context, carID string) (Car, error) {
+func (q *Queries) DeleteCar(ctx context.Context, carID string) (string, error) {
 	row := q.db.QueryRow(ctx, deleteCar, carID)
-	var i Car
-	err := row.Scan(
-		&i.CarID,
-		&i.BrandID,
-		&i.CategoryID,
-		&i.Model,
-		&i.Year,
-		&i.Price,
-		&i.Mileage,
-		&i.Color,
-		&i.Transmission,
-		&i.FuelType,
-		&i.EngineCapacity,
-		&i.Description,
-		&i.DealershipID,
-		&i.DealerID,
-		&i.CreatedAt,
-		&i.UpdatedAt,
-	)
-	return i, err
+	var car_id string
+	err := row.Scan(&car_id)
+	return car_id, err
 }
 
 const deleteCarBrand = `-- name: DeleteCarBrand :one
-DELETE FROM
-    car_brands
-WHERE
-        brand_id = $1 RETURNING brand_id, name, country, logo_url, created_at, updated_at
+UPDATE car_brands SET deleted_at = now(), updated_at = now() WHERE brand_id = $1 RETURNING brand_id, name, country, logo_url, created_at, updated_at
 `
 
 func (q *Queries) DeleteCarBrand(ctx context.Context, brandID string) (CarBrand, error) {
@@ -144,11 +244,25 @@ func (q *Queries) DeleteCarBrand(ctx context.Context, brandID string) (CarBrand,
 	return i, err
 }
 
+const deleteCarImage = `-- name: DeleteCarImage :one
+UPDATE car_images SET deleted_at = now() WHERE car_image_id = $1 RETURNING car_image_id, car_id, image_url, created_at, updated_at
+`
+
+func (q *Queries) DeleteCarImage(ctx context.Context, carImageID string) (CarImage, error) {
+	row := q.db.QueryRow(ctx, deleteCarImage, carImageID)
+	var i CarImage
+	err := row.Scan(
+		&i.CarImageID,
+		&i.CarID,
+		&i.ImageUrl,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const deleteDealership = `-- name: DeleteDealership :one
-DELETE FROM
-    dealership
-WHERE
-        dealership_id = $1 RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
+UPDATE dealership SET deleted_at = now(), updated_at = now() WHERE dealership_id = $1 RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
 `
 
 func (q *Queries) DeleteDealership(ctx context.Context, dealershipID string) (Dealership, error) {
@@ -180,10 +294,7 @@ func (q *Queries) DeleteDealership(ctx context.Context, dealershipID string) (De
 }
 
 const deleteExtraFeature = `-- name: DeleteExtraFeature :one
-DELETE FROM
-    car_extra_features
-WHERE
-        car_extra_feature_id = $1 RETURNING car_extra_feature_id, car_id, name, value, created_at, updated_at
+UPDATE car_extra_features SET deleted_at = now(), updated_at = now() WHERE car_extra_feature_id = $1 RETURNING car_extra_feature_id, car_id, name, value, created_at, updated_at
 `
 
 func (q *Queries) DeleteExtraFeature(ctx context.Context, carExtraFeatureID string) (CarExtraFeature, error) {
@@ -200,8 +311,200 @@ func (q *Queries) DeleteExtraFeature(ctx context.Context, carExtraFeatureID stri
 	return i, err
 }
 
+const deleteSparePart = `-- name: DeleteSparePart :one
+UPDATE spare_parts SET deleted_at = now() , updated_at = now() WHERE spare_part_id = $1 RETURNING spare_part_id
+`
+
+func (q *Queries) DeleteSparePart(ctx context.Context, sparePartID string) (string, error) {
+	row := q.db.QueryRow(ctx, deleteSparePart, sparePartID)
+	var spare_part_id string
+	err := row.Scan(&spare_part_id)
+	return spare_part_id, err
+}
+
+const deleteSparePartImage = `-- name: DeleteSparePartImage :one
+UPDATE spare_part_images SET deleted_at = now() , updated_at = now() WHERE spare_part_image_id = $1 RETURNING spare_part_image_id
+`
+
+func (q *Queries) DeleteSparePartImage(ctx context.Context, sparePartImageID string) (string, error) {
+	row := q.db.QueryRow(ctx, deleteSparePartImage, sparePartImageID)
+	var spare_part_image_id string
+	err := row.Scan(&spare_part_image_id)
+	return spare_part_image_id, err
+}
+
+const filterSparePartsByBrand = `-- name: FilterSparePartsByBrand :many
+SELECT spare_part_id, name, description, price, used, car_model, car_brand, other_compatible_cars, car_year, is_universal, category, part_number, dealership_id, dealer_id, created_at, updated_at, deleted_at FROM spare_parts WHERE car_brand = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type FilterSparePartsByBrandParams struct {
+	CarBrand pgtype.Text
+	Limit    int32
+	Offset   int32
+}
+
+func (q *Queries) FilterSparePartsByBrand(ctx context.Context, arg FilterSparePartsByBrandParams) ([]SparePart, error) {
+	rows, err := q.db.Query(ctx, filterSparePartsByBrand, arg.CarBrand, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePart
+	for rows.Next() {
+		var i SparePart
+		if err := rows.Scan(
+			&i.SparePartID,
+			&i.Name,
+			&i.Description,
+			&i.Price,
+			&i.Used,
+			&i.CarModel,
+			&i.CarBrand,
+			&i.OtherCompatibleCars,
+			&i.CarYear,
+			&i.IsUniversal,
+			&i.Category,
+			&i.PartNumber,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const filterSparePartsByCategory = `-- name: FilterSparePartsByCategory :many
+SELECT spare_part_id, name, description, price, used, car_model, car_brand, other_compatible_cars, car_year, is_universal, category, part_number, dealership_id, dealer_id, created_at, updated_at, deleted_at FROM spare_parts WHERE category = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type FilterSparePartsByCategoryParams struct {
+	Category pgtype.Text
+	Limit    int32
+	Offset   int32
+}
+
+func (q *Queries) FilterSparePartsByCategory(ctx context.Context, arg FilterSparePartsByCategoryParams) ([]SparePart, error) {
+	rows, err := q.db.Query(ctx, filterSparePartsByCategory, arg.Category, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePart
+	for rows.Next() {
+		var i SparePart
+		if err := rows.Scan(
+			&i.SparePartID,
+			&i.Name,
+			&i.Description,
+			&i.Price,
+			&i.Used,
+			&i.CarModel,
+			&i.CarBrand,
+			&i.OtherCompatibleCars,
+			&i.CarYear,
+			&i.IsUniversal,
+			&i.Category,
+			&i.PartNumber,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const filterSparePartsByModel = `-- name: FilterSparePartsByModel :many
+SELECT spare_part_id, name, description, price, used, car_model, car_brand, other_compatible_cars, car_year, is_universal, category, part_number, dealership_id, dealer_id, created_at, updated_at, deleted_at FROM spare_parts WHERE car_model = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type FilterSparePartsByModelParams struct {
+	CarModel pgtype.Text
+	Limit    int32
+	Offset   int32
+}
+
+func (q *Queries) FilterSparePartsByModel(ctx context.Context, arg FilterSparePartsByModelParams) ([]SparePart, error) {
+	rows, err := q.db.Query(ctx, filterSparePartsByModel, arg.CarModel, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePart
+	for rows.Next() {
+		var i SparePart
+		if err := rows.Scan(
+			&i.SparePartID,
+			&i.Name,
+			&i.Description,
+			&i.Price,
+			&i.Used,
+			&i.CarModel,
+			&i.CarBrand,
+			&i.OtherCompatibleCars,
+			&i.CarYear,
+			&i.IsUniversal,
+			&i.Category,
+			&i.PartNumber,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getCarBrandById = `-- name: GetCarBrandById :one
+SELECT
+    brand_id, name, country, logo_url, created_at, updated_at
+FROM
+    car_brands
+WHERE
+        brand_id = $1
+AND deleted_at IS NULL
+LIMIT
+    1
+`
+
+func (q *Queries) GetCarBrandById(ctx context.Context, brandID string) (CarBrand, error) {
+	row := q.db.QueryRow(ctx, getCarBrandById, brandID)
+	var i CarBrand
+	err := row.Scan(
+		&i.BrandID,
+		&i.Name,
+		&i.Country,
+		&i.LogoUrl,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const getCarById = `-- name: GetCarById :one
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE car_id = $1 LIMIT 1
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE car_id = $1 AND deleted_at IS NULL LIMIT 1
 `
 
 func (q *Queries) GetCarById(ctx context.Context, carID string) (Car, error) {
@@ -210,7 +513,6 @@ func (q *Queries) GetCarById(ctx context.Context, carID string) (Car, error) {
 	err := row.Scan(
 		&i.CarID,
 		&i.BrandID,
-		&i.CategoryID,
 		&i.Model,
 		&i.Year,
 		&i.Price,
@@ -224,6 +526,18 @@ func (q *Queries) GetCarById(ctx context.Context, carID string) (Car, error) {
 		&i.DealerID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.Status,
+		&i.Title,
+		&i.IsFeatured,
+		&i.IsSold,
+		&i.HorsePower,
+		&i.Torque,
+		&i.TorqueRpm,
+		&i.SafetySpecifications,
+		&i.PerformanceSpecifications,
+		&i.ComfortSpecifications,
+		&i.Location,
+		&i.Ownership,
 	)
 	return i, err
 }
@@ -235,6 +549,7 @@ FROM
     dealership
 WHERE
         dealership_id = $1
+AND deleted_at IS NULL
 LIMIT
     1
 `
@@ -267,6 +582,53 @@ func (q *Queries) GetDealershipById(ctx context.Context, dealershipID string) (D
 	return i, err
 }
 
+const getSparePartById = `-- name: GetSparePartById :one
+SELECT spare_part_id, name, description, price, used, car_model, car_brand, other_compatible_cars, car_year, is_universal, category, part_number, dealership_id, dealer_id, created_at, updated_at, deleted_at FROM spare_parts WHERE spare_part_id = $1 AND deleted_at IS NULL LIMIT 1
+`
+
+func (q *Queries) GetSparePartById(ctx context.Context, sparePartID string) (SparePart, error) {
+	row := q.db.QueryRow(ctx, getSparePartById, sparePartID)
+	var i SparePart
+	err := row.Scan(
+		&i.SparePartID,
+		&i.Name,
+		&i.Description,
+		&i.Price,
+		&i.Used,
+		&i.CarModel,
+		&i.CarBrand,
+		&i.OtherCompatibleCars,
+		&i.CarYear,
+		&i.IsUniversal,
+		&i.Category,
+		&i.PartNumber,
+		&i.DealershipID,
+		&i.DealerID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.DeletedAt,
+	)
+	return i, err
+}
+
+const getSparePartImageById = `-- name: GetSparePartImageById :one
+SELECT spare_part_image_id, spare_part_id, image_url, created_at, updated_at, deleted_at FROM spare_part_images WHERE spare_part_image_id = $1 AND deleted_at IS NULL LIMIT 1
+`
+
+func (q *Queries) GetSparePartImageById(ctx context.Context, sparePartImageID string) (SparePartImage, error) {
+	row := q.db.QueryRow(ctx, getSparePartImageById, sparePartImageID)
+	var i SparePartImage
+	err := row.Scan(
+		&i.SparePartImageID,
+		&i.SparePartID,
+		&i.ImageUrl,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.DeletedAt,
+	)
+	return i, err
+}
+
 const getUserDealership = `-- name: GetUserDealership :one
 SELECT
     d.dealership_id, d.owner_id, d.name, d.display_name, d.address, d.city, d.state, d.zip, d.phone, d.email, d.website, d.facebook_url, d.twitter_url, d.instagram_url, d.linkedin_url, d.logo_url, d.cover_url, d.description, d.created_at, d.updated_at
@@ -275,6 +637,7 @@ FROM
         JOIN user_meta u ON d.dealership_id = u.dealership_id
 WHERE
         u.user_id = $1
+AND d.deleted_at IS NULL
 LIMIT
     1
 `
@@ -314,6 +677,7 @@ FROM
     user_meta
 WHERE
         user_id = $1
+AND deleted_at IS NULL
 LIMIT
     1
 `
@@ -336,43 +700,48 @@ func (q *Queries) GetUserMeta(ctx context.Context, userID string) (UserMetum, er
 
 const insertCar = `-- name: InsertCar :one
 INSERT INTO cars (
-    car_id, brand_id, category_id, model,
+    car_id, brand_id, model,
     year, price, mileage, color, transmission,
     fuel_type, engine_capacity, description,
-    dealership_id, dealer_id, created_at,
-    updated_at
+    dealership_id, dealer_id, comfort_specifications, safety_specifications, performance_specifications,
+    horse_power, torque, torque_rpm ,ownership, title,
+    created_at,updated_at
 )
 VALUES
     (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
-        $11, $12, $13, $14, $15, $16
-    ) RETURNING car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at
+        $11, $12, $13, $14, $15, $16, $17, $18, $19, $20,$21, now(), now()
+    ) RETURNING car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership
 `
 
 type InsertCarParams struct {
-	CarID          string
-	BrandID        string
-	CategoryID     string
-	Model          pgtype.Text
-	Year           pgtype.Int4
-	Price          pgtype.Numeric
-	Mileage        pgtype.Int4
-	Color          pgtype.Text
-	Transmission   pgtype.Text
-	FuelType       pgtype.Text
-	EngineCapacity pgtype.Text
-	Description    pgtype.Text
-	DealershipID   pgtype.Text
-	DealerID       pgtype.Text
-	CreatedAt      pgtype.Timestamp
-	UpdatedAt      pgtype.Timestamp
+	CarID                     string
+	BrandID                   string
+	Model                     pgtype.Text
+	Year                      pgtype.Int4
+	Price                     pgtype.Numeric
+	Mileage                   pgtype.Int4
+	Color                     pgtype.Text
+	Transmission              pgtype.Text
+	FuelType                  pgtype.Text
+	EngineCapacity            pgtype.Int4
+	Description               pgtype.Text
+	DealershipID              pgtype.Text
+	DealerID                  pgtype.Text
+	ComfortSpecifications     pgtype.Array[string]
+	SafetySpecifications      pgtype.Array[string]
+	PerformanceSpecifications pgtype.Array[string]
+	HorsePower                pgtype.Int4
+	Torque                    pgtype.Int4
+	TorqueRpm                 pgtype.Int4
+	Ownership                 pgtype.Text
+	Title                     pgtype.Text
 }
 
 func (q *Queries) InsertCar(ctx context.Context, arg InsertCarParams) (Car, error) {
 	row := q.db.QueryRow(ctx, insertCar,
 		arg.CarID,
 		arg.BrandID,
-		arg.CategoryID,
 		arg.Model,
 		arg.Year,
 		arg.Price,
@@ -384,14 +753,19 @@ func (q *Queries) InsertCar(ctx context.Context, arg InsertCarParams) (Car, erro
 		arg.Description,
 		arg.DealershipID,
 		arg.DealerID,
-		arg.CreatedAt,
-		arg.UpdatedAt,
+		arg.ComfortSpecifications,
+		arg.SafetySpecifications,
+		arg.PerformanceSpecifications,
+		arg.HorsePower,
+		arg.Torque,
+		arg.TorqueRpm,
+		arg.Ownership,
+		arg.Title,
 	)
 	var i Car
 	err := row.Scan(
 		&i.CarID,
 		&i.BrandID,
-		&i.CategoryID,
 		&i.Model,
 		&i.Year,
 		&i.Price,
@@ -405,6 +779,18 @@ func (q *Queries) InsertCar(ctx context.Context, arg InsertCarParams) (Car, erro
 		&i.DealerID,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.Status,
+		&i.Title,
+		&i.IsFeatured,
+		&i.IsSold,
+		&i.HorsePower,
+		&i.Torque,
+		&i.TorqueRpm,
+		&i.SafetySpecifications,
+		&i.PerformanceSpecifications,
+		&i.ComfortSpecifications,
+		&i.Location,
+		&i.Ownership,
 	)
 	return i, err
 }
@@ -422,7 +808,7 @@ VALUES
     (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
         $11, $12, $13, $14, $15, $16, $17, $18,
-        $19, $20
+        now(), now()
     ) RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
 `
 
@@ -445,8 +831,6 @@ type InsertDealershipParams struct {
 	LogoUrl      string
 	CoverUrl     string
 	Description  string
-	CreatedAt    pgtype.Timestamp
-	UpdatedAt    pgtype.Timestamp
 }
 
 func (q *Queries) InsertDealership(ctx context.Context, arg InsertDealershipParams) (Dealership, error) {
@@ -469,8 +853,6 @@ func (q *Queries) InsertDealership(ctx context.Context, arg InsertDealershipPara
 		arg.LogoUrl,
 		arg.CoverUrl,
 		arg.Description,
-		arg.CreatedAt,
-		arg.UpdatedAt,
 	)
 	var i Dealership
 	err := row.Scan(
@@ -502,7 +884,7 @@ const insertExtraFeature = `-- name: InsertExtraFeature :one
 INSERT INTO car_extra_features (
     car_extra_feature_id, car_id, name, value , created_at,
     updated_at
-) VALUES ($1, $2, $3, $4, $5, $6) RETURNING car_extra_feature_id, car_id, name, value, created_at, updated_at
+) VALUES ($1, $2, $3, $4, now(), now()) RETURNING car_extra_feature_id, car_id, name, value, created_at, updated_at
 `
 
 type InsertExtraFeatureParams struct {
@@ -510,8 +892,6 @@ type InsertExtraFeatureParams struct {
 	CarID             string
 	Name              pgtype.Text
 	Value             pgtype.Text
-	CreatedAt         pgtype.Timestamp
-	UpdatedAt         pgtype.Timestamp
 }
 
 func (q *Queries) InsertExtraFeature(ctx context.Context, arg InsertExtraFeatureParams) (CarExtraFeature, error) {
@@ -520,8 +900,6 @@ func (q *Queries) InsertExtraFeature(ctx context.Context, arg InsertExtraFeature
 		arg.CarID,
 		arg.Name,
 		arg.Value,
-		arg.CreatedAt,
-		arg.UpdatedAt,
 	)
 	var i CarExtraFeature
 	err := row.Scan(
@@ -535,14 +913,90 @@ func (q *Queries) InsertExtraFeature(ctx context.Context, arg InsertExtraFeature
 	return i, err
 }
 
+const insertSparePart = `-- name: InsertSparePart :one
+INSERT INTO spare_parts (
+    spare_part_id,name,description,price,used,
+    car_model,car_brand,other_compatible_cars,
+    car_year,is_universal,category,
+    part_number,dealership_id,dealer_id,created_at,
+    updated_at,deleted_at
+) VALUES (
+    $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP,
+    NULL
+) RETURNING spare_part_id
+`
+
+type InsertSparePartParams struct {
+	SparePartID         string
+	Name                pgtype.Text
+	Description         pgtype.Text
+	Price               pgtype.Numeric
+	Used                pgtype.Bool
+	CarModel            pgtype.Text
+	CarBrand            pgtype.Text
+	OtherCompatibleCars pgtype.Array[string]
+	CarYear             pgtype.Int4
+	IsUniversal         pgtype.Bool
+	Category            pgtype.Text
+	PartNumber          pgtype.Text
+	DealershipID        pgtype.Text
+	DealerID            pgtype.Text
+}
+
+func (q *Queries) InsertSparePart(ctx context.Context, arg InsertSparePartParams) (string, error) {
+	row := q.db.QueryRow(ctx, insertSparePart,
+		arg.SparePartID,
+		arg.Name,
+		arg.Description,
+		arg.Price,
+		arg.Used,
+		arg.CarModel,
+		arg.CarBrand,
+		arg.OtherCompatibleCars,
+		arg.CarYear,
+		arg.IsUniversal,
+		arg.Category,
+		arg.PartNumber,
+		arg.DealershipID,
+		arg.DealerID,
+	)
+	var spare_part_id string
+	err := row.Scan(&spare_part_id)
+	return spare_part_id, err
+}
+
+const insertSparePartImage = `-- name: InsertSparePartImage :one
+INSERT INTO spare_part_images (
+    spare_part_image_id,spare_part_id,image_url,
+    created_at,updated_at,deleted_at
+) VALUES (
+    $1,$2,$3,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,NULL
+) RETURNING spare_part_image_id
+`
+
+type InsertSparePartImageParams struct {
+	SparePartImageID string
+	SparePartID      string
+	ImageUrl         pgtype.Text
+}
+
+func (q *Queries) InsertSparePartImage(ctx context.Context, arg InsertSparePartImageParams) (string, error) {
+	row := q.db.QueryRow(ctx, insertSparePartImage, arg.SparePartImageID, arg.SparePartID, arg.ImageUrl)
+	var spare_part_image_id string
+	err := row.Scan(&spare_part_image_id)
+	return spare_part_image_id, err
+}
+
 const insertUserMeta = `-- name: InsertUserMeta :one
 INSERT INTO user_meta (
     user_meta_id, user_id, facebook_url,
     twitter_url, instagram_url, linkedin_url,
-    website_url, dealership_id
+    website_url, dealership_id, created_at, updated_at
 )
 VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
+    ($1, $2, $3, $4, $5, $6, $7, $8, now(), now()) RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
 `
 
 type InsertUserMetaParams struct {
@@ -630,6 +1084,8 @@ SELECT
     brand_id, name, country, logo_url, created_at, updated_at
 FROM
     car_brands
+WHERE
+        deleted_at IS NULL
 ORDER BY
     name ASC
 LIMIT
@@ -668,8 +1124,46 @@ func (q *Queries) ListCarBrandsPaged(ctx context.Context, arg ListCarBrandsPaged
 	return items, nil
 }
 
+const listCarImagesForCar = `-- name: ListCarImagesForCar :many
+SELECT
+    car_image_id, car_id, image_url, created_at, updated_at
+FROM
+    car_images
+WHERE
+        car_id = $1
+AND deleted_at IS NULL
+ORDER BY
+    created_at ASC
+`
+
+func (q *Queries) ListCarImagesForCar(ctx context.Context, carID string) ([]CarImage, error) {
+	rows, err := q.db.Query(ctx, listCarImagesForCar, carID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []CarImage
+	for rows.Next() {
+		var i CarImage
+		if err := rows.Scan(
+			&i.CarImageID,
+			&i.CarID,
+			&i.ImageUrl,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listCarsByBrandPaged = `-- name: ListCarsByBrandPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE brand_id = $1 ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE brand_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type ListCarsByBrandPagedParams struct {
@@ -690,7 +1184,6 @@ func (q *Queries) ListCarsByBrandPaged(ctx context.Context, arg ListCarsByBrandP
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -704,6 +1197,18 @@ func (q *Queries) ListCarsByBrandPaged(ctx context.Context, arg ListCarsByBrandP
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -716,7 +1221,7 @@ func (q *Queries) ListCarsByBrandPaged(ctx context.Context, arg ListCarsByBrandP
 }
 
 const listCarsByDealerPaged = `-- name: ListCarsByDealerPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE dealer_id = $1 ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealer_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type ListCarsByDealerPagedParams struct {
@@ -737,7 +1242,6 @@ func (q *Queries) ListCarsByDealerPaged(ctx context.Context, arg ListCarsByDeale
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -751,6 +1255,18 @@ func (q *Queries) ListCarsByDealerPaged(ctx context.Context, arg ListCarsByDeale
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -763,7 +1279,7 @@ func (q *Queries) ListCarsByDealerPaged(ctx context.Context, arg ListCarsByDeale
 }
 
 const listCarsByDealershipPaged = `-- name: ListCarsByDealershipPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars WHERE dealership_id = $1 ORDER BY created_at DESC LIMIT $2 OFFSET $3
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
 `
 
 type ListCarsByDealershipPagedParams struct {
@@ -784,7 +1300,6 @@ func (q *Queries) ListCarsByDealershipPaged(ctx context.Context, arg ListCarsByD
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -798,6 +1313,18 @@ func (q *Queries) ListCarsByDealershipPaged(ctx context.Context, arg ListCarsByD
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -810,7 +1337,7 @@ func (q *Queries) ListCarsByDealershipPaged(ctx context.Context, arg ListCarsByD
 }
 
 const listCarsPaged = `-- name: ListCarsPaged :many
-SELECT car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at FROM cars ORDER BY created_at DESC LIMIT $1 OFFSET $2
+SELECT car_id, brand_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at, status, title, is_featured, is_sold, horse_power, torque, torque_rpm, safety_specifications, performance_specifications, comfort_specifications, location, ownership FROM cars WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT $1 OFFSET $2
 `
 
 type ListCarsPagedParams struct {
@@ -830,7 +1357,6 @@ func (q *Queries) ListCarsPaged(ctx context.Context, arg ListCarsPagedParams) ([
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -844,6 +1370,18 @@ func (q *Queries) ListCarsPaged(ctx context.Context, arg ListCarsPagedParams) ([
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -862,6 +1400,7 @@ FROM
     car_extra_features
 WHERE
         car_id = $1
+AND deleted_at IS NULL
 ORDER BY
     name ASC
 `
@@ -893,28 +1432,240 @@ func (q *Queries) ListExtraFeaturesForCar(ctx context.Context, carID string) ([]
 	return items, nil
 }
 
+const listSparePartImagesBySparePartPaged = `-- name: ListSparePartImagesBySparePartPaged :many
+SELECT spare_part_image_id, spare_part_id, image_url, created_at, updated_at, deleted_at FROM spare_part_images WHERE spare_part_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type ListSparePartImagesBySparePartPagedParams struct {
+	SparePartID string
+	Limit       int32
+	Offset      int32
+}
+
+func (q *Queries) ListSparePartImagesBySparePartPaged(ctx context.Context, arg ListSparePartImagesBySparePartPagedParams) ([]SparePartImage, error) {
+	rows, err := q.db.Query(ctx, listSparePartImagesBySparePartPaged, arg.SparePartID, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePartImage
+	for rows.Next() {
+		var i SparePartImage
+		if err := rows.Scan(
+			&i.SparePartImageID,
+			&i.SparePartID,
+			&i.ImageUrl,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listSparePartImagesPaged = `-- name: ListSparePartImagesPaged :many
+SELECT spare_part_image_id, spare_part_id, image_url, created_at, updated_at, deleted_at FROM spare_part_images WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT $1 OFFSET $2
+`
+
+type ListSparePartImagesPagedParams struct {
+	Limit  int32
+	Offset int32
+}
+
+func (q *Queries) ListSparePartImagesPaged(ctx context.Context, arg ListSparePartImagesPagedParams) ([]SparePartImage, error) {
+	rows, err := q.db.Query(ctx, listSparePartImagesPaged, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePartImage
+	for rows.Next() {
+		var i SparePartImage
+		if err := rows.Scan(
+			&i.SparePartImageID,
+			&i.SparePartID,
+			&i.ImageUrl,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listSparePartsByDealerPaged = `-- name: ListSparePartsByDealerPaged :many
+SELECT spare_part_id, name, description, price, used, car_model, car_brand, other_compatible_cars, car_year, is_universal, category, part_number, dealership_id, dealer_id, created_at, updated_at, deleted_at FROM spare_parts WHERE dealer_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type ListSparePartsByDealerPagedParams struct {
+	DealerID pgtype.Text
+	Limit    int32
+	Offset   int32
+}
+
+func (q *Queries) ListSparePartsByDealerPaged(ctx context.Context, arg ListSparePartsByDealerPagedParams) ([]SparePart, error) {
+	rows, err := q.db.Query(ctx, listSparePartsByDealerPaged, arg.DealerID, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePart
+	for rows.Next() {
+		var i SparePart
+		if err := rows.Scan(
+			&i.SparePartID,
+			&i.Name,
+			&i.Description,
+			&i.Price,
+			&i.Used,
+			&i.CarModel,
+			&i.CarBrand,
+			&i.OtherCompatibleCars,
+			&i.CarYear,
+			&i.IsUniversal,
+			&i.Category,
+			&i.PartNumber,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listSparePartsByDealershipPaged = `-- name: ListSparePartsByDealershipPaged :many
+SELECT spare_part_id, name, description, price, used, car_model, car_brand, other_compatible_cars, car_year, is_universal, category, part_number, dealership_id, dealer_id, created_at, updated_at, deleted_at FROM spare_parts WHERE dealership_id = $1 AND deleted_at IS NULL ORDER BY created_at DESC LIMIT $2 OFFSET $3
+`
+
+type ListSparePartsByDealershipPagedParams struct {
+	DealershipID pgtype.Text
+	Limit        int32
+	Offset       int32
+}
+
+func (q *Queries) ListSparePartsByDealershipPaged(ctx context.Context, arg ListSparePartsByDealershipPagedParams) ([]SparePart, error) {
+	rows, err := q.db.Query(ctx, listSparePartsByDealershipPaged, arg.DealershipID, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePart
+	for rows.Next() {
+		var i SparePart
+		if err := rows.Scan(
+			&i.SparePartID,
+			&i.Name,
+			&i.Description,
+			&i.Price,
+			&i.Used,
+			&i.CarModel,
+			&i.CarBrand,
+			&i.OtherCompatibleCars,
+			&i.CarYear,
+			&i.IsUniversal,
+			&i.Category,
+			&i.PartNumber,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listSparePartsPaged = `-- name: ListSparePartsPaged :many
+SELECT spare_part_id, name, description, price, used, car_model, car_brand, other_compatible_cars, car_year, is_universal, category, part_number, dealership_id, dealer_id, created_at, updated_at, deleted_at FROM spare_parts WHERE deleted_at IS NULL ORDER BY created_at DESC LIMIT $1 OFFSET $2
+`
+
+type ListSparePartsPagedParams struct {
+	Limit  int32
+	Offset int32
+}
+
+func (q *Queries) ListSparePartsPaged(ctx context.Context, arg ListSparePartsPagedParams) ([]SparePart, error) {
+	rows, err := q.db.Query(ctx, listSparePartsPaged, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePart
+	for rows.Next() {
+		var i SparePart
+		if err := rows.Scan(
+			&i.SparePartID,
+			&i.Name,
+			&i.Description,
+			&i.Price,
+			&i.Used,
+			&i.CarModel,
+			&i.CarBrand,
+			&i.OtherCompatibleCars,
+			&i.CarYear,
+			&i.IsUniversal,
+			&i.Category,
+			&i.PartNumber,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const searchCarsPaged = `-- name: SearchCarsPaged :many
 SELECT
-    c.car_id, c.brand_id, c.category_id, c.model, c.year, c.price, c.mileage, c.color, c.transmission, c.fuel_type, c.engine_capacity, c.description, c.dealership_id, c.dealer_id, c.created_at, c.updated_at
+    c.car_id, c.brand_id, c.model, c.year, c.price, c.mileage, c.color, c.transmission, c.fuel_type, c.engine_capacity, c.description, c.dealership_id, c.dealer_id, c.created_at, c.updated_at, c.status, c.title, c.is_featured, c.is_sold, c.horse_power, c.torque, c.torque_rpm, c.safety_specifications, c.performance_specifications, c.comfort_specifications, c.location, c.ownership
 FROM
     cars c
     LEFT JOIN car_extra_features f ON c.car_id = f.car_id
     LEFT JOIN car_brands b ON c.brand_id = b.brand_id
 WHERE
-    LOWER(c.model) LIKE LOWER($1)
+    (LOWER(c.model) LIKE LOWER($1)
     OR LOWER(c.description) LIKE LOWER($1)
     OR LOWER(c.color) LIKE LOWER($1)
     OR LOWER(c.transmission) LIKE LOWER($1)
     OR LOWER(c.fuel_type) LIKE LOWER($1)
-    OR LOWER(c.engine_capacity) LIKE LOWER($1)
-    OR LOWER(c.dealership_id) LIKE LOWER($1)
-    OR LOWER(c.dealer_id) LIKE LOWER($1)
-    OR LOWER(c.brand_id) LIKE LOWER($1)
-    OR LOWER(c.category_id) LIKE LOWER($1)
     OR LOWER(f.name) LIKE LOWER($1)
     OR LOWER(f.value) LIKE LOWER($1)
     OR LOWER(b.name) LIKE LOWER($1)
-    OR LOWER(b.country) LIKE LOWER($1)
+    OR LOWER(b.country) LIKE LOWER($1))
+    AND c.deleted_at IS NULL
 ORDER BY f.created_at DESC LIMIT $2 OFFSET $3
 `
 
@@ -936,7 +1687,6 @@ func (q *Queries) SearchCarsPaged(ctx context.Context, arg SearchCarsPagedParams
 		if err := rows.Scan(
 			&i.CarID,
 			&i.BrandID,
-			&i.CategoryID,
 			&i.Model,
 			&i.Year,
 			&i.Price,
@@ -950,6 +1700,18 @@ func (q *Queries) SearchCarsPaged(ctx context.Context, arg SearchCarsPagedParams
 			&i.DealerID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Status,
+			&i.Title,
+			&i.IsFeatured,
+			&i.IsSold,
+			&i.HorsePower,
+			&i.Torque,
+			&i.TorqueRpm,
+			&i.SafetySpecifications,
+			&i.PerformanceSpecifications,
+			&i.ComfortSpecifications,
+			&i.Location,
+			&i.Ownership,
 		); err != nil {
 			return nil, err
 		}
@@ -961,51 +1723,143 @@ func (q *Queries) SearchCarsPaged(ctx context.Context, arg SearchCarsPagedParams
 	return items, nil
 }
 
+const searchSparePartsPaged = `-- name: SearchSparePartsPaged :many
+SELECT
+    s.spare_part_id, s.name, s.description, s.price, s.used, s.car_model, s.car_brand, s.other_compatible_cars, s.car_year, s.is_universal, s.category, s.part_number, s.dealership_id, s.dealer_id, s.created_at, s.updated_at, s.deleted_at
+FROM
+    spare_parts s
+WHERE
+    (LOWER(s.name) LIKE LOWER($1)
+    OR LOWER(s.description) LIKE LOWER($1)
+    OR LOWER(s.car_model) LIKE LOWER($1)
+    OR LOWER(s.car_brand) LIKE LOWER($1)
+    OR LOWER(s.other_compatible_cars) LIKE LOWER($1)
+    OR LOWER(s.category) LIKE LOWER($1)
+    OR LOWER(s.part_number) LIKE LOWER($1))
+    AND s.deleted_at IS NULL ORDER BY s.created_at DESC LIMIT $2 OFFSET $3
+`
+
+type SearchSparePartsPagedParams struct {
+	Lower  string
+	Limit  int32
+	Offset int32
+}
+
+func (q *Queries) SearchSparePartsPaged(ctx context.Context, arg SearchSparePartsPagedParams) ([]SparePart, error) {
+	rows, err := q.db.Query(ctx, searchSparePartsPaged, arg.Lower, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []SparePart
+	for rows.Next() {
+		var i SparePart
+		if err := rows.Scan(
+			&i.SparePartID,
+			&i.Name,
+			&i.Description,
+			&i.Price,
+			&i.Used,
+			&i.CarModel,
+			&i.CarBrand,
+			&i.OtherCompatibleCars,
+			&i.CarYear,
+			&i.IsUniversal,
+			&i.Category,
+			&i.PartNumber,
+			&i.DealershipID,
+			&i.DealerID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.DeletedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const sparePartsByDealerCount = `-- name: SparePartsByDealerCount :one
+SELECT COUNT(*) FROM spare_parts WHERE dealer_id = $1 AND deleted_at IS NULL
+`
+
+func (q *Queries) SparePartsByDealerCount(ctx context.Context, dealerID pgtype.Text) (int64, error) {
+	row := q.db.QueryRow(ctx, sparePartsByDealerCount, dealerID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
+const sparePartsByDealershipCount = `-- name: SparePartsByDealershipCount :one
+SELECT COUNT(*) FROM spare_parts WHERE dealership_id = $1 AND deleted_at IS NULL
+`
+
+func (q *Queries) SparePartsByDealershipCount(ctx context.Context, dealershipID pgtype.Text) (int64, error) {
+	row := q.db.QueryRow(ctx, sparePartsByDealershipCount, dealershipID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
 const updateCar = `-- name: UpdateCar :one
 UPDATE
     cars
 SET
     brand_id = $2,
-    category_id = $3,
-    model = $4,
-    year = $5,
-    price = $6,
-    mileage = $7,
-    color = $8,
-    transmission = $9,
-    fuel_type = $10,
-    engine_capacity = $11,
-    description = $12,
-    dealership_id = $13,
-    dealer_id = $14,
-    updated_at = $15
+    model = $3,
+    year = $4,
+    price = $5,
+    mileage = $6,
+    color = $7,
+    transmission = $8,
+    fuel_type = $9,
+    engine_capacity = $10,
+    description = $11,
+    dealership_id = $12,
+    dealer_id = $13,
+    status = $14,
+    horse_power = $15,
+    torque = $16,
+    safety_specifications = $17,
+    comfort_specifications = $18,
+    ownership = $19,
+    title = $20,
+    updated_at = now()
 WHERE
-        car_id = $1 RETURNING car_id, brand_id, category_id, model, year, price, mileage, color, transmission, fuel_type, engine_capacity, description, dealership_id, dealer_id, created_at, updated_at
+        car_id = $1 RETURNING car_id
 `
 
 type UpdateCarParams struct {
-	CarID          string
-	BrandID        string
-	CategoryID     string
-	Model          pgtype.Text
-	Year           pgtype.Int4
-	Price          pgtype.Numeric
-	Mileage        pgtype.Int4
-	Color          pgtype.Text
-	Transmission   pgtype.Text
-	FuelType       pgtype.Text
-	EngineCapacity pgtype.Text
-	Description    pgtype.Text
-	DealershipID   pgtype.Text
-	DealerID       pgtype.Text
-	UpdatedAt      pgtype.Timestamp
+	CarID                 string
+	BrandID               string
+	Model                 pgtype.Text
+	Year                  pgtype.Int4
+	Price                 pgtype.Numeric
+	Mileage               pgtype.Int4
+	Color                 pgtype.Text
+	Transmission          pgtype.Text
+	FuelType              pgtype.Text
+	EngineCapacity        pgtype.Int4
+	Description           pgtype.Text
+	DealershipID          pgtype.Text
+	DealerID              pgtype.Text
+	Status                pgtype.Text
+	HorsePower            pgtype.Int4
+	Torque                pgtype.Int4
+	SafetySpecifications  pgtype.Array[string]
+	ComfortSpecifications pgtype.Array[string]
+	Ownership             pgtype.Text
+	Title                 pgtype.Text
 }
 
-func (q *Queries) UpdateCar(ctx context.Context, arg UpdateCarParams) (Car, error) {
+func (q *Queries) UpdateCar(ctx context.Context, arg UpdateCarParams) (string, error) {
 	row := q.db.QueryRow(ctx, updateCar,
 		arg.CarID,
 		arg.BrandID,
-		arg.CategoryID,
 		arg.Model,
 		arg.Year,
 		arg.Price,
@@ -1017,28 +1871,17 @@ func (q *Queries) UpdateCar(ctx context.Context, arg UpdateCarParams) (Car, erro
 		arg.Description,
 		arg.DealershipID,
 		arg.DealerID,
-		arg.UpdatedAt,
+		arg.Status,
+		arg.HorsePower,
+		arg.Torque,
+		arg.SafetySpecifications,
+		arg.ComfortSpecifications,
+		arg.Ownership,
+		arg.Title,
 	)
-	var i Car
-	err := row.Scan(
-		&i.CarID,
-		&i.BrandID,
-		&i.CategoryID,
-		&i.Model,
-		&i.Year,
-		&i.Price,
-		&i.Mileage,
-		&i.Color,
-		&i.Transmission,
-		&i.FuelType,
-		&i.EngineCapacity,
-		&i.Description,
-		&i.DealershipID,
-		&i.DealerID,
-		&i.CreatedAt,
-		&i.UpdatedAt,
-	)
-	return i, err
+	var car_id string
+	err := row.Scan(&car_id)
+	return car_id, err
 }
 
 const updateCarBrand = `-- name: UpdateCarBrand :one
@@ -1047,16 +1890,17 @@ UPDATE
 SET
     name = $2,
     logo_url = $3,
-    updated_at = $4
+    country = $4,
+    updated_at = now()
 WHERE
         brand_id = $1 RETURNING brand_id, name, country, logo_url, created_at, updated_at
 `
 
 type UpdateCarBrandParams struct {
-	BrandID   string
-	Name      pgtype.Text
-	LogoUrl   pgtype.Text
-	UpdatedAt pgtype.Timestamp
+	BrandID string
+	Name    pgtype.Text
+	LogoUrl pgtype.Text
+	Country pgtype.Text
 }
 
 func (q *Queries) UpdateCarBrand(ctx context.Context, arg UpdateCarBrandParams) (CarBrand, error) {
@@ -1064,7 +1908,7 @@ func (q *Queries) UpdateCarBrand(ctx context.Context, arg UpdateCarBrandParams) 
 		arg.BrandID,
 		arg.Name,
 		arg.LogoUrl,
-		arg.UpdatedAt,
+		arg.Country,
 	)
 	var i CarBrand
 	err := row.Scan(
@@ -1076,6 +1920,28 @@ func (q *Queries) UpdateCarBrand(ctx context.Context, arg UpdateCarBrandParams) 
 		&i.UpdatedAt,
 	)
 	return i, err
+}
+
+const updateCarImage = `-- name: UpdateCarImage :one
+UPDATE
+    car_images
+SET
+    image_url = $2,
+    updated_at = now()
+WHERE
+        car_image_id = $1 RETURNING car_image_id
+`
+
+type UpdateCarImageParams struct {
+	CarImageID string
+	ImageUrl   pgtype.Text
+}
+
+func (q *Queries) UpdateCarImage(ctx context.Context, arg UpdateCarImageParams) (string, error) {
+	row := q.db.QueryRow(ctx, updateCarImage, arg.CarImageID, arg.ImageUrl)
+	var car_image_id string
+	err := row.Scan(&car_image_id)
+	return car_image_id, err
 }
 
 const updateDealership = `-- name: UpdateDealership :one
@@ -1098,7 +1964,7 @@ SET
     logo_url = $15,
     cover_url = $16,
     description = $17,
-    updated_at = $18
+    updated_at = now()
 WHERE
         dealership_id = $1 RETURNING dealership_id, owner_id, name, display_name, address, city, state, zip, phone, email, website, facebook_url, twitter_url, instagram_url, linkedin_url, logo_url, cover_url, description, created_at, updated_at
 `
@@ -1121,7 +1987,6 @@ type UpdateDealershipParams struct {
 	LogoUrl      string
 	CoverUrl     string
 	Description  string
-	UpdatedAt    pgtype.Timestamp
 }
 
 func (q *Queries) UpdateDealership(ctx context.Context, arg UpdateDealershipParams) (Dealership, error) {
@@ -1143,7 +2008,6 @@ func (q *Queries) UpdateDealership(ctx context.Context, arg UpdateDealershipPara
 		arg.LogoUrl,
 		arg.CoverUrl,
 		arg.Description,
-		arg.UpdatedAt,
 	)
 	var i Dealership
 	err := row.Scan(
@@ -1177,42 +2041,99 @@ UPDATE
 SET
     name = $2,
     value = $3,
-    updated_at = $4
+    updated_at = now()
 WHERE
-        car_extra_feature_id = $1 RETURNING car_extra_feature_id, car_id, name, value, created_at, updated_at
+        car_extra_feature_id = $1 RETURNING car_extra_feature_id
 `
 
 type UpdateExtraFeatureParams struct {
 	CarExtraFeatureID string
 	Name              pgtype.Text
 	Value             pgtype.Text
-	UpdatedAt         pgtype.Timestamp
 }
 
-func (q *Queries) UpdateExtraFeature(ctx context.Context, arg UpdateExtraFeatureParams) (CarExtraFeature, error) {
-	row := q.db.QueryRow(ctx, updateExtraFeature,
-		arg.CarExtraFeatureID,
+func (q *Queries) UpdateExtraFeature(ctx context.Context, arg UpdateExtraFeatureParams) (string, error) {
+	row := q.db.QueryRow(ctx, updateExtraFeature, arg.CarExtraFeatureID, arg.Name, arg.Value)
+	var car_extra_feature_id string
+	err := row.Scan(&car_extra_feature_id)
+	return car_extra_feature_id, err
+}
+
+const updateSparePart = `-- name: UpdateSparePart :one
+UPDATE
+    spare_parts
+SET
+    name = $2,description = $3,price = $4,used = $5,
+    car_model = $6,car_brand = $7,other_compatible_cars = $8,
+    car_year = $9,is_universal = $10,category = $11,part_number = $12,
+    updated_at = now()
+WHERE
+        spare_part_id = $1 RETURNING spare_part_id
+`
+
+type UpdateSparePartParams struct {
+	SparePartID         string
+	Name                pgtype.Text
+	Description         pgtype.Text
+	Price               pgtype.Numeric
+	Used                pgtype.Bool
+	CarModel            pgtype.Text
+	CarBrand            pgtype.Text
+	OtherCompatibleCars pgtype.Array[string]
+	CarYear             pgtype.Int4
+	IsUniversal         pgtype.Bool
+	Category            pgtype.Text
+	PartNumber          pgtype.Text
+}
+
+func (q *Queries) UpdateSparePart(ctx context.Context, arg UpdateSparePartParams) (string, error) {
+	row := q.db.QueryRow(ctx, updateSparePart,
+		arg.SparePartID,
 		arg.Name,
-		arg.Value,
-		arg.UpdatedAt,
+		arg.Description,
+		arg.Price,
+		arg.Used,
+		arg.CarModel,
+		arg.CarBrand,
+		arg.OtherCompatibleCars,
+		arg.CarYear,
+		arg.IsUniversal,
+		arg.Category,
+		arg.PartNumber,
 	)
-	var i CarExtraFeature
-	err := row.Scan(
-		&i.CarExtraFeatureID,
-		&i.CarID,
-		&i.Name,
-		&i.Value,
-		&i.CreatedAt,
-		&i.UpdatedAt,
-	)
-	return i, err
+	var spare_part_id string
+	err := row.Scan(&spare_part_id)
+	return spare_part_id, err
+}
+
+const updateSparePartImage = `-- name: UpdateSparePartImage :one
+UPDATE
+    spare_part_images
+SET
+    spare_part_id = $2,image_url = $3,updated_at = now()
+WHERE
+        spare_part_image_id = $1 RETURNING spare_part_image_id
+`
+
+type UpdateSparePartImageParams struct {
+	SparePartImageID string
+	SparePartID      string
+	ImageUrl         pgtype.Text
+}
+
+func (q *Queries) UpdateSparePartImage(ctx context.Context, arg UpdateSparePartImageParams) (string, error) {
+	row := q.db.QueryRow(ctx, updateSparePartImage, arg.SparePartImageID, arg.SparePartID, arg.ImageUrl)
+	var spare_part_image_id string
+	err := row.Scan(&spare_part_image_id)
+	return spare_part_image_id, err
 }
 
 const updateUserDealership = `-- name: UpdateUserDealership :one
 UPDATE
     user_meta
 SET
-    dealership_id = $2
+    dealership_id = $2,
+    updated_at = now()
 WHERE
         user_id = $1 RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
 `
@@ -1247,9 +2168,11 @@ SET
     instagram_url = $4,
     linkedin_url = $5,
     website_url = $6,
-    user_meta_id = $7
+    user_meta_id = $7,
+    updated_at = now()
 WHERE
-        user_id = $1 RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
+        user_id = $1
+RETURNING user_meta_id, user_id, facebook_url, twitter_url, instagram_url, linkedin_url, website_url, dealership_id
 `
 
 type UpdateUserMetaParams struct {

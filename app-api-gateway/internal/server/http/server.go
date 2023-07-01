@@ -5,6 +5,7 @@ import (
 	"garination.com/gateway/internal/platform/casdoor"
 	"garination.com/gateway/internal/platform/grpc/app-db/proto"
 	"garination.com/gateway/internal/platform/prom"
+	"garination.com/gateway/internal/platform/wasabi"
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/redis/go-redis/v9"
@@ -22,33 +23,34 @@ const (
 	writeTimeout   = 10
 )
 
+type Dependencies struct {
+	RedisClient   *redis.Client
+	AppDbClient   proto.DatabaseServiceClient
+	CasdoorClient casdoor.CasdoorClient
+	WasabiClient  *wasabi.Client
+	Config        *config.Config
+	PromMetrics   prom.Metrics
+}
+
 // Server struct
 type Server struct {
-	engine        *gin.Engine
-	cfg           *config.Config
-	redisClient   *redis.Client
-	appDbClient   proto.DatabaseServiceClient
-	promMetrics   prom.Metrics
-	casdoorClient casdoor.CasdoorClient
+	engine       *gin.Engine
+	dependencies *Dependencies
 }
 
 // NewServer returns a new server instance
-func NewServer(cfg *config.Config, redisClient *redis.Client, appDbClient proto.DatabaseServiceClient, casdoorClient casdoor.CasdoorClient) *Server {
+func NewServer(dependencies Dependencies) *Server {
 	engine := gin.Default()
 	return &Server{
-		engine:        engine,
-		cfg:           cfg,
-		redisClient:   redisClient,
-		appDbClient:   appDbClient,
-		promMetrics:   prom.NewMetrics(),
-		casdoorClient: casdoorClient,
+		engine:       engine,
+		dependencies: &dependencies,
 	}
 }
 
 // Start starts the server
 func (s *Server) serve() error {
 	server := &http.Server{
-		Addr:           ":" + s.cfg.App.Port,
+		Addr:           ":" + s.dependencies.Config.App.Port,
 		ReadTimeout:    time.Minute * 5,
 		WriteTimeout:   time.Second * 10,
 		MaxHeaderBytes: maxHeaderBytes,
@@ -57,14 +59,14 @@ func (s *Server) serve() error {
 	// Expose Prometheus promMetrics endpoint
 	http.Handle("/metrics", promhttp.Handler())
 	go func() {
-		log.Println("Starting Prometheus Metrics EXPOSE server on port", s.cfg.App.MetricsPort)
-		if err := http.ListenAndServe(":"+s.cfg.App.MetricsPort, nil); err != nil {
+		log.Println("Starting Prometheus Metrics EXPOSE server on port", s.dependencies.Config.App.MetricsPort)
+		if err := http.ListenAndServe(":"+s.dependencies.Config.App.MetricsPort, nil); err != nil {
 			log.Fatal("Failed to start Prometheus promMetrics server: ", err)
 		}
 	}()
 
 	go func() {
-		log.Printf("Server is listening on PORT: %s\n", s.cfg.App.Port)
+		log.Printf("Server is listening on PORT: %s\n", s.dependencies.Config.App.Port)
 		if err := s.engine.Run(server.Addr); err != nil {
 			log.Fatalf("Error starting Server: %v", err)
 		}

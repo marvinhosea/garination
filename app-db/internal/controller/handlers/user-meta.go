@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"context"
-	"garination.com/db/internal/core/model"
+	"garination.com/db/internal/platform/postgres"
 	"garination.com/db/sdk/proto"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
@@ -54,7 +54,7 @@ func (h *Handler) InsertUserMeta(ctx context.Context, req *proto.InsertUserMetaR
 
 	log.Println(req)
 
-	userMeta := model.UserMetum{
+	userMeta := postgres.UserMetum{
 		UserMetaID:   uuid.NewString(),
 		UserID:       req.UserMeta.UserId,
 		FacebookUrl:  pgtype.Text{String: req.UserMeta.FacebookUrl, Valid: true},
@@ -87,6 +87,32 @@ func (h *Handler) InsertUserMeta(ctx context.Context, req *proto.InsertUserMetaR
 	}, err
 }
 
+var changeDealershipLabel = "ChangeDealership"
+
+func (h *Handler) ChangeDealership(ctx context.Context, req *proto.ChangeDealershipRequest) (*proto.ChangeDealershipResponse, error) {
+	timer := prometheus.NewTimer(h.promMetrics.ResponseDuration.WithLabelValues(changeDealershipLabel))
+	h.promMetrics.RequestCount.WithLabelValues(changeDealershipLabel).Inc()
+
+	defer timer.ObserveDuration()
+
+	var changeDealership = postgres.UpdateUserDealershipParams{
+		DealershipID: pgtype.Text{String: req.DealershipId, Valid: true},
+		UserID:       req.UserId,
+	}
+
+	res, err := h.userService.UpdateUserDealership(ctx, changeDealership)
+	if err != nil {
+		h.promMetrics.ResponseStatus.WithLabelValues(changeDealershipLabel, "error").Inc()
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+
+	h.promMetrics.ResponseStatus.WithLabelValues(changeDealershipLabel, "success").Inc()
+
+	return &proto.ChangeDealershipResponse{
+		DealershipId: res.DealershipID.String,
+	}, nil
+}
+
 var updateUserMetaLabel = "UpdateUserMeta"
 
 func (h *Handler) UpdateUserMeta(ctx context.Context, req *proto.UpdateUserMetaRequest) (*proto.UpdateUserMetaResponse, error) {
@@ -94,17 +120,19 @@ func (h *Handler) UpdateUserMeta(ctx context.Context, req *proto.UpdateUserMetaR
 	h.promMetrics.RequestCount.WithLabelValues(updateUserMetaLabel).Inc()
 	defer timer.ObserveDuration()
 
-	userMeta := model.UserMetum{
+	var res *postgres.UserMetum
+	var err error
+
+	userMeta := postgres.UpdateUserMetaParams{
 		FacebookUrl:  pgtype.Text{String: req.UserMeta.FacebookUrl, Valid: true},
 		TwitterUrl:   pgtype.Text{String: req.UserMeta.TwitterUrl, Valid: true},
 		InstagramUrl: pgtype.Text{String: req.UserMeta.InstagramUrl, Valid: true},
 		LinkedinUrl:  pgtype.Text{String: req.UserMeta.LinkedinUrl, Valid: true},
 		WebsiteUrl:   pgtype.Text{String: req.UserMeta.WebsiteUrl, Valid: true},
-		DealershipID: pgtype.Text{String: req.UserMeta.DealershipId, Valid: true},
 		UserID:       req.UserMeta.UserId,
 	}
 
-	res, err := h.userService.UpdateUserMeta(ctx, userMeta)
+	res, err = h.userService.UpdateUserMeta(ctx, userMeta)
 	if err != nil {
 		h.promMetrics.ResponseStatus.WithLabelValues(updateUserMetaLabel, "error").Inc()
 		return nil, status.Error(codes.NotFound, err.Error())

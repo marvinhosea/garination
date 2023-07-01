@@ -292,4 +292,133 @@ ALTER TABLE "car_ratings"
 ALTER TABLE "car_likes"
     ADD COLUMN deleted_at TIMESTAMP;
 
+-- changeSet oyamo:9
+ALTER TABLE "user_meta"
+    ADD COLUMN created_at TIMESTAMP;
 
+ALTER TABLE "user_meta"
+    ADD COLUMN updated_at TIMESTAMP;
+
+-- changeSet oyamo:10
+ALTER TABLE "cars"
+   ALTER COLUMN engine_capacity TYPE integer USING (engine_capacity::integer);
+
+-- changeSet oyamo:11
+ALTER TABLE "car_brands"
+   ADD constraint unique_name_car_brands UNIQUE (name);
+
+
+-- changeSet oyamo:12
+ALTER TABLE "cars"
+   ADD COLUMN status VARCHAR(20) DEFAULT 'pending';
+
+ALTER TABLE "cars"
+   ADD COLUMN is_featured BOOLEAN;
+
+ALTER TABLE "cars"
+    ADD COLUMN is_sold BOOLEAN;
+
+ALTER TABLE "cars"
+    ADD COLUMN horse_power INT;
+
+ALTER TABLE "cars"
+    ADD COLUMN torque INT;
+
+ALTER TABLE "cars"
+    ADD COLUMN torque_rpm INT;
+
+ALTER TABLE "cars"
+    ADD COLUMN safety_specifications varchar(100)[];
+
+ALTER TABLE "cars"
+    ADD COLUMN performance_specifications varchar(100)[];
+
+ALTER TABLE "cars"
+    ADD COLUMN comfort_specifications varchar(100)[];
+
+-- changeSet oyamo:13
+ALTER TABLE "cars"
+    ADD COLUMN LOCATION VARCHAR(100);
+
+-- changeSet oyamo:14
+ALTER TABLE "cars"
+    ADD COLUMN ownership VARCHAR(32);
+
+-- changeSet oyamo:15
+CREATE TABLE IF NOT EXISTS "spare_parts" (
+    spare_part_id varchar(100) not null PRIMARY KEY,
+    name VARCHAR(100),
+    description TEXT,
+    price INT,
+    used BOOLEAN,
+    car_model VARCHAR(100),
+    car_brand VARCHAR(100),
+    other_compatible_cars varchar(100)[],
+    car_year int,
+    is_universal BOOLEAN,
+    category VARCHAR(100),
+    part_number VARCHAR(100),
+    dealership_id varchar(100) not null,
+    dealer_id varchar(100) not null,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id),
+    FOREIGN KEY (dealer_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+ALTER TABLE "spare_parts"
+    ADD CONSTRAINT unique_id_spare_parts UNIQUE (spare_part_id);
+
+CREATE TABLE IF NOT EXISTS "spare_part_images" (
+    spare_part_image_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    image_url VARCHAR(100),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id)
+);
+
+ALTER TABLE "spare_part_images"
+    ADD CONSTRAINT unique_id_spare_part_images UNIQUE (spare_part_image_id);
+
+CREATE TABLE IF NOT EXISTS "spare_part_reviews" (
+    spare_part_review_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    user_id varchar(100) not null,
+    rating INT,
+    review TEXT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+ALTER TABLE "spare_part_reviews"
+    ADD CONSTRAINT unique_id_spare_part_reviews UNIQUE (spare_part_review_id);
+
+CREATE TABLE IF NOT EXISTS "spare_part_ratings" (
+spare_part_rating_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    user_id varchar(100) not null,
+    rating INT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+);
+
+
+-- changeSet oyamo:16
+ALTER TABLE "spare_parts"
+    ALTER COLUMN price TYPE decimal(10,2) USING (price::decimal);
+
+-- changeSet oyamo:17
+ALTER TABLE "spare_parts"
+    ALTER COLUMN dealer_id DROP NOT NULL;
+
+ALTER TABLE "spare_parts"
+    ALTER COLUMN dealership_id DROP NOT NULL;

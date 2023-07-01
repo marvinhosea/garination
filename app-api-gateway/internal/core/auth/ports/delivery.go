@@ -10,6 +10,7 @@ type AuthHttpHandler interface {
 	InitiateRegister() gin.HandlerFunc
 	RegisterCallback() gin.HandlerFunc
 	UpdateUserMeta() gin.HandlerFunc
+	ChangeUserDealership() gin.HandlerFunc
 	GetUserMeta() gin.HandlerFunc
 	RefreshToken() gin.HandlerFunc
 	Logout() gin.HandlerFunc

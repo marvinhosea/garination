@@ -9,22 +9,33 @@ import (
 )
 
 type Car struct {
-	CarID          string
-	BrandID        string
-	CategoryID     string
-	Model          pgtype.Text
-	Year           pgtype.Int4
-	Price          pgtype.Numeric
-	Mileage        pgtype.Int4
-	Color          pgtype.Text
-	Transmission   pgtype.Text
-	FuelType       pgtype.Text
-	EngineCapacity pgtype.Text
-	Description    pgtype.Text
-	DealershipID   pgtype.Text
-	DealerID       pgtype.Text
-	CreatedAt      pgtype.Timestamp
-	UpdatedAt      pgtype.Timestamp
+	CarID                     string
+	BrandID                   string
+	Model                     pgtype.Text
+	Year                      pgtype.Int4
+	Price                     pgtype.Numeric
+	Mileage                   pgtype.Int4
+	Color                     pgtype.Text
+	Transmission              pgtype.Text
+	FuelType                  pgtype.Text
+	EngineCapacity            pgtype.Int4
+	Description               pgtype.Text
+	DealershipID              pgtype.Text
+	DealerID                  pgtype.Text
+	CreatedAt                 pgtype.Timestamp
+	UpdatedAt                 pgtype.Timestamp
+	Status                    pgtype.Text
+	Title                     pgtype.Text
+	IsFeatured                pgtype.Bool
+	IsSold                    pgtype.Bool
+	HorsePower                pgtype.Int4
+	Torque                    pgtype.Int4
+	TorqueRpm                 pgtype.Int4
+	SafetySpecifications      pgtype.Array[string]
+	PerformanceSpecifications pgtype.Array[string]
+	ComfortSpecifications     pgtype.Array[string]
+	Location                  pgtype.Text
+	Ownership                 pgtype.Text
 }
 
 type CarBrand struct {
@@ -127,6 +138,56 @@ type DealershipReview struct {
 	Review             string
 	CreatedAt          pgtype.Timestamp
 	UpdatedAt          pgtype.Timestamp
+}
+
+type SparePart struct {
+	SparePartID         string
+	Name                pgtype.Text
+	Description         pgtype.Text
+	Price               pgtype.Numeric
+	Used                pgtype.Bool
+	CarModel            pgtype.Text
+	CarBrand            pgtype.Text
+	OtherCompatibleCars pgtype.Array[string]
+	CarYear             pgtype.Int4
+	IsUniversal         pgtype.Bool
+	Category            pgtype.Text
+	PartNumber          pgtype.Text
+	DealershipID        pgtype.Text
+	DealerID            pgtype.Text
+	CreatedAt           pgtype.Timestamp
+	UpdatedAt           pgtype.Timestamp
+	DeletedAt           pgtype.Timestamp
+}
+
+type SparePartImage struct {
+	SparePartImageID string
+	SparePartID      string
+	ImageUrl         pgtype.Text
+	CreatedAt        pgtype.Timestamp
+	UpdatedAt        pgtype.Timestamp
+	DeletedAt        pgtype.Timestamp
+}
+
+type SparePartRating struct {
+	SparePartRatingID string
+	SparePartID       string
+	UserID            string
+	Rating            pgtype.Int4
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+	DeletedAt         pgtype.Timestamp
+}
+
+type SparePartReview struct {
+	SparePartReviewID string
+	SparePartID       string
+	UserID            string
+	Rating            pgtype.Int4
+	Review            pgtype.Text
+	CreatedAt         pgtype.Timestamp
+	UpdatedAt         pgtype.Timestamp
+	DeletedAt         pgtype.Timestamp
 }
 
 type UserFollower struct {

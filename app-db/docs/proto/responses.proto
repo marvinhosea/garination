@@ -39,6 +39,10 @@ message UpdateDealershipResponse {
 message DeleteDealershipResponse {
 }
 
+message ChangeDealershipResponse {
+   string dealership_id = 1;
+}
+
 message InsertCarBrandResponse {
   string car_brand_id = 1;
 }
@@ -73,13 +77,15 @@ message GetCarExtraFeaturesPaginatedResponse {
 }
 
 message UpdateCarExtraFeatureResponse {
-  repeated string car_extra_feature_id = 1;
+   string car_extra_feature_id = 1;
 }
 
-
+message DeleteCarExtraFeatureResponse {
+  string car_extra_feature_id = 1;
+}
 
 message CreateCarImageResponse {
-  string car_image_id = 1;
+  repeated string car_image_ids = 1;
 }
 
 message UpdateCarImageResponse {
@@ -148,15 +154,15 @@ message GetCarByFieldResponse {
 }
 
 message GetCarByDealershipCountResponse {
-  int32 total_cars = 1;
+  int64 total_cars = 1;
 }
 
 message GetCarByDealerCountResponse {
-  int32 total_cars = 1;
+  int64 total_cars = 1;
 }
 
 message GetCarByCarBrandCountResponse {
-  int32 total_cars = 1;
+  int64 total_cars = 1;
 }
 
 message GetCarByFieldCountResponse {
@@ -166,4 +172,87 @@ message GetCarByFieldCountResponse {
 
 message DeleteCarResponse {
   string car_id = 1;
+}
+
+message DeleteSparePartResponse {
+  string spare_part_id = 1;
+}
+
+message FilterSparePartByBrandPaginatedResponse {
+  repeated SparePart spare_parts = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message FilterSparePartByCategoryPaginatedResponse {
+  repeated SparePart spare_parts = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message FilterSparePartByCarModelPaginatedResponse {
+  repeated SparePart spare_parts = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message GetSparePartImageByIDResponse {
+  SparePartImage spare_part_image = 1;
+}
+
+message InsertSparePartResponse {
+  string spare_part_id = 1;
+}
+
+message GetSparePartByIDResponse {
+  SparePart spare_part = 1;
+  repeated SparePartImage spare_part_image = 2;
+}
+
+message InsertSparePartImageResponse {
+  string spare_part_image_id = 1;
+}
+
+message ListSparePartImagesBySparePartPagedResponse {
+  repeated SparePartImage spare_part_images = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message ListSparePartImagesPagedResponse {
+  repeated SparePartImage spare_part_images = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message ListSparePartsByDealerPagedResponse {
+  repeated SparePart spare_parts = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message ListSparePartsByDealershipPagedResponse {
+  repeated SparePart spare_parts = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message ListSparePartsPagedResponse {
+  repeated SparePart spare_parts = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message SearchSparePartsPagedResponse {
+  repeated SparePart spare_parts = 1;
+  int32 size = 2;
+  int32 total_spare_parts = 3;
+}
+
+message UpdateSparePartResponse {
+  string spare_part_id = 1;
+}
+
+message UpdateSparePartImageResponse {
+  string spare_part_image_id = 1;
 }

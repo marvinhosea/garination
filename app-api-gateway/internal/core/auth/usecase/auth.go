@@ -9,12 +9,54 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"log"
+	"strings"
 )
 
 type authUsecase struct {
 	authRedisRepo ports.AuthRedisRepo
 	casdoorRepo   ports.AuthCasdoorRepo
 	authDBRepo    ports.AuthDbRepo
+}
+
+func (a authUsecase) ChangeUserDealership(ctx context.Context, req *dto.AuthChangeUserDealershipRequest) (*dto.AuthChangeUserDealershipResponse, error) {
+	if req == nil {
+		return nil, errors.New("request is nil")
+	}
+
+	userMeta := model.UserMeta{
+		UserID:       req.UserID,
+		DealershipID: req.DealershipID,
+	}
+
+	// get user_id_param from context
+	userIDParam, ok := ctx.Value("user_id_param").(string)
+	if !ok {
+		return nil, status.Error(codes.InvalidArgument, "user_id_param not found in context")
+	}
+
+	// check if user_id_param is the same as user_id in request
+	if userIDParam != userMeta.UserID {
+		return nil, status.Error(codes.PermissionDenied, "user_id in parameter and user_id in request are not the same")
+	}
+
+	// fetch user meta from db
+	userMetaDB, err := a.authDBRepo.GetUserMeta(ctx, userMeta.UserID)
+	if err != nil {
+		return nil, err
+	}
+
+	if userMetaDB.DealershipID != "" {
+		return nil, status.Error(codes.AlreadyExists, "user already has dealership")
+	}
+
+	dealershipId, err := a.authDBRepo.ChangeUserDealership(ctx, userMeta)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dto.AuthChangeUserDealershipResponse{
+		DealershipID: dealershipId,
+	}, nil
 }
 
 func (a authUsecase) RefreshToken(ctx context.Context, req *dto.AuthRefreshTokenRequest) (*dto.AuthRefreshTokenResponse, error) {
@@ -24,6 +66,10 @@ func (a authUsecase) RefreshToken(ctx context.Context, req *dto.AuthRefreshToken
 
 	refreshToken, err := a.casdoorRepo.RefreshOAuthToken(req.RefreshToken)
 	if err != nil {
+		errStr := strings.Replace(err.Error(), "\n", "", -1)
+		if strings.Contains(errStr, "invalid_grant") {
+			return nil, status.Error(codes.PermissionDenied, "Invalid/expired refresh token. To solve this, please login again.")
+		}
 		return nil, err
 	}
 

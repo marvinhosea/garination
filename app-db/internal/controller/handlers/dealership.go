@@ -5,12 +5,10 @@ import (
 	"garination.com/db/internal/platform/postgres"
 	"garination.com/db/sdk/proto"
 	"github.com/google/uuid"
-	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/prometheus/client_golang/prometheus"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"time"
 )
 
 var insertDealershipLabel = "InsertDealership"
@@ -39,8 +37,6 @@ func (h *Handler) InsertDealership(ctx context.Context, req *proto.InsertDealers
 		LogoUrl:      req.Dealership.LogoUrl,
 		CoverUrl:     req.Dealership.CoverUrl,
 		Description:  req.Dealership.Description,
-		CreatedAt:    pgtype.Timestamp{Time: time.Now(), Valid: true},
-		UpdatedAt:    pgtype.Timestamp{Time: time.Now(), Valid: true},
 	}
 
 	res, err := h.dealershipService.InsertDealership(ctx, dealerShipModel)
@@ -142,7 +138,6 @@ func (h *Handler) UpdateDealership(ctx context.Context, req *proto.UpdateDealers
 		LogoUrl:      req.Dealership.LogoUrl,
 		CoverUrl:     req.Dealership.CoverUrl,
 		Description:  req.Dealership.Description,
-		UpdatedAt:    pgtype.Timestamp{Time: time.Now(), Valid: true},
 	}
 
 	res, err := h.dealershipService.UpdateDealership(ctx, dealership)

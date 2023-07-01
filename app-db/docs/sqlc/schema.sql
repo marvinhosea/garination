@@ -105,11 +105,11 @@ CREATE TABLE car_brands (
 );
 
 
+
 -- Create the Cars table
 CREATE TABLE cars (
       car_id varchar(100)  not null PRIMARY KEY,
       brand_id varchar(100) not null,
-      category_id varchar(100) not null,
       model VARCHAR(50),
       year INT,
       price DECIMAL(10, 2),
@@ -117,12 +117,24 @@ CREATE TABLE cars (
       color VARCHAR(20),
       transmission VARCHAR(20),
       fuel_type VARCHAR(20),
-      engine_capacity VARCHAR(10),
+      engine_capacity int,
       description TEXT,
       dealership_id varchar(100),
       dealer_id varchar(100),
       created_at TIMESTAMP,
       updated_at TIMESTAMP,
+      status                     varchar(20),
+      title                      varchar(100),
+      is_featured                boolean,
+      is_sold                    boolean,
+      horse_power                integer,
+      torque                     integer,
+      torque_rpm                 integer,
+      safety_specifications      varchar[],
+      performance_specifications varchar[],
+      comfort_specifications     varchar[],
+      location                   varchar(100),
+      ownership                  varchar(32),
       FOREIGN KEY (brand_id) REFERENCES car_brands(brand_id),
       FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id),
       FOREIGN KEY (dealer_id) REFERENCES "user_meta" (user_meta_id)
@@ -197,3 +209,66 @@ CREATE TABLE car_likes (
     FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
 );
 
+-- spareparts table
+CREATE TABLE IF NOT EXISTS "spare_parts" (
+    spare_part_id varchar(100) not null PRIMARY KEY,
+    name VARCHAR(100),
+    description TEXT,
+    price DECIMAL(10, 2),
+    used BOOLEAN,
+    car_model VARCHAR(100),
+    car_brand VARCHAR(100),
+    other_compatible_cars varchar(100)[],
+    car_year int,
+    is_universal BOOLEAN,
+    category VARCHAR(100),
+    part_number VARCHAR(100),
+    dealership_id varchar(100) default null,
+    dealer_id varchar(100) default null,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id),
+    FOREIGN KEY (dealer_id) REFERENCES "user_meta" (user_meta_id)
+    );
+
+
+-- spare parts images
+CREATE TABLE IF NOT EXISTS "spare_part_images" (
+    spare_part_image_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    image_url VARCHAR(100),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id)
+    );
+
+
+-- spare parts reviews
+CREATE TABLE IF NOT EXISTS "spare_part_reviews" (
+    spare_part_review_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    user_id varchar(100) not null,
+    rating INT,
+    review TEXT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+    );
+
+
+-- spare parts ratings
+CREATE TABLE IF NOT EXISTS "spare_part_ratings" (
+    spare_part_rating_id varchar(100) not null PRIMARY KEY,
+    spare_part_id varchar(100) not null,
+    user_id varchar(100) not null,
+    rating INT,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (spare_part_id) REFERENCES spare_parts(spare_part_id),
+    FOREIGN KEY (user_id) REFERENCES "user_meta" (user_meta_id)
+    );
