@@ -422,3 +422,53 @@ ALTER TABLE "spare_parts"
 
 ALTER TABLE "spare_parts"
     ALTER COLUMN dealership_id DROP NOT NULL;
+
+-- changeSet oyamo:18
+CREATE TABLE IF NOT EXISTS "dealership_kyc" (
+    kyc_ref varchar(64) not null PRIMARY KEY,
+    dealership_id varchar(100) not null,
+    latitude DECIMAL(10, 8),
+    longitude DECIMAL(10, 8),
+    kra_cert_url varchar(126) DEFAULT NULL,
+    business_permit_url varchar(126) DEFAULT NULL,
+    owner_passport_url varchar(126) DEFAULT NULL,                --- front photo of ID / Passport
+    owner_passport_back_url varchar(126) DEFAULT NULL,           --- back photo of ID
+    verified BOOLEAN,
+    verified_at TIMESTAMP default NULL,
+    verified_by  varchar(126),                                   --- organisation name of the user that verified
+    created_at TIMESTAMP default now(),
+    updated_at TIMESTAMP default now(),
+    FOREIGN KEY (dealership_id) REFERENCES dealership(dealership_id),
+    CONSTRAINT unique_dealership_kyc_ref UNIQUE (kyc_ref)
+);
+
+-- changeSet oyamo:19
+CREATE TABLE IF NOT EXISTS "dealer_kyc" (
+    kyc_ref varchar(64) not null PRIMARY KEY,
+    user_meta_id varchar(100) not null,
+    kra_cert_url varchar(126) DEFAULT NULL,
+    passport_url varchar(126),                                      --- front photo of pasport/ just ID
+    passport_back_url varchar(126),                                --- back photo of passport
+    verified BOOLEAN,
+    verified_at TIMESTAMP default NULL,
+    verified_by  varchar(126),                                   --- organisation name of the user that verified
+    created_at TIMESTAMP default now(),
+    updated_at TIMESTAMP default now(),
+    FOREIGN KEY (user_meta_id) REFERENCES user_meta(user_meta_id),
+    CONSTRAINT unique_dealer_kyc_ref UNIQUE (kyc_ref)
+);
+
+-- changeSet oyamo: 20
+CREATE TABLE IF NOT EXISTS "car_kyc" (
+    kyc_ref varchar(64) not null PRIMARY KEY,
+    car_id varchar(100) not null,
+    registration_number varchar(10) not null,
+    log_book_url varchar(126) not null null,
+    verified BOOLEAN,
+    verified_at TIMESTAMP default NULL,
+    verified_by  varchar(126),                                   --- organisation name of the user that verified
+    created_at TIMESTAMP default now(),
+    updated_at TIMESTAMP default now(),
+    FOREIGN KEY (car_id) REFERENCES cars(car_id),
+    CONSTRAINT unique_dealer_kyc_ref UNIQUE (kyc_ref)
+)
