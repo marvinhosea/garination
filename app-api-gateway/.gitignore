@@ -2,5 +2,6 @@
 .env.staging
 casdoor.pem
 .dev.env
+.env
 credentials.csv
 .dev.env

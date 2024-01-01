@@ -90,7 +90,6 @@ services:
         networks:
             - internal_network
 
-
     casbin_casdoor:
         image: casbin/casdoor:latest
         container_name: casbin_casdoor
@@ -103,8 +102,6 @@ services:
             test: ping -c3 casbin_casdoor:8000
             interval: 10s
             retries: 10
-        networks:
-            - internal_network
 
     prometheus:
         image: prom/prometheus
